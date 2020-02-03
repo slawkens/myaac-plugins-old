@@ -1,0 +1,49 @@
+/** WRAPPER */
+
+#wrapper {
+}
+
+/** HEADER */
+
+#header {
+}
+
+/** LOGO */
+
+#logo {
+	float: left;
+	width: 500px;
+	height: 147px;
+	background: url(images/others/homepage01.jpg) no-repeat left top;
+}
+
+#logo h1, #logo p {
+	margin: 0px;
+	text-indent: -9999em;
+	line-height: normal;
+}
+
+#logo a {
+	display: block;
+	height: 130px;
+}
+
+/** PAGE */
+
+#page {
+}
+
+/** CONTENT */
+
+#content {
+}
+
+/** SIDEBAR */
+
+#sidebar {
+}
+
+/** FOOTER */
+
+#footer {
+}

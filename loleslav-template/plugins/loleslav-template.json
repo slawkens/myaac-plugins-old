@@ -1,0 +1,16 @@
+{
+	"name": "loleslav-template",
+	"description": "This is Loleslav template for MyAAC.",
+	"version": "1.0.2",
+	"author": "Loleslav, DeGhost, slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.5.0"
+	},
+	"install": "plugins/loleslav-template/install.php",
+	"uninstall": [
+		"plugins/loleslav-template.json",
+		"plugins/loleslav-template",
+		"templates/loleslav"
+	]
+ }
