@@ -1,0 +1,17 @@
+{
+	"name": "landing-page",
+	"description": "Landing page for MyAAC.",
+	"version": "1.0",
+	"author": "Frostie, slawkens",
+	"contact": "otland.net",
+	"hooks": {
+		"landing-page-startup": {
+			"type": "STARTUP",
+			"file": "plugins/landing-page.php"
+		}
+	},
+	"uninstall": [
+		"plugins/landing-page.json",
+		"landing"
+	]
+ }

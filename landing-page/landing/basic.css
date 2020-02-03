@@ -1,0 +1,141 @@
+h1
+{
+   font-family: Arial;
+   font-size: 32px;
+   font-weight: bold;
+   font-style: normal;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+h2
+{
+   font-family: Arial;
+   font-size: 27px;
+   font-weight: bold;
+   font-style: normal;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+h3
+{
+   font-family: Arial;
+   font-size: 24px;
+   font-weight: normal;
+   font-style: normal;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+h4
+{
+   font-family: Arial;
+   font-size: 21px;
+   font-weight: normal;
+   font-style: italic;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+h5
+{
+   font-family: Arial;
+   font-size: 19px;
+   font-weight: normal;
+   font-style: normal;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+h6
+{
+   font-family: Arial;
+   font-size: 16px;
+   font-weight: normal;
+   font-style: normal;
+   text-decoration: none;
+   color: #000000;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   display: inline;
+}
+
+.CustomStyle
+{
+   font-family: Courier New;
+   font-size: 16px;
+   font-weight: bold;
+   font-style: normal;
+   text-decoration: none;
+   color: #000080;
+}
+
+body
+{
+   left: 250px;
+   text-align: center;
+   margin: 0;
+   position: absolute;
+   width: 1200px;
+   height: 600px;
+   background-color: #061222;
+   color: #061222;
+}
+
+#container
+{
+   width: 1350px;
+   height: 645px;
+   text-align: left;
+   background-image: url(images/background_artwork.png);
+}
+
+#textcontainer
+{
+   width: 200px;
+   height: 300px;
+   text-align: left;
+   background-image: url(images/textcontainer.png);
+}
+
+#wb_Text1
+{
+    text-shadow: -3px 0 black, 0 1px black, 3px 0 black, 0 -3px black;
+}
+
+#wb_Text2
+{
+    text-shadow: -3px 0 black, 0 1px black, 3px 0 black, 0 -3px black;
+}
+
+#wb_Text3
+{
+    text-shadow: -3px 0 black, 0 1px black, 3px 0 black, 0 -3px black;
+}
+
+#wb_Text4
+{
+     text-shadow: -3px 0 black, 0 1px black, 3px 0 black, 0 -3px black;
+}
+
+#wb_Text5
+{
+     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
