@@ -1,0 +1,13 @@
+{
+     "name": "Start Countdown",
+	 "description": "This is Start Countdown plugin for MyAAC.",
+     "version": "1.0",
+	 "author": "slawkens",
+	 "contact": "slawkens@gmail.com",
+	 "hooks": {
+		"Start Countdown": {
+			"type": "BEFORE_PAGE",
+			"file": "plugins/start-countdown/before_page.php"
+		}
+	 }
+ }
