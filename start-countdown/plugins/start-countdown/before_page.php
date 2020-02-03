@@ -34,7 +34,7 @@ $template_place_holders['head_end'][] = '
 </noscript>
 ';
 
-$template_place_holders['center_top'][] = '<center>Server starts in: <div id="defaultCountdown"></div></center>' . '
+$template_place_holders['center_top'][] = '<center>Server starts in: <div id="defaultCountdown"></div></center><br/>' . '
 <script type="text/javascript">
 function startAlert()
 {
