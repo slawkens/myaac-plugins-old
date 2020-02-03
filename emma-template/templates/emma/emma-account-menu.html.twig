@@ -1,0 +1,38 @@
+<style type="text/css">
+	div.horizontal-menu {
+		margin-bottom: 20px;
+	}
+
+	.horizontal-menu a {
+		background-color: {{ config.lightborder }}; /* Grey background color */
+		color: black; /* Black text color */
+		display: inline; /* Make the links appear below each other */
+		padding: 12px; /* Add some padding */
+		text-decoration: none; /* Remove underline from links */
+	}
+
+	.horizontal-menu a:hover {
+		background-color: {{ config.darkborder }}; /* Dark grey background on mouse-over */
+	}
+</style>
+{% set menus = {
+'Create Character': 'account/character/create','Delete Character': 'account/character/delete',
+'Change Info': 'account/info', 'Change Password': 'account/password', 'Change Email': 'account/email'
+} %}
+<div class="horizontal-menu">
+	<a href="{{ getLink('account/manage') }}">My Account</a>
+	{% if account_logged.getCustomField('key') is empty %}
+		<a href="{{ getLink('account/register') }}">Register Account</a>
+	{% endif %}
+	{% for name, link in menus %}
+		<a href="{{ getLink(link) }}">{{ name }}</a>
+		{% if link == 'account/character/delete' %}<br/><br/><br/>{% endif %}
+	{% endfor %}
+	{% if config.account_change_character_name %}
+		<a href="{{ getLink('account/character/name') }}">Change Name</a>
+	{% endif %}
+	{% if config.account_change_character_sex %}
+		<a href="{{ getLink('account/character/sex') }}">Change Sex</a>
+	{% endif %}
+	<a href="{{ getLink('account/logout') }}">Logout</a>
+</div>

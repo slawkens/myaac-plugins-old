@@ -1,0 +1,394 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	background: #191919 url('images/top_panel.jpg') repeat-x top center;
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #7E7E7E;
+}
+
+a
+{
+	font-weight: bold;
+	color: #D5D5D5;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #FFFFFF;
+}
+
+#page
+{
+	width: 1000px;
+	margin: auto;
+}
+
+#header
+{
+	width: 1000px;
+	height: 141px;
+	position: relative;
+}
+
+#logo
+{
+	width: 1000px;
+	height: 295px;
+	position: relative;
+	background: url('images/logo.jpg') no-repeat;
+}
+
+#panel
+{
+	width: 1000px;
+	height: 59px;
+	position: relative;
+	background: url('images/panel.jpg') no-repeat;
+}
+
+#container-main
+{
+	width: 946px;
+	margin: auto;
+	position: relative;
+}
+
+#menu
+{
+	width: 193px;
+	position: relative;
+	float: left;
+}
+
+#content
+{
+	width: 563px;
+	position: relative;
+	float: left;
+}
+
+#panels
+{
+	width: 190px;
+	position: relative;
+	float: left;
+}
+
+.content-box-top
+{
+	width: 563px;
+	height: 36px;
+	position: relative;
+	background: url('images/content-box-top.jpg') no-repeat;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.content-box-mid
+{
+	width: 563px;
+	position: relative;
+	background: url('images/content-box-mid.jpg') repeat-y;
+}
+
+	.content-box-mid .separator-big
+	{
+		width: 563px;
+		height: 9px;
+		background: url('images/separator.jpg') no-repeat center;
+	}
+
+	.content-box-mid .header
+	{
+		width: 543px;
+		padding: 10px;
+		background: url('images/content-separator.jpg') no-repeat center bottom;
+	}
+
+	.content-box-mid .header h2
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.content-box-mid .padding
+	{
+		width: 523px;
+		padding: 20px;
+	}
+
+.content-box-bot
+{
+	width: 563px;
+	height: 19px;
+	position: relative;
+	background: url('images/content-box-bot.jpg') no-repeat;
+}
+
+.content-box-footer
+{
+	width: 523px;
+	position: relative;
+	padding: 20px;
+	text-align: center;
+}
+
+#menu .button
+{
+	width: 193px;
+	height: 34px;
+	position: relative;
+	background: url('images/menu-button.jpg') no-repeat;
+}
+
+#menu .submenu
+{
+	width: 193px;
+	position: relative;
+}
+
+#menu .submenu ul
+{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#menu .submenu .menu-item
+{
+	display: block;
+	width: 153px;
+	height: 21px;
+	padding-left: 40px;
+	padding-top: 7px;
+	background: url('images/menu-link.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item:hover
+{
+	background: url('images/menu-link-hovered.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-active
+{
+	display: block;
+	width: 153px;
+	height: 21px;
+	padding-left: 40px;
+	padding-top: 7px;
+	background: url('images/menu-link-active.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-active:hover
+{
+	background: url('images/menu-link-active-hovered.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-last-active
+{
+	display: block;
+	width: 153px;
+	height: 22px;
+	padding-left: 40px;
+	padding-top: 7px;
+	background: url('images/menu-link-last-active.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-last-active:hover
+{
+	background: url('images/menu-link-last-active-hovered.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-last
+{
+	display: block;
+	width: 153px;
+	height: 22px;
+	padding-left: 40px;
+	padding-top: 7px;
+	background: url('images/menu-link-last.jpg') no-repeat;
+}
+
+#menu .submenu .menu-item-last:hover
+{
+	background: url('images/menu-link-last-hovered.jpg') no-repeat;
+}
+
+.menu-item a, .menu-item-active a, .menu-item-last a, .menu-item-last-active a
+{
+	color: #a49d9d;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#menu .button .status
+{
+	width: 16px;
+	height: 34px;
+	background-repeat: no-repeat;
+	position: relative;
+	float: left;
+}
+
+#menu .button .icon
+{
+	width: 37px;
+	height: 34px;
+	background-repeat: no-repeat;
+	position: relative;
+	float: left;
+}
+
+#menu .button .name
+{
+	width: 140px;
+	height: 34px;
+	background-image: url(images/menu/community.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+	position: relative;
+	float: left;
+}
+
+.lampa-left
+{
+	width: 186px;
+	height: 134px;
+	position: absolute;
+	background: url('images/lampa.png') no-repeat;
+}
+
+.lampa-right
+{
+	width: 186px;
+	height: 134px;
+	margin-left: 814px;
+	position: absolute;
+	background: url('images/lampa.png') no-repeat;
+}
+
+#panel-padding-left
+{
+	width: 465px;
+	padding-left: 35px;
+	padding-top: 10px;
+	float: left;
+}
+
+#panel-padding-right
+{
+	width: 460px;
+	padding-right: 40px;
+	padding-top: 10px;
+	float: left;
+}
+
+.search_character
+{
+	width: 152px;
+	height: 36px;
+	float: left;
+	background: url('images/search_character.png') no-repeat;
+}
+
+.search_char_input
+{
+	width: 183px;
+	height: 26px;
+	float: left;
+	background: url('images/search_field.png') no-repeat;
+	border: 0px;
+	color: #565353;
+	font-weight: bold;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-right: 20px;
+}
+
+.search_char_button
+{
+	width: 38px;
+	height: 36px;
+	float: left;
+	background: url('images/search_button.png') no-repeat;
+	border: 0px;
+}
+
+.server_status
+{
+	width: 120px;
+	height: 36px;
+	float: right;
+	background: url('images/server_status.png') no-repeat;
+}
+
+.status-online
+{
+	width: 76px;
+	height: 36px;
+	float: right;
+	background: url('images/online.png') no-repeat;
+}
+
+.status-offline
+{
+	width: 76px;
+	height: 36px;
+	float: right;
+	background: url('images/offline.png') no-repeat;
+}
+
+.uptime
+{
+	width: 88px;
+	padding-left: 35px;
+	padding-top: 10px;
+	height: 26px;
+	float: right;
+	text-align: right;
+	background: url('images/uptime.png') no-repeat left;
+}
+
+.newcomer
+{
+	width: 190px;
+	height: 142px;
+	position: relative;
+	background: url('images/newcomer-box.jpg') no-repeat;
+}
+
+.premium
+{
+	width: 190px;
+	height: 142px;
+	margin-top: 10px;
+	position: relative;
+	background: url('images/premium-box.jpg') no-repeat;
+}
+
+.polls
+{
+	width: 190px;
+	height: 142px;
+	margin-top: 10px;
+	position: relative;
+	background: url('images/poll-box.jpg') no-repeat;
+}
+
+input[type=submit] {
+	background-color: #444444;
+	color: black;
+	padding: 6px;
+	font-weight: bold;
+	cursor:pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #343434;
+}

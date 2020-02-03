@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>Untitled Document</title>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+
+    	<script type="text/javascript">
+			var date = new Date();
+			date.setTime(date.getTime() + 1000*60*60*24*30);
+
+				function readCookie( cookie_name )
+				{
+					var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+
+					if ( results )
+					{
+						return ( unescape ( results[2] ) );
+					}
+					else
+					{
+						return null;
+					}
+				}
+
+			var menu = new Array();
+			menu['news'] = 'on';
+			menu['account'] = 'off';
+			menu['community'] = 'off';
+			menu['library'] = 'off';
+			menu['shops'] = 'off';
+
+			var name = new Array();
+			name[1] = 'news';
+			name[2] = 'account';
+			name[3] = 'community';
+			name[4] = 'library';
+			name[5] = 'shops';
+
+			function menuInit()
+			{
+				for( i = 1; i < 6; i++ )
+				{
+					if( readCookie(name[i]) == 'on' )
+					{
+						document.getElementById(name[i]+'_Submenu').style.display = 'block';
+						document.getElementById(name[i]+'_Icon').style.backgroundImage = 'url(images/menu/'+name[i]+'_active_icon.png)';
+						document.getElementById(name[i]+'_Name').style.backgroundImage = 'url(images/menu/'+name[i]+'_active.png)';
+						document.getElementById(name[i]+'_Status').style.backgroundImage = 'url(images/menu/close.png)';
+						document.cookie = name[i]+'='+escape('on')+';expires='+date.toGMTString()+'';
+						menu[name[i]] = 'on';
+					}
+					else
+					{
+						document.getElementById(name[i]+'_Submenu').style.display = 'none';
+						document.getElementById(name[i]+'_Icon').style.backgroundImage = 'url(images/menu/'+name[i]+'_icon.png)';
+						document.getElementById(name[i]+'_Name').style.backgroundImage = 'url(images/menu/'+name[i]+'.png)';
+						document.getElementById(name[i]+'_Status').style.backgroundImage = 'url(images/menu/open.png)';
+						document.cookie = name[i]+'='+escape('off')+';expires='+date.toGMTString()+'';
+						menu[name[i]] = 'off';
+					}
+				}
+			}
+		</script>
+        <script type="text/javascript" src="menu.js"></script>
+    </head>
+
+    <body onload="menuInit(); makeItemActive('archive');">
+    	<div id="page">
+        	<div id="header">
+            	<div class="lampa-left"></div>
+                <div class="lampa-right"></div>
+            </div>
+            <div id="logo"></div>
+            <div id="panel">
+            	<div id="panel-padding">
+            		<div class="search_character"></div>
+                    <form action="index.php?page=characters" method="post">
+                    	<input type="text" name="name" class="search_char_input" maxlength="29" />
+                        <input type="submit" class="search_char_button" value="" />
+                    </form>
+                    <div class="players">1000/1000</div>
+                    <div class="uptime">24h 00m</div>
+                    <div class="status-offline"></div>
+                    <div class="server_status"></div>
+                </div>
+            </div>
+            <div id="container-main">
+            	<div id="menu">
+
+                	<div id="news">
+                    	<div class="button" onclick="menuAction('news');">
+                        	<div id="news_Status" class="status" style="background-image: url(images/menu/open.png);"></div>
+                        	<div id="news_Icon" class="icon" style="background-image: url(images/menu/news_icon.png);"></div>
+                            <div id="news_Name" class="name" style="background-image: url(images/menu/news.png);"></div>
+                        </div>
+                        <div id="news_Submenu">
+                        	<div class="submenu">
+                            	<ul>
+                                	<li id="latestnews" class="menu-item"><a href="index.php?subtopic=latestnews">Latest News</a></li>
+                                    <li id="archive" class="menu-item-last"><a href="index.php?subtopic=archive">News Archives</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="account">
+                    	<div class="button" onclick="menuAction('account');">
+                        	<div id="account_Status" class="status" style="background-image: url(images/menu/open.png);"></div>
+                        	<div id="account_Icon" class="icon" style="background-image: url(images/menu/account_icon.png);"></div>
+                            <div id="account_Name" class="name" style="background-image: url(images/menu/account.png);"></div>
+                        </div>
+                        <div id="account_Submenu">
+                        	<div class="submenu">
+                            	<ul>
+                                	<li id="accountmanagement" class="menu-item"><a href="index.php?subtopic=accountmanagement">Manage Account</a></li>
+                                    <li id="createaccount" class="menu-item"><a href="index.php?subtopic=createaccount">Create Account</a></li>
+                                    <li id="lostaccount" class="menu-item"><a href="index.php?subtopic=lostaccount">Lost Account</a></li>
+                                    <li id="tibiarules" class="menu-item-last"><a href="index.php?subtopic=tibiarules">Server Rules</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="community">
+                    	<div class="button" onclick="menuAction('community');">
+                        	<div id="community_Status" class="status" style="background-image: url(images/menu/open.png);"></div>
+                        	<div id="community_Icon" class="icon" style="background-image: url(images/menu/community_icon.png);"></div>
+                            <div id="community_Name" class="name" style="background-image: url(images/menu/community.png);"></div>
+                        </div>
+                        <div id="community_Submenu">
+                        	<div class="submenu">
+                            	<ul>
+                                	<li id="characters" class="menu-item"><a href="index.php?subtopic=characters">Characters</a></li>
+                                    <li id="guilds" class="menu-item"><a href="index.php?subtopic=guilds">Guilds</a></li>
+                                    <li id="highscores" class="menu-item"><a href="index.php?subtopic=highscores">Highscores</a></li>
+                                    <li id="killstatistics" class="menu-item"><a href="index.php?subtopic=killstatistics">Last Deaths</a></li>
+                                    <li id="houses" class="menu-item"><a href="index.php?subtopic=houses">Houses</a></li>
+                                    <li id="team" class="menu-item-last"><a href="index.php?subtopic=team">Game Masters</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="library">
+                    	<div class="button" onclick="menuAction('library');">
+                        	<div id="library_Status" class="status" style="background-image: url(images/menu/open.png);"></div>
+                        	<div id="library_Icon" class="icon" style="background-image: url(images/menu/library_icon.png);"></div>
+                            <div id="library_Name" class="name" style="background-image: url(images/menu/library.png);"></div>
+                        </div>
+                        <div id="library_Submenu">
+                        	<div class="submenu">
+                            	<ul>
+                                	<li id="creatures" class="menu-item"><a href="index.php?subtopic=creatures">Monsters</a></li>
+                                    <li id="spells" class="menu-item"><a href="index.php?subtopic=spells">Spells</a></li>
+                                    <li id="whoisonline" class="menu-item"><a href="index.php?subtopic=whoisonline">Who is Online?</a></li>
+                                    <li id="serverinfo" class="menu-item"><a href="index.php?subtopic=serverinfo">Server Info</a></li>
+                                    <li id="downloads" class="menu-item"><a href="index.php?subtopic=downloads">Downloads</a></li>
+                                    <li id="gallery" class="menu-item-last"><a href="index.php?subtopic=gallery">Gallery</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="shops">
+                    	<div class="button" onclick="menuAction('shops');">
+                        	<div id="shops_Status" class="status" style="background-image: url(images/menu/open.png);"></div>
+                        	<div id="shops_Icon" class="icon" style="background-image: url(images/menu/shops_icon.png);"></div>
+                            <div id="shops_Name" class="name" style="background-image: url(images/menu/shops.png);"></div>
+                        </div>
+                        <div id="shops_Submenu">
+                        	<div class="submenu">
+                            	<ul>
+                                	<li id="buypoints" class="menu-item"><a href="index.php?subtopic=buypoints">Buy Points</a></li>
+                                    <li id="shopsystem" class="menu-item"><a href="index.php?subtopic=shopsystem">Shop Offer</a></li>
+                                    <li class="menu-item-last"><a href="index.php?subtopic=shopsystem&action=show_history">Shop History</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="content">
+                	<div class="content-box-top">
+                    	<img src="images/subtopics/latestnews.png" alt="Subtopic" />
+                    </div>
+                    <div class="content-box-mid">
+                    	<div>
+                            <div class="header">
+                                24.06.2009 by Vean
+                                <h2>Lorem Ipsum</h2>
+                            </div>
+                            <div class="padding">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mi urna, scelerisque eget fermen
+                                Praesent sit amet erat nisi. Vestibulum leo sapien, bibendum vitae auctor at, imperdiet eu nibh.
+                                ullam id risus eget leo tincidunt rhoncus quis sed enim.
+                                nteger ac neque neque, quis mattis mauris. Duis iaculis auctor est, sed lobortis enim feugiat a
+                                phasellus laoreet diam eleifend velit fringilla non vehicula arcu tincidunt. Morbi nibh sem, cons
+                                honcus aliquam nunc, vitae porttitor orci dignissim id. Donec consequat diam eu tortor congue
+                                faucibus. Integer faucibus purus sodales nulla tempor et vehicula mauris posuere. Vestibulum
+                                purus nisl, mollis et sollicitudin at, sodales nec erat.
+                            </div>
+                            <div class="separator-big"></div>
+                        </div>
+
+                        <div>
+                            <div class="header">
+                                24.06.2009 by Vean
+                                <h2>Lorem Ipsum</h2>
+                            </div>
+                            <div class="padding">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mi urna, scelerisque eget fermen
+                                Praesent sit amet erat nisi. Vestibulum leo sapien, bibendum vitae auctor at, imperdiet eu nibh.
+                                ullam id risus eget leo tincidunt rhoncus quis sed enim.
+                                nteger ac neque neque, quis mattis mauris. Duis iaculis auctor est, sed lobortis enim feugiat a
+                                phasellus laoreet diam eleifend velit fringilla non vehicula arcu tincidunt. Morbi nibh sem, cons
+                                honcus aliquam nunc, vitae porttitor orci dignissim id. Donec consequat diam eu tortor congue
+                                faucibus. Integer faucibus purus sodales nulla tempor et vehicula mauris posuere. Vestibulum
+                                purus nisl, mollis et sollicitudin at, sodales nec erat.
+                            </div>
+                            <div class="separator-big"></div>
+                        </div>
+                    </div>
+                    <div class="content-box-bot"></div>
+                    <div class="content-box-footer">
+						<?php echo template_footer(); ?>
+                        <br/>Designed by Sprite.
+                    </div>
+                </div>
+                <div id="panels">
+                	<div class="newcomer">
+
+                    </div>
+
+                    <div class="premium">
+
+                    </div>
+
+                    <div class="polls">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
