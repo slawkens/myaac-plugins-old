@@ -1,0 +1,16 @@
+{
+	"name": "Znote to MyAAC Converter",
+	"description": "Convert Znote database schema to MyAAC schema.",
+	"version": "1.0",
+	"author": "slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.6.6"
+	},
+	"install": "plugins/znote-converter.php",
+	"uninstall": [
+		"plugins/znote-converter.json",
+		"plugins/znote-converter.php",
+		"system/templates/znote-converter.html.twig"
+	]
+ }
