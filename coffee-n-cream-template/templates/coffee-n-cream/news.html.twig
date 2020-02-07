@@ -1,0 +1,8 @@
+<h1>{{ title }}</h1>
+<div class="descr">{{ date|date('M d, Y') }}{% if author is not empty %} by {{ author }}{% endif %}</div>
+
+{{ content|raw }}
+
+{% if comments is not null %}
+	<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+{% endif %}
