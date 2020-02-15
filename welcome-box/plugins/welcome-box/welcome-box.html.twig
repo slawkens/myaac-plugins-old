@@ -1,0 +1,50 @@
+<div class="TableShadowContainerRightTop" >
+    <div class="TableShadowRightTop" style="background-image:url({{ template_path }}/images/global/content/table-shadow-rt.gif);" ></div>
+</div>
+<div class="TableContentAndRightShadow" style="background-image:url({{ template_path }}/images/global/content/table-shadow-rm.gif);" >
+    <div class="TableContentContainer" >
+        <table bgcolor="{{ config.darkborder }}" border="0" cellpadding="4" cellspacing="1" width="100%">
+            <tr bgcolor="{{ config.vdarkborder }}">
+                <td align="center" class="white" colspan=1><b>Welcome to {{ config.lua.serverName }}</b></td>
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center>Last joined us: <a href="{{ values.lastJoinedPlayer.link }}">{{ values.lastJoinedPlayer.name }}</a>, player number {{ values.lastJoinedPlayer.id }}. Welcome and wish you a nice game!</center></td>
+                        </tr>
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center>Currently, the best player on the server is: <a href="{{ values.bestPlayer.link }}">{{ values.bestPlayer.name }}</a> (Level {{ values.bestPlayer.level }}). Congratulations!</center></td>
+                        </tr>
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center><b>Server motd: </b>{{ config.lua.motd }}</center></td>
+                        </tr>
+                    </table>
+                    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center><b>Free Houses: </b>{{ values.total.freeHouses }}</center></td>
+                            <td><center><b>Rented Houses: </b>{{ values.total.rentedHouses }}</center></td>
+                        </tr>
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center><b>Accounts</b> in database: {{ values.total.accounts }}</center></td>
+                            <td><center><b>Players</b> in database:  {{ values.total.players }}</center></td>
+                        </tr>
+                        <tr bgcolor="{{ config.lightborder }}">
+                            <td><center><b>Banned</b> accounts: {{ values.total.bannedAccounts }}</center></td>
+                            <td><center><b>Guilds</b> in database: {{ values.total.guilds }}</center></td>
+                        </tr>
+                    </table>
+                    <table width="100%">
+                        <tr bgcolor="{{ config.lightborder }}">
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="TableShadowContainer" style="padding-bottom: 10px;">
+    <div class="TableBottomShadow" style="background-image:url({{ template_path }}/images/global/content/table-shadow-bm.gif);" >
+        <div class="TableBottomLeftShadow" style="background-image:url({{ template_path }}/images/global/content/table-shadow-bl.gif);" ></div>
+        <div class="TableBottomRightShadow" style="background-image:url({{ template_path }}/images/global/content/table-shadow-br.gif);" ></div>
+    </div>
+</div>
