@@ -1,0 +1,11 @@
+[2.0 - 15.02.2020]
+	* big refactoring of the code
+	* use Twig for template
+	* add LICENSE, CHANGELOG
+
+[1.1 - 31.07.2020]
+	* fixed bug when you have in your database accounts with empty 'country' field
+	* the whole charts are also little bigger. It looks better.
+
+[1.0 - 01.06.2017]
+	* initial release
