@@ -1,0 +1,7 @@
+[1.1 - 15.02.2020]
+	* add LICENSE, CHANGELOG
+	* move some code to downloads-head-end.html.twig
+	* some HTML template code optimisations
+
+[1.0 - 14.10.2017]
+	* initial release

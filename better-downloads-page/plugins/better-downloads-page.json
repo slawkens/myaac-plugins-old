@@ -1,10 +1,12 @@
 {
-	"name": "better-downloads-page",
+	"name": "Better Downloads Page",
 	"description": "Downloads page looking more Tibish for MyAAC.",
-	"version": "1.0",
+	"version": "1.1",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {
 		"myaac": "0.5.0"
 	}
- }
+}

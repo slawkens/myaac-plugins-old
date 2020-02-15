@@ -22,14 +22,12 @@ if(!isset($config['downloads']))
 	);
 }
 
+global $twig_loader;
+$twig_loader->prependPath(BASE . 'plugins/better-downloads-page');
+
 if(isset($_REQUEST['step']) && $_REQUEST['step'] == "download") {
-	echo $twig->render('downloads.html.twig', array('downloads_config' => $config['downloads']));
-	$template_place_holders['body_end'][] = '<div id="HelperDivContainer" style="background-image: url(images/global/content/scroll.gif);">
-  		<div class="HelperDivArrow" style="background-image: url(images/global/content/helper-div-arrow.png);"></div>
-		<div id="HelperDivHeadline"></div>
-		<div id="HelperDivText"></div>
-		<center><img class="Ornament" src="images/global/content/ornament.gif"></center><br>
-   </div>';
+	$twig->display('downloads.html.twig', array('downloads_config' => $config['downloads']));
+	$template_place_holders['body_end'][] = $twig->render('downloads-head-end.html.twig');
 } else {
-	echo $twig->render('downloads.agreement.html.twig');
+	$twig->display('downloads.agreement.html.twig');
 }
