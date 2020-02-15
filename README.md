@@ -3,4 +3,4 @@
 
 # Ideas
 Got idea for a plugin or template?
-Make in issue in this repository: [New Issue](https://github.com/slawkens/myaac-plugins/issues/new)
+Make an issue in this repository: [New Issue](https://github.com/slawkens/myaac-plugins/issues/new)
