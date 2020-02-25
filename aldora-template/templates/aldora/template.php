@@ -8,6 +8,17 @@ foreach($menus as $cat => &$_menus) {
 		$menu['link_full'] = $link_full;
 	}
 }
+
+if(count($menus) === 0) {
+	$text = 'Please install the template in Admin Panel, so the menus will be imported too.';
+	if(version_compare(MYAAC_VERSION, '0.8.0', '>=')) {
+		throw new RuntimeException($text);
+	}
+	else {
+		echo $text;
+		exit;
+	}
+}
 ?>
 
 	<!DOCTYPE html>
