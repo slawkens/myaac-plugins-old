@@ -5,5 +5,10 @@
 	"type": "template",
 	"license": "GPLv3",
 	"author": "Viktor Persson <contact@arcsin.se>",
-	"contact": "slawkens@gmail.com"
+	"contact": "slawkens@gmail.com",
+	"uninstall": [
+		"plugins/darkritual.json",
+		"plugins/darkritual",
+		"templates/darkritual"
+	]
 }

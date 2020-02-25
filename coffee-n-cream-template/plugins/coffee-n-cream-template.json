@@ -5,5 +5,10 @@
 	"type": "template",
 	"license": "GPLv3",
 	"author": "Arcsin (modified by slawkens)",
-	"contact": "https://arcsin.se/"
+	"contact": "slawkens@gmail.com",
+	"uninstall": [
+		"plugins/coffee-n-cream-template.json",
+		"plugins/coffee-n-cream-template",
+		"templates/coffee-n-cream"
+	]
 }
