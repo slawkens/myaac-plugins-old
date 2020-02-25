@@ -267,12 +267,8 @@ $menus = get_template_menus();
 						<!-- Discord.End -->
 
 						<!-- Social media -->
-						<div class="social_media seperator">
-							<ul>
-							<a href="<?= getLink('points') ?>">
-							<center><div id="wikiButton" class="Themebox" style="width:180px;height:60px; background-image:url(images/donate.png);"></div></center>
-							</a>
-							</ul>
+						<div class="sidebar_banner seperator">
+							<a href="<?= getLink('points') ?>" class="banner"><span class="text">Donate</span></a>
 						</div>
 						<!-- Social media.End -->
 
