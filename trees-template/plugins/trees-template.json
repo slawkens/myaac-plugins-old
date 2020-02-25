@@ -2,6 +2,8 @@
 	"name": "trees Template",
 	"description": "This is trees template for MyAAC.",
 	"version": "1.3",
+	"type": "template",
+	"license": "GPLv3",
 	"author": "css3templates.co.uk (modified by slawkens)",
 	"contact": "slawkens@gmail.com",
 	"require": {

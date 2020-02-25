@@ -2,6 +2,8 @@
 	"name": "caffee-n-cream Template",
 	"description": "This is caffee-n-cream template for MyAAC.",
 	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
 	"author": "Arcsin (modified by slawkens)",
 	"contact": "https://arcsin.se/"
 }

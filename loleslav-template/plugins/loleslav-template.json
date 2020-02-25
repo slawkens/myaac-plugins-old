@@ -2,6 +2,8 @@
 	"name": "loleslav-template",
 	"description": "This is Loleslav template for MyAAC.",
 	"version": "1.0.2",
+	"type": "template",
+	"license": "GPLv3",
 	"author": "Loleslav, DeGhost, slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {
