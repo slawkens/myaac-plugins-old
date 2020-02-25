@@ -22,7 +22,7 @@ $twig_loader->prependPath(BASE . 'plugins/welcome-box');
 
 $tmp = null;
 $cache = Cache::getInstance();
-if(!$cache->enabled() || !$cache->fetch('welcome-box', $tmp)) {
+if(!$cache->enabled() || !$cache->fetch('welcome-box-values', $tmp)) {
 	$welcomeBox = new WelcomeBox($db);
 	$values = [
 		'lastJoinedPlayer' => $welcomeBox->getLastJoinedPlayer(),
