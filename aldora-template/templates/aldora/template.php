@@ -1,6 +1,11 @@
 <?php
 defined('MYAAC') or die('Direct access not allowed!');
 
+if(!version_compare(MYAAC_VERSION, '0.7', '>=')) {
+	echo 'MyAAC 0.7.0 is required.';
+	exit;
+}
+
 $menus = get_template_menus();
 foreach($menus as $cat => &$_menus) {
 	foreach($_menus as &$menu) {
