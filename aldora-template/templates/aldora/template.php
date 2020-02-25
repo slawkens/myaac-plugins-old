@@ -2,6 +2,12 @@
 defined('MYAAC') or die('Direct access not allowed!');
 
 $menus = get_template_menus();
+foreach($menus as $cat => &$_menus) {
+	foreach($_menus as &$menu) {
+		$link_full = strpos(trim($menu['link']), 'http') === 0 ? $menu['link'] : getLink($menu['link']);
+		$menu['link_full'] = $link_full;
+	}
+}
 ?>
 
 	<!DOCTYPE html>

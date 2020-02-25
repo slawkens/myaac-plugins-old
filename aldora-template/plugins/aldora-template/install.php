@@ -33,16 +33,21 @@ foreach ($categories as $category => $menus) {
 			$link = $link['link'];
 		}
 
-		$db->insert(TABLE_PREFIX . 'menu',
-			[
-				'template' => $template,
-				'name' => $name,
-				'link' => $link,
-				'blank' => $blank,
-				'color' => $color,
-				'category' => $category,
-				'ordering' => $i++,
-			]);
+		$insert_array = [
+			'template' => $template,
+			'name' => $name,
+			'link' => $link,
+			'category' => $category,
+			'ordering' => $i++,
+		];
+
+		// support for color and blank attributes since 0.8.0
+		if(version_compare(MYAAC_VERSION, '0.8.0', '>=')) {
+			$insert_array['blank'] = $blank;
+			$insert_array['color'] = $color;
+		}
+
+		$db->insert(TABLE_PREFIX . 'menu', $insert_array);
 
 		unset($color);
 	}
