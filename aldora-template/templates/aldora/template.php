@@ -283,11 +283,12 @@ if(count($menus) === 0) {
 						</div>
 						<!-- Discord.End -->
 
-						<!-- Social media -->
+						<?php if($config['gifts_system']) { ?>
 						<div class="sidebar_banner seperator">
 							<a href="<?= getLink('points') ?>" class="banner"><span class="text">Donate</span></a>
 						</div>
-						<!-- Social media.End -->
+						<?php } ?>
+
 
 						<section id="sidebox_status" class="sidebox  seperator">
 								<h4 class="sidebox_title">Server status</h4>
