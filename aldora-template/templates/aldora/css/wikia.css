@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+
+#tabs * {
+  box-sizing: border-box;
+}
+
+#tabs {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 100%;
+  position: relative;
+  //top: -10px;
+  //left: -10px;
+  max-width: 780px;
+}
+
+.editmenu {
+  float: right;
+  text-align: right;
+  clear: both;
+  display: block;
+  width: 100%;
+}
+
+.wikia_edit {
+  float: right;
+  font-size: 9px;
+  font-style: italic;
+  text-align: right;
+  font-weight: normal;
+}
+
+.mce-notification-warning {
+  display: none !important;
+}
+
+.breadcumb {
+  width: 100%;
+  padding: 5px 10px;
+  background: rgb(67, 56, 54);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-transform: capitalize;
+  color: #dfc68a !important;
+  overflow: auto;
+}
+
+.breadcumb a:hover {
+  text-decoration: none !important;
+}
+
+.wikia_text img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+#tabs p {
+  margin-bottom: 10px;
+}
+
+#tabs input, #tabs select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #29201e;
+  border-radius: 4px;
+}
+
+#tabs .markItUp {
+  width: 100%;
+  border: 1px solid #29201e;
+  border-radius: 4px;
+  padding: 5px;
+  background: white;
+  margin: 0;
+}
+
+.wikia_menu {
+  background: #1f1a17;
+  padding: 0;
+  border-right: 1px solid;
+  margin: 0 10px 0 0;
+  color: #1f1a17 !important;
+  width: 180px;
+  max-width: 180px;
+  min-width: 180px;
+  height: auto;
+  display: block;
+  margin-right: 15px !important;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+}
+
+.wikia_menu a {
+  width: 100%;
+  padding: 8px 20px 8px 20px;
+  display: block;
+  float: left;
+  color: #dfc68a !important;
+  border-left: 3px solid #28201e;
+}
+
+.wikia_menu a:hover {
+  text-decoration: none !important;
+  border-color: #29201e;
+}
+
+.wikia_menu li {
+  border-bottom: #28201e;
+  display: block;
+  float: left;
+  color: #392e2c !important;
+  width: 100%;
+  background: #28201e;
+  margin-bottom: 5px !important;
+  font-size: 13px;
+  cursor: inherit !important;
+}
+
+.wikia_menu li:hover, .active {
+  background: #1f1a17 !important;
+}
+
+.wikia_submenu {
+  display: block;
+  background: #29201e;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0 0;
+}
+
+.wikia_submenu .youtube {
+  float: right;
+  width: 33px;
+  margin-right: 8px;
+}
+
+.wikia_submenu img {
+  width: 32px;
+  height: 32px;
+  margin: -7px;
+  padding: 0;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  float: inherit;
+  margin-left: -3px;
+}
+
+.wikia_submenu li {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-bottom: 1px solid #29201e;
+  list-style-type: none;
+  background: rgba(246, 248, 235, 0.42);
+  border-radius: 4px;
+}
+
+.wikia_submenu li:hover {
+  background: #29201e;
+}
+
+.wikia_submenu a {
+  width: 100%;
+  display: block;
+  color: #392e2c !important;
+}
+
+.wikia_submenu a:hover {
+  color: #392e2c !important;
+}
+
+.auto {
+  margin: 0 auto;
+  display: block;
+}
+
+.big {
+  line-height: 2em;
+}
+
+.med {
+  line-height: 1.4em;
+}
+
+.wikia_title {
+  min-width: 350px;
+  border-radius: 2px;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  width: 100%;
+  margin: 0 0 5px;
+}
+
+.wikia_text {
+  width: 100%;
+  display: block;
+  border: 1px solid #7d6e5f;
+  background: #28201e;
+  border-radius: 2px;
+  padding: 10px !important;
+  text-align: justify;
+}
+
+.wikia_text h3 {
+  text-align: center;
+}
+
+.wikia_text input {
+  width: 100%;
+  padding: 5px;
+}
+
+.wikia_text table {
+  display: block;
+  width: 100%;
+}
+
+.wikia_logo {
+  display: block;
+  margin: 0 auto;
+  max-width: inherit;;
+}
+
+#boxeventinfo {
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  font: 10pt Verdana, Arial, Times New Roman, sans-serif
+}
+
+.wikia_title {
+  background: none;
+  overflow: hidden;
+  padding-top: .5em;
+  padding-bottom: .17em;
+  width: auto;
+  text-align: left;
+  color: #dfc68a!important;
+  font-weight: bolder;
+  font-size: 17pt;
+  margin: 0 0 5px;
+}
+
+p {
+  padding-left: 2%;
+  margin: 0
+}
+
+form {
+  margin: 0;
+}
+
+.big {
+  font-size: 1.5em;
+}
+
+.med {
+  font-size: 1.2em;
+}
+
+.sma {
+  font-size: .8em;
+}
+
+}
+
+#wikia-tab > li > a {
+  padding: 8px 20px 8px 10px;
+}
+
+#wikia-tab i {
+  margin-left: 5px;
+}
+
+.wikia_content {
+  width: 75%;
+  padding-right: 15px;
+  color: #dfc68a !important;
+}
+
+.menu_destak {
+  color: darkgreen;
+}
+
+.menu_destak a {
+  padding: 10px 10px;
+  background: rgba(0, 128, 0, 0.10);
+  color: darkgreen !important;
+}
+
+.menu_destak a:hover {
+  background: rgba(0, 128, 0, 0.20);
+}
+
+.menu_search {
+  padding: 5px 10px;
+}
+
+.search_input {
+  float: left !important;
+  width: 135px !important;
+}
+
+.search_icon {
+  float: left !important;
+  margin: 4px !important;
+  margin-right: 0 !important;
+  width: 20px !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.video-container, .video-container iframe {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #392e2c;
+  margin-bottom: -15px;
+  overflow: hidden;
+}

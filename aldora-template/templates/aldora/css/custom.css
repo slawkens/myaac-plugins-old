@@ -1,0 +1,132 @@
+::selection {
+    color: #fff;
+    background-color: #ff8c00
+}
+::-moz-selection {
+    color: #fff;
+    background-color: #ff8c00
+}
+#nickname_field,
+#location_field,
+#login_username,
+#login_password,
+.sbHolder .sbSelector {
+    color: #534846
+}
+#armory_stats_next {
+    top: -15px
+}
+#discord_banner {
+    width: 256px;
+    height: 120px;
+    display: block;
+    position: relative;
+    margin: -5px 15px -51px;
+    background-image: url(../images/discord.png);
+    background-color: transparent;
+    background-repeat: no-repeat!important;
+    -webkit-filter: contrast(100%);
+    transition: .5s ease-out
+}
+#wikiButton {
+    opacity: .8
+}
+#wikiButton:hover {
+    opacity: 1
+}
+.accoun_panel_menu li a {
+    height: 86px;
+    width: 310px
+}
+.accoun_panel_menu li a:before {
+    top: 8px;
+    height: 119px;
+    width: 350px
+}
+.character_buttons,
+.tool_buttons {
+    bottom: 17px
+}
+.teleport_realm_divider {
+    width: 100%;
+    clear: both;
+    color: #766e64;
+    border: 1px #212120 solid;
+    border: 1px rgba(255, 255, 255, .02) solid;
+    padding: 15px;
+    font-size: 12px;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    font-weight: 700;
+    line-height: initial!important;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, .5), 0 0 5px rgba(0, 0, 0, .2), 0 1px 1px rgba(0, 0, 0, .7);
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    letter-spacing: 0;
+    background-color: #1e1e1d;
+    background-color: rgba(255, 255, 255, .05);
+    transition: color .4s, box-shadow .4s, background .4s;
+    -o-transition: color .4s, box-shadow .4s, background .4s;
+    -ms-transition: color .4s, box-shadow .4s, background .4s;
+    -moz-transition: color .4s, box-shadow .4s, background .4s;
+    -webkit-transition: color .4s, box-shadow .4s, background .4s;
+    text-align: center
+}
+#page_recruitafriend>div.page_body>p>span>input {
+    color: #5a4f4c
+}
+.guide_title {
+    color: #f60;
+    font-size: 125%;
+    text-align: left;
+    margin: 0
+}
+.guide_text {
+    color: #9c8872;
+    margin: 0 0 0 20px
+}
+.guide_text_realmlist {
+    color: #da412a;
+    text-align: center;
+    margin: 0 0 5px;
+    font-size: 115%;
+    background: #2e2524
+}
+.guide_subtitle {
+    color: #efcd84;
+    font-size: 110%;
+    margin: 0 0 0 10px
+}
+#sidebox_toppvp .sidebox_body #toppvp .toppvp_realm .toppvp_data .toppvp_character div {
+    font-size: 14px;
+    font-weight: bolder
+}
+#sidebox_toppvp .sidebox_body #toppvp .toppvp_realm .toppvp_data .toppvp_character a,
+#toppvp>div {
+    font-size: 18px;
+    font-weight: bolder
+}
+#page_page>div.page_body>div:nth-child(2)>a>img,
+#page_page>div.page_body>div:nth-child(6)>a>img {
+    width: 100%;
+    border-radius: 13px;
+    border: 1px solid
+}
+#vote>tbody>tr:nth-child(10)>td:nth-child(1)>img {
+    width: 88px;
+    height: 51px
+}
+#current-lottery-status {
+    font-size: 16px
+}
+#current-lottery-status>table>tbody>tr>td {
+    font-size: 13px
+}

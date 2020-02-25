@@ -1,0 +1,29 @@
+<div class="news_header border_box self_clear">
+	<div class="left_side"><span class="title">{{ title }}</span></div>
+	<div class="right_side">
+		<h3 class="panel-title">
+			<div class="post_meta_infos">
+				<i class="fa fa-clock-o"></i> {{ date|date(config.news_date_format) }}
+			</div>
+		</h3>
+		<br>
+	</div>
+</div>
+<div class="post_header">
+	<br>
+</div>
+
+<div class="guide_subtitle">
+	{{ content|raw }}
+	{% if comments is not null %}
+		<table>
+			<tr>
+				<td>
+					<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+				</td>
+			</tr>
+		</table>
+	{% endif %}
+</div>
+<br/><br/>
+<div class="social_media seperator"></div>

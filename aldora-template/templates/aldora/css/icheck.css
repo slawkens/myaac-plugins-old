@@ -1,0 +1,49 @@
+.icheckbox,
+.iradio {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    background-image: url(../images/radio-checkbox.png);
+    background-repeat: no-repeat
+}
+.icheckbox.disabled,
+.iradio.disabled {
+    cursor: default
+}
+.icheckbox {
+    width: 30px;
+    height: 31px;
+    margin: -5px 0 0;
+    background-position: 0 0
+}
+.icheckbox.hover {
+    background-position: 0 -31px
+}
+.icheckbox.checked {
+    background-position: 0 -62px
+}
+.icheckbox.disabled {
+    background-position: 0 -93px
+}
+.icheckbox.checked.disabled {
+    background-position: 0 -124px
+}
+.iradio {
+    width: 28px;
+    height: 30px;
+    margin: 0 10px 0 0;
+    background-position: -30px -1px
+}
+.iradio.hover {
+    background-position: -30px -32px
+}
+.iradio.checked {
+    background-position: -30px -63px
+}
+.iradio.disabled {
+    background-position: -30px -94px
+}
+.iradio.checked.disabled {
+    background-position: -30px -125px
+}
