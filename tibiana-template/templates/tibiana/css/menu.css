@@ -1,0 +1,37 @@
+/*Menu start here*/	
+ul#tabmenu {
+  /* background: gainsboro; */
+  padding: 0%;
+  border-radius: 1px;
+  height: 165px;
+  font-size: 14px;
+  text-align: left;
+  /* border: 8px double rgb(183, 217, 249); */
+  margin: 0;
+}
+ul#tabmenu li:hover {
+  background: rgb(179, 179, 179);
+  border-radius: 8px;
+  border: 4px double beige;
+}
+ul#tabmenu li {
+  float: left;
+  width: 12%;
+  padding: .7% 3%;
+  background: none;
+  height: 40px;
+  border: 4px double transparent;
+  transition: .7s all;
+  list-style: none;
+}
+ul#tabmenu a {
+  outline: none;
+  text-decoration: none;
+  font-weight: bold;
+  color: #1C4B15;
+}
+ul#tabmenu li a div {
+  float: right;
+  width: 40%;
+}
+/*Menu ends here*/	

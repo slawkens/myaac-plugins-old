@@ -1,0 +1,19 @@
+{
+	"name": "Tibiana Template",
+	"description": "Tibiana template for MyAAC.",
+	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "unknown, slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.7.0",
+		"php": "5.4"
+	},
+	"install": "plugins/tibiana-template/install.php",
+	"uninstall": [
+		"plugins/tibiana-template.json",
+		"plugins/tibiana-template",
+		"templates/tibiana"
+	]
+}

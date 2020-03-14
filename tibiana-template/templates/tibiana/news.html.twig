@@ -1,0 +1,18 @@
+<tr>
+	<td class="zheadline" colspan="2">&nbsp;&nbsp;<span class="znewsdate">{{ date|date(news_date_format) }} - </span><b>{{ title }}</b></td>
+</tr>
+<tr>
+	<td class="znewsbody" colspan="2">{{ content|raw }}</td>
+</tr>
+<tr>
+	<td class="znewsdate">
+		<span style="color:#5a2800">&nbsp;&nbsp;</span>{% if author is not empty %} by {{ author }}{% endif %}</td>
+	<td class="znewsdate"></td>
+</tr>
+<tr>
+	<td class="znewsdate" colspan="2">
+		{% if comments is not null %}
+			<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+		{% endif %}
+	</td>
+</tr>
