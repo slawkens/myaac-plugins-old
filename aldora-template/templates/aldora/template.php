@@ -15,7 +15,7 @@ foreach($menus as $cat => &$_menus) {
 }
 
 if(count($menus) === 0) {
-	$text = "Please install the $template template in Admin Panel, so the menus will be imported too.";
+	$text = "Please install the $template_name template in Admin Panel, so the menus will be imported too.";
 	if(version_compare(MYAAC_VERSION, '0.8.0', '>=')) {
 		throw new RuntimeException($text);
 	}
