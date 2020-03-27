@@ -1,9 +1,13 @@
 {
-	"name": "Powerful guilds",
+	"name": "Powerful Guilds",
 	"description": "Shows most powerful guilds on the front page (news).",
-	"version": "1.1",
+	"version": "2.0",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com",
+	"require": {
+		"php": "5.4",
+		"myaac": "0.4"
+	},
 	"hooks": {
 		"Powerful guilds": {
 			"type": "BEFORE_PAGE",

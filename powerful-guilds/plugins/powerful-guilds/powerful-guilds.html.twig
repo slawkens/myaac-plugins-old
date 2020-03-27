@@ -1,0 +1,24 @@
+<div class="NewsHeadline">
+	<div class="NewsHeadlineBackground" style="background-image:url({{ template_path }}/images/news/newsheadline_background.gif)">
+		<table border="0">
+			<tr>
+				<td style="text-align: center; font-weight: bold;">
+					<font color="white">Most powerful guilds</font>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<table border="0" cellspacing="3" cellpadding="4" width="100%">
+	<tr>
+		{% if guilds is empty %}
+			<td colspan="4" style="text-align: center;">There are no any guilds to show yet.</td>
+		{% else %}
+			{% for guild in guilds %}
+				<td style="width: {{ (100 / config.powerful_guilds.amount) }}%; text-align: center;">
+					<a href="{{ guild.link }}"><img src="images/guilds/{{ guild.logo }}" width="64" height="64" border="0"/><br />{{ guild.name }}</a><br />{{ guild.frags }} kills
+				</td>
+			{% endfor %}
+		{% endif %}
+	</tr>
+</table>

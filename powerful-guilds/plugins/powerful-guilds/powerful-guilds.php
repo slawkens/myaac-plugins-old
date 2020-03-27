@@ -9,12 +9,14 @@
 
 if(!isset($config['powerful_guilds']))
 {
-	$config['powerful_guilds'] = array(
+	$config['powerful_guilds'] = [
 		'refresh_interval' => 10 * 60, // cache query for 10 minutes (in seconds)
 		'amount' => 5, // how many powerful guilds to show
 		'page' => 'news' // on what pages most powerful guilds box should appear, for example 'news', or 'guilds' (blank makes it visible on every page)
-	);
+	];
 }
+
+$db->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 
 function mostPowerfulGuildsDatabase()
 {
@@ -76,37 +78,26 @@ function mostPowerfulGuildsList()
 	return $ret;
 }
 
+global $twig_loader;
+$twig->addGlobal('config', $config);
+$twig_loader->prependPath(__DIR__);
+
 $_page = $config['powerful_guilds']['page'];
 if(!isset($_page[0]) || $_page == PAGE)
 {
-	echo '<div class="NewsHeadline">
-		<div class="NewsHeadlineBackground" style="background-image:url(' . $template_path . '/images/news/newsheadline_background.gif)">
-			<table border="0">
-				<tr>
-					<td style="text-align: center; font-weight: bold;">
-						<font color="white">Most powerful guilds</font>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<table border="0" cellspacing="3" cellpadding="4" width="100%">
-		<tr>';
-
 	$guilds = mostPowerfulGuildsList();
-	if(count($guilds) > 0)
-	{
-		foreach($guilds as $guild)
-			echo '<td style="width: ' . (100 / $config['powerful_guilds']['amount']) . '%; text-align: center;">
-				<a href="' . getGuildLink($guild['name'], false) . '"><img src="images/guilds/' . ((!empty($guild['logo']) && file_exists('images/guilds/' . $guild['logo'])) ? $guild['logo'] : 'default.gif') . '" width="64" height="64" border="0"/><br />' . $guild['name'] . '</a><br />' . $guild['frags'] . ' kills
-			</td>';
+	// just for testing purposes if you don't have any kills on server
+	//$guilds = $db->query('SELECT * FROM guilds LIMIT ' . $config['powerful_guilds']['amount'])->fetchAll();
+	if(count($guilds) > 0) {
+		foreach($guilds as &$guild) {
+			$guild['link'] = getGuildLink($guild['name'], false);
+			$guild['logo'] = ((!empty($guild['logo']) && file_exists('images/guilds/' . $guild['logo'])) ? $guild['logo'] : 'default.gif');
+			//$guild['frags'] = 5;
+		}
 	}
-	else
-		echo '<td colspan="4" style="text-align: center;">There are no any guilds to show yet.</td>';
 
-	echo '</tr>
-		</table>';
-
+	$twig->display('powerful-guilds.html.twig', [
+		'guilds' => $guilds
+	]);
 	return true;
 }
-?>

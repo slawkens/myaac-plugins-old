@@ -1,0 +1,11 @@
+[2.0 - 27.03.2020]
+	* moved html code to Twig
+	* set sql_mode to fix some errors on newer/older (not sure) MySQL Versions
+	* add this CHANGELOG and LICENSE
+	* add make-plugin.sh
+
+[1.1 - x.x.x]
+	* can't remember what I changed here, sorry! :P
+
+[1.0 - 11.10.2017]
+	* initial release
