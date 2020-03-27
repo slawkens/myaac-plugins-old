@@ -1,0 +1,19 @@
+{
+	"name": "Semantic Template",
+	"description": "This is Semantic UI template for MyAAC.",
+	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.7.0",
+		"php": "5.4"
+	},
+	"install": "plugins/semantic-template/install.php",
+	"uninstall": [
+		"plugins/semantic-template.json",
+		"plugins/semantic-template",
+		"templates/semantic"
+	]
+}

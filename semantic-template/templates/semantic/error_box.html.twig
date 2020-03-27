@@ -1,0 +1,6 @@
+<ul class="ui message error">
+	<b>The Following Errors Have Occurred:</b><br/>
+	{% for error in errors %}
+	<li>{{ error|raw }}</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,254 @@
+{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_FORM') }}
+<h2 class="ui header">Create {{ config.lua.serverName }} Account</h2>
+<form class="ui form fluid segment" action="{{ getLink('account/create') }}" method="post" id="createaccount">
+
+	{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_BOXES') }}
+	{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_ACCOUNT') }}
+
+	<div class="field">
+		{% if errors.account is defined %}
+			<div class="field error">
+		{% endif %}
+				<label>
+					<img id="account_indicator" src="images/global/general/{% if not save or errors.account is defined %}n{% endif %}ok.gif" style="display: none;" />
+					Account {% if constant('USE_ACCOUNT_NAME') %}Name{% else %}Number{% endif %}:
+					<input type="text" name="account" id="account_input" size="30" maxlength="{% if constant('USE_ACCOUNT_NAME') %}30{% else %}10{% endif %}" value="{{ account }}" autofocus/>
+				</label>
+				<p id="account_error" class="ui message red" style="display: none;">{% if errors.account is defined %}{{ errors.account }}{% endif %}</p>
+		{% if errors.account is defined %}
+			</div>
+		{% endif %}
+	</div>
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_ACCOUNT') }}
+
+	<div class="field">
+		{% if errors.email is defined %}
+			<div class="field error">
+		{% endif %}
+				<label>
+					<img id="email_indicator" src="images/global/general/{% if not save or errors.email is defined %}n{% endif %}ok.gif" style="display: none;" />
+					Email Address:
+					<input type="text" name="email" id="email" size="30" maxlength="50" value="{{ email }}" />
+				</label>
+				<p id="email_error" class="ui message red" style="display: none;">{% if errors.email is defined %}{{ errors.email }}{% endif %}</p>
+		{% if errors.email is defined %}
+			</div>
+		{% endif %}
+	</div>
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_EMAIL') }}
+
+	{% if config.account_country %}
+		<div class="field">
+			{% if errors.country is defined %}
+				<div class="field error">
+			{% endif %}
+					<label>
+						<img src="" id="account_country_img"/>
+						Country:
+						<select name="country" id="account_country">
+							{% for code, country_ in countries %}
+								<option value="{{ code }}"{% if(country is defined and country == code) or (country is null and country_recognized == code) %}selected{% endif %}>{{ country_ }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					{% if errors.country is defined %}
+						<p class="ui message red">{{ errors.country }}</p>
+					{% endif %}
+			{% if errors.country is defined %}
+				</div>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_COUNTRY') }}
+
+	<div class="field">
+		{% if errors.password is defined %}
+			<div class="field error">
+		{% endif %}
+				<label>
+					<img id="password_indicator" src="images/global/general/{% if not save or errors.password is defined %}n{% endif %}ok.gif" style="display: none;" />
+					Password:
+					<input type="password" name="password" id="password" value="" size="30" maxlength="50" />
+				</label>
+				<p id="password_error" class="ui message red" style="display: none;">{% if errors.password is defined %}{{ errors.password }}{% endif %}</p>
+		{% if errors.password is defined %}
+			</div>
+		{% endif %}
+	</div>
+
+	<div class="field">
+		{% if errors.password is defined %}
+			<div class="field error">
+		{% endif %}
+				<label>
+					<img id="password2_indicator" src="images/global/general/{% if not save or errors.password is defined %}n{% endif %}ok.gif" style="display: none;" />
+					Repeat password:
+					<input type="password" name="password2" id="password2" value="" size="30" maxlength="50" />
+				</label>
+				<p id="password2_error" class="ui message red" style="display: none;">{% if errors.password is defined %}{{ errors.password }}{% endif %}</p>
+		{% if errors.password is defined %}
+			</div>
+		{% endif %}
+	</div>
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_PASSWORDS') }}
+
+	{% if config.recaptcha_enabled %}
+		<div class="field">
+			{% if errors.verification is defined %}
+				<div class="field error">
+			{% endif %}
+					<span>Verification:</span>
+					<div class="g-recaptcha" data-sitekey="{{ config.recaptcha_site_key }}" data-theme="{{ config.recaptcha_theme }}"></div>
+					{% if errors.verification is defined %}
+						<p class="ui message red">{{ errors.verification }}</p>
+					{% endif %}
+			{% if errors.verification is defined %}
+				</div>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_RECAPTCHA') }}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_1') }}
+
+	{% if (not config.mail_enabled or not config.account_mail_verify) and config.account_create_character_create %}
+
+		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_CHARACTER_NAME') }}
+
+		<div class="field">
+			{% if errors.name is defined %}
+				<div class="field error">
+			{% endif %}
+					<label>
+						<img id="character_indicator" src="images/global/general/{% if not save or errors.name is defined %}n{% endif %}ok.gif" style="display: none;" />
+						Character Name:
+						<input id="character_name" name="name" size="{{ config.character_name_max_length }}" maxlength="{{ config.character_name_max_length }}" value="{{ name }}"/>
+					</label>
+					<p id="character_error" class="ui message">{% if errors.name is defined %}{{ errors.name }}{% endif %}</p>
+			{% if errors.name is defined %}
+				</div>
+			{% endif %}
+		</div>
+
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_CHARACTER_NAME') }}
+
+		<div class="field">
+			{% if errors.sex is defined %}
+				<div class="field error">
+			{% endif %}
+					<label>Sex:</label>
+					{% set i = 0 %}
+					{% for id, gender in config.genders|reverse(true) %}
+						{% set i = i + 1 %}
+						<div class="ui radio checkbox" style="margin-right: 15px">
+							<input type="radio" name="sex" id="sex{{ i }}" value="{{ id }}"{% if sex is not null and sex == id %} checked="checked"{% endif %}>
+							<label for="sex{{ i }}">{{ gender|lower }}</label>
+						</div>
+					{% endfor %}
+					{% if errors.sex is defined %}
+						<p class="ui message red">{{ errors.sex }}</p>
+					{% endif %}
+			{% if errors.sex is defined %}
+				</div>
+			{% endif %}
+		</div>
+
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_SEX') }}
+
+		{% if config.character_samples|length > 1 %}
+			<div class="field">
+				{% if errors.vocation is defined %}
+					<div class="field error">
+				{% endif %}
+					<label>Vocation:</label>
+					{% for key, sample_char in config.character_samples %}
+						<div class="ui radio checkbox" style="margin-right: 15px">
+							<input type="radio" name="vocation" id="vocation{{ key }}" value="{{ key }}" {% if vocation is not null and vocation == key %} checked="checked"{% endif %}>
+							<label for="vocation{{ key }}">{{ config['vocations'][key] }}</label>
+						</div>
+					{% endfor %}
+					{% if errors.vocation is defined %}
+						<p class="ui message red">{{ errors.vocation }}</p>
+					{% endif %}
+				{% if errors.vocation is defined %}
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_VOCATION') }}
+
+		{% if config.character_towns|length > 1 %}
+			<div class="field">
+				{% if errors.town is defined %}
+					<div class="field error">
+				{% endif %}
+						<label>Select your city:</label>
+						{% for town_id in config.character_towns %}
+							<div class="ui radio checkbox" style="margin-right: 15px">
+								<input type="radio" name="town" id="town{{ town_id }}" value="{{ town_id }}" {% if town is not null and town == town_id %} checked="checked"{% endif %}><label for="town{{ town_id }}">{{ config.towns[town_id] }}</label>
+							</div>
+						{% endfor %}
+						{% if errors.town is defined %}
+							<p class="ui message red">{{ errors.town }}</p>
+						{% endif %}
+				{% if errors.town is defined %}
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_TOWNS') }}
+
+	{% endif %}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_2') }}
+
+	<strong>Please select the following check box:</strong><br/>
+	<div class="ui checkbox">
+		<input type="checkbox" id="accept_rules" name="accept_rules" class="hidden" value="true" {% if accept_rules %}checked{% endif %}/>
+		<label for="accept_rules">I agree to the <a href="?subtopic=rules" target="_blank">{{ config.lua.serverName }} Rules</a>.</label>
+	</div>
+	{% if errors.accept_rules is defined %}
+		<p class="ui message red">{{ errors.accept_rules }}</p>
+	{% endif %}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}
+
+	{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_SUBMIT_BUTTON') }}
+	<table style="width: 100%">
+		<tr align="center">
+			<td>
+				<table border="0" cellspacing="0" cellpadding="0" >
+					<tr>
+						<td style="border:0px;" >
+							<input type="hidden" name="save" value="1" >
+							{{ include('buttons.submit.html.twig') }}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</form>
+<div class="ui bottom attached warning message">
+	<i class="icon help"></i>
+	Already signed up? <a href="{{ getLink('account/manage') }}">Login here</a> instead.
+</div>
+{{ hook('HOOK_ACCOUNT_CREATE_AFTER_FORM') }}
+<script type="text/javascript" src="tools/check_name.js"></script>
+<script>
+	$(function() {
+		$('.ui.checkbox')
+			.checkbox()
+		;
+		$('.ui.radio.checkbox')
+			.checkbox()
+		;
+	});
+</script>
