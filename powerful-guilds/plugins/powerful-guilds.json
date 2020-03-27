@@ -1,0 +1,17 @@
+{
+	"name": "Powerful guilds",
+	"description": "Shows most powerful guilds on the front page (news).",
+	"version": "1.1",
+	"author": "slawkens",
+	"contact": "slawkens@gmail.com",
+	"hooks": {
+		"Powerful guilds": {
+			"type": "BEFORE_PAGE",
+			"file": "plugins/powerful-guilds/powerful-guilds.php"
+		}
+	},
+	"uninstall": [
+		"plugins/powerful-guilds.json",
+		"plugins/powerful-guilds"
+	]
+}
