@@ -140,38 +140,40 @@ defined('MYAAC') or die('Direct access not allowed!');
 					<div class="panel-body">
 						<table class="table table-condensed table-content table-striped">
 							<tbody>
-								<?php
-									$fetch_from_db = true;
-									if($cache->enabled())
-									{
-										$tmp = '';
-										if($cache->fetch('top_5_level', $tmp))
-										{
-											$players = unserialize($tmp);
-											$fetch_from_db = false;
-										}
+							<?php
+							$fetch_from_db = true;
+							if($cache->enabled())
+							{
+								$tmp = '';
+								if($cache->fetch('top_5_level', $tmp))
+								{
+									$players = unserialize($tmp);
+									$fetch_from_db = false;
+								}
+							}
+
+							if($fetch_from_db)
+							{
+								$players = $db->query('SELECT `name`, `level`, `experience`, `looktype`' . (fieldExist('players', 'lookaddons') ? ', `lookaddons`' : '') . ', `lookhead`, `lookbody`, `looklegs`, `lookfeet` FROM `players` WHERE `group_id` < ' . $config['highscores_groups_hidden'] . ' AND `id` > 6 ORDER BY `experience` DESC LIMIT 5;')->fetchAll();
+
+								if($cache->enabled())
+									$cache->set('top_5_level', serialize($players), 120);
+							}
+
+							if ($players) {
+								$count = 1;
+								foreach($players as $player) {
+									$outfit_url = '';
+									if($config['online_outfit']) {
+										$outfit_url = $config['outfit_images_url'] . '?id=' . $player['looktype']	. (!empty
+											($player['lookaddons']) ? '&addons=' . $player['lookaddons'] : '') . '&head=' . $player['lookhead'] . '&body=' . $player['lookbody'] . '&legs=' . $player['looklegs'] . '&feet=' . $player['lookfeet'];
 									}
 
-									if($fetch_from_db)
-									{
-										$players_db = $db->query('SELECT `name`, `level`, `experience` FROM `players` WHERE `group_id` < ' . $config['highscores_groups_hidden'] . ' AND `id` > 6 ORDER BY `experience` DESC LIMIT 5;');
-
-										$players = array();
-										foreach($players_db as $player)
-											$players[] = array('name' => $player['name'], 'level' => $player['level']);
-		
-										if($cache->enabled())
-											$cache->set('top_5_level', serialize($players), 120);
-									}
-									
-									if ($players) {
-										$count = 1;
-										foreach($players as $player) {
-											echo "<tr><td class='labelbox' width='50%'>$count - <a href='?subtopic=characters&name=". $player['name']. "'>". $player['name']. "</a> <span class='label label-primary' style='float:right;width: 55px;'>Level: ". $player['level'] ."</span></td></<tr>";
-											$count++;
-										}
-									}
-									?>
+									echo "<tr>" . ($config['online_outfit'] ? '<td style="width: 64px;"><img style="position:absolute;margin-top:' . (in_array($player['looktype'], [75, 266, 302]) ? '-20px;margin-left:-0px;' : '-45px;margin-left:-25px;') . '" src="' . $outfit_url . '" alt="player outfit"/></td>' : '') . "<td class='labelbox' width='150px'>$count - <a href='?subtopic=characters&name=". $player['name']. "'>". $player['name']. "</a> <span class='label label-primary' style='float:right;width: 55px;'>Level: ". $player['level'] ."</span></td></<tr>";
+									$count++;
+								}
+							}
+							?>
 							</tbody>
 						</table>
 					</div>
