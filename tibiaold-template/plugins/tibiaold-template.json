@@ -1,0 +1,15 @@
+{
+	"name": "Tibiaold Template",
+	"description": "This is Tibiaold template for MyAAC.",
+	"version": "1.0",
+	"author": "HalfAway (modified by slawkens)",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.4.3"
+	},
+	"install": "templates/tibiaold/install.php",
+	"uninstall": [
+		"plugins/tibiaold-template.json",
+		"templates/tibiaold"
+	]
+ }

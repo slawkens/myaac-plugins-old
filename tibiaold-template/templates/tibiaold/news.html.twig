@@ -1,0 +1,18 @@
+<article class="news">
+	<header class="news-header">
+		<span class="news-date">{{ date|date(config.news_date_format) }}</span>
+		<h2>{{ title }}</h2>
+	</header>
+	<div class="news-content">
+		{{ content|raw }}
+	</div>
+
+	<footer class="news-footer">
+		{% if author is not empty %}
+			Published by <i>{{ author }}</i>.
+		{% endif %}
+		{% if comments is not null %}
+			<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+		{% endif %}
+	</footer>
+</article>

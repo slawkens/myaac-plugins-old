@@ -1,0 +1,28 @@
+		<ul>
+			<li>
+				<a href='{{ getLink('account/manage') }}'>My Account</a>
+			</li>
+			{% if account_logged.getCustomField('key') is empty %}
+			<li>
+				<a href='{{ getLink('account/register') }}'>Register Account</a>
+			</li>
+			{% endif %}
+			<li>
+				<a href='{{ getLink('account/character/create') }}'>Create Character</a>
+			</li>
+			<li>
+				<a href='{{ getLink('account/character/delete') }}'>Delete Character</a>
+			</li>
+			<li>
+				<a href='{{ getLink('account/info') }}'>Change Info</a>
+			</li>
+			<li>
+				<a href='{{ getLink('account/email') }}'>Change Email</a>
+			</li>
+			<li>
+				<a href='{{ getLink('account/password') }}'>Change Password</a>
+			</li>
+			<li>
+				<a href='{{ getLink('account/logout') }}'>Logout</a>
+			</li>
+		</ul>

@@ -1,0 +1,824 @@
+@font-face {
+    font-family: martelregular;
+    src: url(../fonts/martel/regular.eot);
+    src: url(../fonts/martel/regular.eot?#iefix) format('embedded-opentype'), url(../fonts/martel/regular.woff) format('woff'), url(../fonts/martel/regular.ttf) format('truetype'), url(../fonts/martel/regular.svg#martelregular) format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+body {
+    font-family: Verdana, Tahoma, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #000;
+    font-size: 12px;
+    color: #5a2800;
+    padding: 0;
+    margin: 0
+}
+abbr {
+    border-bottom: 1px dotted #5a2800;
+    cursor: help
+}
+a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #03C
+}
+a:hover {
+    text-decoration: underline
+}
+hr {
+    border: none;
+    border-bottom: 1px solid #fdefd5;
+    border-top: 1px solid #bca683;
+    height: 0
+}
+.pandaac-popup {
+    outline: 0
+}
+#cboxLoadedContent {
+    padding: 5px 20px;
+    color: #333
+}
+.martel {
+    font-family: martelregular, sans-serif;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff
+}
+.heading {
+    margin-bottom: 25px;
+    padding: 1px 0 5px;
+    position: relative
+}
+.heading:before {
+    box-shadow: 1px 1px 2px 0 rgba(50, 50, 50, .3);
+    border-top: 2px solid #720000;
+    border-bottom: 1px solid #590000;
+    border-radius: 5px;
+    position: absolute;
+    content: "";
+    height: 0;
+    right: 0;
+    left: 0;
+    top: 0
+}
+.heading:after {
+    box-shadow: 1px 1px 2px 0 rgba(50, 50, 50, .3);
+    border-top: 2px solid #720000;
+    border-bottom: 1px solid #590000;
+    border-radius: 5px;
+    position: absolute;
+    content: "";
+    bottom: 3px;
+    height: 0;
+    right: 0;
+    left: 0
+}
+.heading h1 {
+    font-family: martelregular, sans-serif;
+    font-weight: 400;
+    margin: 10px 0 2px 10px;
+    text-shadow: none;
+    font-size: 45px;
+    color: #720000;
+    float: left
+}
+.button {
+    font-family: Verdana, Tahoma, sans-serif!important;
+    -webkit-font-smoothing: antialiased!important;
+    background-image: url(../images/button-bg.jpg);
+    border: none;
+    border-bottom: 1px solid #424242;
+    border-top: 1px solid #848484;
+    background-repeat: repeat;
+    box-sizing: border-box;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 7px;
+    font-weight: 700;
+    padding: 3px 20px;
+    min-width: 110px;
+    cursor: pointer;
+    font-size: 9px;
+    outline: 0;
+    color: #fff;
+    margin: 0
+}
+.button:hover {
+    text-decoration: underline
+}
+.skill-bar {
+    background-color: #f1e0c6;
+    border: 1px solid #5a2800;
+    overflow: hidden;
+    max-width: 202px;
+    min-width: 202px;
+    width: 202px;
+    height: 6px
+}
+.skill-bar .progress {
+    border: 1px solid #f1e0c6;
+    background-color: #118a22;
+    height: 4px
+}
+.featherlight-content {
+    width: 710px;
+    color: #333
+}
+.featherlight-content h1,
+.featherlight-content h2,
+.featherlight-content h3,
+.featherlight-content h4,
+.featherlight-content h5,
+.featherlight-content h6 {
+    margin: 5px 0
+}
+.forum-post-latest {
+    vertical-align: middle
+}
+.minimal .forum-post-content div.post-content {
+    max-height: 350px;
+    overflow: auto
+}
+.forum-post-content p:first-child {
+    margin-top: 0
+}
+.forum-post-content p:last-child {
+    margin-bottom: 0
+}
+.forum-post-content img {
+    max-width: 100%;
+    display: block;
+    height: auto
+}
+.forum-post-gamemaster {
+    border-style: solid!important;
+    border-width: 3px!important;
+    -moz-border-image: url(../images/forum-gm-border.png) 3 repeat!important;
+    -webkit-border-image: url(../images/forum-gm-border.png) 3 repeat!important;
+    -o-border-image: url(../images/forum-gm-border.png) 3 repeat!important;
+    border-image: url(../images/forum-gm-border.png) 3 repeat!important
+}
+#pandaac {
+    margin: 10px auto;
+    width: 1085px
+}
+#pandaac #header {
+    background-image: url(../images/header-bg.jpg);
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid #000;
+    background-repeat: repeat
+}
+#pandaac #header img {
+    display: block
+}
+#pandaac #topbar {
+    background-image: url(../images/topbar-bg.png);
+    background-repeat: repeat;
+    padding-left: 145px;
+    height: 20px;
+    color: #fff
+}
+#pandaac #topbar ul {
+    table-layout: fixed;
+    text-align: center;
+    padding: 3px 0 0;
+    list-style: none;
+    display: table;
+    width: 100%;
+    margin: 0
+}
+#pandaac #topbar ul a,
+#pandaac #topbar ul li {
+    font-family: martelregular, sans-serif;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: 400;
+    font-size: 15px
+}
+#pandaac #topbar ul a:hover,
+#pandaac #topbar ul li:hover {
+    text-shadow: 2px 2px 2px #00f
+}
+#pandaac #topbar ul li {
+    display: table-cell
+}
+#pandaac #topbar ul a {
+    text-decoration: none;
+    display: inline-block;
+    color: #fff
+}
+#pandaac #content-container {
+    zoom: 1
+}
+#pandaac #content-container:after,
+#pandaac #content-container:before {
+    content: "";
+    display: table
+}
+#pandaac #content-container:after {
+    clear: both
+}
+#pandaac #content-container #sidebar {
+    position: relative;
+    width: 145px;
+    float: left;
+    z-index: 10
+}
+#pandaac #content-container #sidebar #sidebar-links {
+    box-shadow: 3px 3px 3px 1px #000;
+    background-image: url(../images/sidebar-bg.png);
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-repeat: repeat;
+    padding-bottom: 10px;
+    text-align: center
+}
+#pandaac #content-container #sidebar #sidebar-links .line {
+    margin: 5px 0
+}
+#pandaac #content-container #sidebar #sidebar-links .line:first-child {
+    margin-top: 0
+}
+#pandaac #content-container #sidebar #sidebar-links ul {
+    text-align: left;
+    list-style: none;
+    padding: 5px 0;
+    display: block;
+    width: 100%;
+    margin: 0
+}
+#pandaac #content-container #sidebar #sidebar-links ul a,
+#pandaac #content-container #sidebar #sidebar-links ul li {
+    font-family: martelregular, sans-serif;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: 400;
+    font-size: 13px
+}
+#pandaac #content-container #sidebar #sidebar-links ul li {
+    display: block;
+    margin: 5px 0 5px 28px
+}
+#pandaac #content-container #sidebar #sidebar-links ul a {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    color: #fff
+}
+#pandaac #content-container #sidebar #sidebar-links ul a:hover:before {
+    background-position: -8px 0
+}
+#pandaac #content-container #sidebar #sidebar-links ul a:before {
+    background: url(../images/sidebar-icon.png) no-repeat;
+    position: absolute;
+    display: block;
+    content: "";
+    height: 8px;
+    left: -12px;
+    width: 8px;
+    top: 3px
+}
+#pandaac #content-container #sidebar #sidebar-misc {
+    text-align: center;
+    margin-top: 30px;
+    color: #fff
+}
+#pandaac #content-container #sidebar #sidebar-misc a:not(.martel) {
+    font-size: 10px;
+    color: #419AFF
+}
+#pandaac #content-container #sidebar #sidebar-misc a {
+    vertical-align: top
+}
+#pandaac #content-container #sidebar .line {
+    background: url(../images/line-short.png) center center no-repeat;
+    text-align: center;
+    display: block;
+    margin: 3px 0;
+    height: 4px;
+    width: 100%
+}
+#pandaac #content-container #sidebar .line.wide {
+    background: url(../images/line-wide.png) center center no-repeat
+}
+#pandaac #content-container #main-container {
+    width: 940px;
+    float: right
+}
+#pandaac #content-container #main-container #main {
+    border-style: solid;
+    border-width: 7px 9px 9px 8px;
+    -moz-border-image: url(../images/content-border.png) 7 9 9 8 repeat;
+    -webkit-border-image: url(../images/content-border.png) 7 9 9 8 repeat;
+    -o-border-image: url(../images/content-border.png) 7 9 9 8 repeat;
+    border-image: url(../images/content-border.png) 7 9 9 8 fill repeat
+}
+#pandaac #content-container #main-container #main #content {
+    background-image: url(../images/content-bg.jpg);
+    background-repeat: repeat;
+    padding: 10px
+}
+#pandaac #content-container #main-container #copyright {
+    text-align: center;
+    font-weight: 700;
+    font-size: 10px;
+    margin: 15px 0;
+    color: #858585
+}
+#pandaac #content-container #main-container #copyright span,
+#pandaac #content-container #main-container #copyright strong {
+    color: #ababab
+}
+#pandaac #content-container #main-container #copyright a {
+    text-decoration: none;
+    color: #ababab
+}
+#pandaac #content-container #main-container #copyright a:hover {
+    text-decoration: underline
+}
+#pandaac .success {
+    border-bottom: 1px solid #605749;
+    text-shadow: 0 1px 0 #605749;
+    margin-bottom: 10px;
+    background: #73a958;
+    padding: 1px 20px;
+    font-weight: 700;
+    line-height: 14px;
+    font-size: 11px;
+    color: #fff
+}
+.error {
+    font-size: 11px
+}
+.error:before {
+    content: "\2190";
+    margin: 0 5px
+}
+.error.up:before {
+    content: "\2191"
+}
+.error.right:before {
+    content: "\2192"
+}
+.error.down:before {
+    content: "\2193"
+}
+.error.left:before {
+    content: "\2190"
+}
+#pandaac .errors {
+    border-bottom: 1px solid #604949;
+    margin-bottom: 10px;
+    background: #fff;
+    line-height: 14px;
+    font-size: 11px;
+    color: #333;
+    padding: 0
+}
+#pandaac .errors ul {
+    border-left: 10px solid #e07c7c;
+    padding: 5px 5px 5px 15px;
+    list-style: square;
+    color: #e07c7c;
+    margin: 0
+}
+#pandaac .errors ul li {
+    color: #333;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0
+}
+#pandaac .online {
+    font-weight: 700;
+    color: #118a22
+}
+#pandaac .offline {
+    color: #c54242
+}
+#pandaac form {
+    padding: 0;
+    margin: 0
+}
+#pandaac form input[type=text],
+#pandaac form input[type=password] {
+    font-family: Verdana, Tahoma, sans-serif;
+    min-width: 190px;
+    font-size: 11px;
+    margin: 0
+}
+#pandaac table {
+    border-collapse: separate;
+    border-spacing: 1px;
+}
+#pandaac table.uniform {
+    border-spacing: 0!important
+}
+#pandaac table.uniform tr.header td,
+#pandaac table.uniform tr.header th {
+    border-bottom: 1px solid #fff2db
+}
+#pandaac table.uniform tr:not(.header):not(.transparent) td,
+#pandaac table.uniform tr:not(.header):not(.transparent) th {
+    background-color: #d4c0a1!important
+}
+#pandaac table:not(.heading) tr.transparent.nopadding td p:first-child,
+#pandaac table:not(.heading) tr.transparent.nopadding th p:first-child {
+    margin-top: 0
+}
+#pandaac table tr:not(.header):not(.transparent).highlight td,
+#pandaac table tr:not(.header):not(.transparent).highlight th {
+    background-color: #fff;
+    -webkit-transition: background 1s linear;
+    -moz-transition: background 1s linear;
+    -ms-transition: background 1s linear;
+    -o-transition: background 1s linear;
+    transition: background 1s linear
+}
+#pandaac table tr:not(.header):not(.transparent):not(.highlight):nth-child(odd) td,
+#pandaac table tr:not(.header):not(.transparent):not(.highlight):nth-child(odd) th {
+    background-color: #f1e0c6
+}
+#pandaac table tr:not(.header):not(.transparent):not(.highlight).odd td,
+#pandaac table tr:not(.header):not(.transparent):not(.highlight).odd th {
+    background-color: #f1e0c6!important
+}
+#pandaac table tr:not(.header):not(.transparent):not(.highlight):nth-child(even) td,
+#pandaac table tr:not(.header):not(.transparent):not(.highlight):nth-child(even) th {
+    background-color: #d4c0a1
+}
+#pandaac table tr:not(.header):not(.transparent):not(.highlight).even td,
+#pandaac table tr:not(.header):not(.transparent):not(.highlight).even th {
+    background-color: #d4c0a1!important
+}
+#pandaac table tr.nopadding>td,
+#pandaac table tr.nopadding>th {
+    padding: 0
+}
+#pandaac table tr.noborderpadding td:first-child,
+#pandaac table tr.noborderpadding th:first-child {
+    padding-left: 0
+}
+#pandaac table tr.noborderpadding td:last-child,
+#pandaac table tr.noborderpadding th:last-child {
+    padding-right: 0
+}
+#pandaac table tr.header th {
+    background-color: #505050;
+    font-weight: 700;
+    color: #fff
+}
+#pandaac table tr td,
+#pandaac table tr th {
+    font-weight: 400;
+    color: #5a2800;
+    margin: 0
+}
+#pandaac table tr td:not([valign]),
+#pandaac table tr th:not([valign]) {
+    vertical-align: middle
+}
+#pandaac table tr td:not([align]),
+#pandaac table tr th:not([align]) {
+    text-align: left
+}
+#pandaac #breadcrumbs {
+    list-style: none;
+    margin: 0 0 15px;
+    padding: 0
+}
+#pandaac #breadcrumbs li {
+    display: inline-block;
+    margin: 0 3px 0 0;
+    font-weight: 700;
+    padding: 0
+}
+#pandaac #breadcrumbs li:not(:last-child):after {
+    padding-left: 1px;
+    content: "\00BB"
+}
+#pandaac #breadcrumbs li:last-child {
+    margin-right: 0
+}
+.nav {
+    margin: 30px auto 0;
+    text-align: center
+}
+.nav ul {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+.nav ul li {
+    display: inline-block;
+    margin: 0 7px;
+    padding: 0
+}
+.nav ul li.active a {
+    color: #f6ebd7
+}
+.nav ul li a {
+    -webkit-font-smoothing: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #afa695
+}
+.nav ul li a:hover {
+    color: #f6ebd7
+}
+#footer {
+    -webkit-font-smoothing: none;
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: 11px;
+    color: #afa695
+}
+#footer a {
+    color: #afa695
+}
+#footer a:hover {
+    color: #f6ebd7
+}
+#footer small {
+    color: #666
+}
+.clearfix {
+    zoom: 1
+}
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: table
+}
+.clearfix:after {
+    clear: both
+}
+.store-product-items {
+    border-spacing: 0!important
+}
+.store-product-items tr td,
+.store-product-items tr th {
+    padding: 0 5px!important;
+    vertical-align: middle;
+    height: 32px
+}
+.store-product-items tr td.product-image,
+.store-product-items tr th.product-image {
+    width: 32px
+}
+.inline-box {
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #aaa;
+    background-color: #eee;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin: 0 5px;
+    color: #333
+}
+.inline-box.red {
+    border-bottom-color: #ed9090;
+    border-top-color: #9e3737;
+    background-color: #cf5858;
+    color: #fff
+}
+.inline-box.green {
+    border-bottom-color: #9bd181;
+    border-top-color: #517f39;
+    background-color: #73a958;
+    color: #fff
+}
+input[type=submit].claim {
+    font-family: Verdana, Tahoma, sans-serif;
+    box-sizing: content-box;
+    font-weight: 400;
+    font-size: 13px;
+    cursor: pointer
+}
+.claim {
+    background: #73a958;
+    background: -moz-linear-gradient(top, #73a958 0, #6c9f53 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #73a958), color-stop(100%, #6c9f53));
+    background: -webkit-linear-gradient(top, #73a958 0, #6c9f53 100%);
+    background: -o-linear-gradient(top, #73a958 0, #6c9f53 100%);
+    background: -ms-linear-gradient(top, #73a958 0, #6c9f53 100%);
+    background: linear-gradient(to bottom, #73a958 0, #6c9f53 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#73a958', endColorstr='#6c9f53', GradientType=0);
+    border: none;
+    border-bottom: 1px solid #605749;
+    text-shadow: 0 1px 0 #000;
+    margin: 0 20px 7px;
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: 10px;
+    display: block;
+    height: 17px;
+    color: #fff
+}
+.claim:hover {
+    text-decoration: none;
+    background: #73a958
+}
+.claim.limited {
+    display: inline-block;
+    text-align: center;
+    width: 140px;
+    margin: 0
+}
+.claim.disabled {
+    background: #888;
+    cursor: default;
+    color: #bbb
+}
+.claim.disabled:hover {
+    text-decoration: none;
+    color: #ccc
+}
+.claim span {
+    font-size: 14px
+}
+.store-products {
+    width: 900px;
+    zoom: 1
+}
+.store-products:after,
+.store-products:before {
+    content: "";
+    display: table
+}
+.store-products:after {
+    clear: both
+}
+.store-products .product {
+    position: relative;
+    height: 300px;
+    width: 216px;
+    margin: 6px;
+    float: left
+}
+.store-products .product:first-child,
+.store-products .product:nth-child(5n) {
+    margin-left: 0
+}
+.store-products .product:nth-child(4n) {
+    margin-right: 0
+}
+.store-products .product:hover .hero .hero-image {
+    -webkit-filter: none;
+    filter: none
+}
+.store-products .product .header {
+    background: #505050;
+    margin-bottom: 1px;
+    text-align: center;
+    padding-left: 7px;
+    font-weight: 700;
+    line-height: 27px;
+    font-size: 12px;
+    height: 27px;
+    color: #fff
+}
+.store-products .product .hero {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    height: 110px;
+    width: 100%;
+    padding: 0;
+    margin: 0
+}
+.store-products .product .hero:before {
+    box-shadow: inset 0 0 45px #000;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: "";
+    z-index: 2;
+    left: 0;
+    top: 0
+}
+.store-products .product .hero .hero-image {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+    filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale")
+}
+.store-products .product.package .content {
+    height: 162px
+}
+.store-products .product div.content {
+    background: #d4c0a1;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    line-height: 16px;
+    height: 272px;
+    padding: 7px;
+    width: 100%
+}
+.store-products .product div.content p {
+    margin: 0
+}
+.store-products .product div.content .footer {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    left: 0
+}
+.store-products .product:hover.package .extended {
+    display: block
+}
+.store-products .product:nth-child(3n) .extended,
+.store-products .product:nth-child(4n) .extended {
+    border-left: 1px solid #a18d6d;
+    border-right: none;
+    left: -217px
+}
+.store-products .product:nth-child(3n) .extended .content,
+.store-products .product:nth-child(4n) .extended .content {
+    margin-right: 1px;
+    margin-left: 0
+}
+.store-products .product .extended {
+    border-right: 1px solid #a18d6d;
+    position: absolute;
+    display: none;
+    height: 100%;
+    width: 216px;
+    left: 216px;
+    z-index: 3;
+    bottom: 0;
+    right: 0;
+    top: 0
+}
+.store-products .product .extended .content {
+    border: 2px solid #d4c0a1;
+    background: #f1e0c6;
+    overflow-y: auto;
+    margin-left: 1px;
+    width: 215px;
+    height: 100%;
+    padding: 0
+}
+.store-products .product .extended .content table {
+    border-spacing: 0!important
+}
+.store-products .product .extended .content table td {
+    vertical-align: middle;
+    padding: 0!important;
+    height: 32px
+}
+.store-products .product .extended .content table td.product-image {
+    text-align: center;
+    width: 32px
+}
+.store-products .product .extended .content table td.product-image img {
+    display: block
+}
+.store-products .product .extended .content table td.product-item {
+    padding: 0 7px!important
+}
+article.news {
+    margin-bottom: 15px
+}
+article.news header.news-header {
+    background: url(../images/news-header.png);
+    line-height: 31px;
+    height: 31px;
+    width: 100%;
+    color: #fff
+}
+article.news header.news-header span.news-date {
+    text-shadow: 0 1px 0 #000;
+    margin: 0 20px 0 10px;
+    vertical-align: top;
+    font-weight: 700;
+    font-size: 10px
+}
+article.news header.news-header h2 {
+    text-shadow: 0 1px 0 #000;
+    font-weight: 700;
+    display: inline;
+    font-size: 12px;
+    padding: 0;
+    margin: 0
+}
+article.news .news-content {
+    padding: 10px 5px
+}
+article.news footer.news-footer {
+    text-align: right
+}
+.post-content {
+    position: relative;
+    overflow: hidden
+}
+.trumbowyg-box,
+.trumbowyg-editor {
+    width: 100%!important;
+    margin: 0!important
+}
