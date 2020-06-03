@@ -254,7 +254,6 @@ defined('MYAAC') or die('Direct access not allowed!');
 			</div>
 		</div>
 		<script src="<?php echo $template_path; ?>/js/bootstrap.min.js"></script>
-		<script src="<?php echo $template_path; ?>/js/jquery.countdown.min.js"></script>
 		<?php echo template_place_holder('body_end'); ?>
 	</body>
 </html>
