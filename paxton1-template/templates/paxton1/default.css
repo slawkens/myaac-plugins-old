@@ -1,0 +1,185 @@
+body
+{
+	background: #000000 url(img/bg.png) repeat-x top left;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #562200;
+	padding: 0px;
+	margin: 0px;
+}
+
+#page
+{
+	margin: auto;
+	width: 1000px;
+}
+
+#logo-art
+{
+	background: url(img/bg2.png) no-repeat top;
+	float: left;
+}
+
+#logo-box
+{
+	width: 1000px;
+	height: 137px;
+	float: left;
+}
+
+#logo
+{
+	width: 439px;
+	height: 137px;
+	margin: auto;
+}
+
+/*
+===============
+* Content Container *
+===============
+*/
+#cnt-box
+{
+	width: 1000px;
+	float: left;
+}
+
+#cnt-box2
+{
+	width: 1000px;
+	float: left;
+}
+
+	#cnt-container
+	{
+		width: 863px;
+		margin: auto;
+	}
+	
+	#cnt-left
+	{
+		width: 181px;
+		float: left;
+	}
+	
+	#cnt-right
+	{
+		width: 682px;
+		float: left;
+	}
+	
+/*
+=============
+* Menu Container
+=============
+*/
+
+ul
+{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+#menu
+{
+	font-size: 12px;
+	font-weight: bold;
+	text-align: justify;
+	float: left;
+}
+
+#menu-top
+{
+	width: 161px;
+	height: 25px;
+	background: url(img/nav-top.png) no-repeat;
+	float: left;
+	color: #CCCCCC;
+	padding-left: 20px;
+	padding-top: 15px;
+}
+
+#menu-cnt
+{
+	width: 181px;
+	float: left;
+	background: url(img/nav-bg.png);
+}
+
+#menu li {
+	padding: 5px 5px 5px 5px;
+}
+
+#menu li li {
+	padding: 3px 0 0 15px;
+	display: block;
+	width: 100%;
+	background: url(img/menu-li-bg.png) no-repeat 15px bottom;
+}
+
+#menu li li a {
+	color: #E0AF50;
+	padding: 3px 0px 0px 0px;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	background: url(img/menu-li-a-bg.png) no-repeat 135px 2px;
+}
+
+#menu li li a:hover {
+	color: #FFFFFF;
+	background: url(img/menu-li-a-bg.png) no-repeat 135px 2px;
+}
+
+/*
+===========
+* Content
+===========
+*/
+
+#content-cnt
+{
+	width: 682px;
+	float: left;
+}
+
+#content-bg
+{
+	background: url(img/cnt-bg.png) repeat-y;
+}
+
+#content-top
+{
+	background: url(img/cnt-top.png) no-repeat top;
+}
+
+#content-bot
+{
+	background: url(img/cnt-bot.png) no-repeat bottom;
+	padding: 30px;
+}
+
+a
+{
+	color: #0033CC;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #0033FF;
+	text-decoration: none;
+}
+
+.white
+{
+	color: #FFF;
+}
+
+.whites
+{
+	color: #FFF;
+}

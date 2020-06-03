@@ -1,0 +1,12 @@
+{
+	"name": "paxton1 Template",
+	"description": "This is paxton1 template for MyAAC.",
+	"version": "1.1",
+	"author": "Paxton (modified by slawkens)",
+	"contact": "slawkens@gmail.com",
+	"install": "templates/paxton1/install.php",
+	"uninstall": [
+		"plugins/paxton1-template.json",
+		"templates/paxton1"
+	]
+ }

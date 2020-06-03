@@ -1,0 +1,15 @@
+<div class="NewsHeadlineBackground" style="background-image:url({{ template_path }}/images/news/newsheadline_background.gif)">
+	<table border="0">
+		<tr>
+			<td style="text-align: center; font-weight: bold;">
+				<font color="white">{{ date|date(news_date_format) }} - {{ title }}</font>
+			</td>
+		</tr>
+	</table>
+</div>
+<div style="text-align: justify; margin: 0px 3px">
+    {{ content|raw }}
+    {% if comments is not null %}
+	<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+	{% endif %}
+	</div><br /><br />
