@@ -2,7 +2,7 @@
 /**
  * Welcome Box for MyAAC
  *
- * @name      powerful-guilds
+ * @name      welcome-box
  * @author    slawkens <slawkens@gmail.com>
  */
 
