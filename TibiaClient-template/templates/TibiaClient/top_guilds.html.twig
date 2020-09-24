@@ -1,0 +1,29 @@
+<div class="window outerBox">
+	<div class="innerWindow innerBox"></div>
+	<div class="windowHeader">
+		TOP 4 Guilds
+	</div>
+	<div class="windowBody centralizeContent">
+		{% if guilds is empty %}
+			<div class="top5g useBorder innerBox">
+				<div class="windowHeader">There are no any guilds to show yet.</div>
+				<div class="windowBody">
+					<img src="images/guilds/default.gif" alt="Default Logo">
+				</div>
+				<div class="windowFooter"></div>
+			</div>
+		{% else %}
+			{% for guild in guilds %}
+				<div class="top5g useBorder innerBox">
+					<div class="windowHeader"><a href="{{ guild.link }}">{{ guild.name }}</a></div>
+					<div class="windowBody">
+						<a href="{{ guild.link }}">
+							<img src="images/guilds/{{ guild.logo }}" width="64" height="64" border="0" alt="Guild Logo"/>
+						</a>
+					</div>
+					<div class="windowFooter">{{ guild.frags }} Kills</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>

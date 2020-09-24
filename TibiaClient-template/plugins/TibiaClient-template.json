@@ -1,0 +1,19 @@
+{
+	"name": "TibiaClient Template",
+	"description": "TibiaClient template for MyAAC.",
+	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "slawkens, Blackwolf (Snavy on otland)",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.7.0",
+		"php": "5.4"
+	},
+	"install": "plugins/TibiaClient-template/install.php",
+	"uninstall": [
+		"plugins/TibiaClient-template.json",
+		"plugins/TibiaClient-template",
+		"templates/TibiaClient"
+	]
+}

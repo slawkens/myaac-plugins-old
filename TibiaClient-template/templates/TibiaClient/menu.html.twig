@@ -1,0 +1,13 @@
+<div class="window outerBox">
+	<div class="innerWindow innerBox"></div>
+	<div class="windowHeader">
+		{{ name }}
+	</div>
+	<div class="windowBody">
+		<ul>
+			{% for link in links %}
+			<li><a href="{{ link.link_full }}"{% if link.blank is defined and link.blank %} target="_blank"{% endif %} {% if link.color is defined %} style="color: #{{ link.color }}"{% endif %}>{{ link.name }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
