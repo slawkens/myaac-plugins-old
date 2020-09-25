@@ -15,37 +15,41 @@ if ($query->rowCount() > 0) {
 }
 
 $categories = require PLUGINS . $template . '-template/menus.php';
-
 foreach ($categories as $category => $menus) {
 	$i = 0;
-	foreach ($menus as $link) {
+	foreach ($menus as $name => $link) {
 		$color = '';
 		$blank = 0;
 
-		if (isset($link['color'])) {
-			$color = $link['color'];
-		}
-		if (isset($link['blank'])) {
-			$blank = $link['blank'] === true ? 1 : 0;
+		if (is_array($link)) {
+			if (isset($link['name'])) {
+				$name = $link['name'];
+			}
+			if (isset($link['color'])) {
+				$color = $link['color'];
+			}
+			if (isset($link['blank'])) {
+				$blank = $link['blank'] === true ? 1 : 0;
+			}
+
+			$link = $link['link'];
 		}
 
 		$insert_array = [
 			'template' => $template,
-			'name' => $link['name'],
-			'link' => $link['link'],
+			'name' => $name,
+			'link' => $link,
 			'category' => $category,
 			'ordering' => $i++,
 		];
 
 		// support for color and blank attributes since 0.8.0
-		if(version_compare(MYAAC_VERSION, '0.8.0', '>=')) {
+		if (fieldExist('blank', TABLE_PREFIX . 'menu') &&
+				fieldExist('color', TABLE_PREFIX . 'menu')) {
 			$insert_array['blank'] = $blank;
 			$insert_array['color'] = $color;
 		}
 
 		$db->insert(TABLE_PREFIX . 'menu', $insert_array);
-
-		unset($color);
 	}
-
 }

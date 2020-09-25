@@ -1,5 +1,5 @@
 <?php
-if(!$logged) {
+if (!$logged) {
 ?>
 <div class="window outerBox">
 	<div class="innerWindow innerBox"></div>
@@ -17,33 +17,42 @@ if(!$logged) {
 <?php
 }
 
-$menus = require BASE_DIR . 'plugins/TibiaClient-template/menus.php';
+$menusFromFile = require BASE_DIR . 'plugins/TibiaClient-template/menus.php';
+$menuCategories = $config['menu_categories'];
+$menus = [];
 
-if(tableExist(TABLE_PREFIX . 'menu')) {
+if (tableExist(TABLE_PREFIX . 'menu')) {
 	$menus = get_template_menus();
 }
-else {
-	foreach($config['menu_categories'] as $category => $values) {
-		$tmp_menu = $menus[$category];
-		foreach($tmp_menu as &$menu) {
-			$link_full = strpos(trim($menu['link']), 'http') === 0 ? $menu['link'] : getLink($menu['link']);
-			$menu['link_full'] = $link_full;
-			$menu['blank'] = (isset($menu['blank']) ? $menu['blank'] == 1 : false);
-		}
 
-		$menus[$category] = $tmp_menu;
-	}
+if (count($menus) === 0) {
+	$menus = $menusFromFile;
 }
 
-if($logged) {
-	$twig->display('menu.html.twig', ['name' => 'Your Account', 'links' =>
+foreach ($menuCategories as $category => $values) {
+	$tmp_menu = $menus[$category];
+	foreach ($tmp_menu as &$menu) {
+		$link_full = strpos(trim($menu['link']), 'http') === 0 ? $menu['link'] : getLink($menu['link']);
+		$menu['link_full'] = $link_full;
+		$menu['blank'] = (isset($menu['blank']) ? $menu['blank'] == 1 || $menu['blank'] : false);
+	}
+
+	$menus[$category] = $tmp_menu;
+}
+
+if ($logged) {
+	$twig->display('menu.html.twig', ['name' => $menuCategories[MENU_CATEGORY_ACCOUNT_LOGGED]['name'], 'links' =>
 		$menus[MENU_CATEGORY_ACCOUNT_LOGGED]]);
 }
-$twig->display('menu.html.twig', ['name' => 'News', 'links' => $menus[MENU_CATEGORY_NEWS]]);
-$twig->display('menu.html.twig', ['name' => 'Account', 'links' => $menus[MENU_CATEGORY_ACCOUNTS]]);
-$twig->display('menu.html.twig', ['name' => 'Community', 'links' => $menus[MENU_CATEGORY_COMMUNITY]]);
-$twig->display('menu.html.twig', ['name' => 'Library', 'links' => $menus[MENU_CATEGORY_LIBRARY]]);
 
-if(config('gifts_system')) {
-	$twig->display('menu.html.twig', ['name' => 'Shop', 'links' => $menus[MENU_CATEGORY_SHOP]]);
+foreach ($menuCategories as $category => $values) {
+	if ($category === MENU_CATEGORY_ACCOUNT_LOGGED) {
+		continue;
+	}
+
+	if ($category === MENU_CATEGORY_SHOP && !$config['gifts_system']) {
+		continue;
+	}
+
+	$twig->display('menu.html.twig', ['name' => $values['name'], 'links' => $menus[$category]]);
 }
