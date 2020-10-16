@@ -1,0 +1,10 @@
+{
+	"name": "houses-actions",
+	"description": "This is Houses Actions script for MyAAC that works only on TFS 1.x and higher.",
+	"version": "1.0-beta",
+	"author": "gesior, slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.8.0-dev"
+	}
+}
