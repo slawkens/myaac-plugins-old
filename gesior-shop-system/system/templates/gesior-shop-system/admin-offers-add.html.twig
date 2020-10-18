@@ -1,0 +1,98 @@
+<div class="row">
+	<form method="post" action="?p=gifts&action=add_form">
+		<input type="hidden" name="action" value="add"/>
+
+		<div class="col-md-8">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">Add Offer</h3>
+				</div>
+
+				<div class="box-body">
+
+					<div class="form-group">
+						<label for="type" class="col-sm-2 control-label">Type</label>
+
+						<div class="col-sm-10">
+							{% if categories|length <= 0 %}
+								<label name="type" class="form-control">No categories in database</label>
+							{% else %}
+								<select name="type" class="form-control" id="type">
+									{% for category in categories %}
+										<option value="{{ category.name }}">{{ category.description }}</option>
+									{% endfor %}
+								</select>
+							{% endif %}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="points" class="col-sm-2 control-label">Points</label>
+
+						<div class="col-sm-10">
+							<input type="number" class="form-control" name="points" placeholder="Points" required/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="offer_name" class="col-sm-2 control-label">Offer Name</label>
+
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="offer_name" placeholder="Offer Name" required/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label">Description</label>
+
+						<div class="col-sm-10">
+							<textarea class="form-control" name="description" rows="5" cols="50" placeholder="Offer Description (you can use HTML) (can be empty)"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Extra</label>
+
+						<div id="extra" class="col-sm-10"></div>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<td align="right"><input type="submit" class="btn btn-info pull-right" value="Save"/></td>
+					<td align="left">
+						<input type="button" onclick="window.location = '{{ constant('ADMIN_URL') }}?p=gifts';" class="btn btn-default" value="Cancel"/>
+					</td>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$('#type').change(function() {
+			updateFields();
+		});
+
+		updateFields();
+	});
+
+	function updateFields() {
+		var value = $('#type').val();
+		$('#extra').empty();
+
+		if(value == 'item') {
+			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div>');
+		} else if(value == 'container') {
+			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div><br/>');
+			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="container_id" min="100" placeholder="Container ID" required/><input class="form-control" type="number" name="container_count" min="1" max="100" placeholder="Container Count" required/></div>');
+		} else if(value == 'addon') {
+			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="look_female" min="1" placeholder="Female (girl) Look Type" required/><input class="form-control" type="number" name="addons_female" min="1" max="3" placeholder="Female Addons (1, 2 or 3 for both)" required/></div><br/>');
+			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="look_male" min="1" placeholder="Male (boy) Look Type" required/><input class="form-control" type="number" name="addons_male" min="1" max="3" placeholder="Male Addons (1, 2 or 3 for both)" required/></div>');
+		} else if(value == 'mount') {
+			$('#extra').append('<input class="form-control" type="number" name="mount_id" min="1" placeholder="Mount ID (take from mounts.xml)" required/>');
+		} else if(value == 'pacc') {
+			$('#extra').append('<input class="form-control" type="number" name="days" min="1" placeholder="Premium Days" required/>');
+		}
+	}
+</script>

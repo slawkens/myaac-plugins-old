@@ -1,0 +1,70 @@
+<div class="box">
+	<div class="box-header">
+		<h3 class="box-title">Gifts System</h3>
+		<div class="box-tools pull-right">
+			<a href="?p=gifts&action=offer_form"><span class="btn btn-success">Add Offer</span></a>
+		</div>
+	</div>
+
+	<div class="box-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="tb_datatable">
+					<thead>
+					<tr>
+						<th width="5%">ID</th>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Information</th>
+						<th>Description</th>
+						<th>Hidden</th>
+						<th style="width: 150px;">Options</th>
+					</tr>
+					</thead>
+
+					<tbody>
+					{% for offer in offers %}
+						<tr>
+							<td>{{ offer.id }}</td>
+							<td>{{ offer.name }}</td>
+							<td>{{ offer.type|lower }}</td>
+							<td>{{ offer.points }}</td>
+							<td>{{ offer.information }}</td>
+							<td>{{ offer.description|raw }}</td>
+							<td>{% if offer.hidden %}Yes{% else %}No{% endif %}</td>
+							<td>
+								<a href="?p=gifts&action=toggle_hidden&id={{ offer.id }}" class="ico" title="{% if offer.hidden != 1 %}Hide{% else %}Show{% endif %}">
+									{% if offer.hidden != 1 %}
+										<span class="btn btn-primary btn-sm btn-flat">
+											<i class="fa fa-eye"></i>
+										</span>
+									{% else %}
+										<span class="btn btn-default btn-sm btn-flat">
+											<i class="fa fa-eye-slash"></i>
+										</span>
+									{% endif %}
+								</a>
+
+								<a href="?p=gifts&action=delete&id={{ offer.id }}" class="ico" onclick="return confirm('Are you sure?');" title="Delete">
+									<span class="btn btn-danger btn-sm delete btn-flat">
+										<i class="fa fa-trash"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function () {
+		$('.tb_datatable').DataTable({
+			"order": [[ 0, "asc" ]]
+		});
+	});
+</script>

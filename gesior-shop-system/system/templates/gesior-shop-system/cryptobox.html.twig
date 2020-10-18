@@ -1,0 +1,47 @@
+<table width="100%" border="0" cellpadding="4" cellspacing="1">
+	<tbody>
+	<tr>
+		<td colspan="3" bgcolor="{{ config.vdarkborder }}" class="white"><span class="style4">Donate to receive points</span></td>
+	</tr>
+	<tr bgcolor="{{ config.vdarkborder }}">
+		<td class="white" width="35%"><b>Donation</b></td>
+		<td class="white" width="35%"><b>Points</b></td>
+	</tr>
+	{% set i = 1 %}
+	{% for price, points in config.cryptobox.options %}
+	<tr bgcolor="{{ getStyle(i) }}"><td>{{ price }} $</td><td><img src="images/content/bullet.gif"> {{ points }} Points</td></tr>
+	{% set i = i + 1 %}
+	{% endfor %}
+	</tbody>
+</table>
+</br>
+<form method="post" action="?subtopic=points&system=cryptobox&redirect">
+	<input type="hidden" name="order" value="order{{ random(999999) }}" />
+	<table border="0" cellpadding="4" cellspacing="1" width="100%">
+		<tbody>
+		<tr bgcolor="{{ config.vdarkborder }}" class="white">
+			<th colspan="2"><strong>Choose the number of points you want to donate.</strong></th>
+		</tr>
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="10%">Your account</td>
+			<td><strong>{% if constant('USE_ACCOUNT_NAME') %}{{ account_logged.getName() }}{% else %}{{ account_logged.getId() }}{% endif %}</strong></td>
+		</tr>
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="10%">Points</td>
+			<td>
+				<select name="price">
+					{% for price, points in config.cryptobox.options %}
+					<option value="{{ price }}">{{ points }}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr bgcolor="{{ config.darkborder }}">
+			<td colspan="2">
+				<input type="submit" name="submit" value="Submit" {% if is_localhost %}disabled{% endif %}/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</form>
+<b><span style="color:#ff0000;">OBS:</span></b> Points are delivered <b>automatically</b> after the <u>approved</u> of your payment by CryptoBox.
