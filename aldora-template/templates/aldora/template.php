@@ -317,7 +317,7 @@ if(count($menus) === 0) {
 								</tr>
 								<tr>
 									<?php if($status['online']) : ?>
-									<td><a href="<?= getLink('online') ?>"><?= $status['online']; ?> player<?= ($status['online'] > 1 ? 's' : ''); ?> online</a></td><td></td>
+									<td><a href="<?= getLink('online') ?>"><?= $status['players']; ?> player<?= ($status['players'] > 1 ? 's' : ''); ?> online</a></td><td></td>
 									<?php endif; ?>
 								</tr>
 							</tbody>
