@@ -4,8 +4,8 @@ html, body {
 }
 
 body {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	background: #FFFFFF url(images/others/bg01.jpg) repeat left top;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -13,7 +13,7 @@ body {
 }
 
 h1, h2, h3 {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 h1 {
@@ -23,13 +23,13 @@ h2 {
 }
 
 h3 {
-	margin: 0px;
+	margin: 0;
 	font-size: 16px;
 	color: #2D2D2D;
 }
 
 p, ol, ul {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 1em;
 	line-height: 160%;
 	text-align: justify;
@@ -46,14 +46,14 @@ p.byline a {
 }
 
 ul.list1 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 ul.list1 li {
 	height: 20px;
-	padding: 6px 0px 0px 15px;
+	padding: 6px 0 0 15px;
 	background: url(images/others/homepage14.jpg) no-repeat left top;
 }
 
@@ -86,16 +86,16 @@ img.border {
 
 img.alignleft {
 	float: left;
-	margin: 3px 20px 0px 0px;
+	margin: 3px 20px 0 0;
 }
 
 img.alignright {
 	float: right;
-	margin: 3px 0px 0px 20px;
+	margin: 3px 0 0 20px;
 }
 
 img.aligncenter {
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 hr {
@@ -104,7 +104,7 @@ hr {
 
 .container {
 	width: 992px;
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 /** BACKGROUNDS */
@@ -144,8 +144,8 @@ hr {
 
 #topmenu ul {
 	float: right;
-	margin: 0px;
-	padding: 95px 10px 0px 0px;
+	margin: 0;
+	padding: 95px 10px 0 0;
 	list-style: none;
 }
 
@@ -159,7 +159,7 @@ hr {
 }
 
 #topmenu a {
-	padding: 0px 12px;
+	padding: 0 12px;
 	color: #658A9C;
 }
 
@@ -172,7 +172,7 @@ hr {
 
 #menu ul {
 	height: 33px;
-	padding: 24px 0px 0px 0px;
+	padding: 24px 0 0 0;
 	background: url(images/others/bg1_01.jpg) no-repeat left top;
 	text-align: center;
 	line-height: normal;
@@ -181,7 +181,7 @@ hr {
 
 #menu li {
 	display: inline;
-	padding: 0px 20px 0px 28px;
+	padding: 0 20px 0 28px;
 	background: url(images/others/homepage02.gif) no-repeat left center;
 }
 
@@ -219,20 +219,20 @@ hr {
 }
 
 #bar form {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 #bar fieldset {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	border: none;
 }
 
 #bar .input-text {
 	width: 132px;
 	height: 22px;
-	padding: 2px 10px 0px 10px;
+	padding: 2px 10px 0 10px;
 	background: url(images/others/homepage03.jpg) no-repeat left top;
 }
 
@@ -247,7 +247,7 @@ hr {
 
 .input-submit {
 	width: 54px;
-	padding: 5px 0px 6px 0px;
+	padding: 5px 0 6px 0;
 	background: url(images/others/homepage04.jpg) no-repeat left top;
 	border: none;
 	font-size: 10px;
@@ -263,18 +263,18 @@ hr {
 
 #login form {
 	width: 580px;
-	padding: 0px 0px 0px 12px;
+	padding: 0 0 0 12px;
 }
 
 #login .input-text, #login .input-submit {
 	float: left;
-	margin: 9px 0px 0px 9px;
+	margin: 9px 0 0 9px;
 }
 
 #login p {
 	float: left;
-	margin: 0px;
-	padding: 12px 0px 0px 15px;
+	margin: 0;
+	padding: 12px 0 0 15px;
 	line-height: normal;
 	font-size: 10px;
 	color: #FFF6EB;
@@ -298,7 +298,7 @@ hr {
 
 #search .input-text, #search .input-submit {
 	float: left;
-	margin: 0px 0px 0px 9px;
+	margin: 0 0 0 9px;
 }
 
 /** PAGE */
@@ -326,7 +326,7 @@ hr {
 .single #content {
 	float: none;
 	width: auto;
-	padding: 0px 12px;
+	padding: 0 12px;
 }
 
 /** SIDEBAR */
@@ -354,7 +354,7 @@ hr {
 }
 
 #footer p {
-	padding: 60px 0px;
+	padding: 60px 0;
 	background: url(images/others/subpage1_03.jpg) no-repeat left top;
 	text-align: center;
 	line-height: normal;
@@ -379,8 +379,8 @@ hr {
 
 .title {
 	height: 27px;
-	margin: 0px;
-	padding: 10px 0px 0px 12px;
+	margin: 0;
+	padding: 10px 0 0 12px;
 	font-size: 15px;
 	color: #FFFFFF;
 }
@@ -421,7 +421,7 @@ hr {
 }
 
 #box2 .entry {
-	padding: 17px 17px 0px 17px;
+	padding: 17px 17px 0 17px;
 }
 
 #box2 .column1 {
@@ -443,7 +443,7 @@ hr {
 	padding: 17px;
 }
 .main_content {
-	padding:0px 15px 0px 4px;
+	padding:0 15px 0 4px;
 }
 
 /** BOX4 */
