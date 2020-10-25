@@ -1,0 +1,59 @@
+<h2 class="title">{{ article.title|raw }}</h2>
+
+<div id="FeaturedArticle">
+
+	<div id="TeaserThumbnail">
+		{% if article.read_more is not empty %}<a href="{{ article.read_more }}">{% endif %}
+			<img src="{{ article.image }}" width="150" height="100" border="0" alt="" />
+		{% if article.read_more is not empty %}</a>{% endif %}
+	</div>
+
+	{% if article.read_more is not empty %}
+		<a id="Link" href="{{ article.read_more }}">&raquo; read more</a>
+	{% endif %}
+
+	<p>{{ article.text|raw }}</p>
+
+	{% if canEdit %}
+		<p>
+			<a href="/admin/?p=news&action=edit&id={{ article.id }}" title="Edit">
+				<img src="images/edit.png"/>Edit
+			</a>
+			<a id="delete" href="/admin/?p=news&action=delete&id={{ article.id }}" onclick="return confirm('Are you sure?');" title="Delete">
+				<img src="images/del.png"/>Delete
+			</a>
+			<a href="/admin/?p=news&action=hide&id={{ article.id }}" title="{% if article.hidden != 1 %}Hide{% else %}Show{% endif %}">
+				<img src="images/{% if article.hidden != 1 %}success{% else %}error{% endif %}.png"/>
+				{% if article.hidden != 1 %}Hide{% else %}Show{% endif %}
+			</a>
+		</p>
+	{% endif %}
+
+</div>
+
+<style>
+	#FeaturedArticle {
+		position: relative;
+		overflow: hidden;
+	}
+
+	#FeaturedArticle #TeaserThumbnail {
+		position: relative;
+		top: 0;
+		right: 0;
+		height: 100px;
+		width: 150px;
+		margin-left: 10px;
+		background-color: black;
+		z-index: 90;
+		float: right;
+	}
+
+	#FeaturedArticle #Link {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 89px 165px 0 0;
+		z-index: 99;
+	}
+</style>

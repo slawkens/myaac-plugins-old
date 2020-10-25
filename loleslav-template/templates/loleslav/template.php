@@ -80,7 +80,7 @@ defined('MYAAC') or die('Direct access not allowed!');
 		<div id="box3" class="box-style3">
 		<h2 class="title"><?php echo $title; ?></h2>
 			<div class="main_content">
-				<?php echo template_place_holder('center_top') . $content; ?>
+				<?php echo tickers() . template_place_holder('center_top') . $content; ?>
 			</div>
 		</div>
 	</div>
