@@ -1,4 +1,7 @@
 [1.1 - 30.10.2020]
+	* Add Tickers & Featured Article
+	* Ignore file that is almost 1.3MB big, so you can install without increasing PHP limits
+	* Remove redundant "px" from default.css
 	* new install.php code
 
 [1.0.2 - 17.05.2019]
