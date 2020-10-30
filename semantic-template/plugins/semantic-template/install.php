@@ -15,7 +15,6 @@ if ($query->rowCount() > 0) {
 }
 
 $categories = require PLUGINS . $template . '-template/menus.php';
-
 foreach ($categories as $category => $menus) {
 	$i = 0;
 	foreach ($menus as $name => $link) {
@@ -23,6 +22,9 @@ foreach ($categories as $category => $menus) {
 		$blank = 0;
 
 		if (is_array($link)) {
+			if (isset($link['name'])) {
+				$name = $link['name'];
+			}
 			if (isset($link['color'])) {
 				$color = $link['color'];
 			}
@@ -42,7 +44,8 @@ foreach ($categories as $category => $menus) {
 		];
 
 		// support for color and blank attributes since 0.8.0
-		if(version_compare(MYAAC_VERSION, '0.8.0', '>=')) {
+		if (fieldExist('blank', TABLE_PREFIX . 'menu') &&
+				fieldExist('color', TABLE_PREFIX . 'menu')) {
 			$insert_array['blank'] = $blank;
 			$insert_array['color'] = $color;
 		}
