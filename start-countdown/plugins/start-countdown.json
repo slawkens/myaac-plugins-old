@@ -1,7 +1,7 @@
 {
 	"name": "Start Countdown",
 	"description": "This is Start Countdown plugin for MyAAC.",
-	"version": "1.1",
+	"version": "1.2",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com",
 	"hooks": {
@@ -12,6 +12,7 @@
 	},
 	"uninstall": [
 		"plugins/start-countdown.json",
-		"plugins/start-countdown"
+		"plugins/start-countdown",
+		"tools/plugins/start-countdown"
 	]
 }

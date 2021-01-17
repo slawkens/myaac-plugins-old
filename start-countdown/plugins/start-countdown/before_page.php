@@ -5,13 +5,13 @@
  * @name      start-countdown
  * Written by Keith Wood (kbwood{at}iinet.com.au) January 2008.
  * Made for MyAAC by Slawkens <slawkens@gmail.com>
- * @version   1.0
+ * @version   1.2
  */
 
 if(!isset($config['start-countdown']))
 {
 	$config['start-countdown'] = array(
-		'date' => '12 31, 2020 17:00:00' // just an example
+		'date' => '30.03.2021 18:00:00' // just an example
 	);
 }
 
@@ -23,27 +23,58 @@ if(!isset($template_place_holders['center_top']))
 
 $template_place_holders['head_end'][] = '
 <style type="text/css">
+#defaultCountdownParent { width: 240px; margin: auto; text-align: center; }
 #defaultCountdown { width: 240px; height: 45px; }
+.highlight { color: #f00; }
 </style>
-<link rel="stylesheet" href="' . BASE_URL . 'tools/jquery.countdown.css">
-<script type="text/javascript" src="' . BASE_URL . 'tools/jquery.plugin.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . 'tools/jquery.countdown.min.js"></script>
+<link rel="stylesheet" href="' . BASE_URL . 'tools/plugins/start-countdown/jquery.countdown.css">
+<script type="text/javascript" src="' . BASE_URL . 'tools/plugins/start-countdown/jquery.plugin.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . 'tools/plugins/start-countdown/jquery.countdown.min.js"></script>
 
 <noscript>
 	Server starting at ' . $config['start-countdown']['date'] . '
 </noscript>
 ';
 
-$template_place_holders['center_top'][] = '<center>Server starts in: <div id="defaultCountdown"></div></center><br/>' . '
+$tmp = explode(' ', $config['start-countdown']['date']);
+$date = explode('.', trim($tmp[0]));
+$time = explode(':', trim($tmp[1]));
+
+ob_start();
+?>
+
+<div id="defaultCountdownParent">Server starts in: <div id="defaultCountdown"></div></div><br/>
 <script type="text/javascript">
 function startAlert()
 {
-	alert("Server just started!");
+	alert('Server just started!');
 }
 
+function highlightLast(periods)
+{
+	if ($.countdown.periodsToSeconds(periods) === 10) {
+		$(this).addClass('highlight');
+	}
+}
 $(function () {
-	var serverStart = new Date("' . $config['start-countdown']['date'] . '");
-	$(\'#defaultCountdown\').countdown({until: serverStart, onExpiry: startAlert});
+	let countUntil = <?= mktime($time[0], $time[1], $time[2], $date[1], $date[0], $date[2]) - time(); ?>;
+	const $defaultCountdown = $('#defaultCountdown');
+
+	$defaultCountdown.countdown(
+		{
+			until: countUntil,
+			expiryText: 'Server just started!',
+			onExpiry: startAlert,
+			onTick: highlightLast
+		}
+	);
+
+	if(countUntil <= 0) {
+		$defaultCountdown.html('Server already started!');
+	}
 });
-</script>';
-?>
+</script>
+
+<?php
+$template_place_holders['center_top'][] = ob_get_contents();
+ob_end_clean();
