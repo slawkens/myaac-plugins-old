@@ -18,7 +18,7 @@ The donation costs:
 <br/><br/>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-	<input type="hidden" name="cmd" value="_donations">
+	<input type="hidden" name="cmd" value="{{ config.paypal.payment_type }}">
 	<input type="hidden" name="business" value="{{ config.paypal.email }}">
 	<input type="hidden" name="item_name" value="{{ config.paypal.item_name }}">
 	<input type="hidden"  name="custom" {% if logged %} value="{{ account_logged.getId() }}"{% endif %}/>
