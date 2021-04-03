@@ -70,11 +70,11 @@ if(!function_exists('curl_init')) {
 }
 
 if(!is_file(PLUGINS . 'gesior-shop-system/config.php')) {
-	success("Copied config.php.dist to config.php");
 	copy(
 		PLUGINS . 'gesior-shop-system/config.php.dist',
 		PLUGINS . 'gesior-shop-system/config.php'
 	);
+	success("Copied config.php.dist to config.php");
 }
 
 success("You can configure the script in following folder: plugins/gesior-shop-system/config.php")
