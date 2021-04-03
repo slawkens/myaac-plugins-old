@@ -1,7 +1,7 @@
 <div class="windowBody">
 	<div class="window innerBox">
 		<div class="windowHeader">
-			<img src="{{ template_path }}/images/news/icon_{{ icon }}.gif" alt="News Icon" class="news_image"/>{{ title }} - {{ date|date(config.news_date_format) }} - by <i>{{ author }}</i>
+			<img src="{{ constant('BASE_URL') }}images/news/icon_{{ icon }}.gif" alt="News Icon" class="news_image"/>{{ title }} - {{ date|date(config.news_date_format) }} - by <i>{{ author }}</i>
 		</div>
 		<div class="windowBody">
 			{{ content|raw }}
