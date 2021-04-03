@@ -77,4 +77,4 @@ if(!is_file(PLUGINS . 'gesior-shop-system/config.php')) {
 	success("Copied config.php.dist to config.php");
 }
 
-success("You can configure the script in following folder: plugins/gesior-shop-system/config.php")
+success("You can configure the script in following file: plugins/gesior-shop-system/config.php");
