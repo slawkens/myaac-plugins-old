@@ -4,7 +4,7 @@
 	* Fix payment_type being ignored (Thanks to OtLand User: DukeeH)
 	* (internal) Moving some SQL to schema.sql
 
-[2.2.1 - 18.10.2020]
+[2.2.1 - 29.02.2020]
 	* Force table links color to white (with !important css)
 
 [2.2 - 02.12.2019]
