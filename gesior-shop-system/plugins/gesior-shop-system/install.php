@@ -68,3 +68,10 @@ if(!function_exists('curl_init')) {
 	error(sprintf("Error. Please enable <a target='_blank' href='%s'>CURL extension</a> in PHP. <a target='_blank' href='%s'>Read here &#187;</a> Paypal, Cryptobox and PagSeguro will not work correctly without it.", "http://php.net/manual/en/book.curl.php", "http://stackoverflow.com/questions/1347146/how-to-enable-curl-in-php-xampp"));
 	return;
 }
+
+if(!is_file(PLUGINS . 'gesior-shop-system/config.php')) {
+	copy(
+		PLUGINS . 'gesior-shop-system/config.php.dist',
+		PLUGINS . 'gesior-shop-system/config.php'
+	);
+}
