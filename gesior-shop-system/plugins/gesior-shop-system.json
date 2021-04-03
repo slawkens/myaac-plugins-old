@@ -1,8 +1,8 @@
 {
 	"name": "gesior-shop-system",
 	"description": "This is shop system taken from Gesior, modified for MyAAC.",
-	"version": "2.2",
-	"author": "Gesior (modified by slawkens)",
+	"version": "2.3",
+	"author": "Gesior, slawkens, whiteblXK",
 	"contact": "slawkens@gmail.com",
 	"hooks": {
 		"startup": {
