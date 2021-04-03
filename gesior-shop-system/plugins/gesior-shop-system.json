@@ -4,6 +4,12 @@
 	"version": "2.2",
 	"author": "Gesior (modified by slawkens)",
 	"contact": "slawkens@gmail.com",
+	"hooks": {
+		"startup": {
+			"type": "STARTUP",
+			"file": "plugins/gesior-shop-system/startup.php"
+		}
+	},
 	"install": "plugins/gesior-shop-system/install.php",
 	"require": {
 		"php-ext": "curl"
