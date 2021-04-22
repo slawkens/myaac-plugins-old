@@ -64,6 +64,13 @@ if($db->select(TABLE_PREFIX . 'admin_menu', ['name' => 'Gifts']) === false) {
 	$db->query("INSERT INTO `" . TABLE_PREFIX . "admin_menu` (`name`, `page` ,`ordering` ,`flags` ,`enabled`) VALUES ('Gifts', 'gifts', '0', '0', '1')");
 }
 
+if(!@copy('https://curl.se/ca/cacert.pem', LIBS . 'cert/cacert.pem')) {
+	$errors = error_get_last();
+	error($errors['type'] . "<br />\n" . $errors['message']);
+} else {
+	success('Updated cacert.pem from remote host.');
+}
+
 if(!function_exists('curl_init')) {
 	error(sprintf("Error. Please enable <a target='_blank' href='%s'>CURL extension</a> in PHP. <a target='_blank' href='%s'>Read here &#187;</a> Paypal, Cryptobox and PagSeguro will not work correctly without it.", "http://php.net/manual/en/book.curl.php", "http://stackoverflow.com/questions/1347146/how-to-enable-curl-in-php-xampp"));
 	return;
