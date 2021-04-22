@@ -1,3 +1,7 @@
+[2.4 - 22.04.2021]
+	* fix PayPal sandbox URL + redirect after transaction
+	* update cacert.pem from https://curl.se/ on install
+
 [2.3 - 03.04.2021]
 	* Fix problem with redirection after transaction has been made (PayPal redirect)
 	* Do not override config.php after install - may upset some users ;)
