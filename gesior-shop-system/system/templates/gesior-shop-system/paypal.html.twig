@@ -17,7 +17,7 @@ The donation costs:
 <b>7. If something goes wrong, or you have any questions - please contact us at {{ config.paypal.contact_email }}</b>
 <br/><br/>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<form action="https://www.{% if config.paypal.use_sandbox %}sandbox.{% endif %}paypal.com/cgi-bin/webscr" method="post">
 	<input type="hidden" name="cmd" value="{{ config.paypal.payment_type }}">
 	<input type="hidden" name="business" value="{{ config.paypal.email }}">
 	<input type="hidden" name="item_name" value="{{ config.paypal.item_name }}">

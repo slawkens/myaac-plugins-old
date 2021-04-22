@@ -13,8 +13,16 @@ foreach ($toBeFound as $find) {
 	}
 }
 
+// example URL
+// /?PayerID=CLPET73SVP2AL
+$sandboxToBeFound = 'PayerID=';
+$sandboxFound = false;
+if(strpos($currentURL, $sandboxToBeFound) !== false) {
+	$sandboxFound = true;
+}
+
 // Redirect if we find pattern (example URL pointed above is currently visited)
-if($foundCount === count($toBeFound)) {
+if($foundCount === count($toBeFound) || $sandboxFound) {
 	header("Location: " . BASE_URL . 'gifts');
 	exit;
 }
