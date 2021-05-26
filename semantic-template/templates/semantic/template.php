@@ -43,6 +43,15 @@ if(count($menus) === 0) {
 			$(".ui.dropdown").dropdown();
 		});
 	</script>
+	<style>
+		body {
+			background-image: url(<?= $template_path; ?>/images/background.png) !important;
+		}
+
+		.white {
+			color: black !important;
+		}
+	</style>
 	<?= template_place_holder('head_end') ?>
 </head>
 
@@ -64,10 +73,18 @@ if(count($menus) === 0) {
 				</div>
 				<div class="ui dropdown item">
 					Library <i class="dropdown icon"></i>
-					<div class="menu">
+					<div class="ui menu">
 						<?php semantic_menus(MENU_CATEGORY_LIBRARY, true); ?>
 					</div>
 				</div>
+				<?php if($config['gifts_system']) { ?>
+				<div class="ui dropdown item">
+					Shop <i class="dropdown icon"></i>
+					<div class="menu">
+						<?php semantic_menus(MENU_CATEGORY_SHOP, true); ?>
+					</div>
+				</div>
+				<?php } ?>
 				<div class="item">
 				<?php
 				if($logged) { ?>
@@ -86,19 +103,25 @@ if(count($menus) === 0) {
 		</div>
 	</div>
 </div>
-<div class="ui hidden section divider"></div>
+<!--div class="ui hidden section divider"></div-->
 <div class="ui container">
-	<div class="ui padded grid">
-		<div class="eleven wide column">
+	<div class="ui padded stackable grid">
+		<div class="twelve wide column">
+
 			<?php
 			if(PAGE === 'news') {
 				$twig->display('info-box.html.twig');
 			}
 
-			echo tickers() . template_place_holder('center_top') . $content;
-			?>
+			echo tickers() . template_place_holder('center_top'); ?>
+			<div class="ui card" style="width: 100%">
+				<div class="ui top attached message">
+					<h4 class="ui header"><?= $title; ?></h4>
+				</div>
+				<div class="ui bottom attached segment"><?= $content; ?></div>
+			</div>
 		</div>
-		<div class="computer only four wide right floated column">
+		<div class="four wide right floated column">
 			<?php
 				require __DIR__ . '/boxes/search.php';
 				require __DIR__ . '/boxes/status.php';
@@ -124,6 +147,10 @@ if(count($menus) === 0) {
 function semantic_menus($category, $submenu = false)
 {
 	global $menus;
+
+	if (!isset($menus[$category])) {
+		return;
+	}
 
 	$i = 0;
 	foreach ($menus[$category] as $menu) {

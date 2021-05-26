@@ -12,7 +12,7 @@
 			<div class="ui message green">
 				<p>Online</p>
 				<p>Uptime: <strong><?= $status['uptimeReadable'] ?></strong></p>
-				<p>Players: <strong><?= $status['players'] . '/' . $status['playersMax']; ?></strong></p>
+				<a href="<?= getLink('online') ?>"><p style="color: #1ebc30">Players: <strong><?= $status['players'] . '/' . $status['playersMax']; ?></strong></p></a>
 			</div>
 		<?php } else { ?>
 			<div class="ui message red">

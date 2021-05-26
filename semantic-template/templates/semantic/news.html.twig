@@ -1,8 +1,16 @@
 <div class="ui hidden divider"></div>
-<h2 class="ui large header">
-	<div class="content">{{ title}}</div>
-	<div class="sub header">
-		{{ date|date(news_date_format) }} by {% if author is not empty %} by <a href="{{ getLink('characters/' ~ author) }}">{{ author }}</a>{% endif %}
+<div class="ui card" style="width: 100%">
+	<div class="ui top attached message">
+		<h4 class="ui header">
+			<div class="content" style="width: 100%">
+				<span class="right floated">{{ date|date(news_date_format) }} {% if author is not empty %} by <a href="{{ getLink('characters/' ~ author) }}">{{ author }}</a>{% endif %}</span>
+				<img src="{{ template_path }}/images/news/icon_{{ icon }}.gif" alt="News Icon" class="news_image"/>
+				{{ title}}
+			</div>
+		</h4>
 	</div>
-</h2>
-{{ content|raw }}
+	<div class="ui bottom attached segment">
+		{{ content|raw }}
+		<br/>
+	</div>
+</div>

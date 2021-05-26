@@ -9,6 +9,8 @@ return [
 	],
 	MENU_CATEGORY_COMMUNITY => [
 		'Characters' => 'characters',
+		'Highscores' => 'highscores',
+		'Online' => 'online',
 		'Last Kills' => 'lastkills',
 		'Houses' => 'houses',
 		'Guilds' => 'guilds',
@@ -21,5 +23,9 @@ return [
 		'Server Info' => 'serverInfo',
 		'Gallery' => 'gallery',
 		'Experience Table' => 'experienceTable',
+	],
+	MENU_CATEGORY_SHOP => [
+		'Buy Points' => 'points',
+		'Gifts' => 'gifts',
 	],
 ];

@@ -1,3 +1,13 @@
+[2.0 - x.x.2021]
+	* add background image
+	* add shop menus
+	* better news template
+	* fix boxes not being shown on mobile
+	* better table colors (vdarkborder & darkborder)
+	* change color of "Create Account today!" button to blue
+	* fix width of some table not being 100% (Table3 css class adjustment)
+	* add missing files from Semantic UI (icons, flags)
+
 [1.0.1 - 30.10.2020]
 	* some small code changes in install.php
 
