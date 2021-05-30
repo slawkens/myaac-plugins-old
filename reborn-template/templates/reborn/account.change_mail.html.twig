@@ -1,4 +1,4 @@
-<div>
+<div class="container">
 	<form action="{{ getLink('account/email') }}" method="post">
 		<div>
 			<h1>Change Email Address</h1>
@@ -11,13 +11,13 @@
 		</div>
 		<div>
 			<div class="row">
-				<label for="new_email" class="col-form-label">New Email Address</label>
+				<label for="new_email" class="col col-form-label">New Email Address</label>
 				<div class="col">
-					<input class="form-control" name="new_email" id="new_email" value="{% if new_email is defined %}{{ new_email }}{% endif %}" size="30" maxlength="50" autofocus/>
+					<input type="email" class="form-control" name="new_email" id="new_email" value="{% if new_email is defined %}{{ new_email }}{% endif %}" size="30" maxlength="50" autofocus/>
 				</div>
 			</div>
 			<div class="row">
-				<label for="email_password" class="col-form-label">Password</label>
+				<label for="email_password" class="col col-form-label">Password</label>
 				<div class="col">
 					<input class="form-control" type="password" name="password" id="email_password" size="30" maxlength="29">
 				</div>
