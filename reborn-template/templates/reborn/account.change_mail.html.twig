@@ -1,0 +1,33 @@
+<div>
+	<form action="{{ getLink('account/email') }}" method="post">
+		<div>
+			<h1>Change Email Address</h1>
+		</div>
+		<div>
+			Please enter your password and the new email address. Make sure that you enter a valid email address which you have access to.
+			</br><b>For security reasons, the actual change will be finalised after a waiting period of
+				{{ config.account_mail_change }}
+				days.</b><br/><br/>
+		</div>
+		<div>
+			<div class="row">
+				<label for="new_email" class="col-form-label">New Email Address</label>
+				<div class="col">
+					<input class="form-control" name="new_email" id="new_email" value="{% if new_email is defined %}{{ new_email }}{% endif %}" size="30" maxlength="50" autofocus/>
+				</div>
+			</div>
+			<div class="row">
+				<label for="email_password" class="col-form-label">Password</label>
+				<div class="col">
+					<input class="form-control" type="password" name="password" id="email_password" size="30" maxlength="29">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<input type="hidden" name="changeemailsave" value="1"/>
+					<button type="submit" class="btn btn-secondary" name="Submit" value="Submit" />Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

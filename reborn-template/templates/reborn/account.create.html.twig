@@ -1,0 +1,72 @@
+<div>
+	<h1>Create
+		{{ config.lua.serverName }}
+		Account</h1>
+</div>
+<div>{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_FORM') }}</div>
+<div>
+	<form action="{{ getLink('account/create') }}" method="post" id="createaccount">
+		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_BOXES') }}
+		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_ACCOUNT') }}
+		<div>
+			<label for="account_inoput" class="form-label">Account name</label>
+			<input type="text" class="form-control" name="account" id="account_input" maxlength="{% if constant('USE_ACCOUNT_NAME') %}30{% else %}10{% endif %}" value="{{ account }}" autofocus required/>
+		</div>
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_ACCOUNT') }}
+		<div>
+			<label for="inputEmail4" class="form-label">Email address</label>
+			<input type="email" class="form-control" name="email" id="email" required placeholder="name@example.com" value="{{ email }}"/>
+			<strong></br>Please use real email address.	Only verified accounts will receive in-game awards!</br>
+			We will send a link to validate your Email.</br></strong>
+		</div>
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_EMAIL') }}
+		<div>
+			<label for="account_country" class="form-label">Country<img src="" id="account_country_img"/></label>
+			<select name="country" id="account_country" class="form-select">
+				{% for code, country_ in countries %}
+					<option value="{{ code }}" 
+						{% if(country is defined and country == code) or (country is null and country_recognized == code) %}
+							selected 
+						{% endif %}>{{ country_ }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_COUNTRY') }}
+		<div>
+			<label for="password" class="form-label">Password</label>
+			<input type="password" class="form-control" name="password" id="password" value="" maxlength="50" required/>
+			{% if errors.password is defined %}{{ errors.password }}{% endif %}
+		</div>
+		<div>
+			<label for="password2" class="form-label">Repeat password</label>
+			<input type="password" class="form-control" name="password2" id="password2" value="" maxlength="50" required/>
+			{% if errors.password is defined %}{{ errors.password }}{% endif %}
+		</div>
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_PASSWORDS') }}
+		{% if config.recaptcha_enabled %}
+			<div style="margin-top:15px;">
+				<div class="g-recaptcha" data-sitekey="{{ config.recaptcha_site_key }}" data-theme="{{ config.recaptcha_theme }}"></div>
+			</div>
+			{% if errors.verification is defined %}
+				<span class="FormFieldError">{{ errors.verification }}</span>
+			{% endif %}
+		{% endif %}
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_RECAPTCHA') }}
+		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_1') }}
+		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_2') }}
+		<div>
+			<input type="checkbox" class="form-check-input" id="accept_rules" name="accept_rules" value="true"{% if accept_rules %} checked {% endif %} required/>
+			<label class="form-check-label" for="accept_rules">I agree to the<a href="?subtopic=rules" target="_blank">{{ config.lua.serverName }}rules</a>.</label>
+		</div>
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}		
+		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_SUBMIT_BUTTON') }}
+		<div>
+		<input type="hidden" name="save" value="1"/>
+			<button type="submit" class="btn btn-secondary" name="Submit" value="Submit" />Submit</button>
+		</div>
+	</form>
+	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_FORM') }}
+<script type="text/javascript" src="tools/check_name.js"></script>
+</div>
+
