@@ -1,0 +1,41 @@
+<div>
+	<center>
+		<button type="button" class="btn btn-link">
+			<a href="?items">
+				Back
+			</a>
+		</button>
+
+		<br/><br/>
+
+		<table width="70%">
+			<thead>
+			<tr style="background-color: {{ config.vdarkborder }}; text-align: center;">
+				<td class="white">Image</td>
+				<td class="white">Name</td>
+				<td class="white">Description</td>
+				<td class="white">{{ headerDesc }}</td>
+			</tr>
+			</thead>
+			<tbody>
+			{% set i = 0 %}
+			{% for item in items %}
+				{% set i = i + 1 %}
+				<tr style="background-color: {{ getStyle(i) }}; text-align: center;">
+					<td>{{ item.image|raw }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.description }}</td>
+					<td>{{ item.level }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<br/>
+		<button type="button" class="btn btn-link">
+			<a href="?items">
+				Back
+			</a>
+		</button>
+	</center>
+</div>
