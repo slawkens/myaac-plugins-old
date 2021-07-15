@@ -44,7 +44,7 @@ function mostPowerfulGuildsDatabase()
 			LEFT JOIN `player_deaths` pd ON `pd`.`killed_by` = `p`.`name`
 			LEFT JOIN `guild_membership` gm ON `p`.`id` = `gm`.`player_id`
 			LEFT JOIN `guilds` g ON `gm`.`guild_id` = `g`.`id`
-		WHERE `pd`.`unjustified` = 1
+		WHERE `pd`.`unjustified` = 1 AND g.name is NOT NULL
 			GROUP BY `name`
 			ORDER BY `frags` DESC, `name` ASC
 			LIMIT 0, ' . $config['powerful_guilds']['amount'] . ';') as $guild) {

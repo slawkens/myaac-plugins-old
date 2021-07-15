@@ -1,0 +1,12 @@
+[2.0 - 08.06.2021]
+	* no need to edit items.xml anymore!! it detects automatically
+	* move html code to twig
+	* change table colors
+	* fix "fromid" -> "toid" items.xml detection
+	* fix errors with too long name and description
+	* fix some warnings about undefined variables
+	* add notice about items reloaded
+	* shortened code
+
+[1.0 - 18.01.2021]
+	* initial release
