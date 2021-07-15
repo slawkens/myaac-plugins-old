@@ -1,0 +1,13 @@
+{
+	"name": "list_of_items",
+	"description": "Automatic generator for MyAAC of a list of items on your server organized",
+	"version": "2.0",
+	"author": "endless, slawkens",
+	"contact": "walistonbelles1@gmail.com",
+	"uninstall": [
+		"plugins/list_of_items.json",
+		"plugins/list_of_items",
+		"system/pages/items.php",
+		"system/pages/items"
+	]
+}
