@@ -3,7 +3,7 @@
 	<div>
 		<form method="post" action="{{ getLink('spells') }}">
 			<input type="hidden" name="reload_spells" value="yes"/>
-			<button type="submit" class="btn btn-secondary" value="(admin) Reload spells"/>(admin) Reload spells</button>
+			<button type="submit" class="btn " value="(admin) Reload spells"/>(admin) Reload spells</button>
 		</form>
 	</div>
 	{% endif %}
@@ -11,7 +11,7 @@
 		<ul class="nav nav-tabs" id="spellTab" role="tablist">
 			<li>
 				<div>
-					<button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVocFilter" aria-expanded="false" aria-controls="collapseVocFilter"><h4><i class="bi bi-filter-circle-fill"></i></h4></button>
+					<button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVocFilter" aria-expanded="false" aria-controls="collapseVocFilter"><h4><i class="bi bi-funnel-fill"></i></h4></button>
 					<div class="collapse" id="collapseVocFilter">
 						<form action="{{ getLink('spells') }}" method="post">
 							<div class="row">
@@ -27,7 +27,7 @@
 							</div>
 							<div class="row">
 								<div class="col">
-									<button type="submit" class="btn btn-secondary" name="Submit" value="Submit" />Submit</button>				
+									<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>				
 								</div>
 							</div>
 						</form>	

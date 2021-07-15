@@ -1,8 +1,10 @@
-<?php
-$config['table_header_bg'] = '#212529'; //Background color for headers
-$config['table_header_textcolor'] = "white"; //Color for header text
-$config['header-logo'] = "reborn-logo.png"; //Place picture in reborn/images
-$config['darkborder'] = '#fff'; //required for myaac
-$config['lightborder'] = '#fff'; //required for myaac
-$config['vdarkborder'] = '#212529'; //set same as table_header_bg - required for myaac
+<?php //This page is created with bootstrap, full documentation at: https://getbootstrap.com/docs/5.0/getting-started/introduction/
+$config['bgColor']      = 'bg-dark'; //choose between bg-dark and bg-light"
+$config['navbarColor']  = 'navbar-dark'; //choose between navbar-dark and navbar-light"
+$config['tableColor']   = 'table-dark'; //choose between table-dark and table-light"
+$config['btnColor']     = 'btn-secondary'; //choose between btn-secondary and btn-primary
+$config['textColor']    = 'text-white';
+$config['darkborder']   = '#fff'; //required for myaac
+$config['lightborder']  = '#fff'; //required for myaac
+$config['vdarkborder']  = '#212529'; //set same as tableColor - required for myaac
 ?>

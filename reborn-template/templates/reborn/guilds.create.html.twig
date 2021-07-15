@@ -1,0 +1,25 @@
+<div class="container">
+	<h1>Create guild</h1>
+	<form action="?subtopic=guilds&action=create&todo=save" method="post">
+		<div>
+			<label for="name" class="col-sm-2 col-form-label">Leader:</label>
+			<div class="col-sm-10">
+				<select name="name" id="name">
+					{% for player in players %}
+						<option>{{ player }}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div>
+			<label for="guild" class="col-sm-2 col-form-label">Guild Name:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="guild" id="guild" value="" size="30" maxlength="50"/>
+			</div>
+		</div>
+		<div>
+			<br>
+			{{ include('buttons.submit.html.twig') }}
+			<a href="{{ getLink('guilds') }}" class="btn ">Back</a>
+		</div>
+	</form>

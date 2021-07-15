@@ -22,10 +22,15 @@ defined('MYAAC') or die('Direct access not allowed!');
     <link rel="stylesheet" type="text/css" href="<?php echo $template_path; ?>/style.css">
     <?php echo template_place_holder('head_end'); ?>
 </head>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" aria-label="Navigation bar">
+<nav class="navbar fixed-top navbar-expand-lg <?php echo $config['navbarColor']; ?> <?php echo $config['bgColor']; ?>" aria-label="Navigation bar">
     <div class="container">
-        <a class="navbar-brand" href="?home">
-            <img src="<?php echo $template_path; ?>/images/<?php echo config('header-logo'); ?>" alt="" class="d-inline-block align-top">
+        <a class="navbar-brand" href="?news">
+            <?php
+                $headline = $template_path.'/images/header/headline-' . PAGE . '.gif';
+                if(!file_exists($headline))
+                    $headline = $template_path . '/headline.php?t=' . ucfirst($config['lua']['serverName']);
+            ?>
+            <img src="<?php echo $headline; ?>" alt="" class="d-inline-block align-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -151,11 +156,13 @@ defined('MYAAC') or die('Direct access not allowed!');
             $('input[type=text]').addClass('form-control');
             $('input[type=search]').addClass('form-control');
             $('input[type=password]').addClass('form-control');
-            $('input[type=submit]').addClass('btn btn-secondary');
+            $('input[type=radio]').addClass('form-check-input');
+            $('input[type=submit]').addClass("btn");
+            $(".btn" ).addClass("<?php echo$config['btnColor']; ?>");
             $(".dataTables_length" ).addClass( "form-group");
             $(".dataTables_filter" ).addClass( "form-group");
             $("table" ).attr("class", "table")
-            $("thead").addClass( "table-dark");
+            $("thead").addClass( "<?php echo$config['tableColor']; ?>");
             $("th").attr("scope", "col");
         });
     </script>

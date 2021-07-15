@@ -119,7 +119,7 @@
 										<td>{% if player.getLastLogin() > 0 %}{{ player.getLastLogin|date('d F Y (H:i)') }}{% else %}Never.{% endif %}</td>
 										<td>{%  if player.isOnline() %}<span style="color: green">ONLINE</span>{% else %}<span style="color: red">Offline</span>{% endif %}</td>
 										<td>{% if player.isHidden() %}Hidden{% else %}Visible{% endif %}</td>
-										<td><a class="btn btn-secondary" href="{{ getLink('account/character/comment/' ~ player.getName|urlencode) }}" role="button">Edit</a></td>
+										<td><a class="btn " href="{{ getLink('account/character/comment/' ~ player.getName|urlencode) }}" role="button">Edit</a></td>
 									</tr>
 								{% endfor %}
 							</tbody>

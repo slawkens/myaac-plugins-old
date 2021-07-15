@@ -1,0 +1,77 @@
+<div class="container">
+	{% if guilds|length > 0 %}
+		<h1>Guilds</h1>
+		<b>Logo</b>
+
+		<b>Description</b>
+
+		{% set i = 0 %}
+		{% for guild in guilds %}
+			{% set i = i + 1 %}
+
+
+			<img src="images/guilds/{{ guild.logo }}" width="64" height="64">
+
+			<span {% if guild.description is not empty %} valign="top" {% endif %}>
+				<b>{{ guild.name }}</b>
+				{% if isAdmin %}
+					<a href="?subtopic=guilds&action=delete_by_admin&guild={{ guild.name }}">
+						- Delete this guild (for ADMIN only!)</a>
+				{% endif %}
+			</span>
+
+			{% if guild.description is not empty %}
+				<br>
+				<span>{{ guild.description|raw }}</span>
+			{% endif %}
+
+
+			<form action="{{ guild.link }}" method="post">
+				{{ include('buttons.view.html.twig') }}
+			</form>
+
+		{% endfor %}
+		{% if logged %}
+			No guild found that suits your needs?
+			<form action="?subtopic=guilds&action=create" method="post">
+				{% set button_name = 'Found Guild' %}
+				{% set button_image = '_sbutton_foundguild' %}
+				{% include('buttons.base.html.twig') %}
+			</form>
+		{% else %}
+			<b>Before you can create guild you must login.</b>
+			<br/>
+			<form action="?subtopic=accountmanagement&redirect={{ getLink('guilds') }}" method="post">
+				{% include('buttons.login.html.twig') %}
+			</form>
+		{% endif %}
+	{% else %}
+		<b>Create Guild</b>
+		<br>
+		There are no guilds on this server.
+		{% if logged %}
+        <br>
+        <br>
+			Create first! Press button "Found Guild"
+			<form action="?subtopic=guilds&action=create" method="post">
+				<form action="?subtopic=guilds&action=create" method="post">
+                    {% set button_name = 'Found Guild' %}
+					{% set button_image = '_sbutton_foundguild' %}
+					{% include('buttons.base.html.twig') %}
+				</form>
+			</form>
+		{% endif %}
+	{% endif %}
+
+
+	{% if logged %}
+		<br/>
+		If you have any problem with guilds try:
+		<br/>
+		<a href="?subtopic=guilds&action=cleanup_players">Cleanup players</a>
+		- can't join guild/be invited? Can't create guild? Try cleanup players.
+		<br/>
+		<a href="?subtopic=guilds&action=cleanup_guilds">Cleanup guilds</a>
+		- made guild, you are a leader, but you are not on players list? Cleanup guilds!
+	{% endif %}
+</div>
