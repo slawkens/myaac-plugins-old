@@ -1,225 +1,291 @@
-<script type="text/javascript" src="tools/js/tipped.js"></script>
-<link rel="stylesheet" type="text/css" href="tools/css/tipped.css"/>
-<script>
-	$(document).ready(function() {
-	    Tipped.create('.item_image');
-	});
-</script>
-{% set rows = 0 %}
-        {{ hook(constant('HOOK_CHARACTERS_BEFORE_INFORMATIONS')) }}
-		{% if canEdit %}
-			<a href="admin/?p=players&id={{ player.getId() }}" title="Edit in Admin Panel" target="_blank">
-				<img src="images/edit.png"/>Edit
-			</a>
+<div>
+	<div>
+		<h2>Character Profile</h2>
+	</div>
+	<script type="text/javascript" src="tools/js/tipped.js"></script>
+	<link rel="stylesheet" type="text/css" href="tools/css/tipped.css"/>
+	<script>
+		$(document).ready(function () {
+			Tipped.create('.item_image');
+		});
+	</script>
+	{% set rows = 0 %}
+
+	{{ hook(constant('HOOK_CHARACTERS_BEFORE_INFORMATIONS')) }}
+	{% if canEdit %}
+		<a href="admin/?p=players&id={{ player.getId() }}" title="Edit in Admin Panel" target="_blank">
+			<img src="images/edit.png"/>Edit
+		</a>
+	{% endif %}
+	<table border="0" cellspacing="1" cellpadding="4" width="100%">
+		{% if config.characters.outfit %}
+			<div style="width:64px;height:64px;border:2px solid #F1E0C6; border-radius:50px; padding:13px; margin-top:38px;margin-left:376px;position:absolute;"><img style="margin-left:{% if player.getLookType() in config.outfit_images_wrong_looktypes %}-0px;margin-top:-0px;width:64px;height:64px;{% else %}-60px;margin-top:-60px;width:128px;height:128px;{% endif %}" src="{{ outfit }}" alt="player outfit"/></div>
 		{% endif %}
-		<div class="container" style="position:relative">
-		<table class="table table-striped" border="0" cellspacing="0" cellpadding="0" width="100%">
-			{% if config.characters.outfit %}
-			<div style="width:64px;height:64px;border:2px solid #F1E0C6; border-radius:50px; padding:13px; margin-top:80px;position:absolute;right:40px;"><img style="margin-left:{% if player.getLookType() in [75, 266, 302] %}-0px;margin-top:-0px;width:64px;height:64px;{% else %}-60px;margin-top:-60px;width:128px;height:128px;{% endif %}" src="{{ outfit }}" alt="player outfit"/></div>
-			{% endif %}
 
-			<tr bgcolor="{{ config.table_header_bg }}">
-				<td colspan="2" class="{{ config.table_header_textcolor }}" style="color:white;"><b>Character Information</b></td>
-			</tr>
+		<tr bgcolor="{{ config.vdarkborder }}">
+			<td colspan="2" class="white">
+				<b>Character Information</b>
+			</td>
+		</tr>
 
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td width="20%">Name:</td>
+			<td>{{ flag|raw }}
+				<span style="color: {% if player.isOnline() %}green{% else %}red{% endif %}">
+					<b>{{ player.getName() }}</b>
+				</span>
+				{{ oldName }}</td>
+		</tr>
+
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td>Sex:</td>
+			<td>{{ sex }}</td>
+		</tr>
+
+		{% if marriage_enabled %}
 			{% set rows = rows + 1 %}
-			<tr>
-				<td width="20%">Name:</td>
-				<td>{{ flag|raw }} <span style="color: {% if player.isOnline() %}green{% else %}red{% endif %}"><b>{{ player.getName() }}</b></span>{{ oldName }}</td>
-			</tr>
-
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Sex:</td>
-				<td>{{ sex }}</td>
-			</tr>
-
-			{% if marriage_enabled %}
-			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Marital status:</td>
 				<td>{{ marital_status }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Profession:</td>
-				<td>{{ vocation }}</td>
-			</tr>
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td>Profession:</td>
+			<td>{{ vocation }}</td>
+		</tr>
 
-			{% if config.characters.level %}
+		{% if config.characters.level %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Level:</td>
 				<td>{{ player.getLevel() }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if config.characters.experience %}
+		{% if config.characters.experience %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Experience:</td>
 				<td>{{ player.getExperience() }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if config.characters.magic_level %}
+		{% if config.characters.magic_level %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Magic Level:</td>
 				<td>{{ player.getMagLevel() }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if frags_enabled %}
+		{% if frags_enabled %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Frags:</td>
 				<td>{{ frags_count }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Residence:</td>
-				<td>{{ town }}</td>
-			</tr>
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td>Residence:</td>
+			<td>{{ town }}</td>
+		</tr>
 
-			{% if config.characters.balance %}
+		{% if config.characters.balance %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Balance:</td>
-				<td>{{ player.getBalance() }} Gold Coins.</td>
+				<td>{{ player.getBalance() }}
+					Gold Coins.</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if house.found %}
+		{% if house.found %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>House:</td>
 				<td>
-					<table border="0">
+					<table class="table-borderless" border="0">
 						<tr>
 							<td>{{ house.name ~ house.town ~ house.add }}</td>
 							<td>
 								<form action="?subtopic=houses&page=view" method="post">
 									<input type="hidden" name="house" value="{{ house.name }}">
-									<button class="btn " name="View" alt="View" src="{{ template_path }}/images/global/buttons/sbutton_view.gif" border="0" width="120">View</button>
+									<button type="submit" class="btn" name="View" alt="View">View</button>
 								</form>
 							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if guild.rank is not null %}
+		{% if guild.rank is not null %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Guild membership:</td>
-				<td>{{ guild.rank }} of the {{ guild.link|raw }}</td>
+				<td>{{ guild.rank }}
+					of the
+					{{ guild.link|raw }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Last login:</td>
-				<td>{% if player.getLastLogin() == 0 %}Never logged in.{% else %}{{ player.getLastLogin()|date("M d Y, H:i:s") }} CEST{% endif %}</td>
-			</tr>
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td>Last login:</td>
+			<td>
+				{% if player.getLastLogin() == 0 %}Never logged in.
+				{% else %}
+					{{ player.getLastLogin()|date("M d Y, H:i:s") }}
+					CEST
+				{% endif %}
+			</td>
+		</tr>
 
-			{% if config.characters.creation_date %}
+		{% if config.characters.creation_date %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td>Created:</td>
-				<td>{{ player.getCreated()|date("M d Y, H:i:s") }} CEST</td>
+				<td>{{ player.getCreated()|date("M d Y, H:i:s") }}
+					CEST</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% if comment is not null %}
+		{% if comment is not null %}
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td valign="top">Comment:</td>
 				<td>{{ comment|raw }}</td>
 			</tr>
-			{% endif %}
+		{% endif %}
 
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Account Status:</td>
-				<td>{% if account.isPremium() %}Premium Account{% else %}Free Account{% endif %}</td>
-			</tr>
-		</table>
-		</div>
-		{{ hook(constant('HOOK_CHARACTERS_AFTER_INFORMATIONS')) }}
-		<br/>
-		<table border="0" width="100%">
-			<tr>
-				{% if config.characters.skills %}
+		{% set rows = rows + 1 %}
+		<tr bgcolor="{{ getStyle(rows) }}">
+			<td>Account Status:</td>
+			<td>
+				{% if account.isPremium() %}Premium Account{% else %}Free Account
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	{{ hook(constant('HOOK_CHARACTERS_AFTER_INFORMATIONS')) }}
+	<br/>
+	<table class="table-borderless" border="0" width="100%">
+		<tr>
+			{{ hook(constant('HOOK_CHARACTERS_BEFORE_SKILLS')) }}
+
+			{% if config.characters.skills %}
 				<!-- SKILLS -->
 				<td width="30%" valign="top">
-					<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
-						<tr bgcolor="{{ config.table_header_bg }}">
-							<td style="color:white;" colspan="2" class="{{ config.table_header_textcolor }}"><B>Skills</b></td>
+					<table border="0" cellspacing="1" cellpadding="4" width="100%">
+						<tr bgcolor="{{ config.vdarkborder }}">
+							<td colspan="2" class="white">
+								<B>Skills</b>
+							</td>
 						</tr>
 						{% set i = 0 %}
 						{% for skill in skills %}
-						{% set i = i + 1 %}
-						<tr>
-							<td valign="top">{{ skill.name }}</td>
-							<td>{{ skill.value }}</td>
-						</tr>
+							{% set i = i + 1 %}
+							<tr bgcolor="{{ getStyle(i) }}">
+								<td valign="top">{{ skill.name }}</td>
+								<td>{{ skill.value }}</td>
+							</tr>
 						{% endfor %}
 					</table>
 				</td>
 				<!-- SKILLS_END -->
-				{% endif %}
+			{% endif %}
 
-				{% if quests_enabled %}
+			{{ hook(constant('HOOK_CHARACTERS_AFTER_SKILLS')) }}
+
+			{% if quests_enabled %}
 				<!-- QUESTS -->
 				<td width="40%" valign="top">
 					<table border="0" cellspacing="1" cellpadding="4" width="100%">
-						<tr bgcolor="{{ config.table_header_bg }}">
-							<td colspan="2" class="{{ config.table_header_textcolor }}"><b>Quests</b></td>
+						<tr bgcolor="{{ config.vdarkborder }}">
+							<td colspan="2" class="white">
+								<b>Quests</b>
+							</td>
 						</tr>
 						{% set i = 0 %}
 						{% for name, done in quests %}
-						{% set i = i + 1 %}
-						<tr bgcolor="{{ getStyle(i) }}">
-							<td valign="top">{{ name }}</TD>
-							<td><img src="images/{% if done %}true{% else %}false{% endif %}.png" border="0"/></td>
-						</tr>
+							{% set i = i + 1 %}
+							<tr bgcolor="{{ getStyle(i) }}">
+								<td valign="top">{{ name }}</TD>
+								<td><img src="images/{% if done %}true{% else %}false{% endif %}.png" border="0"/></td>
+							</tr>
 						{% endfor %}
 					</table>
 				</td>
 				<!-- QUESTS_END -->
-				{% endif %}
+			{% endif %}
 
-				{% if config.characters.equipment %}
+			{{ hook(constant('HOOK_CHARACTERS_AFTER_QUESTS')) }}
+
+			{% if config.characters.equipment %}
 				<!-- EQUIPMENT -->
 				<td width="100" valign="top">
-					<table border="0" cellspacing="1" cellpadding="4" width="100%">
-						<tr bgcolor="{{ config.table_header_bg}}">
-							<td style="color:white;" colspan="2" class="{{ config.table_header_textcolor }}"><b>Equipment</b></td>
+					<table class="table-borderless" border="0" cellspacing="1" cellpadding="4" width="100%">
+						<tr bgcolor="{{ config.vdarkborder}}">
+							<td colspan="2" class="white">
+								<b>Equipment</b>
+							</td>
 						</tr>
-						<tr>
+						<tr bgcolor="{{ getStyle(1) }}">
 							<td>
 								<table width="100" align="center" cellspacing="0" cellpadding="0" style="background: #808080; border:1px solid #808080;">
 									<tr>
 										<td>
 											<table cellspacing="0" style="background: #292929;">
-												<tr><td style="border:1px solid #808080;">{{ equipment[2]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[6]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[9]|raw }}</td></tr>
-												<tr height="11px"><td>{% if skull is not null %}<img src="images/{{ skull }}.gif">{% endif %}</td></tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[2]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[6]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[9]|raw }}</td>
+												</tr>
+												<tr height="11px">
+													<td>
+														{% if skull is not null %}<img src="images/{{ skull }}.gif">
+														{% endif %}
+													</td>
+												</tr>
 											</table>
 										</td>
 										<td>
 											<table cellspacing="0" style="background: #292929;">
-												<tr><td style="border:1px solid #808080;">{{ equipment[1]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[4]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[7]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[8]|raw }}</td></tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[1]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[4]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[7]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[8]|raw }}</td>
+												</tr>
 											</table>
 										</td>
 										<td>
 											<table cellspacing="0" style="background: #292929;">
-												<tr><td style="border:1px solid #808080;">{{ equipment[3]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[5]|raw }}</td></tr><tr><td style="border:1px solid #808080;">{{ equipment[10]|raw }}</td></tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[3]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[5]|raw }}</td>
+												</tr>
+												<tr>
+													<td style="border:1px solid #808080;">{{ equipment[10]|raw }}</td>
+												</tr>
 											</table>
 										</td>
 									</tr>
@@ -229,137 +295,158 @@
 					</table>
 				</td>
 				<!-- EQUIPMENT_END -->
-				{% endif %}
-			</tr>
-		</table>
+			{% endif %}
+			{{ hook(constant('HOOK_CHARACTERS_AFTER_EQUIPMENT')) }}
+		</tr>
+	</table>
 
-		{% if deaths|length > 0 %}
+	{{ hook(constant('HOOK_CHARACTERS_BEFORE_DEATHS')) }}
+	{% if deaths|length > 0 %}
 		<!-- DEATHS -->
 		<br/>
-		<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
-			<tr bgcolor="{{ config.table_header_bg }}">
-				<td style="color:white;" colspan="2" class="{{ config.table_header_textcolor }}"><b>Character Deaths</b></td>
+		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+			<tr bgcolor="{{ config.vdarkborder }}">
+				<td colspan="2" class="white">
+					<b>Character Deaths</b>
+				</td>
 			</tr>
 			{% set i = 0 %}
 			{% for death in deaths %}
-			<tr>
-				<td width="20%" align="center">{{ death.time|date("j M Y, H:i") }}</td>
-				<td>{{ death.description|raw }}</td>
-			</tr>
+				<tr bgcolor="{{ getStyle(i) }}">
+					<td width="20%" align="center">{{ death.time|date("j M Y, H:i") }}</td>
+					<td>{{ death.description|raw }}</td>
+				</tr>
 
-			{% set i = i + 1 %}
+				{% set i = i + 1 %}
 			{% endfor %}
 		</table>
 		<!-- DEATHS_END -->
-		{% endif %}
-		{% if frags|length > 0 %}
+	{% endif %}
+	{% if frags|length > 0 %}
 		<!-- FRAGS -->
 		<br/>
-		<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
-			<tr bgcolor="{{ config.table_header_bg }}">
-				<td sdtyle="color:white;" colspan="2" class="{{ config.table_header_textcolor }}"><b>Victims</b></td>
+		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+			<tr bgcolor="{{ config.vdarkborder }}">
+				<td colspan="2" class="white">
+					<b>Victims</b>
+				</td>
 			</tr>
 			{% set i = 0 %}
 			{% for frag in frags %}
-			<tr>
-				<td width="20%" align="center">{{ frag.time|date("j M Y, H:i") }}</td>
-				<td>{{ frag.description|raw }}({% if frag.unjustified %}<span style="color: red; font-size: 10px">Unjustified</span>{% else %}<span style="color: green; font-size: 10px">Justified</span>{% endif %})</td>
-			</tr>
-			{% set i = i + 1 %}
+				<tr bgcolor="{{ getStyle(i) }}">
+					<td width="20%" align="center">{{ frag.time|date("j M Y, H:i") }}</td>
+					<td>{{ frag.description|raw }}(
+						{% if frag.unjustified %}
+							<span style="color: red; font-size: 10px">Unjustified</span>
+						{% else %}
+							<span style="color: green; font-size: 10px">Justified</span>
+						{% endif %})</td>
+				</tr>
+				{% set i = i + 1 %}
 			{% endfor %}
 		</table>
 		<!-- FRAGS_END -->
-		{% endif %}
+	{% endif %}
 
-		{{ hook(constant('HOOK_CHARACTERS_BEFORE_SIGNATURE')) }}
+	{{ hook(constant('HOOK_CHARACTERS_BEFORE_SIGNATURE')) }}
 
-		{% if config.signature_enabled %}
+	{% if config.signature_enabled %}
 		<!-- SIGNATURE -->
 		<script type="text/javascript">
-			function showSignLinks()
-			{
-				if(document.getElementById('signLinks').style.display == "none")
-				{
-					document.getElementById('signLinks').style.display = "inline";
-					document.getElementById('signText').innerHTML = "Hide links";
-				}
-				else
-				{
-					document.getElementById('signLinks').style.display = "none";
-					document.getElementById('signText').innerHTML = "Show links";
-				}
-			}
+			function showSignLinks() {
+if (document.getElementById('signLinks').style.display == "none") {
+document.getElementById('signLinks').style.display = "inline";
+document.getElementById('signText').innerHTML = "Hide links";
+} else {
+document.getElementById('signLinks').style.display = "none";
+document.getElementById('signText').innerHTML = "Show links";
+}
+}
 		</script>
 		<br/>
-		<table border="0" cellspacing="1" cellpadding="4" width="100%"><tr bgcolor="{{ config.table_header_bg }}"><td colspan=2 class="{{ config.table_header_textcolor }}" style="color:white;"><b>Signature</b></td></tr>
-			<tr bgcolor="{{ config.lightborder }}"><td align="center" valign="top">
-				<img src="{{ signature_url }}" alt="Signature for player {{ player.getName() }}">
-				<br/>
-				<b><a href="#" onclick="showSignLinks(); return false;" id="signText">Show links</a></b>
-				<br/>
-				<table id="signLinks" style="display: none;">
-					<tr>
-						<td>Website:</td>
-						<td><input type="text" value="<a href=&quot;{{ player_link }}&quot;><img src=&quot;{{ signature_url }}&quot;></a>" style="width: 400px;" onclick="this.select()"></td>
-					</tr>
-					<tr>
-						<td>Forum:</td>
-						<td><input type="text" value="[URL={{ player_link }}][IMG]{{ signature_url }}[/IMG][/URL]" style="width: 400px;" onclick="this.select()"></td>
-					</tr>
-					<tr>
-						<td>Direct link:</td>
-						<td><input type="text" value="{{ signature_url }}" style="width: 400px;" onclick="this.select()"></td>
-					</tr>
-				</table>
-			</td></tr>
+		<table class="table-borderless" border="0" cellspacing="1" cellpadding="4" width="100%">
+			<tr bgcolor="{{ config.vdarkborder }}">
+				<td colspan="2" class="white">
+					<b>Signature</b>
+				</td>
+			</tr>
+			<tr bgcolor="{{ config.lightborder }}">
+				<td align="center" valign="top">
+					<img src="{{ signature_url }}" alt="Signature for player {{ player.getName() }}">
+					<br/>
+					<b>
+						<a href="#" onclick="showSignLinks(); return false;" id="signText">Show links</a>
+					</b>
+					<br/>
+					<table id="signLinks" style="display: none;">
+						<tr>
+							<td>Website:</td>
+							<td><input type="text" value="<a href=&quot;{{ player_link }}&quot;><img src=&quot;{{ signature_url }}&quot;></a>" style="width: 400px;" onclick="this.select()"></td>
+						</tr>
+						<tr>
+							<td>Forum:</td>
+							<td><input type="text" value="[URL={{ player_link }}][IMG]{{ signature_url }}[/IMG][/URL]" style="width: 400px;" onclick="this.select()"></td>
+						</tr>
+						<tr>
+							<td>Direct link:</td>
+							<td><input type="text" value="{{ signature_url }}" style="width: 400px;" onclick="this.select()"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
 		<!-- SIGNATURE_END -->
-		{% endif %}
-		{{ hook(constant('HOOK_CHARACTERS_AFTER_SIGNATURE')) }}
-		{% if not hidden %}
+	{% endif %}
+	{{ hook(constant('HOOK_CHARACTERS_AFTER_SIGNATURE')) }}
+	{% if not hidden %}
 		{% set rows = 0 %}
 		<!-- ACCOUNT_INFORMATION -->
 		<br/><br/>
-		<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
-			<tr bgcolor="{{ config.table_header_bg }}">
-				<td colspan="2" class="{{ config.table_header_textcolor }}" style="color:white;"><b>Account Information</b></td>
+		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+			<tr bgcolor="{{ config.vdarkborder }}">
+				<td colspan="2" class="white">
+					<b>Account Information</b>
+				</td>
 			</tr>
 
 			{% set realName = account.getRLName() %}
 			{% if realName is not empty %}
-			{% set rows = rows + 1 %}
-			<tr>
-				<td width="20%">Real name:</td>
-				<td>{{ realName }}</td>
-			</tr>
+				{% set rows = rows + 1 %}
+				<tr bgcolor="{{ getStyle(rows) }}">
+					<td width="20%">Real name:</td>
+					<td>{{ realName }}</td>
+				</tr>
 			{% endif %}
 
 			{% set group = player.getGroup() %}
 			{% if group.isLoaded() and group.getId() != 1 %}
-			{% set rows = rows + 1 %}
-			<tr>
-				<td>Position:</td>
-				<td>{{ group.getName()|capitalize }}</td>
-			</tr>
+				{% set rows = rows + 1 %}
+				<tr bgcolor="{{ getStyle(rows) }}">
+					<td>Position:</td>
+					<td>{{ group.getName()|capitalize }}</td>
+				</tr>
 			{% endif %}
 
 			{% set realLocation = account.getLocation() %}
 			{% if realLocation is not empty %}
-			{% set rows = rows + 1 %}
-			<tr>
-				<td width="20%">Location:</td>
-				<td>{{ realLocation }}</td>
-			</tr>
+				{% set rows = rows + 1 %}
+				<tr bgcolor="{{ getStyle(rows) }}">
+					<td width="20%">Location:</td>
+					<td>{{ realLocation }}</td>
+				</tr>
 			{% endif %}
 
 			{% set rows = rows + 1 %}
-			<tr>
+			<tr bgcolor="{{ getStyle(rows) }}">
 				<td width="20%">Created:</td>
 				<td>{{ account.getCreated()|date("j F Y, g:i a") }}
 					{% if bannedUntil matches '/^\\d+$/' or bannedUntil == '-1' %}
-						<span style="color: red">[Banished {% if bannedUntil == '-1' %}forever{% else %}until {{ bannedUntil|date('d F Y, h:s') }}{% endif %}]</span>
+						<span style="color: red">[Banished
+							{% if bannedUntil == '-1' %}forever{% else %}until
+								{{ bannedUntil|date('d F Y, h:s') }}
+							{% endif %}]</span>
 					{% else %}
-					{{ bannedUntil|raw }}
+						{{ bannedUntil|raw }}
 					{% endif %}
 				</td>
 			</tr>
@@ -368,50 +455,73 @@
 		{{ hook(constant('HOOK_CHARACTERS_AFTER_ACCOUNT')) }}
 		<!-- CHARACTERS_LIST -->
 		<br/><br/>
-		<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
-			<tr bgcolor="{{ config.table_header_bg }}">
-				<td colspan=4 class="{{ config.table_header_textcolor }}" style="color:white;"><b>Characters</b></td>
-			</tr>
-			<tr>
-				<td width="62%"><B>Name</b></td>
-				<td width="30%"><B>Level</b></td>
-				<td width="8%"><b>Status</b></td>
-				<td><b>&#160;</b></td>
-			</tr>
+		<div>
+			<h3>Characters</h3>
+		</div>
+		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+			<thead>
+				<tr bgcolor="{{ config.darkborder }}">
+					<th scope="col">
+						<B>Name</b>
+					</th>
+					<th scope="col">
+						<B>Level</b>
+					</th>
+					<th scope="col">
+						<b>Status</b>
+					</th>
+					<td>
+						<b>&#160;</b>
+					</td>
+				</tr>
+			</thead>
 			{% set i = 0 %}
 			{% for player in account_players %}
 				{% if not player.isHidden() and (config('characters')['deleted'] or not player.isDeleted()) %}
-				{% set i = i + 1 %}
-			<tr>
-				<td>
-					<nobr>{{ i }}.&#160;{{ player.getName() }}{% if player.isDeleted() %}<span style="color: red"> [DELETED]</span>{% endif %}</nobr>
-				</td>
+					{% set i = i + 1 %}
+					<tr bgcolor="{{ getStyle(i) }}">
+						<td>
+							<nobr>{{ i }}.&#160;{{ player.getName() }}
+								{% if player.isDeleted() %}
+									<span style="color: red">
+										[DELETED]</span>
+								{% endif %}
+							</nobr>
+						</td>
 
-				<td>{{ player.getLevel() }} {{ player.getVocationName() }}</td>
-				<td>{% if player.isOnline() %}<b><span style="color: green">Online</span></b>{% endif %}</td>
-				<td>
-					<table border="0" cellspacing="0" cellpadding="0">
-						<form action="{{ characters_link }}" method=post>
-							<tr>
-								<td>
-									<input type="hidden" name="name" value="{{ player.getName() }}"/>
-									<button class="btn " name="View {{ player.getName() }}" alt="View {{ player.getName() }}" src="{{ template_path }}/images/global/buttons/sbutton_view.gif" border="0" width="120" height="18">View</button>
-								</td>
-							</tr>
-						</form>
-					</table>
-				</td>
-			</tr>
+						<td>{{ player.getLevel() }}
+							{{ player.getVocationName() }}</td>
+						<td>
+							{% if player.isOnline() %}
+								<b>
+									<span style="color: green">Online</span>
+								</b>
+							{% endif %}
+						</td>
+						<td>
+							<table class="table-borderless" border="0" cellspacing="0" cellpadding="0">
+								<form action="{{ getLink('characters') }}" method="post">
+									<tr>
+										<td>
+											<input type="hidden" name="name" value="{{ player.getName() }}"/>
+											<button type="submit" class="btn" name="View {{ player.getName() }}" alt="View {{ player.getName() }}">View</button>
+										</td>
+									</tr>
+								</form>
+							</table>
+						</td>
+					</tr>
 				{% endif %}
 			{% endfor %}
 		</table>
 		<!-- CHARACTERS_LIST_END -->
-		{% endif %}
-		{{ hook(constant('HOOK_CHARACTERS_AFTER_CHARACTERS')) }}
-		{% if canEdit %}
-			<a href="admin/?p=players&id={{ player.getId() }}" title="Edit in Admin Panel" target="_blank">
-				<img src="images/edit.png"/>Edit
-			</a>
-		{% endif %}
-	</table>
-<br/><br/>{{ search_form|raw }}
+	{% endif %}
+	{{ hook(constant('HOOK_CHARACTERS_AFTER_CHARACTERS')) }}
+	{% if canEdit %}
+		<a href="admin/?p=players&id={{ player.getId() }}" title="Edit in Admin Panel" target="_blank">
+			<img src="images/edit.png"/>Edit
+		</a>
+	{% endif %}
+<br/><br/>
+{{ search_form|raw }}
+</div>

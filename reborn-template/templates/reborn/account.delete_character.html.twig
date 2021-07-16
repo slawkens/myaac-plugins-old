@@ -12,10 +12,10 @@
 			<div class="col">
 				<select class="form-select form-control" name="delete_name" id="delete_name">
 					<option value="">Select character</option> 
-					{% set i = 0 %}
+
 					{% for player in players %}
-						{% set i = i + 1 %}	
-						<option value="{{ player.getName() }}">{{ player.getName() }}<option>
+
+						<option value="{{ player.getName() }}">{{ player.getName() }}</option>
 					{% endfor %}
 				</select>
 			</div>

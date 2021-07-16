@@ -153,15 +153,17 @@ defined('MYAAC') or die('Direct access not allowed!');
     <script>//Design functions
         $(function() {
             $('select').addClass('form-select');
-            $('input[type=text]').addClass('form-control');
-            $('input[type=search]').addClass('form-control');
-            $('input[type=password]').addClass('form-control');
             $('input[type=radio]').addClass('form-check-input');
+            $('input[type=checkbox]').addClass('form-check-input');
             $('input[type=submit]').addClass("btn");
+            $('input[type=text]').addClass("form-control");
+            $('input[type=password]').addClass("form-control");
             $(".btn" ).addClass("<?php echo$config['btnColor']; ?>");
             $(".dataTables_length" ).addClass( "form-group");
             $(".dataTables_filter" ).addClass( "form-group");
-            $("table" ).attr("class", "table")
+            //$("table" ).attr("class", "table")
+            $("table" ).addClass('table');
+            $("textarea").addClass('form-control');
             $("thead").addClass( "<?php echo$config['tableColor']; ?>");
             $("th").attr("scope", "col");
         });

@@ -7,4 +7,5 @@ $config['textColor']    = 'text-white';
 $config['darkborder']   = '#fff'; //required for myaac
 $config['lightborder']  = '#fff'; //required for myaac
 $config['vdarkborder']  = '#212529'; //set same as tableColor - required for myaac
+$config['emailHeader'] = 'https://rebornot.net/dev/templates/reborn/headline.php?t=RebornOT'; //used for email header
 ?>

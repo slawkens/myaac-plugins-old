@@ -1,12 +1,6 @@
 <div class="container">
 	<h1>Create character</h1>
-	<p>Please choose a name,
-		{% if config.character_samples|length > 1 %}, vocation
-		{% endif %}
-		{% if config.character_towns|length > 1 %}, town
-		{% endif %}
-		and gender for your character.
-		<br/>
+	<p>Please choose a name{% if config.character_samples|length > 1 %}, vocation{% endif %}{% if config.character_towns|length > 1 %}, town{% endif %} and gender for your character.<br/>
 		In any case the name must not violate the naming conventions stated in the
 		<a href="?subtopic=rules" target="_blank">{{ config.lua.serverName }}
 			Rules</a>, or your character might get deleted or name locked.
