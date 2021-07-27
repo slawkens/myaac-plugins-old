@@ -1,0 +1,39 @@
+<table style="width: 100%">
+	<tr>
+		<td>
+			<table style="width: 100%">
+				<tr class="white" style="background: {{ config.vdarkborder }}">
+					<td style="width: 32px">
+						<img src="images/news/icon_{{ icon }}.gif" alt="News Icon"/>
+					</td>
+					<td>
+						<div style="float: left;">
+							{{ date|date(config.news_date_format) }} - {{ title }}
+						</div>
+						{% if author is not empty %}
+							<div style="float: left; position: absolute; right: 0; margin-right: 60px;">
+								<b>Author: </b><i>{{ author }}</i>
+							</div>
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding: 20px;" >{{ content|raw }}</td>
+	</tr>
+	{% if comments is not null %}
+		<tr>
+			<td>
+				<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+			</td>
+		</tr>
+	{% endif %}
+</table>
+<br/>
+<style>
+	td {
+		border: 0;
+	}
+</style>
