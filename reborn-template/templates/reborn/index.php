@@ -26,11 +26,16 @@ defined('MYAAC') or die('Direct access not allowed!');
     <div class="container">
         <a class="navbar-brand" href="?news">
             <?php
-                $headline = $template_path.'/images/header/headline-' . PAGE . '.gif';
-                if(!file_exists($headline))
+                $headlinegif = $template_path.'/images/logo.gif';
+                $headlinepng = $template_path.'/images/logo.png';
+                if(file_exists($headlinepng))
+                    $headline = $headlinepng; 
+                elseif(file_exists($headlinegif))   
+                    $headline = $headlinegif;
+                else    
                     $headline = $template_path . '/headline.php?t=' . ucfirst($config['lua']['serverName']);
             ?>
-            <img src="<?php echo $headline; ?>" alt="" class="d-inline-block align-top">
+            <img src="<?php echo $headline; ?>" alt="<?php echo $config['lua']['serverName']; ?>" class="d-inline-block align-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -161,8 +166,8 @@ defined('MYAAC') or die('Direct access not allowed!');
             $(".btn" ).addClass("<?php echo$config['btnColor']; ?>");
             $(".dataTables_length" ).addClass( "form-group");
             $(".dataTables_filter" ).addClass( "form-group");
-            //$("table" ).attr("class", "table")
-            $("table" ).addClass('table');
+            $(".offer_type" ).addClass('btn');
+			$(".offer_type" ).attr("style", "margin-bottom:-3px");
             $("textarea").addClass('form-control');
             $("thead").addClass( "<?php echo$config['tableColor']; ?>");
             $("th").attr("scope", "col");

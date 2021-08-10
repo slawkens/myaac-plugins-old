@@ -1,30 +1,28 @@
-<h2>Boards</h2>
+<b>Boards</b>
 <table width="100%">
-<thead>
-	<tr bgcolor="{{ config.vdarkborder }}" class="white">
-		<th scope="col">
-			<span style="font-size: 10px"><b>Board</b></span>
-		</th>
-		<th scope="col">
-			<span style="font-size: 10px"><b>Posts</b></span>
-		</th>
-		<th scope="col">
-			<span style="font-size: 10px"><b>Threads</b></span>
-		</th>
-		<th scope="col">
-			<span style="font-size: 10px"><b>Last Post</b></span>
-		</th>
+	<tr bgcolor="{{ config.vdarkborder }}">
+		<td>
+			<span style="color: white; font-size: 10px"><b>Board</b></span>
+		</td>
+		<td>
+			<span style="color: white; font-size: 10px"><b>Posts</b></span>
+		</td>
+		<td>
+			<span style="color: white; font-size: 10px"><b>Threads</b></span>
+		</td>
+		<td align="center">
+			<span style="color: white; font-size: 10px"><b>Last Post</b></span>
+		</td>
 		{% if canEdit %}
-			<th scope="col">
-				<span style="font-size: 10px"><b>Options</b></span>
-			</th>
+			<td>
+				<span style="color: white; font-size: 10px"><b>Options</b></span>
+			</td>
 		{% endif %}
 	</tr>
-	</thead>
 	{% set i = 0 %}
 	{% for board in boards %}
 	{% set i = i + 1 %}
-	<tr>
+	<tr bgcolor="{{ getStyle(i) }}">
 		<td>
 			<a href="{{ board.link }}">{{ board.name }}</a><br /><small>{{ board.description }}</small>
 		</td>

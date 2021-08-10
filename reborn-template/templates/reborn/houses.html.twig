@@ -1,4 +1,4 @@
-<div class="TableContainer">
+<div class="TableContainer table-responsive">
 	{% if errors is not empty %}
 		{% for error in errors %}
 			<p class="error">{{ error }}</p>
@@ -170,6 +170,6 @@
 				</tr>
 			</tbody>
 		</table>
-		{{ include('buttons.submit.html.twig') }}
+		<div class="float-end">{{ include('buttons.submit.html.twig') }}</div>
 	</form>
 </div>{% endif %}</div>

@@ -1,6 +1,12 @@
 <div>
+	{% if config.characters.outfit %}
+			<div class="position-relative">
+				<img class="position-absolute top-0 end-0" style="margin-left:{% if player.getLookType() in [75, 266, 302] %}-0px;margin-top:-0px;width:64px;height:64px;{% else %}-60px;margin-top:-60px;width:128px;height:128px;{% endif %}" src="{{ outfit }}" alt="player outfit"/>
+			</div>
+	{% endif %}
 	<div>
-		<h2>Character Profile</h2>
+		<h1>{{ player.getName() }}</h1>
+		<br>
 	</div>
 	<script type="text/javascript" src="tools/js/tipped.js"></script>
 	<link rel="stylesheet" type="text/css" href="tools/css/tipped.css"/>
@@ -17,10 +23,8 @@
 			<img src="images/edit.png"/>Edit
 		</a>
 	{% endif %}
-	<table border="0" cellspacing="1" cellpadding="4" width="100%">
-		{% if config.characters.outfit %}
-			<div style="width:64px;height:64px;border:2px solid #F1E0C6; border-radius:50px; padding:13px; margin-top:38px;margin-left:376px;position:absolute;"><img style="margin-left:{% if player.getLookType() in config.outfit_images_wrong_looktypes %}-0px;margin-top:-0px;width:64px;height:64px;{% else %}-60px;margin-top:-60px;width:128px;height:128px;{% endif %}" src="{{ outfit }}" alt="player outfit"/></div>
-		{% endif %}
+	<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
+		
 
 		<tr bgcolor="{{ config.vdarkborder }}">
 			<td colspan="2" class="white">
@@ -175,14 +179,14 @@
 	</table>
 	{{ hook(constant('HOOK_CHARACTERS_AFTER_INFORMATIONS')) }}
 	<br/>
-	<table class="table-borderless" border="0" width="100%">
-		<tr>
-			{{ hook(constant('HOOK_CHARACTERS_BEFORE_SKILLS')) }}
+	<div class="row">
+			
 
 			{% if config.characters.skills %}
+			{{ hook(constant('HOOK_CHARACTERS_BEFORE_SKILLS')) }}
 				<!-- SKILLS -->
-				<td width="30%" valign="top">
-					<table border="0" cellspacing="1" cellpadding="4" width="100%">
+				<div class="col">
+					<table class="table">
 						<tr bgcolor="{{ config.vdarkborder }}">
 							<td colspan="2" class="white">
 								<B>Skills</b>
@@ -197,16 +201,17 @@
 							</tr>
 						{% endfor %}
 					</table>
-				</td>
+				</div>
 				<!-- SKILLS_END -->
+				{{ hook(constant('HOOK_CHARACTERS_AFTER_SKILLS')) }}
 			{% endif %}
 
-			{{ hook(constant('HOOK_CHARACTERS_AFTER_SKILLS')) }}
+			
 
 			{% if quests_enabled %}
 				<!-- QUESTS -->
-				<td width="40%" valign="top">
-					<table border="0" cellspacing="1" cellpadding="4" width="100%">
+				<div class="col">
+					<table border="0">
 						<tr bgcolor="{{ config.vdarkborder }}">
 							<td colspan="2" class="white">
 								<b>Quests</b>
@@ -221,7 +226,7 @@
 							</tr>
 						{% endfor %}
 					</table>
-				</td>
+				</div>
 				<!-- QUESTS_END -->
 			{% endif %}
 
@@ -229,8 +234,8 @@
 
 			{% if config.characters.equipment %}
 				<!-- EQUIPMENT -->
-				<td width="100" valign="top">
-					<table class="table-borderless" border="0" cellspacing="1" cellpadding="4" width="100%">
+				<div class="col">
+					<table class="table-borderless">
 						<tr bgcolor="{{ config.vdarkborder}}">
 							<td colspan="2" class="white">
 								<b>Equipment</b>
@@ -238,18 +243,18 @@
 						</tr>
 						<tr bgcolor="{{ getStyle(1) }}">
 							<td>
-								<table width="100" align="center" cellspacing="0" cellpadding="0" style="background: #808080; border:1px solid #808080;">
+								<table width="108px" height="141px" cellspacing="0" cellpadding="0" background="{{ template_path }}/images/content/equipment.png" style="border:1px solid #808080;">
 									<tr>
 										<td>
-											<table cellspacing="0" style="background: #292929;">
+											<table cellspacing="0">
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[2]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[2]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[6]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[6]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[9]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[9]|raw }}</td>
 												</tr>
 												<tr height="11px">
 													<td>
@@ -260,31 +265,34 @@
 											</table>
 										</td>
 										<td>
-											<table cellspacing="0" style="background: #292929;">
+											<table cellspacing="0">
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[1]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[1]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[4]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[4]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[7]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[7]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[8]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[8]|raw }}</td>
 												</tr>
 											</table>
 										</td>
 										<td>
-											<table cellspacing="0" style="background: #292929;">
+											<table cellspacing="0">
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[3]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[3]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[5]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[5]|raw }}</td>
 												</tr>
 												<tr>
-													<td style="border:1px solid #808080;">{{ equipment[10]|raw }}</td>
+													<td width="35px" height="35px" background="{{ template_path }}/images/content/equipmentBox.png" style="border:1px solid #808080;">{{ equipment[10]|raw }}</td>
+												</tr>
+												<tr height="11px">
+													<td></td>
 												</tr>
 											</table>
 										</td>
@@ -293,18 +301,18 @@
 							</td>
 						</tr>
 					</table>
-				</td>
+				</div>
 				<!-- EQUIPMENT_END -->
 			{% endif %}
 			{{ hook(constant('HOOK_CHARACTERS_AFTER_EQUIPMENT')) }}
-		</tr>
-	</table>
+		
+	</div>
 
 	{{ hook(constant('HOOK_CHARACTERS_BEFORE_DEATHS')) }}
 	{% if deaths|length > 0 %}
 		<!-- DEATHS -->
 		<br/>
-		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
 			<tr bgcolor="{{ config.vdarkborder }}">
 				<td colspan="2" class="white">
 					<b>Character Deaths</b>
@@ -402,7 +410,7 @@ document.getElementById('signText').innerHTML = "Show links";
 		{% set rows = 0 %}
 		<!-- ACCOUNT_INFORMATION -->
 		<br/><br/>
-		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
 			<tr bgcolor="{{ config.vdarkborder }}">
 				<td colspan="2" class="white">
 					<b>Account Information</b>
@@ -458,7 +466,7 @@ document.getElementById('signText').innerHTML = "Show links";
 		<div>
 			<h3>Characters</h3>
 		</div>
-		<table border="0" cellspacing="1" cellpadding="4" width="100%">
+		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
 			<thead>
 				<tr bgcolor="{{ config.darkborder }}">
 					<th scope="col">
