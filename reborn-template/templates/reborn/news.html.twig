@@ -1,19 +1,40 @@
-<table class="table table-striped" border=0 cellpadding=0 cellspacing=0>
-	<tr bgcolor="{{ config.table_header_bg }}">
-		<td style="font-size:18pt;font-weight:bold;paddin-top:5px;color:{{ config.table_header_textcolor }};">{{ title }}</td>
-		{% if author is not empty %}
-		<td style="text-align: right;color:{{ config.table_header_textcolor }};"><span style="font-weight:bold">{{ date|date(config.news_date_format) }}</span></br> <span style="font-size:8pt">Author: {{ author }}</span></td>
-		{% endif %}
-	</tr>
+<div class="container">
+	<div class="row justify-content-between {{ config.bgColor }} {{config.textColor }}">
+		<div class="col-auto">
+			<div class="row">
+				<div class="col-auto">
+					<img src="{{ template_path }}/images/news/icon_{{ icon }}.gif" class="my-2" />
+				</div>
+				<div class="col-auto my-auto">
+					<h3>{{ title }}</h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="col-auto">{{ date|date(config.news_date_format) }}
+			</div>
+			{% if author is not empty %}
+				<div class="col-auto">
+					<b>Author:
+					</b>
+					<i>{{ author }}</i>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<table style="clear:both" border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
-		<td colspan="3" style="padding-left:10px;padding-right:10px;" >{{ content|raw }}</td>
+		<td style="padding-left:10px;padding-right:10px;">{{ content|raw }}</td>
 	</tr>
 	{% if comments is not null %}
-	<tr>
-		<td colspan="3">
-			<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
-		</td>
-	</tr>
+		<tr>
+			<td>
+				<div style="text-align: right; margin-right: 10px;">
+					<a href="{{ comments }}">» Comment on this news</a>
+				</div>
+			</td>
+		</tr>
 	{% endif %}
-	</table>
+</table>
 <br/>

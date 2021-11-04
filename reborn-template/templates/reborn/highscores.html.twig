@@ -1,0 +1,96 @@
+<div class="container">
+
+	<div class="position-relative">
+		<button class="btn position-absolute top-0 end-0" style="margin-top:-5px" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVocFilter" aria-expanded="false" aria-controls="collapseVocFilter">
+			<i class="bi bi-funnel-fill"></i>
+		</button>
+		<div class="collapse" id="collapseVocFilter" style="margin-bottom:5px">
+			<div class="row">
+				<label for="vocationFilter" class="col-3 col-form-label">Skill</label>
+				<div class="col-4">
+					<select onchange="location = this.value;" aria-label="skillFilter" id="skillFilter">
+						{% set i = 0 %}
+						{% for link, name in types %}
+							<option value="{{ getLink('highscores') }}/{{ link }}{% if vocation is defined %}/{{ vocation }}{% endif %}" class="size_xs">{{ name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<label for="vocationFilter" class="col-3 col-form-label">Vocation</label>
+				<div class="col-4">
+					<select onchange="location = this.value;" aria-label="vocationFilter" id="vocationFilter">
+						<option value="{{ getLink('highscores') }}/{{ list }}" class="size_xs">[ALL]</option>
+						{% set i = 0 %}
+						{% for i in 1..config.vocations_amount %}
+							<option value="{{ getLink('highscores') }}/{{ list }}/{{ config.vocations[i]|lower }}" class="size_xs">{{ config.vocations[i]}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h2>Ranking for
+			{{ skillName }}
+			{% if vocation is not null %}
+				({{ vocation }})
+			{% endif %}
+		</h2>
+	</div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					{% if config.account_country %}
+						<th scope="col">#</th>
+					{% endif %}
+					<th scope="col">Rank</th>
+					{% if config.highscores_outfit %}
+						<th scope="col">Outfit</th>
+					{% endif %}
+					<th scope="col">Name</th>
+					<th scope="col">
+						<b>{{ levelName }}</b>
+					</th>
+					{% if skill == constant('POT::SKILL__LEVEL') %}
+						<th scope="col">Points</th>
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% if totalRows < 1 %}
+					<tr>
+						<td colspan="100%">No records yet.</td>
+					</tr>
+				{% else %}
+					{% set row = 0 %}
+					{% for player in highscores %}
+						<tr>
+							{% set row = row + 1 %}
+							{% if config.account_country %}
+								<td style="width:20px;">{{ player.flag|raw }}</td>
+							{% endif %}
+							<th scope="row">{{ player.rank }}</th>
+							{% if config.highscores_outfit %}
+								<td style="height:64px;width:64px;padding-top:35px;">{{ player.outfit|raw }}</td>
+							{% endif %}
+							<td>
+								<a href="{{ player.link }}">
+									<span style="color: {% if player.online > 0 %}green{% else %}red{% endif %}">{{ player.name }}</span>
+								</a>
+								{% if config.highscores_vocation %}
+									<br/><small>{{ player.vocation }}</small>
+								{% endif %}
+							</td>
+							<td>{{ player.value }}</td>
+							{% if skill == constant('POT::SKILL__LEVEL') %}
+								<td>{{ player.experience }}</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>

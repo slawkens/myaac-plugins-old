@@ -1,0 +1,24 @@
+<div>
+	<h1>Edit Ranks</h1>
+	<form action="?subtopic=guilds&action=change_rank&guild={{ guild_name }}&todo=save" method="post">
+		<div>
+			
+				Name: <select name="name">
+				{% for player in players %}
+					<option value="{{ player[0] }}">{{ player[1] }}</option>
+				{% endfor %}
+				</select>&nbsp;Rank:&nbsp;<select name="rankid">
+					{% for rank in ranks %}
+						<option value="{{ rank[0] }}">{{ rank[1] }}</option>
+					{% endfor %}
+				</select>
+				
+			
+		</div>
+		</br>
+		<div class="float-end">
+					{{ include('buttons.submit.html.twig') }}
+					<a class="btn" href="?subtopic=guilds&action=show&guild={{ guild_name }}">Back</a>
+		</div>
+	</form>
+</div>

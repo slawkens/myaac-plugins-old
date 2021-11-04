@@ -1,0 +1,104 @@
+<div>
+	<div>
+		<div class="dropdown float-end">
+			<button class="btn dropdown-toggle" type="button" id="settingsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+				Settings
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="settingsMenu">
+				<li><a class="dropdown-item" href="?subtopic=guilds&guild={{ guild.getName() }}&action=pass_leadership">Pass Leadership</a></li>
+				<li><a class="dropdown-item" href="?subtopic=guilds&guild={{ guild.getName() }}&action=change_description">Change Description</a></li>
+				{% if constant('MOTD_EXISTS') %}
+					<li><a class="dropdown-item" href="?subtopic=guilds&guild={{ guild.getName() }}&action=change_motd">Change MOTD</a></li>
+				{% endif %}
+				<li><a class="dropdown-item" href="?subtopic=guilds&guild={{ guild.getName() }}&action=change_logo">Change Logo</a></li>
+				<li><hr class="dropdown-divider"></li>
+				<li><a class="dropdown-item" href="?subtopic=guilds&guild={{ guild.getName() }}&action=delete_guild">Delete Guild</a></li>
+			</ul>
+		</div>
+		<div class="float-center">
+			<h1 class="text-center">Guild Manager</h1>
+		</div>
+	</div>
+	
+	Here you can change names of ranks, delete and add ranks, pass leadership to other guild member and delete guild.
+	<br/><br/>
+	<div>
+		<h3>Change rank names and levels</h3>
+		<form action="?subtopic=guilds&action=save_ranks&guild={{ guild.getName() }}" method="post">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID/Delete Rank</th>
+						<th scope="col">Name</th>
+						<th class="text-center" scope="col">Leader (3)</th>	
+						<th class="text-center" scope="col">Vice (2)</th>	
+						<th class="text-center" scope="col">Member (1)</th>	
+					</tr>
+				</thead>
+				<tbody>
+					{% set i = 0 %}
+					{% for rank in rank_list %}
+					<tr bgcolor="{{ getStyle(i) }}">
+						<td align="center">{{ rank.getId() }} // <a class="btn btn-sm" href="?subtopic=guilds&guild={{ guild.getName() }}&action=delete_rank&rankid={{ rank.getId() }}" border="0">Delete</a>
+						</td>
+						<td>
+							<input type="text" name="{{ rank.getId() }}_name" value="{{ rank.getName() }}" size="35"/>
+						</td>
+						<td align="center">
+							<input type="radio" name="{{ rank.getId() }}_level" value="3"
+							{% if rank.getLevel() == 3 %} checked="checked"{% endif %}/>
+						</td>
+						<td align="center">
+							<input type="radio" name="{{ rank.getId() }}_level" value="2"
+							{% if rank.getLevel() == 2 %} checked="checked"{% endif %}/>
+						</td>
+						<td align="center">
+							<input type="radio" name="{{ rank.getId() }}_level" value="1"
+							{% if rank.getLevel() == 1 %} checked="checked"{% endif %}/>
+						</td>
+					</tr>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</tbody>
+			</table>
+			<input class="float-end" type="submit" value="Save All"/>
+		</form>
+	</div>
+	<div>
+		</br>
+		<h3>Add new rank</h3>
+		<form class="row g-3" action="?subtopic=guilds&guild={{ guild.getName() }}&action=add_rank" method="post">
+		<div class="col-auto">
+			<label for="rank_name" class="visually-hidden">Rank name</label>
+			<input type="text" name="rank_name" class="form-control" id="rank_name" placeholder="Rank Name">
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-primary mb-3" value="Add">Add</button>
+		</div>
+		</form>
+	</div>
+	<div>
+		<h3>Ranks info:</h3>
+		<b>0. Owner of guild</b> - it's highest rank, only one player in guild may has this rank. Player with this rank can:
+		<li>Invite/Cancel Invitation/Kick Player from guild</li>
+		<li>Change ranks of all players in guild</li>
+		<li>Delete guild or pass leadership to other guild member</li>
+		<li>Change names, levels (leader, vice, member), add and delete ranks</li>
+		<li>Change {% if constant('MOTD_EXISTS') %}MOTD, {% endif %}logo and description of guild</li>
+		<hr/>
+		<b>1. Leader</b> - it's second rank in guild. Player with this rank can:
+		<li>Invite/Cancel Invitation/Kick Player from guild (only with lower rank than his)
+		<li>Change ranks of players with lower rank level ("vice leader", "member") in guild<hr>
+		<b>2. Vice Leader</b> - it's third rank in guild. Player with this rank can:
+		<li>Invite/Cancel Invitation
+		<li>Change ranks of players with lower rank level ("member") in guild<hr>
+		<b>3. Member</b> - it's lowest rank in guild. Player with this rank can:
+		<li>Be a member of guild
+		<br/>
+		<div style="text-align:center">
+			<form action="?subtopic=guilds&action=show&guild={{ guild.getName() }}" method="post">
+				{{ include('buttons.back.html.twig') }}
+			</form>
+		</div>
+	</div>
+</div>

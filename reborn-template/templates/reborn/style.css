@@ -2,6 +2,117 @@
 
 /*  No media query for `xs` since this is the default in Bootstrap */
 
+.body {
+    background: #6c757d;
+}
+
+.top-text {
+    color: black;
+}
+
+.bottom-text {
+    text-align: center;
+    color: black;
+}
+
+.border-0 {
+    border-width: 0!important;
+    border: 0;
+}
+
+#bootstrap-overrides .card {
+    border: 0;
+    box-shadow: none;
+    min-width: 100%;
+    padding: 15px 0;
+}
+
+#bootstrap-overrides .card-body {
+    border: 0;
+    box-shadow: none;
+    min-width: 100%;
+    padding: 15px 0;
+}
+
+#bootstrap-overrides .shadow-sm {
+    border: 0;
+    box-shadow: none!important;
+    min-width: 100%;
+    padding: 15px 0;
+}
+
+#bootstrap-overrides .p-md-5 {
+    box-shadow: none;
+    min-width: 100%;
+    padding: 15px 0;
+}
+
+#bootstrap-overrides .my-md-5 {
+    box-shadow: none;
+    min-width: 100%;
+    padding: 15px 0;
+}
+
+.white {
+    color: white!important;
+}
+
+td.white {
+    color: white!important;
+}
+
+/* Spells-page */
+
+.spelltype-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+
+.spelltype-tab #tabs {
+    background: #007b5e;
+    color: #eee;
+}
+
+.spelltype-tab #tabs h6.section-title {
+    color: #eee;
+}
+
+.spelltype-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #000;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.spelltype-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.spelltype-tab .nav-link:hover {
+    border: none;
+}
+
+.spelltype-tab thead {
+    background: #f3f3f3;
+    color: #333;
+}
+
+.spelltype-tab a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
     .body {
         background: #6c757d;
     }
@@ -14,125 +125,32 @@
     }
     .border-0 {
         border-width: 0!important;
-	    border: 0;
+        border: 0;
     }
     #bootstrap-overrides .card {
-	    border: 0;
+        border: 0;
         box-shadow: none;
         min-width: 100%;
         padding: 15px 0;
     }
-    #bootstrap-overrides .card-body{
-	    border: 0;
+    #bootstrap-overrides .card-body-md {
+        border: 0;
         box-shadow: none;
         min-width: 100%;
         padding: 15px 0;
     }
-    #bootstrap-overrides .shadow-sm{
-	    border: 0;
+    #bootstrap-overrides .shadow-md {
+        border: 0;
         box-shadow: none!important;
         min-width: 100%;
         padding: 15px 0;
     }
-    #bootstrap-overrides .p-md-5{
+    #bootstrap-overrides .p-md-5 {
         box-shadow: none;
         min-width: 100%;
         padding: 15px 0;
     }
-    #bootstrap-overrides .my-md-5{
-        box-shadow: none;
-        min-width: 100%;
-        padding: 15px 0;
-    }
-    .white {
-        color:white!important;
-    }
-    td.white {
-        color: white!important;
-    }
-
-/* Spells-page */
-    .spelltype-tab {
-        padding: 10%;
-        margin-top: -8%;
-    }
-    .spelltype-tab #tabs{
-        background: #007b5e;
-        color: #eee;
-    }
-    .spelltype-tab #tabs h6.section-title{
-        color: #eee;
-    }
-    .spelltype-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-        color: #000;
-        background-color: transparent;
-        border-color: transparent transparent #f3f3f3;
-        border-bottom: 3px solid !important;
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .spelltype-tab .nav-link {
-        border: 1px solid transparent;
-        border-top-left-radius: .25rem;
-        border-top-right-radius: .25rem;
-        color: #000;
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .spelltype-tab .nav-link:hover {
-        border: none;
-    }
-    .spelltype-tab thead{
-        background: #f3f3f3;
-        color: #333;
-    }
-    .spelltype-tab a{
-        text-decoration: none;
-        color: #333;
-        font-weight: 600;
-    }
-
-/* Small devices (landscape phones, 576px and up) */
-
-@media (min-width: 576px) {
-        .body {
-        background: #6c757d;
-    }
-    .top-text {
-        color: black;
-    }
-    .bottom-text {
-        text-align: center;
-        color: black;
-    }
-    .border-0 {
-        border-width: 0!important;
-	border: 0;
-    }
-    #bootstrap-overrides .card {
-	border: 0;
-        box-shadow: none;
-        min-width: 100%;
-        padding: 15px 0;
-    }
-    #bootstrap-overrides .card-body-md{
-	border: 0;
-        box-shadow: none;
-        min-width: 100%;
-        padding: 15px 0;
-    }
-    #bootstrap-overrides .shadow-md{
-	border: 0;
-        box-shadow: none!important;
-        min-width: 100%;
-        padding: 15px 0;
-    }
-    #bootstrap-overrides .p-md-5{
-        box-shadow: none;
-        min-width: 100%;
-        padding: 15px 0;
-    }
-    #bootstrap-overrides .my-md-5{
+    #bootstrap-overrides .my-md-5 {
         box-shadow: none;
         min-width: 100%;
         padding: 15px 0;

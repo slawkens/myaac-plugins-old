@@ -1,0 +1,175 @@
+<div class="TableContainer table-responsive">
+	{% if errors is not empty %}
+		{% for error in errors %}
+			<p class="error">{{ error }}</p>
+		{% endfor %}
+	{% else %}
+		<h2>House Search</h2>
+		Here you can see the list of all available houses, flats{{ guildString }}.
+										                        Click on any view button to get more information about a house or adjust
+										                        the search criteria and start a new search.
+		<br><br>
+		{% if cleanOldHouse is not empty or rentType != 'never' %}
+			Every morning during global server save there is automatic house cleaning. Server delete house owners who have not logged in last
+			{{ cleanOldHouse }}
+			days
+			{% if rentType != 'never' %}
+				or have not paid
+				{{ rentType }}
+				house rent. Remember to leave money for a rent in
+				{% if config.lua.bankSystem is not empty %}your house bank or
+					{% else %}depo in same city where you have house!
+				{% endif %}
+				{% else %}.
+			{% endif %}
+			<br><br>
+		{% endif %}
+		{% if houses is not empty or housesSearch %}
+			<h4>Available
+				{{ houseType }}
+				{% if townName is not empty %}
+					in
+					<b>{{ townName }}</b>
+				{% endif %}
+				on
+				<b>{{ config.lua.serverName }}</b>
+			</h4>
+			<table border="0" cellspacing="1" cellpadding="4" width="100%">
+				<tbody>
+                <thead>
+					<tr>
+						{% if houses is not empty %}
+							<th scope="col" width="40%">
+								Name
+							</td>
+							<th scope="col"  width="10%">
+								Size
+							</td>
+							<th scope="col"  width="10%">
+								Rent
+							</td>
+							<th scope="col"  width="40%">
+								Status
+							</td>
+							<th scope="col" >&nbsp;</td>
+						{% elseif housesSearch %}
+							<td>No
+								{{ houseType }}
+								with specified criterias.</td>
+						{% endif %}
+					</tr>
+                </thead>
+					{% if houses is not empty %}
+						{% set i = 0 %}
+						{% for house in houses %}
+							{% set i = i + 1 %}
+							<tr bgcolor="{{ getStyle(i) }}">
+								<td width="40%">
+									{{ house.name }}
+								</td>
+
+								<td width="10%">
+									{{ house.size }}
+								</td>
+
+								<td width="10%">
+									{{ house.rent }}
+									golds
+								</td>
+
+								<td width="40%">
+									{{ house.rentedBy|raw }}
+								</td>
+
+								<td>
+									<form action="{{ getLink('houses/view') }}" method="post">
+										<input type="hidden" name="house" value="{{ house.name }}">
+										{{ include('buttons.view.html.twig') }}
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+			<br>
+		{% endif %}
+
+		<form action="{{ getLink('houses') }}" method="post">
+			<table border="0" cellspacing="1" cellpadding="4" width="100%">
+				<tbody></tbody>
+				<thead>
+					<tr>
+						<td scope="col">
+							<b>Town</b>
+						</td>
+						<td scope="col">
+							<b>Status</b>
+						</td>
+						<td scope="col">
+							<b>Order</b>
+						</td>
+					</tr>
+				</thead>
+
+				<tr bgcolor="{{ config.darkborder }}">
+					<td valign="top" rowspan="2">
+						{% set checked = false %}
+						{% for id, name in config.towns if id > 0 %}
+							{% if ((townId is empty and name is not empty) or id == townId) and not checked %}
+								{% set variable = "checked" %}
+								{% set checked = true %}
+							{% else %}
+								{% set variable = "" %}
+							{% endif %}
+
+							<input type="radio" name="town" id="town_{{ id }}" value="{{ id }}" {% if variable is defined %} {{ variable }} {% endif %}>
+							<label for="town_{{ id }}">
+								{{ name }}</label>
+							<br>
+						{% endfor %}
+					</td>
+
+					<td valign="top">
+						<input type="radio" name="state" id="state_all" value="" {% if state is empty %} checked {% endif %}>
+						<label for="state_all">all states</label><br>
+
+						<input type="radio" name="state" id="state_free" value="free" {% if state == 'free' %} checked {% endif %}>
+						<label for="state_free">free</label><br>
+
+						<input type="radio" name="state" id="state_rented" value="rented" {% if state == 'rented' %} checked {% endif %}>
+						<label for="state_rented">rented</label><br>
+					</td>
+
+					<td valign="top" rowspan="2">
+						<input type="radio" name="order" id="order_name" value="" {% if order is empty %} checked {% endif %}>
+						<label for="order_name">
+							by name</label><br>
+
+						<input type="radio" name="order" id="order_size" value="size" {% if order == 'size' %} checked {% endif %}>
+						<label for="order_size">
+							by size</label><br>
+
+						<input type="radio" name="order" id="order_rent" value="rent" {% if order == 'rent' %} checked {% endif %}>
+						<label for="order_rent">
+							by rent</label><br>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<input type="radio" name="type" id="type_all" value="" {% if type is empty %} checked {% endif %}>
+						<label for="type">
+							all</label><br>
+						<input type="radio" name="type" id="type_houses" value="houses" {% if type == 'houses' %} checked {% endif %}>
+						<label for="type_houses">
+							houses and flats</label><br>
+						<input type="radio" name="type" id="type_guildhalls" value="guildhalls" {% if type == 'guildhalls' %} checked {% endif %}>
+						<label for="type_guildhalls">
+							guildhalls</label><br>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="float-end">{{ include('buttons.submit.html.twig') }}</div>
+	</form>
+</div>{% endif %}</div>
