@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# create dir if it doesn't exist
+mkdir -p release
+
 FILES=*
 for f in $FILES
 do
