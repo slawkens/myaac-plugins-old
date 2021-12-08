@@ -6,7 +6,7 @@ mkdir -p release
 FILES=*
 for f in $FILES
 do
-	if [ ! -d $f ]; then
+	if [ ! -d $f ] || [ $f = "release" ]; then
 		continue
 	fi
 
