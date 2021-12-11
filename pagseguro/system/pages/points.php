@@ -10,6 +10,7 @@
  */
 defined('MYAAC') or die('Direct access not allowed!');
 
+$twig_loader->addPath(PLUGINS);
 require_once(PLUGINS . 'pagseguro/config.php');
 $twig->addGlobal('config', $config);
 
@@ -43,10 +44,9 @@ if(empty($action)) {
 		$config['friendly_urls'] = $was_before;
 	}
 	else {
-		echo $twig->render('donate.html.twig', array('is_localhost' => $is_localhost));
+		$twig->display('pagseguro/templates/donate.html.twig', array('is_localhost' => $is_localhost));
 	}
 }
 elseif($action == 'final') {
-	echo $twig->render('donate-final.html.twig');
+	$twig->display('pagseguro/templates/donate-final.html.twig');
 }
-?>

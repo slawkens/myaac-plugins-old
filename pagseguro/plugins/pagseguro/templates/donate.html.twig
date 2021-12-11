@@ -14,7 +14,7 @@
 	{% endfor %}
 	</tbody>
 </table>
-</br>
+<br/>
 <form target="pagseguro" method="post" action="{{ getLink('pagseguro') }}">
 	<input type="hidden" name="reference" value="{% if constant('USE_ACCOUNT_NAME') %}{{ account_logged.getName() }}{% else %}{{ account_logged.getId() }}{% endif %}">
 	<table border="0" cellpadding="4" cellspacing="1" width="100%">
