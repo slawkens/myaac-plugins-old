@@ -1,8 +1,11 @@
 <div class="table-responsive">
-	<table class="table table-borderless" border="0" cellspacing="1" cellpadding="4" width="100%">
-		<tr bgcolor="{{ config.table_header_bg }}">
-			<td class="{{ config.table_header_textcolor }}" style="color:white;"><b>Server Status</b></td>
-		</tr>
+	<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
+	<thead>
+			<tr>
+				<th scope="col">Server Status</th>
+			</tr>
+		</thead>
+		<tbody>
 	{% if players|length == 0 %}
 		<tr><td>Currently no one is playing on {{ config.lua.serverName }}.</td></tr></table>
 	{% else %}
@@ -26,6 +29,7 @@
 				{% endif %}
 			</td>
 		</tr>
+		</tbody>
 	</table>
 	<br/>
 		{# vocation statistics #}
@@ -83,18 +87,21 @@
 	</table>
 		{% endif %}
 
-	<table class="table table-striped" border="0" cellspacing="1" cellpadding="4" width="100%">
+	<table class="table">
+	<thead>
 		<tr bgcolor="{{ config.table_header_bg }}" style="color:white;text-decoration:none;">
 			{% if config.account_country %}
-			<td width="11px"><a href="?subtopic=online&order=country" class="{{ config.table_header_textcolor }}">#</A></td>
+			<th scope="col"><a href="?subtopic=online&order=country">#<i class="bi bi-caret-down"></i></A></th>
 			{% endif %}
 			{% if config.online_outfit %}
-			<td class="{{ config.table_header_textcolor }}">Outfit</td>
+			<th scope="col">Outfit</th>
 			{% endif %}
-			<td width="60%"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=name" class="{{ config.table_header_textcolor }}">Name</A></td>
-			<td width="20%"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=level" class="{{ config.table_header_textcolor }}">Level</A></td>
-			<td width="20%"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=vocation" class="{{ config.table_header_textcolor }}">Vocation</td>
+			<th scope="col"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=name" class="{{ config.table_header_textcolor }}">Name<i class="bi bi-caret-down"></i></A></th>
+			<th scope="col"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=level" class="{{ config.table_header_textcolor }}">Level<i class="bi bi-caret-down"></i></A></th>
+			<th scope="col"><a style="color:white;text-decoration:none;" href="?subtopic=online&order=vocation" class="{{ config.table_header_textcolor }}">Vocation<i class="bi bi-caret-down"></i></th>
 		</tr>
+		</thead>
+		<tbody>
 		{% set i = 0 %}
 		{% for player in players %}
 			{% set i = i + 1 %}
@@ -103,13 +110,14 @@
 				<td>{{ player.country_image|raw }}</td>
 			{% endif %}
 			{% if config.online_outfit %}
-				<td width="5%"><img style="position:absolute;margin-top:{% if player.player.looktype in [75, 266, 302] %}-20px;margin-left:-0px;{% else %}-45px;margin-left:-25px;{%  endif %}" src="{{ player.outfit }}" alt="player outfit"/></td>
+				<td width="5%"><img style="margin-top:{% if player.player.looktype in [75, 266, 302] %}0px;margin-left:-0px;{% else %}-30px;margin-left:-25px;{%  endif %}" src="{{ player.outfit }}" alt="player outfit"/></td>
 			{% endif %}
 				<td>{{ player.name|raw }}{{ player.skull }}</td>
 				<td>{{ player.level }}</td>
 				<td>{{ player.vocation }}</td>
 			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 	{% endif %}
 </div>

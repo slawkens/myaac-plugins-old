@@ -25,13 +25,14 @@
 	{% endif %}
 	<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
 		
-
+		<thead>
 		<tr bgcolor="{{ config.vdarkborder }}">
-			<td colspan="2" class="white">
+			<th scope="col" colspan="2">
 				<b>Character Information</b>
-			</td>
+			</th>
 		</tr>
-
+		</thead>
+		
 		{% set rows = rows + 1 %}
 		<tr bgcolor="{{ getStyle(rows) }}">
 			<td width="20%">Name:</td>
@@ -187,11 +188,12 @@
 				<!-- SKILLS -->
 				<div class="col">
 					<table class="table">
-						<tr bgcolor="{{ config.vdarkborder }}">
-							<td colspan="2" class="white">
+						<thead>
+						<th scope="col" colspan="2">
 								<B>Skills</b>
 							</td>
-						</tr>
+						</th>
+						</thead>
 						{% set i = 0 %}
 						{% for skill in skills %}
 							{% set i = i + 1 %}
@@ -212,11 +214,13 @@
 				<!-- QUESTS -->
 				<div class="col">
 					<table border="0">
+					<thead>
 						<tr bgcolor="{{ config.vdarkborder }}">
-							<td colspan="2" class="white">
+							<th scope="col" colspan="2">
 								<b>Quests</b>
-							</td>
+							</th>
 						</tr>
+						</thead>
 						{% set i = 0 %}
 						{% for name, done in quests %}
 							{% set i = i + 1 %}
@@ -235,12 +239,14 @@
 			{% if config.characters.equipment %}
 				<!-- EQUIPMENT -->
 				<div class="col">
-					<table class="table-borderless">
+					<table class="table table-borderless">
+					<thead>
 						<tr bgcolor="{{ config.vdarkborder}}">
-							<td colspan="2" class="white">
+							<th scope="col" colspan="2">
 								<b>Equipment</b>
-							</td>
+							</th>
 						</tr>
+						</thead>
 						<tr bgcolor="{{ getStyle(1) }}">
 							<td>
 								<table width="108px" height="141px" cellspacing="0" cellpadding="0" background="{{ template_path }}/images/content/equipment.png" style="border:1px solid #808080;">
@@ -313,11 +319,13 @@
 		<!-- DEATHS -->
 		<br/>
 		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
+			<thead>
 			<tr bgcolor="{{ config.vdarkborder }}">
-				<td colspan="2" class="white">
+				<th scope="col" colspan="2">
 					<b>Character Deaths</b>
-				</td>
+				</th>
 			</tr>
+			</thead>
 			{% set i = 0 %}
 			{% for death in deaths %}
 				<tr bgcolor="{{ getStyle(i) }}">
@@ -335,7 +343,7 @@
 		<br/>
 		<table border="0" cellspacing="1" cellpadding="4" width="100%">
 			<tr bgcolor="{{ config.vdarkborder }}">
-				<td colspan="2" class="white">
+				<td colspan="2">
 					<b>Victims</b>
 				</td>
 			</tr>
@@ -373,11 +381,13 @@ document.getElementById('signText').innerHTML = "Show links";
 		</script>
 		<br/>
 		<table class="table-borderless" border="0" cellspacing="1" cellpadding="4" width="100%">
+			<thead>
 			<tr bgcolor="{{ config.vdarkborder }}">
-				<td colspan="2" class="white">
+				<th scope="col" colspan="2">
 					<b>Signature</b>
-				</td>
+				</th>
 			</tr>
+			</thead>
 			<tr bgcolor="{{ config.lightborder }}">
 				<td align="center" valign="top">
 					<img src="{{ signature_url }}" alt="Signature for player {{ player.getName() }}">
@@ -410,12 +420,14 @@ document.getElementById('signText').innerHTML = "Show links";
 		{% set rows = 0 %}
 		<!-- ACCOUNT_INFORMATION -->
 		<br/><br/>
-		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
+		<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">,
+			<thead>
 			<tr bgcolor="{{ config.vdarkborder }}">
-				<td colspan="2" class="white">
+				<th scope="col" colspan="2">
 					<b>Account Information</b>
-				</td>
+				</th>
 			</tr>
+			</thead>
 
 			{% set realName = account.getRLName() %}
 			{% if realName is not empty %}

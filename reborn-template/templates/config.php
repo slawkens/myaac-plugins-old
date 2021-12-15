@@ -7,6 +7,6 @@ $config['btnColor']     = 'btn-secondary'; //choose between btn-secondary and bt
 $config['textColor']    = 'text-white';
 $config['darkborder']   = '#fff'; //required for myaac
 $config['lightborder']  = '#fff'; //required for myaac
-$config['vdarkborder']  = '#212529'; //set same as tableColor - required for myaac
+$config['vdarkborder']  = '#212529'; //set same as tableColor - required for myaac light:#f8f9fa dark:#212529
 $config['emailHeader'] = 'https://rebornot.net/dev/templates/reborn/headline.php?t=RebornOT'; //used for email header
 ?>

@@ -47,7 +47,7 @@ defined('MYAAC') or die('Direct access not allowed!');
                     <a class="nav-link" href="?news">News</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Community<b class="caret"></b></a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Community</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown07">
                         <li><a class="dropdown-item" href="<?= getLink('characters'); ?>">Characters</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('online'); ?>">Online</a></li>
@@ -63,7 +63,7 @@ defined('MYAAC') or die('Direct access not allowed!');
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Library</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown07">
-                        <li><a class="dropdown-item" href="<?= getLink('creatures'); ?>">Monsters</a></li>
+                    <li><a class="dropdown-item" href="<?= getLink('creatures'); ?>">Monsters</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('spells'); ?>">Spells</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('experienceStages'); ?>">Experience stages</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('commands'); ?>">Commands</a></li>
@@ -74,10 +74,9 @@ defined('MYAAC') or die('Direct access not allowed!');
                 <li class="nav-item">
                     <a class="nav-link" href="?forum">Forum</a>
                 </li>
-
                 <?php if ($config['gifts_system']) : ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Shop<b class="caret"></b></a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown07">
                                 <li><a class="dropdown-item" href="<?= getLink('points'); ?>">Buy points</a></li>
                                 <li><a class="dropdown-item" href="<?= getLink('gifts'); ?>">Gifts</a></li>
@@ -99,7 +98,7 @@ defined('MYAAC') or die('Direct access not allowed!');
             <?PHP } else { ?>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $account_logged->getName(); ?><b class="caret"></b></a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $account_logged->getName(); ?></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown07">
                             <li><a class="dropdown-item" href="<?= getLink('account/manage'); ?>">Account</a></li>
                             <?php if(admin()){ ?>
@@ -115,7 +114,7 @@ defined('MYAAC') or die('Direct access not allowed!');
                     <?php if ($status['online'])
                         echo '
                         <button type="button" class="btn btn-success" data-html="true" data-toggle="tooltip" title="
-                            IP: ' . $_SERVER['SERVER_NAME'] . '
+                            IP: rebornot.net
                             Port: 7171
                             Client: ' . ($config['client'] / 100) . ' 
                             Type: PvP   

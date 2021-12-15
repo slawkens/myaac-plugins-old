@@ -57,7 +57,7 @@
 		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_2') }}
 		<div>
 			<input type="checkbox" class="form-check-input" id="accept_rules" name="accept_rules" value="true"{% if accept_rules %} checked {% endif %} required/>
-			<label class="form-check-label" for="accept_rules">I agree to the<a href="?subtopic=rules" target="_blank">{{ config.lua.serverName }}rules</a>.</label>
+			<label class="form-check-label" for="accept_rules">I agree to the<a href="?subtopic=rules" target="_blank"> {{ config.lua.serverName }} rules</a> and <a href="https://www.privacypolicies.com/generic/" target="_blank">privacy statement.</a></label>
 		</div>
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}		
 		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_SUBMIT_BUTTON') }}
@@ -67,6 +67,9 @@
 		</div>
 	</form>
 	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_FORM') }}
+	{% if (not config.mail_enabled or not config.account_mail_verify) and config.account_create_character_create %}
+		{{ include('account.create_character.html.twig') }}
+	{% endif %}
 <script type="text/javascript" src="tools/check_name.js"></script>
 </div>
 

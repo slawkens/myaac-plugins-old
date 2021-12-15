@@ -6,7 +6,7 @@
 	<div>
 		Here you can tell other players about yourself. This information will be displayed alongside the data of your characters.<br/> If you do not want to fill in a certain field, just leave it blank.<br/>
 	</div>
-	<form action="{{ getLink('account/password') }}" method="post">
+	<form action="{{ getLink('account/info') }}" method="post">
 		<div>
 			<div class="row">
 				<label for="info_rlname" class="col col-form-label">Real name</label>
@@ -33,7 +33,7 @@
 							function updateFlag()
 							{
 								var img = $('#account_country_img');
-								var country = $('#account_country :selected').val();
+								var country = $('#account_country :selected').val(); 
 								if(country.length) {
 									img.attr('src', 'images/flags/' + country + '.gif');
 									img.show();
@@ -55,6 +55,7 @@
 				<div class="col">
 					<input type="hidden" name="changeinfosave" value="1"/>
 					<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
+					<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
 				</div>
 			</div>
 		</div>

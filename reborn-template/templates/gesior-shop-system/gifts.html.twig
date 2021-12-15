@@ -1,0 +1,117 @@
+<style>
+	.offer_container {
+		text-align: center;
+	}
+
+	.offer_type {
+		padding: 5px 5px 1px 5px;
+		margin: 5px 1px 0 1px;
+		color: #FFFFFF;
+		background-color: {{ config.vdarkborder }};
+		text-decoration: none;
+	}
+
+	.offer_table {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.offer_table tr td {
+		text-align: center;
+	}
+</style>
+<div style="text-align: center"><h1>{{ title }}</h1></br>Shop equipment requires level 100</div>
+<div style="float:right;">
+	<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
+	<div class="d-flex justify-content-end">
+		<a class="btn" href="?points" role="button">Buy Points</a>
+	</div>
+</div>
+
+<br/><br/>
+
+<div class="offer_container">
+	{% if warning is defined %}
+		{{ warning }}
+	{% endif %}
+	<nav class="navbar navbar-expand-lg p-0">
+		<div class="container-fluid p-0">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbargifts" aria-controls="navbargifts" aria-expanded="false" aria-label="Toggle navigation">
+				Offer types <i class="bi bi-caret-down"></i>
+        	</button>
+			<div class="collapse navbar-collapse" id="navbargifts">
+				<ul class="navbar-nav nav-tabs">
+					{% for offer_type, offer_name in offer_types %}
+						<li class="nav-item">
+							<a class="nav-link {% if get_offer_type == offer_type %}active{% endif %}" aria-current="page" href="?subtopic=gifts&offertype={{ offer_type }}">{{ offer_name }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<table class="offer_table table table-striped mt-n1">
+		<tr bgcolor="{{ config.vdarkborder }}" style="color:white;">
+			<td width="50"><b>Picture</b></td>
+			<td width="350" style="text-align: left"><b>Description</b></td>
+			<td width="50"><b>Points</b></td>
+			<td width="100"><b>Select product</b></td>
+		</tr>
+
+		{% for offer in offers_fetch if offer.type == get_offer_type %}
+			<tr bgcolor="{{ config.lightborder }}">
+				<td>
+					{% if offer.type == "item" or offer.type == "container" or offer.type == "equipment" or offer.type == "knight" or offer.type == "sorcerer" or offer.type == "druid" or offer.type == "paladin" or offer.type == "decoration" %}
+						{{ offer.item_img|raw }}
+						{% if offer.container_img is not empty %}
+							{{ offer.container_img|raw }}
+						{% endif %}
+					{% elseif offer.type == "pacc" %}
+						<img src="images/shop-system/PremiumTime.png" alt="Premium Time"/>
+					{% elseif offer.type == "mount" %}
+						<img src="{{ offer.mount_img_dir }}" alt="Mount"/>
+					{% elseif offer.type == "addon" %}
+						<table>
+							<tr>
+								<td>
+									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_male }}&addons={{ offer.addons_male }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
+								</td>
+								<td>
+									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_female }}&addons={{ offer.addons_female }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
+								</td>
+							</tr>
+						</table>
+					{% endif %}
+				</td>
+				<td style="text-align: left">
+					<b>{{ offer.name }}</b><br/>
+					{{ offer.description|raw }}
+				</td>
+				<td>{{ offer.points }}</td>
+				<td>
+					{% if logged %}
+						<form action="?subtopic=gifts&action=select_player" method="post">
+							<input type="hidden" name="buy_id" value="{{ offer.id }}">
+							<input type="submit" class="btn btn-primary" value="Buy">
+						</form>
+					{% else %}
+						<b>Login to buy</b>
+					{% endif %}
+				</td>
+			</tr>
+		{% else %}
+			{% if offer_types[get_offer_type] %}
+				<td style="text-align: left" colspan="4">There is no offer here.</td>
+			{% else %}
+				<td style="text-align: left" colspan="4">This offer type doesn't exist. Please specify different name.</td>
+			{% endif %}
+		{% endfor %}
+
+		<tr>
+
+	</table>
+
+	<form  action="?gifts" method="post">
+					{{ include('buttons.back.html.twig') }}
+				</form>
+</div>

@@ -1,14 +1,7 @@
 <div class="container">
 	<div class="row justify-content-between {{ config.bgColor }} {{config.textColor }}">
 		<div class="col-auto">
-			<div class="row">
-				<div class="col-auto">
-					<img src="{{ template_path }}/images/news/icon_{{ icon }}.gif" class="my-2" />
-				</div>
-				<div class="col-auto my-auto">
-					<h3>{{ title }}</h3>
-				</div>
-			</div>
+			<img style="margin-top:-12px" src="{{ template_path }}/images/news/icon_{{ icon }}.gif" /><span class="fs-2 fw-bold">{{ title }}</span>
 		</div>
 		<div class="col-auto">
 			<div class="col-auto">{{ date|date(config.news_date_format) }}
@@ -23,6 +16,7 @@
 		</div>
 	</div>
 </div>
+</br>
 <table style="clear:both" border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 		<td style="padding-left:10px;padding-right:10px;">{{ content|raw }}</td>

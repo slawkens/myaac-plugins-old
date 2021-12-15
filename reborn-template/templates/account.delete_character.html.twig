@@ -10,14 +10,7 @@
 		<div class="row">
 			<label for="delete_name" class="col col-form-label">Character Name:</label>
 			<div class="col">
-				<select class="form-select form-control" name="delete_name" id="delete_name">
-					<option value="">Select character</option> 
-
-					{% for player in players %}
-
-						<option value="{{ player.getName() }}">{{ player.getName() }}</option>
-					{% endfor %}
-				</select>
+				<input type="text" name="delete_name" value="" size="30" maxlength="29"/>
 			</div>
 		</div>
 		<div class="row">
@@ -29,6 +22,7 @@
 		<div class="row">
 			<div class="col">
 				<button type="submit" class="btn " name="Submit" value="Submit"/>Submit</button>
+				<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
 			</div>
 		</div>
 	</form>

@@ -34,8 +34,7 @@
 				on
 				<b>{{ config.lua.serverName }}</b>
 			</h4>
-			<table border="0" cellspacing="1" cellpadding="4" width="100%">
-				<tbody>
+			<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
                 <thead>
 					<tr>
 						{% if houses is not empty %}
@@ -59,6 +58,7 @@
 						{% endif %}
 					</tr>
                 </thead>
+				<tbody>
 					{% if houses is not empty %}
 						{% set i = 0 %}
 						{% for house in houses %}
@@ -96,8 +96,7 @@
 		{% endif %}
 
 		<form action="{{ getLink('houses') }}" method="post">
-			<table border="0" cellspacing="1" cellpadding="4" width="100%">
-				<tbody></tbody>
+			<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
 				<thead>
 					<tr>
 						<td scope="col">
@@ -111,7 +110,7 @@
 						</td>
 					</tr>
 				</thead>
-
+				<tbody>
 				<tr bgcolor="{{ config.darkborder }}">
 					<td valign="top" rowspan="2">
 						{% set checked = false %}

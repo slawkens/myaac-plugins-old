@@ -1,4 +1,6 @@
 <div class="container">
+{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_BOXES') }}
+{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_ACCOUNT') }}
 	<h1>Create character</h1>
 	<p>Please choose a name{% if config.character_samples|length > 1 %}, vocation{% endif %}{% if config.character_towns|length > 1 %}, town{% endif %} and gender for your character.<br/>
 		In any case the name must not violate the naming conventions stated in the
@@ -56,6 +58,7 @@
 		</fieldset>
 		<div class="form-group">
 			<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
+			<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
 		</div>
 	</form>
 </div>
