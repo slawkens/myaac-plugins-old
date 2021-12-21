@@ -1,0 +1,25 @@
+<div class="container">
+	<form action="{{ getLink('account/register') }}" method="post" class="align-items-center">
+		<div>
+			<h1>Generate recovery key</h1>
+		</div>
+		<div>
+			To generate recovery key for your account please enter your password<br/><br/>
+		</div>
+		<div>
+			<div class="row mb-3">
+				<label for="newpassword" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-auto">
+					<input type="password" name="reg_password" size="30" maxlength="29" autofocus/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-auto">
+					<input type="hidden" name="changeemailsave" value="1"/>
+					<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
+					<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

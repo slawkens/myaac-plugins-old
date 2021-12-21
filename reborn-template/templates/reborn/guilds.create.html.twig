@@ -3,7 +3,7 @@
 	<form action="?subtopic=guilds&action=create&todo=save" method="post">
 		<div>
 			<label for="name" class="col-sm-2 col-form-label">Leader:</label>
-			<div class="col-sm-10">
+			<div class="col-sm-3">
 				<select name="name" id="name">
 					{% for player in players %}
 						<option>{{ player }}</option>
@@ -13,7 +13,7 @@
 		</div>
 		<div>
 			<label for="guild" class="col-sm-2 col-form-label">Guild Name:</label>
-			<div class="col-sm-10">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" name="guild" id="guild" value="" size="30" maxlength="50"/>
 			</div>
 		</div>

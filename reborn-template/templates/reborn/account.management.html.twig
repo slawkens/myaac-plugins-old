@@ -118,9 +118,11 @@
 		<div class="tab-pane fade" id="pills-actionLog" role="tabpanel" aria-labelledby="pills-actionLog-tab">
 			<h3>Action Log</h3>
 			<table class="table">
-				<tr bgcolor="{{ config.vdarkborder }}">
-					<th>Action</th><th>Date</th><th>IP</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>Action</th><th>Date</th><th>IP</th>
+					</tr>
+				</thead>
 				{% autoescape false %}
 					{% set i = 0 %}
 					{% for action in actions %}
