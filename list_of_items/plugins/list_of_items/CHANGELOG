@@ -1,3 +1,7 @@
+[3.0 - 23.12.2021]
+	* refactor code, now everything is in two files
+	* fix link not working
+
 [2.0 - 08.06.2021]
 	* no need to edit items.xml anymore!! it detects automatically
 	* move html code to twig
