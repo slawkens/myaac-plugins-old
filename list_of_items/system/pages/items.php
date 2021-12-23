@@ -9,132 +9,101 @@ defined('MYAAC') or die('Direct access not allowed!');
 
 $title = 'List Of Items';
 
-// Checks if the list_of_items table already exists, if not, it creates it in the database.
-if(!tableExist('list_of_items'))
-{
-	$db->query("
-CREATE TABLE IF NOT EXISTS `list_of_items` (
-	`id` INT(11) NOT NULL,
-	`name` VARCHAR(100) NOT NULL,
-	`description` VARCHAR(1000) NOT NULL,
-	`level` INT(11) NOT NULL,
-	`type` VARCHAR(255) NOT NULL DEFAULT '',
-	PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
-		");
-}
+require PLUGINS . 'list_of_items/Items.php';
+$items = new \MyAAC\Plugin\Items($db);
 
 $twig_loader->prependPath(PLUGINS . 'list_of_items');
 
 $reload = isset($_REQUEST['reload']) && (int)$_REQUEST['reload'] == 1;
 
-if($reload) {
-
-	// Checks the items.xml file on your server.
-	if(file_exists($config['data_path'] . '/items/items.xml')) {
-		$items = new DOMDocument();
-		$items->load($config['data_path'] . '/items/items.xml');
-	}
-
-	// If not, it returns an error.
-	if(!$items)
-	{
-		echo 'Error: cannot load <b>items.xml</b>!';
-		return;
-	}
-
-	// Deletes all rows from the list_of_items table
-	$db->query("DELETE FROM `list_of_items`;");
-
-	// Insert items into the database
-	foreach($items->getElementsByTagName('item') as $item)
-	{
-		if ($item->getAttribute('fromid')) {
-			for ($id = $item->getAttribute('fromid'); $id <= $item->getAttribute('toid'); $id++) {
-				myCustomAddItem($id, $item);
-			}
-		} else {
-			myCustomAddItem($item->getAttribute('id'), $item);
-		}
-	}
-
+if($reload && admin()) {
+	$items->load($config['data_path'] . '/items/items.xml');
 	success('Items reloaded.');
-}
-
-function myCustomAddItem($id, $item) {
-	global $db;
-
-	$description = '';
-	$type = '';
-	$level = 0;
-
-	foreach( $item->getElementsByTagName('attribute') as $attribute)
-	{
-		if ($attribute->getAttribute('key') == 'description'){
-			$description = $attribute->getAttribute('value');
-			continue;
-		}
-
-		if ($attribute->getAttribute('key') == 'weaponType') {
-			$type = $attribute->getAttribute('value');
-
-			if ($type == 'axe' || $type == 'club' || $type == 'sword') {
-				foreach( $item->getElementsByTagName('attribute') as $_attribute) {
-					if($_attribute->getAttribute('key') == 'attack') {
-						$level = $_attribute->getAttribute('value');
-						break;
-					}
-				}
-			}
-			if ($type == 'shield') {
-				foreach( $item->getElementsByTagName('attribute') as $_attribute) {
-					if($_attribute->getAttribute('key') == 'defense') {
-						$level = $_attribute->getAttribute('value');
-						break;
-					}
-				}
-			}
-
-			continue;
-		}
-
-		if ($attribute->getAttribute('key') == 'slotType' && empty($type)) {
-			$type = $attribute->getAttribute('value');
-
-			if ($type == 'head' || $type == 'body' || $type == 'legs' || $type == 'feet') {
-				foreach( $item->getElementsByTagName('attribute') as $_attribute) {
-					if($_attribute->getAttribute('key') == 'armor') {
-						$level = $_attribute->getAttribute('value');
-						break;
-					}
-				}
-			}
-			else if ($type == 'backpack') {
-				foreach( $item->getElementsByTagName('attribute') as $_attribute) {
-					if($_attribute->getAttribute('key') == 'containerSize') {
-						$level = $_attribute->getAttribute('value');
-						break;
-					}
-				}
-			}
-			continue;
-		}
-	}
-
-	//var_dump(strlen($item->getAttribute('name')));
-	$db->insert('list_of_items', [
-		'id' => $id,
-		'name' => $item->getAttribute('name'),
-		'description' => $description,
-		'level' => $level,
-		'type' => $type,
-	]);
 }
 
 // Checks if you have an Administrator account
 if(admin()) {
-	// Press the button to reload the items.
+	// Show button to reload the items.
 	echo $twig->render('reload.html.twig');
 }
 
-$twig->display('list.html.twig');
+$type = isset($_GET['type']) ? $_GET['type'] : '';
+
+$possibleTypes = [
+	'head',
+	'necklace',
+	'ring',
+	'body',
+	'shield',
+	'weapon',
+	'legs',
+	'feet'
+];
+
+if (empty($type) || !in_array($type, $possibleTypes)) {
+	$twig->display('list.html.twig');
+	return;
+}
+
+$headerTitle = 'Unknown';
+$addQuery = '';
+
+switch ($type) {
+	case 'head':
+		$title = 'Helmets';
+		$headerTitle = 'Armor';
+		break;
+
+	case 'necklace':
+		$title = 'Necklace';
+		$headerTitle = 'Armor';
+		break;
+
+	case 'ring':
+		$title = 'Rings';
+		$headerTitle = 'Armor';
+		break;
+
+	case 'body':
+		$title = 'Armors';
+		$headerTitle = 'Armor';
+		break;
+
+	case 'shield':
+		$title = 'Shields';
+		$headerTitle = 'Defense';
+		break;
+
+	case 'weapon':
+		$title = 'Weapons';
+		$headerTitle = 'Attack';
+		$addQuery = "`type` IN ('distance', 'club', 'sword', 'axe')";
+		break;
+
+	case 'legs':
+		$title = 'Legs';
+		$headerTitle = 'Armor';
+		break;
+
+	case 'feet':
+		$title = 'Boots';
+		$headerTitle = 'Armor';
+		break;
+}
+
+if (empty($addQuery)) {
+	$addQuery = "`type` = " . $db->quote($type);
+}
+
+$query = $db->query("SELECT * FROM `list_of_items` WHERE " . $addQuery . " ORDER BY `level` DESC");
+
+$items = $query->fetchAll(PDO::FETCH_ASSOC);
+foreach($items as &$item) {
+	$item['image'] = getItemImage($item['id']);
+}
+
+$twig->display('item.html.twig', [
+	'items' => $items,
+	'headerDesc' => $headerTitle,
+]);
+
