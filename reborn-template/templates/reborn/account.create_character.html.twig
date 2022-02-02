@@ -45,17 +45,19 @@
 				{% endfor %}
 			</div>
 		</fieldset>
-		<fieldset class="row mb-3">
-			<legend class="col-form-label col-sm-2 pt-0">Citizenship</legend>
-			<div class="col-sm-10">
-				{% for town_id in config.character_towns %}
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="town" id="town{{ town_id }}" value="{{ town_id }}" {% if town is not null and town == town_id %} checked {% endif %}>
-						<label class="form-check-label" for="town{{ town_id }}">{{ config.towns[town_id] }}</label>
-					</div>
-				{% endfor %}
-			</div>
-		</fieldset>
+		{% if config.character_towns|length > 1 %}
+			<fieldset class="row mb-3">
+				<legend class="col-form-label col-sm-2 pt-0">Citizenship</legend>
+				<div class="col-sm-10">
+					{% for town_id in config.character_towns %}
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="town" id="town{{ town_id }}" value="{{ town_id }}" {% if town is not null and town == town_id %} checked {% endif %}>
+							<label class="form-check-label" for="town{{ town_id }}">{{ config.towns[town_id] }}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</fieldset>
+		{% endif %}
 		<div class="form-group">
 			<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
 			<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
