@@ -21,7 +21,7 @@ if(!isset($_POST['reference'])) {
 }
 
 require_once(PLUGINS . 'pagseguro/config.php');
-require_once(LIBS . 'PagSeguroLibrary/PagSeguroLibrary.php');
+require_once(PLUGINS . 'pagseguro/PagSeguroLibrary/PagSeguroLibrary.php');
 
 $paymentRequest = new PagSeguroPaymentRequest();
 $paymentRequest->addItem('1', $config['pagSeguro']['productName'], $_POST['itemCount'], $config['pagSeguro']['productValue']);

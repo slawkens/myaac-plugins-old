@@ -17,7 +17,8 @@ require_once(PLUGINS . 'gesior-shop-system/config.php');
 if(!$config['gifts_system']) {
 	if(!admin()) {
 		$errors[] = 'The gifts system is disabled.';
-		return $twig->display('error_box.html.twig', array('errors' => $errors));
+		$twig->display('error_box.html.twig', array('errors' => $errors));
+		return;
 	} else {
 		warning("You're able to access this page but it is disabled for normal users.<br/>
 		Its enabled for you so you can view/edit shop offers before displaying them to use.<br/>
@@ -28,7 +29,8 @@ if(!$config['gifts_system']) {
 
 if(GesiorShop::getDonationType() == 'coins' && !fieldExist('coins', 'accounts')) {
 	$errors[] = "Your server doesn't support accounts.coins. Please change back config.donation_type to points.";
-	return $twig->display('error_box.html.twig', array('errors' => $errors));
+	$twig->display('error_box.html.twig', array('errors' => $errors));
+	return;
 }
 
 if($logged) {
@@ -44,7 +46,8 @@ if(!empty($action)) {
 	$errors = array();
 	if(!$logged || !$account_logged->isLoaded()) {
 		$errors[] = 'Please login first';
-		return $twig->display('error_box.html.twig', array('errors' => $errors));
+		$twig->display('error_box.html.twig', array('errors' => $errors));
+		return;
 	}
 
 	switch ($action) {

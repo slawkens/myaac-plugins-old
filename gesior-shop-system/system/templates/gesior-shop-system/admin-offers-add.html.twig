@@ -15,7 +15,7 @@
 
 						<div class="col-sm-10">
 							{% if categories|length <= 0 %}
-								<label name="type" class="form-control">No categories in database</label>
+								<label class="form-control">No categories in database</label>
 							{% else %}
 								<select name="type" class="form-control" id="type">
 									{% for category in categories %}
@@ -30,7 +30,7 @@
 						<label for="points" class="col-sm-2 control-label">Points</label>
 
 						<div class="col-sm-10">
-							<input type="number" class="form-control" name="points" placeholder="Points" required/>
+							<input type="number" class="form-control" id="points" name="points" placeholder="Points" required/>
 						</div>
 					</div>
 
@@ -38,7 +38,7 @@
 						<label for="offer_name" class="col-sm-2 control-label">Offer Name</label>
 
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="offer_name" placeholder="Offer Name" required/>
+							<input type="text" class="form-control" id="offer_name" name="offer_name" placeholder="Offer Name" required/>
 						</div>
 					</div>
 
@@ -46,7 +46,7 @@
 						<label for="description" class="col-sm-2 control-label">Description</label>
 
 						<div class="col-sm-10">
-							<textarea class="form-control" name="description" rows="5" cols="50" placeholder="Offer Description (you can use HTML) (can be empty)"></textarea>
+							<textarea class="form-control" id="description" name="description" rows="5" cols="50" placeholder="Offer Description (you can use HTML) (can be empty)"></textarea>
 						</div>
 					</div>
 
@@ -78,21 +78,22 @@
 	});
 
 	function updateFields() {
-		var value = $('#type').val();
-		$('#extra').empty();
+		let value = $('#type').val();
+		let $extra = $('#extra');
+		$extra.empty();
 
-		if(value == 'item') {
+		if(value === 'item') {
 			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div>');
-		} else if(value == 'container') {
-			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div><br/>');
-			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="container_id" min="100" placeholder="Container ID" required/><input class="form-control" type="number" name="container_count" min="1" max="100" placeholder="Container Count" required/></div>');
-		} else if(value == 'addon') {
-			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="look_female" min="1" placeholder="Female (girl) Look Type" required/><input class="form-control" type="number" name="addons_female" min="1" max="3" placeholder="Female Addons (1, 2 or 3 for both)" required/></div><br/>');
-			$('#extra').append('<div class="input-group"><input class="form-control" type="number" name="look_male" min="1" placeholder="Male (boy) Look Type" required/><input class="form-control" type="number" name="addons_male" min="1" max="3" placeholder="Male Addons (1, 2 or 3 for both)" required/></div>');
-		} else if(value == 'mount') {
-			$('#extra').append('<input class="form-control" type="number" name="mount_id" min="1" placeholder="Mount ID (take from mounts.xml)" required/>');
-		} else if(value == 'pacc') {
-			$('#extra').append('<input class="form-control" type="number" name="days" min="1" placeholder="Premium Days" required/>');
+		} else if(value === 'container') {
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div><br/>');
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="container_id" min="100" placeholder="Container ID" required/><input class="form-control" type="number" name="container_count" min="1" max="100" placeholder="Container Count" required/></div>');
+		} else if(value === 'addon') {
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="look_female" min="1" placeholder="Female (girl) Look Type" required/><input class="form-control" type="number" name="addons_female" min="1" max="3" placeholder="Female Addons (1, 2 or 3 for both)" required/></div><br/>');
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="look_male" min="1" placeholder="Male (boy) Look Type" required/><input class="form-control" type="number" name="addons_male" min="1" max="3" placeholder="Male Addons (1, 2 or 3 for both)" required/></div>');
+		} else if(value === 'mount') {
+			$extra.append('<input class="form-control" type="number" name="mount_id" min="1" placeholder="Mount ID (take from mounts.xml)" required/>');
+		} else if(value === 'pacc') {
+			$extra.append('<input class="form-control" type="number" name="days" min="1" placeholder="Premium Days" required/>');
 		}
 	}
 </script>

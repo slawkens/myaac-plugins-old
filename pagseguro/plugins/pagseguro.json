@@ -12,7 +12,6 @@
 		"plugins/pagseguro.json",
 		"plugins/pagseguro",
 		"payments/pagseguro.php",
-		"system/libs/PagSeguroLibrary",
 		"system/pages/donate.php",
 		"system/pages/pagseguro.php",
 		"system/templates/donate.html.twig",

@@ -1,0 +1,1 @@
+$(document).ready(function(){$('.slider').slick({autoplay:true,arrows:false,dots:true,speed:500,autoplaySpeed:2500,});$('.featured-item').slick({autoplay:true,arrows:true,draggable:false});});$(document).ready(function(){$(".item").css("display","block");});

@@ -1,4 +1,5 @@
 [2.4 - 22.04.2021]
+	* remove some random debug message being popped, like: string(99) "<HERE ITEM IMAGE>"
 	* fix PayPal sandbox URL + redirect after transaction
 	* update cacert.pem from https://curl.se/ on install
 
