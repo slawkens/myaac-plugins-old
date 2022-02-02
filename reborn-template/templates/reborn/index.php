@@ -6,8 +6,9 @@ defined('MYAAC') or die('Direct access not allowed!');
 <head>
     <?php echo template_place_holder('head_start'); ?>
     <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
@@ -16,10 +17,10 @@ defined('MYAAC') or die('Direct access not allowed!');
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
     <!-- Icons -->
     <link rel="shortcut icon" href="<?php echo $template_path; ?>/images/favicon.gif" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="<?php echo $template_path; ?>/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $template_path; ?>/style.css">
     <?php echo template_place_holder('head_end'); ?>
 </head>
 <nav class="navbar fixed-top navbar-expand-lg <?php echo $config['navbarColor']; ?> <?php echo $config['bgColor']; ?>" aria-label="Navigation bar">
@@ -170,6 +171,7 @@ defined('MYAAC') or die('Direct access not allowed!');
             $("textarea").addClass('form-control');
             $("thead").addClass( "<?php echo$config['tableColor']; ?>");
             $("th").attr("scope", "col");
+            $(".white" ).addClass('text-white');
         });
     </script>
     <?php echo template_place_holder('body_end'); ?>

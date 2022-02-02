@@ -8,19 +8,21 @@
 	<form action="{{ getLink('account/create') }}" method="post" id="createaccount">
 		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_BOXES') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_ACCOUNT') }}
-		<div>
-			<label for="account_inoput" class="form-label">Account name</label>
+		<div class="col-sm-5">
+			<label for="account_input" class="form-label">Account name</label>
 			<input type="text" class="form-control" name="account" id="account_input" maxlength="{% if constant('USE_ACCOUNT_NAME') %}30{% else %}10{% endif %}" value="{{ account }}" autofocus required/>
 		</div>
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_ACCOUNT') }}
-		<div>
+		<div class="col-sm-5">
 			<label for="inputEmail4" class="form-label">Email address</label>
 			<input type="email" class="form-control" name="email" id="email" required placeholder="name@example.com" value="{{ email }}"/>
-			<strong></br>Please use real email address.	Only verified accounts will receive in-game awards!</br>
-			We will send a link to validate your Email.</br></strong>
+			{% if config.account_mail_verify %} 
+				<strong></br>Please use real email address.</br>
+				We will send a link to validate your Email.</br></strong>
+			{% endif %}
 		</div>
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_EMAIL') }}
-		<div>
+		<div class="col-sm-5">
 			<label for="account_country" class="form-label">Country<img src="" id="account_country_img"/></label>
 			<select name="country" id="account_country" class="form-select">
 				{% for code, country_ in countries %}
@@ -33,12 +35,12 @@
 			</select>
 		</div>
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_COUNTRY') }}
-		<div>
+		<div class="col-sm-5">
 			<label for="password" class="form-label">Password</label>
 			<input type="password" class="form-control" name="password" id="password" value="" maxlength="50" required/>
 			{% if errors.password is defined %}{{ errors.password }}{% endif %}
 		</div>
-		<div>
+		<div class="col-sm-5">
 			<label for="password2" class="form-label">Repeat password</label>
 			<input type="password" class="form-control" name="password2" id="password2" value="" maxlength="50" required/>
 			{% if errors.password is defined %}{{ errors.password }}{% endif %}
@@ -55,21 +57,65 @@
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_RECAPTCHA') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_1') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_2') }}
-		<div>
+		
+		{% if (not config.mail_enabled or not config.account_mail_verify) and config.account_create_character_create %}
+			<div>
+				<div class="col-sm-5">
+					<label for="character_name" class="form-label">Character Name</label>
+					<input type="text" class="form-control" name="name" id="character_name" value="{{ name }}" aria-describedby="charactername" placeholder="Character Name">
+				</div>
+				<fieldset class="row mb-3 mt-2">
+					<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+					{% set i = 0 %}
+					<div class="col-sm-5">
+						{% for id, gender in config.genders|reverse(true) %}
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="sex" id="sex{{ i }}" value="{{ id }}" {% if sex is not null and sex == id %} checked {% endif %}>
+								<label class="form-check-label" for="sex{{ i }}">{{ gender|lower }}</label>
+							</div>
+							{% set i = i + 1 %}
+						{% endfor %}
+					</div>
+				</fieldset>
+				<fieldset class="row mb-3">
+					<legend class="col-form-label col-sm-2 pt-0">Vocation</legend>
+					<div class="col-sm-5">
+						{% for key, sample_char in config.character_samples %}
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="vocation" id="vocation{{ key }}" value="{{ key }}" {% if vocation is not null and vocation == key %} checked {% endif %}>
+								<label class="form-check-label" for="vocation{{ key }}">{{ config['vocations'][key] }}</label>
+							</div>
+						{% endfor %}
+					</div>
+				</fieldset>
+				{% if config.character_towns|length > 1 %}
+					<fieldset class="row mb-3">
+						<legend class="col-form-label col-sm-2 pt-0">Citizenship</legend>
+						<div class="col-sm-5">
+							{% for town_id in config.character_towns %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="town" id="town{{ town_id }}" value="{{ town_id }}" {% if town is not null and town == town_id %} checked {% endif %}>
+									<label class="form-check-label" for="town{{ town_id }}">{{ config.towns[town_id] }}</label>
+								</div>
+							{% endfor %}
+						</div>
+					</fieldset>
+				{% endif %}
+			</div>
+		{% endif %}
+		<div class="mt-1">
 			<input type="checkbox" class="form-check-input" id="accept_rules" name="accept_rules" value="true"{% if accept_rules %} checked {% endif %} required/>
 			<label class="form-check-label" for="accept_rules">I agree to the<a href="?subtopic=rules" target="_blank"> {{ config.lua.serverName }} rules</a> and <a href="https://www.privacypolicies.com/generic/" target="_blank">privacy statement.</a></label>
 		</div>
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}		
 		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_SUBMIT_BUTTON') }}
-		<div>
-		<input type="hidden" name="save" value="1"/>
+		<div class="col-sm-5 mt-1">
+			<input type="hidden" name="save" value="1"/>
 			<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
 		</div>
+
 	</form>
 	{{ hook('HOOK_ACCOUNT_CREATE_AFTER_FORM') }}
-	{% if (not config.mail_enabled or not config.account_mail_verify) and config.account_create_character_create %}
-		{{ include('account.create_character.html.twig') }}
-	{% endif %}
 <script type="text/javascript" src="tools/check_name.js"></script>
 </div>
 

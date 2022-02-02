@@ -1,18 +1,17 @@
 <div class="container">
-	<div class="row justify-content-between {{ config.bgColor }} {{config.textColor }}">
-		<div class="col-auto">
-			<img style="margin-top:-12px" src="{{ template_path }}/images/news/icon_{{ icon }}.gif" /><span class="fs-2 fw-bold">{{ title }}</span>
+	<div class="d-flex {{ config.bgColor }} {{config.textColor }}">
+		<div class="p-2 me-auto">
+			<span class="fs-2 fw-bold text-center"><img class="img-fluid" style="margin-top: -6px" src="{{ template_path }}/images/news/icon_{{ icon }}.gif" /> {{ title }}</span>
 		</div>
-		<div class="col-auto">
-			<div class="col-auto">{{ date|date(config.news_date_format) }}
+		<div class="p-2 ms-auto">
+			<div class="col-auto">
+				<span class="text-end">
+					{{ date|date(config.news_date_format) }}
+					{% if author is not empty %}
+						<br><b>Author: </b><i>{{ author }}</i>
+					{% endif %}
+				</span>
 			</div>
-			{% if author is not empty %}
-				<div class="col-auto">
-					<b>Author:
-					</b>
-					<i>{{ author }}</i>
-				</div>
-			{% endif %}
 		</div>
 	</div>
 </div>

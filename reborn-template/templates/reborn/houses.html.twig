@@ -34,10 +34,10 @@
 				on
 				<b>{{ config.lua.serverName }}</b>
 			</h4>
-			<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
-                <thead>
-					<tr>
-						{% if houses is not empty %}
+			{% if houses is not empty %}
+				<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
+					<thead>
+						<tr>	
 							<th scope="col" width="40%">
 								Name
 							</td>
@@ -51,15 +51,9 @@
 								Status
 							</td>
 							<th scope="col" >&nbsp;</td>
-						{% elseif housesSearch %}
-							<td>No
-								{{ houseType }}
-								with specified criterias.</td>
-						{% endif %}
-					</tr>
-                </thead>
-				<tbody>
-					{% if houses is not empty %}
+						</tr>
+					</thead>
+					<tbody>
 						{% set i = 0 %}
 						{% for house in houses %}
 							{% set i = i + 1 %}
@@ -67,32 +61,30 @@
 								<td width="40%">
 									{{ house.name }}
 								</td>
-
 								<td width="10%">
 									{{ house.size }}
 								</td>
-
 								<td width="10%">
 									{{ house.rent }}
 									golds
 								</td>
-
 								<td width="40%">
 									{{ house.rentedBy|raw }}
 								</td>
-
 								<td>
 									<form action="{{ getLink('houses/view') }}" method="post">
 										<input type="hidden" name="house" value="{{ house.name }}">
 										{{ include('buttons.view.html.twig') }}
 									</form>
 								</td>
-							</tr>
-						{% endfor %}
-					{% endif %}
-				</tbody>
-			</table>
-			<br>
+								</tr>
+						{% endfor %}				
+					</tbody>
+				</table>
+			{% elseif housesSearch %}
+				No {{ houseType }} with specified criterias.</td>
+			{% endif %}
+			<br><br>
 		{% endif %}
 
 		<form action="{{ getLink('houses') }}" method="post">
