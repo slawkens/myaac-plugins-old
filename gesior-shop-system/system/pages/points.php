@@ -23,7 +23,7 @@ if(!$config['gifts_system'])
 	}
 	else
 		warning("You're able to access this page but it is disabled for normal users.<br/>
-		Its enabled for you so you can view/edit shop offers before displaying them to use.<br/>
+		Its enabled for you so you can view/edit shop offers before displaying them to users.<br/>
 		You can enable it by editing this line in myaac config.local.php file:<br/>
 		<p style=\"margin-left: 3em;\"><b>\$config['gifts_system'] = true;</b></p>");
 }
