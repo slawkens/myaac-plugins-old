@@ -32,7 +32,7 @@ jobs:
       - name: Zip Release
         uses: TheDoctor0/zip-release@0.6.2
         with:
-          path: myaac-plugins/reborn-template/
+          path: reborn-template/
           filename: reborn-template.zip
           
       - name: Create Release
