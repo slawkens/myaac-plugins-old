@@ -13,26 +13,24 @@ jobs:
     name: Generate subdir matrix
     runs-on: ubuntu-latest
     outputs:
-      matrix-json: ${{ steps.set-matrix.outputs.matrix }}
+      matrix-output: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: generate matrix value
         id: set-matrix
         run: |
-          #set variable with subdirectories
-          SUBDIRS=( $(find -maxdepth 1 -type d) )
+          readarray -t array <<< "$(find -maxdepth 1 -type d)";
           # Set output
-          echo "::set-output name=matrix::$( echo $SUBDIRS )"
+          echo "::set-output name=set-matrix::$array"
           
   run-matrix:
     needs: [matrix]
     strategy:
       fail-fast: false
-      matrix:
-        include: ${{ toJSON(needs.matrix.outputs.matrix-json) }}
+      matrix: ${{ needs.matrix.outputs.matrix-output }}
     name: "${{ matrix.job_name }}"
     runs-on: ${{ matrix.os }}
     steps:
      - uses: actions/checkout@v2
      - name: Run command
        shell: bash
-       run: echo ${{needs.matrix.outputs.matrix-json}}
+       run: echo ${{ needs.matrix.outputs.matrix-output }}
