@@ -39,4 +39,5 @@ jobs:
         uses: ncipollo/release-action@v1.10.0   
         with:
           artifacts: reborn-template.zip
+          tag: master
 
