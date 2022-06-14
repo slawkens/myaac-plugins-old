@@ -32,4 +32,7 @@ jobs:
     name: "${{ matrix.job_name }}"
     runs-on: ${{ matrix.os }}
     steps:
-     - run: echo ${{needs.matrix.outputs.matrix-json}}
+     - uses: actions/checkout@v2
+     - name: Run command
+       shell: bash
+       run: echo ${{needs.matrix.outputs.matrix-json}}
