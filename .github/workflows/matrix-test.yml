@@ -32,3 +32,4 @@ jobs:
     name: "${{ matrix.job_name }}"
     runs-on: ${{ matrix.os }}
     steps:
+     - run: echo ${{needs.matrix.outputs.matrix-json}}
