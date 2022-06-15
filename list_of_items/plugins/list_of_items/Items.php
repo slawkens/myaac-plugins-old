@@ -2,10 +2,12 @@
 
 namespace MyAAC\Plugin;
 
+use OTS_DB_MySQL;
+
 class Items
 {
 	/**
-	 * @var \OTS_DB_MySQL
+	 * @var OTS_DB_MySQL
 	 */
 	private $db;
 
@@ -13,9 +15,9 @@ class Items
 	 * Constructor
 	 * Just ensure that table is loaded
 	 *
-	 * @param \OTS_DB_MySQL $db
+	 * @param OTS_DB_MySQL $db
 	 */
-	public function __construct(\OTS_DB_MySQL $db)
+	public function __construct(OTS_DB_MySQL $db)
 	{
 		$this->db = $db;
 
