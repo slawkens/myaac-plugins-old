@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `list_of_items` (
+	`id` INT(11) NOT NULL,
+	`name` VARCHAR(100) NOT NULL,
+	`description` VARCHAR(1000) NOT NULL,
+	`level` INT(11) NOT NULL,
+	`type` VARCHAR(255) NOT NULL DEFAULT '',
+	PRIMARY KEY  (`id`)
+	) ENGINE=MyISAM;

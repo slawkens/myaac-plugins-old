@@ -154,16 +154,7 @@ class Items
 		// Checks if the list_of_items table already exists, if not, it creates it in the database.
 		if(!tableExist('list_of_items'))
 		{
-			$this->db->query("
-CREATE TABLE IF NOT EXISTS `list_of_items` (
-	`id` INT(11) NOT NULL,
-	`name` VARCHAR(100) NOT NULL,
-	`description` VARCHAR(1000) NOT NULL,
-	`level` INT(11) NOT NULL,
-	`type` VARCHAR(255) NOT NULL DEFAULT '',
-	PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
-		");
+			$this->db->query(file_get_contents(__DIR__ . '/schema.sql'));
 		}
 	}
 }
