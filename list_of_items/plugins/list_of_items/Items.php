@@ -4,6 +4,9 @@ namespace MyAAC\Plugin;
 
 use OTS_DB_MySQL;
 
+// some PCs are really slow...
+ini_set('max_execution_time', 300);
+
 class Items
 {
 	/**
