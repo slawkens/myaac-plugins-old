@@ -39,11 +39,11 @@ class Items
 		if(file_exists($itemsXMLPath)) {
 			$items = new \DOMDocument();
 			if(!$items->load($itemsXMLPath)) {
-				throw new \RuntimeException('ERROR: Cannot load <i>vocations.xml</i> - the file is malformed. Check the file with xml syntax validator.');
+				throw new \RuntimeException('ERROR: Cannot load <i>items.xml</i> - the file is malformed. Check the file with xml syntax validator.');
 			}
 		}
 		else {
-			echo "Error: cannot load <b>items.xml</b>! File doesn't exist.";
+			error("Error: cannot load <b>items.xml</b>! File doesn't exist.");
 			return;
 		}
 
