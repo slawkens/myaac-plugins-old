@@ -1,0 +1,44 @@
+<div class="center_box">
+	<div class="corner_lt"></div><div class="corner_rt"></div><div class="corner_lb"></div><div class="corner_rb"></div>
+	<div class="title"><span style="background-image: url({{ template_path }}/widget_texts/newsticker.png);"></span></div>
+	<div class="content_bg">
+		<div class="content">
+			<div class="rise-up-content">
+				{% if tickers|length() > 0 %}
+				<table class="stripped" cellpadding="2" style="margin: 5px 0;">
+					{% set i = 0 %}
+					{% for ticker in tickers %}
+					<tr>
+						<td><small>{{ ticker.date|date("j M Y") }}</small> -
+							<div class="changelog_small{{ i }}"  style="display: inline-block;">{{ ticker.body_short|raw }}</div>
+							<div class="changelog_big{{ i }}" style="display: none;">
+								{{ ticker.body|raw }}
+								{% if canEdit %}
+									<a href="admin/?p=news&action=edit&id={{ ticker.id }}" title="Edit">
+										<img src="images/edit.png"/>
+										Edit
+									</a>
+									<a id="delete" href="admin/?p=news&action=delete&id={{ ticker.id }}" onclick="return confirm('Are you sure?');" title="Delete">
+										<img src="images/del.png"/>
+										Delete
+									</a>
+									<a href="admin/?p=news&action=hide&id={{ ticker.id }}" title="{% if ticker.hidden != 1 %}Hide{% else %}Show{% endif %}">
+										<img src="images/{% if ticker.hidden != 1 %}success{% else %}error{% endif %}.png"/>
+										{% if ticker.hidden != 1 %}Hide{% else %}Show{% endif %}
+									</a>
+								{% endif %}
+							</div>
+						</td>
+						<td width="5%" valign="top"><center><a href="#" targetid="{{ i }}" class="changelog_trigger"><img class="plus{{ i }}" src="{{ template_path }}/images/global/general/plus.gif"><img class="minus{{ i }}" style="display: none;" src="{{ template_path }}/images/global/general/minus.gif"></a></center></td>
+					</tr>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</table>
+				{% else %}
+				<center>No changelogs submitted.</center>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="border_bottom"></div>
+</div>

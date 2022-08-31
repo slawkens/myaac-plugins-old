@@ -1,0 +1,18 @@
+{
+	"name": "old-school-template",
+	"description": "This is Old School template for MyAAC.",
+	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "Hemrenus321, slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.8.6"
+	},
+	"install": "plugins/old-school-template/install.php",
+	"uninstall": [
+		"plugins/old-school-template.json",
+		"plugins/old-school-template",
+		"templates/old-school"
+	]
+ }
