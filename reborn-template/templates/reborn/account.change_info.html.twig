@@ -21,18 +21,18 @@
 			</div>
 			{% if config.account_country %}
 				<div class="row mb-3">
-					<label for="account_country" class="col-sm-2 col-form-label">Country<img src="" id="account_country_img"/></label>
+					<label for="account_country" class="col-sm-2 col-form-label">Country<img src="" id="account_country_img" alt="Country"/></label>
 					<div class="col-sm-3">
 						<select name="info_country" id="account_country">
 							{% for code, country in countries %}
 								<option value="{{ code}}"{% if account_country == code %} selected{% endif %}>{{ country }} </option>
 							{% endfor %}
-						</select>				
+						</select>
 						<script>
 							function updateFlag()
 							{
-								var img = $('#account_country_img');
-								var country = $('#account_country :selected').val(); 
+								let img = $('#account_country_img');
+								let country = $('#account_country :selected').val();
 								if(country.length) {
 									img.attr('src', 'images/flags/' + country + '.gif');
 									img.show();
@@ -53,8 +53,8 @@
 			<div class="row mb-3">
 				<div class="col-sm-3">
 					<input type="hidden" name="changeinfosave" value="1"/>
-					<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
-					<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
+					<button type="submit" class="btn">Submit</button>
+					<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
 				</div>
 			</div>
 		</div>

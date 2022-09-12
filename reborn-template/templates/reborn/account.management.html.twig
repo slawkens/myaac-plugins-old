@@ -11,7 +11,7 @@
 			<button class="nav-link" id="pills-actionLog-tab" data-bs-toggle="pill" data-bs-target="#pills-actionLog" type="button" role="tab" aria-controls="pills-actionLog" aria-selected="false">Action Log</button>
 		</li>
 	</ul>
-	</br>
+	<br/>
 	<div class="tab-content" id="pills-tabContent">
 		<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 			<h3>General Information</h3>
@@ -56,8 +56,8 @@
 				</tr>
 			</table>
 			<div>
-				</br>
-				</br>
+				<br/>
+				<br/>
 				{% set menus = {
 					'Change Info': 'account/info', 'Change Password': 'account/password', 'Change Email': 'account/email'
 				} %}
@@ -68,11 +68,11 @@
 					<a class="btn" href="{{ getLink(link) }}">{{ name }}</a>
 				{% endfor %}
 				<a class="btn" href="{{ getLink('account/logout') }}">Logout</a>
-			</div>	
-		</div>	
+			</div>
+		</div>
 		<div class="tab-pane fade" id="pills-characters" role="tabpanel" aria-labelledby="pills-characters-tab">
 			<h3>Character list: {{ players|length }} characters.</h3>
-			<div>	
+			<div>
 				<table class="table">
 					<thead>
 						<tr>

@@ -10,19 +10,19 @@
 		<div class="row mb-3">
 			<label for="delete_name" class="col-sm-2 col-form-label">Character Name:</label>
 			<div class="col-sm-3">
-				<input type="text" name="delete_name" value="" size="30" maxlength="29"/>
+				<input type="text" id="delete_name" name="delete_name" value="" size="30" maxlength="29"/>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="delete_password" class="col-sm-2 col-form-label">Password:</label>
 			<div class="col-sm-3">
 				<input type="password" name="delete_password" id="delete_password" size="30" maxlength="29"/>
-			</div>	
-		</div>	
+			</div>
+		</div>
 		<div class="row mb-3">
 			<div class="col-sm-3">
-				<button type="submit" class="btn " name="Submit" value="Submit"/>Submit</button>
-				<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
+				<button type="submit" class="btn">Submit</button>
+				<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
 			</div>
 		</div>
 	</form>

@@ -5,7 +5,7 @@
 		</div>
 		<div>
 			Please enter your password and the new email address. Make sure that you enter a valid email address which you have access to.
-			</br><b>For security reasons, the actual change will be finalised after a waiting period of
+			<br/><b>For security reasons, the actual change will be finalised after a waiting period of
 				{{ config.account_mail_change }}
 				days.</b><br/><br/>
 		</div>
@@ -25,8 +25,8 @@
 			<div class="row mb-3">
 				<div class="col">
 					<input type="hidden" name="changeemailsave" value="1"/>
-					<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
-					<a class="btn" href="{{ getLink('account/manage') }}" class="btn">Back</a>
+					<button type="submit" class="btn">Submit</button>
+					<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
 				</div>
 			</div>
 		</div>

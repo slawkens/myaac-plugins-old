@@ -5,8 +5,6 @@ defined('MYAAC') or die('Direct access not allowed!');
 <html lang="en">
 <head>
     <?php echo template_place_holder('head_start'); ?>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
@@ -30,10 +28,10 @@ defined('MYAAC') or die('Direct access not allowed!');
                 $headlinegif = $template_path.'/images/logo.gif';
                 $headlinepng = $template_path.'/images/logo.png';
                 if(file_exists($headlinepng))
-                    $headline = $headlinepng; 
-                elseif(file_exists($headlinegif))   
+                    $headline = $headlinepng;
+                elseif(file_exists($headlinegif))
                     $headline = $headlinegif;
-                else    
+                else
                     $headline = $template_path . '/headline.php?t=' . ucfirst($config['lua']['serverName']);
             ?>
             <img src="<?php echo $headline; ?>" alt="<?php echo $config['lua']['serverName']; ?>" class="d-inline-block align-top">
@@ -69,6 +67,8 @@ defined('MYAAC') or die('Direct access not allowed!');
                         <li><a class="dropdown-item" href="<?= getLink('experienceStages'); ?>">Experience stages</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('commands'); ?>">Commands</a></li>
                         <li><a class="dropdown-item" href="<?= getLink('serverInfo'); ?>">Server Information</a></li>
+						<li><a class="dropdown-item" href="<?= getLink('news/archive'); ?>">News Archive</a></li>
+						<li><a class="dropdown-item" href="<?= getLink('changelog'); ?>">Changelog</a></li>
                     </ul>
                 </li>
 

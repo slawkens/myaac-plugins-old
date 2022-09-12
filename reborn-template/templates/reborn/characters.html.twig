@@ -20,11 +20,11 @@
 	{{ hook(constant('HOOK_CHARACTERS_BEFORE_INFORMATIONS')) }}
 	{% if canEdit %}
 		<a href="admin/?p=players&id={{ player.getId() }}" title="Edit in Admin Panel" target="_blank">
-			<img src="images/edit.png"/>Edit
+			<img src="images/edit.png" alt="EditIcon"/>Edit
 		</a>
 	{% endif %}
 	<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
-		
+
 		<thead>
 		<tr bgcolor="{{ config.vdarkborder }}">
 			<th scope="col" colspan="2">
@@ -32,7 +32,7 @@
 			</th>
 		</tr>
 		</thead>
-		
+
 		{% set rows = rows + 1 %}
 		<tr bgcolor="{{ getStyle(rows) }}">
 			<td width="20%">Name:</td>
@@ -181,7 +181,7 @@
 	{{ hook(constant('HOOK_CHARACTERS_AFTER_INFORMATIONS')) }}
 	<br/>
 	<div class="row">
-			
+
 
 			{% if config.characters.skills %}
 			{{ hook(constant('HOOK_CHARACTERS_BEFORE_SKILLS')) }}
@@ -208,7 +208,7 @@
 				{{ hook(constant('HOOK_CHARACTERS_AFTER_SKILLS')) }}
 			{% endif %}
 
-			
+
 
 			{% if quests_enabled %}
 				<!-- QUESTS -->
@@ -311,7 +311,7 @@
 				<!-- EQUIPMENT_END -->
 			{% endif %}
 			{{ hook(constant('HOOK_CHARACTERS_AFTER_EQUIPMENT')) }}
-		
+
 	</div>
 
 	{{ hook(constant('HOOK_CHARACTERS_BEFORE_DEATHS')) }}

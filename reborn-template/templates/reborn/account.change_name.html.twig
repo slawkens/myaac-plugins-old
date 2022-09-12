@@ -1,61 +1,41 @@
-To change a name of character select player and choose a new name.<br/>
-<span style="color: red">Change name cost {{ config.account_change_character_name_points }} premium points. You have {{ points }} premium points.</span><br/><br/>
 <form action="{{ getLink('account/character/name') }}" method="post">
-	<input type="hidden" name="changenamesave" value="1">
-	<div class="TableContainer">
-		<table class="Table1" cellpadding="0" cellspacing="0">
-			<div class="CaptionContainer">
-				<div class="CaptionInnerContainer" >
-					<span class="CaptionEdgeLeftTop" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
-					<span class="CaptionEdgeRightTop" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
-					<span class="CaptionBorderTop" style="background-image:url({{ template_path }}/images/content/table-headline-border.gif);"></span>
-					<span class="CaptionVerticalLeft" style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></span>
-					<div class="Text" >Change Name</div>
-					<span class="CaptionVerticalRight" style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></span>
-					<span class="CaptionBorderBottom" style="background-image:url({{ template_path }}/images/content/table-headline-border.gif);"></span>
-					<span class="CaptionEdgeLeftBottom" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
-					<span class="CaptionEdgeRightBottom" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
-				</div>
-			</div>
-			<tr>
-				<td>
-					<div class="InnerTableContainer" >
-						<table style="width:100%;" >
-							<tr>
-                                <td class="LabelV" ><span>Character:</span></td>
-								<td style="width:90%;" >
-									<select name="player_id">
-										{% for player in account_logged.getPlayersList() %}
-										<option value="{{ player.getId() }}">{{ player.getName() }}</option>
-										{% endfor %}
-									</select>
-								</td>
-							</tr>
-							<tr>
-                                <td class="LabelV" ><span>New Name:</span></td>
-								<td>
-									<input type="text" name="name" id="character_name" size="25" maxlength="25" >
-									<img id="character_indicator" src="images/global/general/{% if not save or errors|length > 0 %}n{% endif %}ok.gif" />
-									<br/>
-									<span style="font-size: 10px">
-										<div id="character_error">Please enter your character name.</div>
-									</span>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</td>
-			</tr>
-		</table>
+	<div>
+		<h1>Change Name</h1>
 	</div>
-	<br/>
-	<div class="row">
-		<div class="col-auto">
-			<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
-		</div>		
+	<div>
+		To change a name of character select player and choose a new name.<br/>
+		<span style="color: red">Change name cost {{ config.account_change_character_name_points }} premium points. You have {{ points }} premium points.</span>
+		<br/><br/>
+	</div>
+	<div>
+		<div class="row mb-3">
+			<label for="player_id" class="col-sm-3 col-form-label">Character:</label>
+			<div class="col-sm-3">
+				<select id="player_id" name="player_id">
+					{% for player in account_logged.getPlayersList() %}
+						<option value="{{ player.getId() }}">{{ player.getName() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="character_name" class="col-sm-3 col-form-label">New Name:</label>
+			<div class="col-sm-3">
+				<input type="text" name="name" id="character_name" size="25" maxlength="25" >
+				<img id="character_indicator" src="images/global/general/{% if not save or errors|length > 0 %}n{% endif %}ok.gif" alt="Validator"/>
+				<br/>
+				<span style="font-size: 10px">
+					<span id="character_error">Please enter your character name.</span>
+				</span>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<input type="hidden" name="changenamesave" value="1">
+				<button type="submit" class="btn">Submit</button>
+				<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
+			</div>
+		</div>
+	</div>
 </form>
-		<div class="col-auto">
-			<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
-		</div>			
-	</div>	
 <script type="text/javascript" src="tools/check_name.js"></script>

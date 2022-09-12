@@ -1,41 +1,43 @@
 <div class="table-responsive">
 	<table class="table" border="0" cellspacing="1" cellpadding="4" width="100%">
-	<thead>
+		<thead>
 			<tr>
 				<th scope="col">Server Status</th>
 			</tr>
 		</thead>
 		<tbody>
-	{% if players|length == 0 %}
-		<tr><td>Currently no one is playing on {{ config.lua.serverName }}.</td></tr></table>
-	{% else %}
-		<tr>
-			<td>
-				{% if not status.online %}
-				Server is offline.<br/>
-				{% else %}
-					{% if config.online_afk %}
-						{% set players_count = players|length %}
-						{% set afk = players_count - status.players %}
-						{% if afk < 0 %}
-							{% set players_count = players_count + afk|abs %}
-							{% set afk = 0 %}
-						{% endif %}
-						Currently there are <b>{{ status.players }}</b> active and <b>{{ afk }}</b> AFK players.<br/>
-						Total number of players: <b>{{ players_count }}</b>.<br/>
+		{% if players|length == 0 %}
+			<tr><td>Currently no one is playing on {{ config.lua.serverName }}.</td></tr>
+		{% else %}
+			<tr>
+				<td>
+					{% if not status.online %}
+					Server is offline.<br/>
 					{% else %}
-						Currently {{ players|length }} players are online.<br/>
+						{% if config.online_afk %}
+							{% set players_count = players|length %}
+							{% set afk = players_count - status.players %}
+							{% if afk < 0 %}
+								{% set players_count = players_count + afk|abs %}
+								{% set afk = 0 %}
+							{% endif %}
+							Currently there are <b>{{ status.players }}</b> active and <b>{{ afk }}</b> AFK players.<br/>
+							Total number of players: <b>{{ players_count }}</b>.<br/>
+						{% else %}
+							Currently {{ players|length }} players are online.<br/>
+						{% endif %}
 					{% endif %}
-				{% endif %}
-			</td>
-		</tr>
+				</td>
+			</tr>
+		{% endif %}
 		</tbody>
 	</table>
+	{% if players|length != 0 %}
 	<br/>
-		{# vocation statistics #}
-		{% if config.online_vocations %}
+	{# vocation statistics #}
+	{% if config.online_vocations %}
 	<br/>
-			{% if config.online_vocations_images %}
+		{% if config.online_vocations_images %}
 		<table width="200" cellspacing="1" cellpadding="0" border="0" align="center">
 			<tr>
 				<td><img src="images/sorcerer.png" /></td>

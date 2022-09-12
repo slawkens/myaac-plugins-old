@@ -16,7 +16,7 @@
 		<div class="col-sm-5">
 			<label for="inputEmail4" class="form-label">Email address</label>
 			<input type="email" class="form-control" name="email" id="email" required placeholder="name@example.com" value="{{ email }}"/>
-			{% if config.account_mail_verify %} 
+			{% if config.account_mail_verify %}
 				<strong></br>Please use real email address.</br>
 				We will send a link to validate your Email.</br></strong>
 			{% endif %}
@@ -26,9 +26,9 @@
 			<label for="account_country" class="form-label">Country<img src="" id="account_country_img"/></label>
 			<select name="country" id="account_country" class="form-select">
 				{% for code, country_ in countries %}
-					<option value="{{ code }}" 
+					<option value="{{ code }}"
 						{% if(country is defined and country == code) or (country is null and country_recognized == code) %}
-							selected 
+							selected
 						{% endif %}>{{ country_ }}
 					</option>
 				{% endfor %}
@@ -57,7 +57,7 @@
 		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_RECAPTCHA') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_1') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BETWEEN_BOXES_2') }}
-		
+
 		{% if (not config.mail_enabled or not config.account_mail_verify) and config.account_create_character_create %}
 			<div>
 				<div class="col-sm-5">
@@ -107,11 +107,11 @@
 			<input type="checkbox" class="form-check-input" id="accept_rules" name="accept_rules" value="true"{% if accept_rules %} checked {% endif %} required/>
 			<label class="form-check-label" for="accept_rules">I agree to the<a href="?subtopic=rules" target="_blank"> {{ config.lua.serverName }} rules</a> and <a href="https://www.privacypolicies.com/generic/" target="_blank">privacy statement.</a></label>
 		</div>
-		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}		
+		{{ hook('HOOK_ACCOUNT_CREATE_AFTER_BOXES') }}
 		{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_SUBMIT_BUTTON') }}
 		<div class="col-sm-5 mt-1">
 			<input type="hidden" name="save" value="1"/>
-			<button type="submit" class="btn " name="Submit" value="Submit" />Submit</button>
+			<button type="submit" class="btn">Submit</button>
 		</div>
 
 	</form>
