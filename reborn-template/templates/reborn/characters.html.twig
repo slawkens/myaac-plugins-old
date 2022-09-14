@@ -184,7 +184,6 @@
 
 
 			{% if config.characters.skills %}
-			{{ hook(constant('HOOK_CHARACTERS_BEFORE_SKILLS')) }}
 				<!-- SKILLS -->
 				<div class="col">
 					<table class="table">
@@ -205,10 +204,7 @@
 					</table>
 				</div>
 				<!-- SKILLS_END -->
-				{{ hook(constant('HOOK_CHARACTERS_AFTER_SKILLS')) }}
 			{% endif %}
-
-
 
 			{% if quests_enabled %}
 				<!-- QUESTS -->
@@ -233,8 +229,6 @@
 				</div>
 				<!-- QUESTS_END -->
 			{% endif %}
-
-			{{ hook(constant('HOOK_CHARACTERS_AFTER_QUESTS')) }}
 
 			{% if config.characters.equipment %}
 				<!-- EQUIPMENT -->
@@ -310,11 +304,8 @@
 				</div>
 				<!-- EQUIPMENT_END -->
 			{% endif %}
-			{{ hook(constant('HOOK_CHARACTERS_AFTER_EQUIPMENT')) }}
-
 	</div>
 
-	{{ hook(constant('HOOK_CHARACTERS_BEFORE_DEATHS')) }}
 	{% if deaths|length > 0 %}
 		<!-- DEATHS -->
 		<br/>
