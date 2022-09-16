@@ -1,0 +1,21 @@
+<div style="text-align:center">
+	<h3>Experience stages</h3>
+</div>
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Level</th>
+				<th scope="col">Stage multiplier</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stage in stages %}
+				<tr style="background-color: {{ config.lightborder }}">
+					<td>{{ stage.levels }}</td>
+					<td>x{{ stage.multiplier}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

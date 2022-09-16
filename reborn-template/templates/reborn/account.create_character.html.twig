@@ -1,0 +1,67 @@
+<div class="container">
+{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_BOXES') }}
+{{ hook('HOOK_ACCOUNT_CREATE_BEFORE_ACCOUNT') }}
+	<h1>Create character</h1>
+	<p>Please choose a name{% if config.character_samples|length > 1 %}, vocation{% endif %}{% if config.character_towns|length > 1 %}, town{% endif %} and gender for your character.<br/>
+		In any case the name must not violate the naming conventions stated in the
+		<a href="?subtopic=rules" target="_blank">{{ config.lua.serverName }}
+			Rules</a>, or your character might get deleted or name locked.
+		{% if account_logged.getPlayersList()|length >= config.characters_per_account %}
+			<b>
+				<span style="color: red">
+					You have maximum number of characters per account on your account. Delete one before you make new.</span>
+			</b>
+		{% endif %}
+	</p>
+	<form action="{{ getLink('account/character/create') }}" method="post">
+		<input type="hidden" name="save" value="1">
+		<div class="row mb-3">
+			<label for="character_name" class="col-sm-2 col-form-label">Character Name</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="name" id="character_name" value="{{ name }}" aria-describedby="charactername" placeholder="Character Name">
+			</div>
+		</div>
+		<fieldset class="row mb-3">
+			<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+			{% set i = 0 %}
+			<div class="col-sm-10">
+				{% for id, gender in config.genders|reverse(true) %}
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="sex" id="sex{{ i }}" value="{{ id }}" {% if sex is not null and sex == id %} checked {% endif %}>
+						<label class="form-check-label" for="sex{{ i }}">{{ gender|lower }}</label>
+					</div>
+					{% set i = i + 1 %}
+				{% endfor %}
+			</div>
+		</fieldset>
+		<fieldset class="row mb-3">
+			<legend class="col-form-label col-sm-2 pt-0">Vocation</legend>
+			<div class="col-sm-10">
+				{% for key, sample_char in config.character_samples %}
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="vocation" id="vocation{{ key }}" value="{{ key }}" {% if vocation is not null and vocation == key %} checked {% endif %}>
+						<label class="form-check-label" for="vocation{{ key }}">{{ config['vocations'][key] }}</label>
+					</div>
+				{% endfor %}
+			</div>
+		</fieldset>
+		{% if config.character_towns|length > 1 %}
+			<fieldset class="row mb-3">
+				<legend class="col-form-label col-sm-2 pt-0">Citizenship</legend>
+				<div class="col-sm-10">
+					{% for town_id in config.character_towns %}
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="town" id="town{{ town_id }}" value="{{ town_id }}" {% if town is not null and town == town_id %} checked {% endif %}>
+							<label class="form-check-label" for="town{{ town_id }}">{{ config.towns[town_id] }}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</fieldset>
+		{% endif %}
+		<div class="form-group">
+			<button type="submit" class="btn">Submit</button>
+			<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="tools/check_name.js"></script>

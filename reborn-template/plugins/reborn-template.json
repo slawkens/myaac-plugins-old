@@ -1,0 +1,11 @@
+{
+	"name": "reborn-template",
+	"description": "This is reborn template for MyAAC.",
+	"version": "1.0",
+	"author": "Xitobuh",
+	"contact": "(please edit)",
+	"uninstall": [
+		"plugins/reborn-template.json",
+		"templates/reborn"
+	]
+}

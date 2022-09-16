@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="d-flex {{ config.bgColor }} {{config.textColor }}">
+		<div class="p-2 me-auto">
+			<span class="fs-2 fw-bold text-center"><img class="img-fluid" style="margin-top: -6px" src="{{ template_path }}/images/news/icon_{{ icon }}.gif" /> {{ title }}</span>
+		</div>
+		<div class="p-2 ms-auto">
+			<div class="col-auto">
+				<span class="text-end">
+					{{ date|date(config.news_date_format) }}
+					{% if author is not empty %}
+						<br><b>Author: </b><i>{{ author }}</i>
+					{% endif %}
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
+<table style="clear:both" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td style="padding-left:10px;padding-right:10px;">{{ content|raw }}</td>
+	</tr>
+	{% if comments is not null %}
+		<tr>
+			<td>
+				<div style="text-align: right; margin-right: 10px;">
+					<a href="{{ comments }}">» Comment on this news</a>
+				</div>
+			</td>
+		</tr>
+	{% endif %}
+</table>
+<br/>

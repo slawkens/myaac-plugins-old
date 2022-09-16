@@ -1,0 +1,41 @@
+<div class="container">
+	<form action="{{ getLink('account/character/sex') }}" method="post">
+		<div>
+			<h1>Change Sex</h1>
+		</div>
+		<div>
+			To change a sex of character select player and choose a new sex.<br/>
+			<span style="color: red">Change sex cost {{ config.account_change_character_sex_points }} premium points. You have {{ points }} premium points.</span>
+			<br/><br/>
+		</div>
+		<div>
+			<div class="row mb-3">
+				<label for="player_id" class="col-sm-3 col-form-label">Character:</label>
+				<div class="col-sm-3">
+					<select id="player_id" name="player_id">
+						{% for player in players %}
+							<option value="{{ player.getId() }}">{{ player.getName() }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="new_sex" class="col-sm-3 col-form-label">New Sex:</label>
+				<div class="col-sm-3">
+					<select id="new_sex" name="new_sex" class="form-control">
+						{% for id, gender in config.genders %}
+							<option value="{{ id }}"{% if player_sex == id %} selected{% endif %}>{{ gender }}</option>
+						{% endfor %}
+					</select>
+					</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col">
+					<input type="hidden" name="changesexsave" value="1"/>
+					<button type="submit" class="btn">Submit</button>
+					<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,55 @@
+<form action="{{ getLink('account/manage') }}" method="post" style="margin: 0; padding: 0;">
+	{% if redirect is not null %}
+		<input type="hidden" name="redirect" value="{{ redirect }}"/>
+	{% endif %}
+
+
+	<div class="container-sm overflow-hidden">
+		<div class="container">
+			<h1>Login</h1>
+			<form>
+				<div>
+					<label for="inputEmail3">Username</label>
+					<div>
+						<input type="text" class="form-control" placeholder="Username" name="account_login" aria-label=" Username" aria-describedby=" basic-addon1">
+					</div>
+				</div>
+				<div>
+					<label for="inputEmail3">Password</label>
+					<div>
+						<input type="password" class="form-control" placeholder="Password" name="password_login" aria-label="Password" aria-describedby=" basic-addon1">
+					</div>
+				</div>
+				<div>
+					<div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="remember_me" name="remember_me" value="true">
+							<label class="form-check-label" for="remember_me">
+								Remember me
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-auto">
+							<button type="submit" class="btn " name="Login">Sign in</button>
+						</div>
+						<div class="col-auto">
+							<a href="{{ getLink('account/lost') }}" class="btn">Lost account</a>
+						</div>
+					</div>
+				</div>
+			</form>
+			<br/>
+		</div>
+
+		<div class="container">
+			<div style="text-align:center">
+				<br/>
+				<h1>New to {{ config.lua.serverName }}?</h1>
+				<form class="MediumButtonForm" action="{{ getLink('account/create') }}" method="post">
+					<button type="submit" class="btn " name="Create Account">Create Account</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</form>

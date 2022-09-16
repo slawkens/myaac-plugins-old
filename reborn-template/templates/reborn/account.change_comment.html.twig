@@ -1,0 +1,35 @@
+<div class="container">
+	<form action="{{ getLink('account/character/comment') }}" method="post">
+		<div>
+			<h1>Edit Character Information</h1>
+		</div>
+		<div>Here you can see and edit the information about your character.<br/>
+			If you do not want to specify a certain field, just leave it blank.<br/>
+		</div>
+		<div class="row" style="margin-top:15px;">
+			<div class="col">
+				<b>Character name:</b>
+				{{ player.getName() }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-floating">
+				<textarea class="form-control" name="comment" id="floatingTextarea2" rows="10" cols="50" wrap="virtual" style="height: 100px">{{ player.getCustomField('comment')|raw }}</textarea>
+				<label for="floatingTextarea2">Comment</label>
+			</div>
+		</div>
+		<div class="d-grid gap-2 d-md-block">
+			<div class="form-check">
+				<input type="hidden" value="0" name="accountvisible">
+				<input class="form-check-input" type="checkbox" name="accountvisible" id="accountvisible" value="1" {% if player.isHidden() %} checked="checked" {% endif %}>
+				<label class="form-check-label" for="accountvisible">
+					Hide account (you will be also hidden on the Team page)
+				</label>
+			</div>
+			<input class="form-control" type="hidden" name="name" value="{{ player.getName() }}">
+			<input class="form-control" type="hidden" name="changecommentsave" value="1">
+			<button type="submit" class="btn ">Submit</button>
+			<a class="btn" href="{{ getLink('account/manage') }}">Back</a>
+		</div>
+	</form>
+</div>

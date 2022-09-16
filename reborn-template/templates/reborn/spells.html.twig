@@ -1,0 +1,180 @@
+<div class="container">
+	{% if canEdit %}
+		<div>
+			<form method="post" action="{{ getLink('spells') }}">
+				<input type="hidden" name="reload_spells" value="yes"/>
+				<button type="submit" class="btn " value="(admin) Reload spells"/>(admin) Reload spells</button>
+			</form>
+		</div>
+	{% endif %}
+	<div class="position-relative">
+			<button class="btn position-absolute top-0 end-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVocFilter" aria-expanded="false" aria-controls="collapseVocFilter">
+				<i class="bi bi-funnel-fill"></i>
+			</button>
+			<div class="collapse" id="collapseVocFilter">
+				<form action="{{ getLink('spells') }}" method="post">
+					<div class="row">
+						<label for="vocationFilter" class="col-3 col-form-label">Vocation</label>
+						<div class="col-4">
+							<select class="form-select" name="vocation_id" id="vocationFilter">
+								<option value="all" {% if post_vocation_id == 'all' %} selected {% endif %}>All</option>
+								{% for id, vocation in config.vocations %}
+									<option value="{{ id }}" {% if id == post_vocation_id and post_vocation_id != "all" and post_vocation_id != '' %} selected {% endif %}>{{ vocation }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-1">
+							<button type="submit" class="btn " name="Submit" value="Submit"/>Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+	</div>
+	<div>	
+		<ul class="nav nav-tabs" id="spellTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Instant</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="conjure-tab" data-bs-toggle="tab" data-bs-target="#conjure" type="button" role="tab" aria-controls="conjure" aria-selected="false">Conjure</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="rune-tab" data-bs-toggle="tab" data-bs-target="#rune" type="button" role="tab" aria-controls="rune" aria-selected="false">Rune</button>
+			</li>
+		</ul>
+	</div>
+	<div class="tab-content" id="spellTabContent">
+		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Words</th>
+							<th scope="col">Level</th>
+							<th scope="col">Mana</th>
+							<th scope="col">Vocations</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set i = 0 %}
+						{% set y = 0 %}
+						{% for spell in spells %}
+							{% set i = i + 1 %}
+							{% if spell.type == 1 %}
+								{% set y = y + 1 %}
+								<tr>
+									<th scope="row">{{ spell.name }}</th>
+									<td>{{ spell.words }}</td>
+									<td>{{ spell.level }}</td>
+									<td>{{ spell.mana }}</td>
+									<td>
+										{% if spell.vocations|length > 0 %}
+											<span style="font-size: 10px">{{ spell.vocations|raw }}</span>
+										{% else %}
+											{{ config.vocations[post_vocation_id] }}
+										{% endif %}
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>	
+		<div class="tab-pane fade" id="conjure" role="tabpanel" aria-labelledby="conjure-tab">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Words</th>
+							<th scope="col">Level</th>
+							<th scope="col">Mana</th>
+							<th scope="col">Soul</th>
+							<th scope="col">Item</th>
+							<th scope="col">Reagent</th>
+							<th scope="col">Vocations</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set i = 0 %}
+						{% set y = 0 %}
+						{% for spell in spells %}
+							{% set i = i + 1 %}
+							{% if spell.type == 2 %}
+								{% set y = y + 1 %}
+								<tr>
+									<th scope="row">{{ spell.name }}</th>
+									<td>{{ spell.words }}</td>
+									<td>{{ spell.level }}</td>
+									<td>{{ spell.mana }}</td>
+									<td>{{ spell.soul }}</td>
+									<td>
+										<small>
+											{% if (spell.conjure_count < 150) and ( spell.conjure_count > 0) %}
+												{{ spell.conjure_count }}x
+												<br/>
+											{% endif %}
+										</small>
+										<img src="{{ item_path }}/{{ spell.conjure_id }}.gif" width="32" height="32" border="0" alt="{{ spell.conjure_id }}">
+									</td>
+									<td>
+										{% if (spell.reagent > 0) %}
+											<img src="{{ item_path }}/{{ spell.reagent }}.gif" width="32" height="32" border="0" alt="{{ spell.reagent }}">{% else %}---
+										{% endif %}
+									</td>
+									<td>
+										{% if spell.vocations|length > 0 %}
+											<span style="font-size: 10px">{{ spell.vocations|raw }}</span>
+										{% else %}
+											{{ config.vocations[post_vocation_id] }}
+										{% endif %}
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="rune" role="tabpanel" aria-labelledby="rune-tab">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<th scope="col">Name</th>
+						<th scope="col">Level</th>
+						<th scope="col">Magic Level</th>
+						<th scope="col">Item</th>
+						<th scope="col">Vocations</th>
+					</thead>
+					<tbody>
+						{% set i = 0 %}
+						{% set y = 0 %}
+						{% for spell in spells %}
+							{% set i = i + 1 %}
+							{% if spell.type == 3 %}
+								{% set y = y + 1 %}
+								<tr>
+									<th scope="row">{{ spell.name }}</th>
+									<td>{{ spell.level }}</td>
+									<td>{{ spell.maglevel }}</td>
+									<td><img src="{{ item_path }}/{{ spell.item_id }}.gif" width="32" height="32" border="0" alt="{{ spell.item_id }}"></td>
+									<td>
+										{% if spell.vocations|length > 0 %}
+											<span style="font-size: 10px">{{ spell.vocations|raw }}</span>
+										{% else %}
+											{{ config.vocations[post_vocation_id] }}
+										{% endif %}
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,44 @@
+<div class="table-responsive">	
+	{% if errors is not empty %}
+		{% for error in errors %}
+			<p class="error">{{ error }}</p>
+		{% endfor %}
+	{% else %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col" colspan="2">{{ houseName }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<img src="{{ imgPath }}">
+					</td>
+					<td>
+
+						{{ bedsMessage }}
+						and has a size of
+						<b>{{ houseSize }}</b>
+						square meters.
+						{% if rentType != 'never' %}
+							The
+							{{ rentType }}
+							rent is
+							<b>{{ houseRent }}
+								gold</b>
+							and will be debited to the bank account on
+							<b>{{ config.lua.serverName }}</b>.
+						{% endif %}
+						{% if owner is not empty  %}
+							The house has been rented by
+							<b>{{ owner|raw }}</b>.
+						{% else %}
+							No one has bought this house yet.
+						{% endif %}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	{% endif %}
+</div>
