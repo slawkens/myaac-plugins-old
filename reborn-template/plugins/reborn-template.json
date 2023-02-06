@@ -1,7 +1,9 @@
 {
-	"name": "reborn-template",
-	"description": "This is reborn template for MyAAC.",
+	"name": "Reborn Template",
+	"description": "This is Reborn template for MyAAC.",
 	"version": "1.0",
+		"type": "template",
+	"license": "GPLv3",
 	"author": "Xitobuh",
 	"contact": "(please edit)",
 	"uninstall": [
