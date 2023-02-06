@@ -1,0 +1,80 @@
+<div style="text-align: center"><h2>Select player</h2></div>
+<div style="float:right;">
+	<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
+</div>
+<br/><br/>
+
+<table border="0" cellpadding="1" cellspacing="1" width="100%">
+	<tr bgcolor="{{ config.vdarkborder }}">
+		<td colspan="2">
+			<span color="white" size="4"><b>Selected offer</b></span>
+		</td>
+	</tr>
+
+	<tr bgcolor="{{ config.darkborder }}">
+		<td width="100"><b>Name:</b></td>
+		<td width="550">{{ buy_offer.name }}</td>
+	</tr>
+
+	<tr bgcolor="{{ config.darkborder }}">
+		<td width="100"><b>Description:</b></td>
+		<td width="550">{{ buy_offer.description|raw }}</td>
+	</tr>
+</table>
+<br/>
+
+<form action="?subtopic=gifts&action=confirm_transaction" method="post">
+	<input type="hidden" name="buy_id" value="{{ buy_id }}">
+
+	<table border="0" cellpadding="1" cellspacing="1" width="100%">
+		<tr bgcolor="{{ config.vdarkborder }}">
+			<td colspan="2">
+				<span color="white" size="4"><b>Give item to player from your account</b></span>
+			</td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="110"><b>Name:</b></td>
+			<td width="550">
+				{% if account_players|length <= 0 %}
+					You don't have any character on your account.
+				{% else %}
+					<select name="buy_name">
+						{% for player_name in account_players %}
+							<option>{{ player_name }}</option>
+						{% endfor %}
+					</select>
+
+					<input type="submit" value="Give">
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+</form>
+<br/>
+
+<form action="?subtopic=gifts&action=confirm_transaction" method="post">
+	<input type="hidden" name="buy_id" value="{{ buy_id }}">
+
+	<table border="0" cellpadding="1" cellspacing="1" width="100%">
+		<tr bgcolor="{{ config.darkborder }}">
+			<td colspan="2"><span color="white" size="4"><b>Give item to other player</b></span>
+			</td>
+		</tr>
+
+		<tr bgcolor="{{ config.vdarkborder }}">
+			<td width="110"><b>To player:</b></td>
+			<td width="550"><input type="text" name="buy_name"> - name of player</td>
+		</tr>
+
+		<tr bgcolor="{{ config.vdarkborder }}">
+			<td width="110"><b>From:</b></td>
+			<td width="550">
+				<input type="text" name="buy_from">
+				<input type="submit" value="Give"> - your nick, empty = Anonymous
+			</td>
+		</tr>
+	</table><br />
+</form>
+
+<div style="text-align: left;"><h4>*PACC is for all characters from account of selected player name</h4></div>

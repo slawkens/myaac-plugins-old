@@ -1,0 +1,59 @@
+[2.3 - 03.04.2021]
+	* Fix problem with redirection after transaction has been made (PayPal redirect)
+	* Do not override config.php after install - may upset some users ;)
+	* Fix payment_type being ignored (Thanks to OtLand User: DukeeH)
+	* (internal) Moving some SQL to schema.sql
+
+[2.2.1 - 18.10.2020]
+	* Force table links color to white (with !important css)
+
+[2.2 - 02.12.2019]
+	* Fix installation on some newest MySQL versions (slawkens)
+	* Refactored code: (whiteblXK)
+		* moved 'add offer' to admin panel
+		* removed Homepay service
+		* fixed delivering points in PagSeguro
+		* full twig template support
+
+[2.1.1 - 13.04.2019]
+	* enable local SSL certificate verification (this fixes points being not delivered on same systems like UniServ on Windows)
+	* write more debug/error information to paypal-error.log
+	* (internal) remove @version tag from files
+
+[2.1 - 26.06.2018]
+	* check for php CURL extension on install and when running
+	* fix for OTXServer, where doCreateItemEx function doesn't exists (in some older versions)
+	* fixed default value of some MySQL columns
+	* fixed Premium Account image (was wrong dir)
+
+[2.0 - 19.03.2018]
+	* fixed PayPal IPN not delivering points
+	* more configuration options for paypal
+	* fixed PayPal currency other than EUR
+	* fixed some errors in console (othire and others) (Lua script)
+	* fix where container or item doesn't exist (Lua script)
+	* added shebang line to the bash script
+
+[2.0-beta - 28.01.2018]
+	* new payment gateway: GoUrl.io (CryptoBox global Coins - bitcoins, speedcoin, dash and more)
+	* new payment gateway: fortumo.com (SMS Worldwide)
+	* new payment gateway: PagSeguro (Brazil payments)
+	* new payment gateway: homepay.pl (Poland SMS and Bank Transfer)
+	* simple admin panel for adding offers
+	* support for new offers: pacc, addons, mounts, unban, redskull
+	* cleaner buy points page (with images for gateways)
+	* general folder structure reorganisation (more clean now)
+	* removed support for zaypay as it doesn't exist anymore
+	* you can now hide item from showing by settings hidden to 1 in z_shop_offer table
+	* fixed some php notices and warnings
+	* fixed mysql error - Duplicate entry 'x' for key 'PRIMARY'
+	* renamed z_shop_history_item to z_shop_history (it will store history from all)
+	* general optimizations
+	* added CHANGELOG
+
+[1.1 - 31.07.2017]
+	* new Paypal API
+	* some small fixes
+
+[1.0 - 02.05.2017]
+	* First release of Gesior Shop System for MyAAC

@@ -1,0 +1,77 @@
+{% if show_confirmation_page %}
+	<div style="text-align: center"><h2>Confirm transaction</h2></div>
+	<div style="float:right;">
+		<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
+	</div>
+	<br/><br/>
+
+	<table border="0" cellpadding="1" cellspacing="1" width="100%">
+		<tr bgcolor="{{ config.vdarkborder }}">
+			<td colspan="3">
+				<span color="white" size="4"><b>Confirm transaction</b></span>
+			</td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="100"><b>Name:</b></td>
+			<td width="550" colspan="2">{{ buy_offer.name }}</td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="100"><b>Description:</b></td>
+			<td width="550" colspan="2">{{ buy_offer.description|raw }}</td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="100"><b>Cost:</b></td>
+			<td width="550" colspan="2"><b>{{ buy_offer.points }} premium points</b> from your account</td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="100"><b>For Player:</b></td>
+			<td width="550" colspan="2"><span style="color: red">{{ buy_player_name }}</span></td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="100"><b>From:</b></td>
+			<td width="550" colspan="2"><span style="color: red">{{ buy_from }}</span></td>
+		</tr>
+
+		<tr bgcolor="red">
+			<td width="100"><b>Transaction?</b></td>
+			<td width="275" align="left">
+				<form action="?subtopic=gifts&action=confirm_transaction" method="POST">
+					<input type="hidden" name="buy_confirmed" value="yes">
+					<input type="hidden" name="buy_id" value="{{ buy_id }}">
+					<input type="hidden" name="buy_from" value="{{ buy_from|url_encode }}">
+					<input type="hidden" name="buy_name" value="{{ buy_name|url_encode }}">
+					<input type="submit" value="Accept">
+				</form>
+			</td>
+
+			<td align="right">
+				<form action="?subtopic=gifts" method="POST">
+					<input type="submit" value="Cancel">
+				</form>
+			</td>
+		</tr>
+	</table>
+{% else %}
+	<div style="text-align: center"><h2>You have bought {{ buy_offer.type }}!</h2></div>
+	<div style="float:right;">
+		<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
+	</div>
+	<br/><br/>
+
+	<div style="text-align: center">
+		{% if buy_offer.type == 'pacc' %}
+			<b>{{ buy_offer.days }} days</b> of Premium Account added to account of player <b>{{ buy_player_name }}</b>
+		{% else %}
+			<b>{{ buy_offer.name }}</b> added to player <b>{{ buy_player_name }}</b>
+		{% endif %}
+		for <b>{{ buy_offer.points }} premium points</b> from your account.<br/>
+		Now patiently wait in game MAX 3 minutes to receive {{ buy_offer.name }}!<br/>
+		<br/>
+		<a href="?subtopic=gifts">GO TO MAIN SHOP SITE</a>
+	</div>
+{% endif %}

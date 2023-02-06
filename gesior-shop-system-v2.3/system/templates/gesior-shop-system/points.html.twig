@@ -1,0 +1,110 @@
+<div class="main-box">
+	{% if enabled.paypal %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=paypal" title="Gain with PayPal"><img class="floating-logo" src="images/shop-system/paypal.gif" border="0" /></a><br/>
+			</div>
+			<div class="info-box">
+				Credit card, paypal.<br/>
+				<b>{{ config.paypal.currency_code }}</b>
+			</div>
+			<div class="info-box">
+				ALL COUNTRIES!
+			</div>
+		</div>
+	{% endif %}
+	{% if enabled.fortumo %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<script src="https://assets.fortumo.com/fmp/fortumopay.js" type="text/javascript"></script>
+				<a id="fmp-button" href="#" rel="{{ config.fortumo.service_id }}/{{ account_logged.getId() }}">
+					<img class="floating-logo" src="https://assets.fortumo.com/fmp/fortumopay_150x50_red.png" width="150" height="50" alt="Mobile Payments by Fortumo" border="0" />
+				</a><br/>
+			</div>
+			<div class="info-box">
+				SMS.<br/>
+				<b>ALL CURRENCIES</b>
+			</div>
+			<div class="info-box">
+				ALL COUNTRIES!
+			</div>
+		</div>
+	{% endif %}
+	{% if enabled.cryptobox %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=cryptobox" title="Pay with Crypto Coins"><img class="floating-logo" src="images/shop-system/gourl.png" border="0" /></a><br/>
+			</div>
+			<div class="info-box">
+				<b>BitCoins</b>
+			</div>
+			<div class="info-box">
+				ALL COUNTRIES!
+			</div>
+		</div>
+	{% endif %}
+	{% if enabled.daopay %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=daopay" title="Gain with DaoPay (EUR)"><img class="floating-logo" src="images/shop-system/daopay.gif" border="0" /></a><br/>
+			</div>
+			<div class="info-box">
+				SMS, phone call.<br/>
+				<b>EUR</b>
+			</div>
+			<div class="info-box">
+				ALL COUNTRIES!
+			</div>
+		</div>
+	{% endif %}
+	{% if enabled.pagseguro %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=pagseguro" title="Pay with PagSeguro (BRL)"><img class="floating-logo" src="images/shop-system/pagseguro.png" style="width: 260px; heigth: 80px;" border="0" /></a><br/>
+			</div>
+			<div class="info-box">
+				<b>BRL</b>
+			</div>
+			<div class="info-box">
+				BRAZIL!
+			</div>
+		</div>
+	{% endif %}
+	{% if enabled.dotpay %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=dotpay" title="Zapłać poprzez SMS lub przelewem - POLSKA/POLAND (PLN)"><img class="floating-logo" src="images/shop-system/dotpay.png" border="0" /></a><br/>
+			</div>
+			<div class="info-box">
+				SMS, przelew.<br/>
+				<b>PLN</b><br/>
+				Dla graczy z Polski.
+			</div>
+			<div class="info-box">
+				ONLY POLAND!
+			</div>
+		</div>
+	{% endif %}
+</div>
+<style>
+.main-box {
+	margin: 0 auto;
+	 display: inline-block;
+    height: 100%;
+}
+.floating-box {
+	float: left;
+	margin-left: 30px;
+}
+.floating-logo-box {
+	height: 120px;
+	line-height:8em;
+}
+.floating-logo {
+	vertical-align: bottom;
+}
+.info-box {
+	height: 70px;
+	text-align: center;
+}
+</style>
