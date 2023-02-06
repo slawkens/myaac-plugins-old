@@ -1,7 +1,9 @@
 {
-	"name": "houses-actions",
-	"description": "This is Houses Actions script for MyAAC that works only on TFS 1.x and higher.",
+	"name": "Gesior Houses Actions",
+	"description": "This is Houses Actions script taken from Gesior for MyAAC that works only on TFS 1.x and higher.",
 	"version": "1.0-beta",
+	"type": "page",
+	"license": "GPLv3",
 	"author": "gesior, slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {
