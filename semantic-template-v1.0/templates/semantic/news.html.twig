@@ -1,0 +1,8 @@
+<div class="ui hidden divider"></div>
+<h2 class="ui large header">
+	<div class="content">{{ title}}</div>
+	<div class="sub header">
+		{{ date|date(news_date_format) }} by {% if author is not empty %} by <a href="{{ getLink('characters/' ~ author) }}">{{ author }}</a>{% endif %}
+	</div>
+</h2>
+{{ content|raw }}

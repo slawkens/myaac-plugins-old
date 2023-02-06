@@ -1,0 +1,14 @@
+{
+	"name": "ShadowCores Template",
+	"description": "This is ShadowCores template for MyAAC.",
+	"version": "1.2",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "Webo (modified by slawkens)",
+	"contact": "otland.net",
+	"uninstall": [
+		"plugins/ShadowCores-template.json",
+		"plugins/ShadowCores-template",
+		"templates/ShadowCores"
+	]
+}

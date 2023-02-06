@@ -1,0 +1,20 @@
+{
+	"name": "Welcome Box",
+	"description": "Shows Welcome Box with information like guilds, houses, players on the front page (news).",
+	"version": "1.0",
+	"author": "slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.5.0"
+	},
+	"hooks": {
+		"Welcome Box": {
+			"type": "BEFORE_PAGE",
+			"file": "plugins/welcome-box/welcome-box.php"
+		}
+	},
+	"uninstall": [
+		"plugins/welcome-box.json",
+		"plugins/welcome-box"
+	]
+}

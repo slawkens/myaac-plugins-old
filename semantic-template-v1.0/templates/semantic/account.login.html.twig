@@ -1,0 +1,49 @@
+Please enter your account {{ account|lower }} and your password.<br/>
+<a href="{{ getLink('account/create') }}">Create an account</a> if you do not have one yet.<br/><br/>
+<form class="ui form" action="{{ getLink('account/manage') }}" method="post">
+	{% if redirect is not null %}
+		<input type="hidden" name="redirect" value="{{ redirect }}" />
+	{% endif %}
+	<div class="field">
+		{% if error is not null %}
+			<div class="field error">
+		{% endif %}
+				<label>Account {{ account }}:
+					<input type="text" name="account_login" size="30" maxlength="30" placeholder="Account {{ account }}" autofocus/>
+				</label>
+		{% if error is not null %}
+			</div>
+		{% endif %}
+	</div>
+	<div class="field">
+		{% if error is not null %}
+			<div class="field error">
+		{% endif %}
+				<label>Password:
+					<input type="password" name="password_login" size="30" placeholder="Password" maxlength="29"/>
+				</label>
+		{% if error is not null %}
+			</div>
+		{% endif %}
+	</div>
+	<div class="ui checkbox">
+		<input type="checkbox" id="remember_me" class="hidden" name="remember_me" value="true" />
+		<label for="remember_me"> Remember me</label>
+	</div>
+	<div class="ui hidden section divider"></div>
+	{% if error is not null %}
+		<div class="ui message error">{{ error }}</div>
+	{% endif %}
+	<div class="ui row">
+		{{ include('buttons.submit.html.twig') }}
+		<a class="ui button" href="{{ getLink('account/lost') }}">Account lost?</a>
+	</div>
+</form>
+
+<script>
+	$(function() {
+		$('.ui.checkbox')
+			.checkbox()
+		;
+	});
+</script>

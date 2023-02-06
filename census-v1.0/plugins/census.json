@@ -1,0 +1,7 @@
+{
+     "name": "Census",
+	 "description": "This is Census plugin for MyAAC. It display various statistics about the players and accounts.",
+     "version": "1.0",
+	 "author": "slawkens",
+	 "contact": "slawkens@gmail.com"
+ }

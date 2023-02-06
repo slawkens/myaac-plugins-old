@@ -1,0 +1,29 @@
+<h2 class="ui header">Last Kills</h2>
+<table class="ui celled striped table" style="width: 100%">
+	{% if lastkills|length <= 0 %}
+		<tr>
+			<td>
+				No one died on {{ config.lua.serverName }}
+			</td>
+		</tr>
+	{% else %}
+		{% for lastkill in lastkills %}
+		<tr>
+			<td class="centralizeContent" style="width: 30px">
+				{{ lastkill.id }}.
+			</td>
+			<td style="width: 125px">
+				<small>{{ lastkill.time|date("j.m.Y, G:i:s") }}</small>
+			</td>
+			<td>
+				{{ lastkill.killers_string|raw }}
+			</td>
+			{% if config.multiworld %}
+				<td>
+					{{ lastkill.world_id }}
+				</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	{% endif %}
+</table>
