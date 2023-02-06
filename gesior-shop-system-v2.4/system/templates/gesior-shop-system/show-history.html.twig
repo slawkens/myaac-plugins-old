@@ -1,0 +1,107 @@
+<div style="text-align: center"><h1>Transactions History</h1></div>
+
+<h2>Item transactions</h2>
+<table border=0 cellpadding="1" cellspacing="1" width=100%>
+	<tr bgcolor="{{ config.darkborder }}">
+		<td>
+			<b>To:</b>
+		</td>
+		<td>
+			<b>From:</b>
+		</td>
+		<td>
+			<b>Offer name</b>
+		</td>
+		<td>
+			<b>Bought on page</b>
+		</td>
+		<td>
+			<b>Received on OTS</b>
+		</td>
+	</tr>
+
+	{% for item_received in items_history if items_history is not empty %}
+		<tr bgcolor="{{ config.lightborder }}">
+			<td>
+				<span style="color: {% if logged_id == item_received['to_account'] %}green{% else %}red{% endif %}">{{ item_received.to_name }}</span>
+			</td>
+			<td>
+				{% if logged_id == item_received.from_account  %}
+					<i>Your account</i>
+				{% else %}
+					{{ item_received.from_nick }}
+				{% endif %}
+			</td>
+			<td>
+				{{ item_received.item_name.name }}
+			</td>
+			<td>
+				{{ item_received.trans_start|date("j F Y, H:i:s") }}
+			</td>
+			<td>
+				{% if item_received.trans_real and item_received.trans_real > 0 %}
+					{{ item_received.trans_real|date("j F Y, H:i:s") }}
+				{% else %}
+					<span style="color: red">Not realized yet.</span>
+				{% endif %}
+			</td>
+		</tr>
+	{% else %}
+		<tr>
+			<td colspan="5">
+				There wasn't item transactions yet.
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<h2>PACC transactions</h2>
+<table border=0 cellpadding="1" cellspacing="1" width=100%>
+	<tr bgcolor="{{ config.darkborder }}">
+		<td>
+			<b>To:</b>
+		</td>
+		<td>
+			<b>From:</b>
+		</td>
+		<td>
+			<b>Duration</b>
+		</td>
+		<td>
+			<b>Cost</b>
+		</td>
+		<td>
+			<b>Added</b>
+		</td>
+	</tr>
+
+	{% for pacc_received in paccs_history if paccs_history is not empty %}
+		<tr bgcolor="{{ config.lightborder }}">
+			<td>
+				<span style="color: {% if logged_id == pacc_received['to_account'] %}green{% else %}red{% endif %}">{{ pacc_received.to_name }}</span>
+			</td>
+			<td>
+				{% if logged_id == pacc_received.from_account  %}
+					<i>Your account</i>
+				{% else %}
+					{{ pacc_received.from_nick }}
+				{% endif %}
+			</td>
+			<td>
+				{{ pacc_received.pacc.days }}
+			</td>
+			<td>
+				{{ pacc_received.price }} Points
+			</td>
+			<td>
+				{{ pacc_received.trans_real|date("j F Y, H:i:s") }}
+			</td>
+		</tr>
+	{% else %}
+		<tr>
+			<td colspan="5">
+				There wasn't paccs transactions yet.
+			</td>
+		</tr>
+	{% endfor %}
+</table>
