@@ -1,0 +1,49 @@
+{
+	"name": "Google Recaptcha",
+	"description": "Support for Google Recaptcha.",
+	"version": "1.0",
+	"author": "MyAAC Authors",
+	"contact": "www.my-aac.org",
+	"hooks": {
+		"google-recaptcha-before-page": {
+			"type": "BEFORE_PAGE",
+			"file": "plugins/google-recaptcha/hooks/before-page.php"
+		},
+		"google-recaptcha-admin-before-page": {
+			"type": "ADMIN_BEFORE_PAGE",
+			"file": "plugins/google-recaptcha/hooks/before-page.php"
+		},
+		"google-recaptcha-after-passwords": {
+			"type": "ACCOUNT_CREATE_AFTER_PASSWORDS",
+			"file": "plugins/google-recaptcha/hooks/display-recaptcha.php"
+		},
+		"google-recaptcha-login-remember-me": {
+			"type": "ACCOUNT_LOGIN_AFTER_REMEMBER_ME",
+			"file": "plugins/google-recaptcha/hooks/display-recaptcha.php"
+		},
+		"google-recaptcha-admin-after-password": {
+			"type": "ADMIN_LOGIN_AFTER_PASSWORD",
+			"file": "plugins/google-recaptcha/hooks/display-recaptcha.php"
+		},
+		"google-recaptcha-login-post": {
+			"type": "ACCOUNT_LOGIN_POST",
+			"file": "plugins/google-recaptcha/hooks/account-login-post.php"
+		},
+		"google-recaptcha-create-post": {
+			"type": "ACCOUNT_CREATE_POST",
+			"file": "plugins/google-recaptcha/hooks/account-create-post.php"
+		},
+		"google-recaptcha-admin-head-end": {
+			"type": "ADMIN_HEAD_END",
+			"file": "plugins/google-recaptcha/hooks/admin-head-body.php"
+		},
+		"google-recaptcha-admin-body-end": {
+			"type": "ADMIN_BODY_END",
+			"file": "plugins/google-recaptcha/hooks/admin-head-body.php"
+		}
+	},
+	"uninstall": [
+		"plugins/google-recaptcha.json",
+		"plugins/google-recaptcha"
+	]
+}
