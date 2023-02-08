@@ -11,7 +11,7 @@
 defined('MYAAC') or die('Direct access not allowed!');
 $title = 'Gifts';
 
-require_once(LIBS . 'shop-system.php');
+require_once(PLUGINS . 'gesior-shop-system/libs/shop-system.php');
 require_once(PLUGINS . 'gesior-shop-system/config.php');
 
 if(!$config['gifts_system']) {
@@ -168,7 +168,7 @@ if(!empty($action)) {
     } else {
         $offers_fetch = GesiorShop::getOffers();
         if(!empty($offers_fetch)) {
-            $mount_image = 'images/shop-system/mounts_category.png';
+            $mount_image = BASE_URL . 'plugins/gesior-shop-system/images/mounts_category.png';
 
             foreach($offers_fetch as $id => $item) {
                 $item_type = $item['type'];
@@ -198,7 +198,7 @@ if(!empty($action)) {
         }
     }
 
-	$twig->display('/gesior-shop-system/gifts.html.twig', array(
+	$twig->display('gesior-shop-system/templates/gifts.html.twig', array(
 	    'title' => $title,
 		'logged' => !empty($logged) ? $logged : null,
 		'user_premium_points' => $user_premium_points,

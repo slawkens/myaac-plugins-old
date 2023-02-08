@@ -12,9 +12,9 @@ defined('MYAAC') or die('Direct access not allowed!');
 if(!$logged) {
 	$was_before = $config['friendly_urls'];
 	$config['friendly_urls'] = true;
-	
+
 	echo 'To buy points you need to be logged. ' . generateLink(getLink('?subtopic=accountmanagement') . '&redirect=' . urlencode(BASE_URL . '?subtopic=points&system=paypal'), 'Login') . ' first to make a donate.';
-	
+
 	$config['friendly_urls'] = $was_before;
 	return;
 }
@@ -43,10 +43,10 @@ if(empty($config['paypal']['contact_email'])) {
 }
 
 if($config['paypal']['terms'] && !isset($_REQUEST['agree'])) {
-	$twig->display('gesior-shop-system/paypal-terms.html.twig');
+	$twig->display('gesior-shop-system/templates/paypal-terms.html.twig');
 }
 else {
-	$twig->display('gesior-shop-system/paypal.html.twig', array('is_localhost' => $is_localhost));
+	$twig->display('gesior-shop-system/templates/paypal.html.twig', array('is_localhost' => $is_localhost));
 }
 
 $config['friendly_urls'] = $was_before;

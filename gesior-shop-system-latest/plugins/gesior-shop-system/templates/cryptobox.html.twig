@@ -9,7 +9,7 @@
 	</tr>
 	{% set i = 1 %}
 	{% for price, points in config.cryptobox.options %}
-	<tr bgcolor="{{ getStyle(i) }}"><td>{{ price }} $</td><td><img src="images/content/bullet.gif"> {{ points }} Points</td></tr>
+	<tr bgcolor="{{ getStyle(i) }}"><td>{{ price }} $</td><td><img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/content/bullet.gif"> {{ points }} Points</td></tr>
 	{% set i = i + 1 %}
 	{% endfor %}
 	</tbody>

@@ -23,7 +23,7 @@ if(!$logged) {
 }
 
 require_once(PLUGINS . 'gesior-shop-system/config.php');
-require_once(PLUGINS . 'gesior-shop-system/PagSeguroLibrary/PagSeguroLibrary.php');
+require_once(PLUGINS . 'gesior-shop-system/libs/PagSeguroLibrary/PagSeguroLibrary.php');
 
 $paymentRequest = new PagSeguroPaymentRequest();
 $paymentRequest->addItem('1', $config['pagseguro']['productName'], $_POST['itemCount'], $config['pagseguro']['productValue']);

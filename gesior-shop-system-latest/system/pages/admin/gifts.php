@@ -9,7 +9,7 @@
  */
 defined('MYAAC') or die('Direct access not allowed!');
 $title = 'Gifts';
-require_once LIBS . 'shop-system.php';
+require_once PLUGINS . 'gesior-shop-system/libs/shop-system.php';
 
 if(!empty($action)) {
     $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
@@ -25,7 +25,7 @@ if(!empty($action)) {
             }
         }
 
-        $twig->display('gesior-shop-system/admin-offers-add.html.twig', array(
+        $twig->display('gesior-shop-system/templates/admin-offers-add.html.twig', array(
             'categories' => $categories
         ));
     } elseif($action == 'add') {
@@ -153,6 +153,6 @@ if(!empty($offers_fetch)) {
     }
 }
 
-$twig->display('gesior-shop-system/admin-offers.html.twig', array(
+$twig->display('gesior-shop-system/templates/admin-offers.html.twig', array(
     'offers' => $offers
 ));

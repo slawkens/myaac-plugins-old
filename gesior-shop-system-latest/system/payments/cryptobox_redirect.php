@@ -28,7 +28,7 @@ else {
 	}
 }
 
-require_once(LIBS . "cryptobox.class.php" );
+require_once(PLUGINS . 'gesior-shop-system/libs/cryptobox.class.php');
 // List of coins that you accept for payments
 // For example, for accept payments in bitcoins, dogecoins use - $available_payments = array('bitcoin', 'dogecoin');
 $available_payments = $config['cryptobox']['available_payments'];

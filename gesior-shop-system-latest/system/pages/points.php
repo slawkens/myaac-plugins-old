@@ -10,7 +10,7 @@
 defined('MYAAC') or die('Direct access not allowed!');
 $title = 'Points';
 
-require_once(LIBS . 'shop-system.php');
+require_once(PLUGINS . 'gesior-shop-system/libs/shop-system.php');
 require_once(PLUGINS . 'gesior-shop-system/config.php');
 $twig->addGlobal('config', $config);
 
@@ -71,7 +71,7 @@ if(isset($_GET['system'])) {
 	}
 }
 else {
-	echo $twig->render('gesior-shop-system/points.html.twig', array('enabled' => $enabled));
+	echo $twig->render('gesior-shop-system/templates/points.html.twig', array('enabled' => $enabled));
 }
 ?>
 <script type="text/javascript">

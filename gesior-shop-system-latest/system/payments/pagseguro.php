@@ -35,9 +35,9 @@ if(empty($action)) {
 		$config['friendly_urls'] = $was_before;
 	}
 	else {
-		echo $twig->render('gesior-shop-system/pagseguro.html.twig', array('is_localhost' => $is_localhost));
+		echo $twig->render('gesior-shop-system/templates/pagseguro.html.twig', array('is_localhost' => $is_localhost));
 	}
 }
 elseif($action == 'final') {
-	echo $twig->render('gesior-shop-system/donate-final.html.twig');
+	echo $twig->render('gesior-shop-system/templates/donate-final.html.twig');
 }

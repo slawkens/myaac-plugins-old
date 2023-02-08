@@ -24,6 +24,6 @@ if($is_localhost) {
 }
 
 if(empty($action)) {
-	echo $twig->render('gesior-shop-system/cryptobox.html.twig', array('is_localhost' => $is_localhost));
+	echo $twig->render('gesior-shop-system/templates/cryptobox.html.twig', array('is_localhost' => $is_localhost));
 }
 

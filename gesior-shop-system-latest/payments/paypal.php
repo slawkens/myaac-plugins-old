@@ -11,7 +11,7 @@
 require_once '../common.php';
 require_once SYSTEM . 'functions.php';
 require_once SYSTEM . 'init.php';
-require_once LIBS . 'shop-system.php';
+require_once PLUGINS . 'gesior-shop-system/libs/shop-system.php';
 require_once PLUGINS . 'gesior-shop-system/config.php';
 
 if(!isset($config['paypal']) || !count($config['paypal']) || !count($config['paypal']['options']))
@@ -19,7 +19,7 @@ if(!isset($config['paypal']) || !count($config['paypal']) || !count($config['pay
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
-require LIBS . 'paypal.php';
+require PLUGINS . 'gesior-shop-system/libs/paypal.php';
 $ipn = new PaypalIPN();
 
 // Use the sandbox endpoint during testing.

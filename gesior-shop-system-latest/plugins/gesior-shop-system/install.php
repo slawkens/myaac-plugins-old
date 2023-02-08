@@ -64,7 +64,7 @@ if($db->select(TABLE_PREFIX . 'admin_menu', ['name' => 'Gifts']) === false) {
 	$db->query("INSERT INTO `" . TABLE_PREFIX . "admin_menu` (`name`, `page` ,`ordering` ,`flags` ,`enabled`) VALUES ('Gifts', 'gifts', '0', '0', '1')");
 }
 
-if(!@copy('https://curl.se/ca/cacert.pem', LIBS . 'cert/cacert.pem')) {
+if(!@copy('https://curl.se/ca/cacert.pem', PLUGINS . 'gesior-shop-system/libs/' . 'cert/cacert.pem')) {
 	$errors = error_get_last();
 	error($errors['type'] . "<br />\n" . $errors['message']);
 } else {

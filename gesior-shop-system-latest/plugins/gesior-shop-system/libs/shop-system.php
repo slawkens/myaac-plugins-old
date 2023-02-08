@@ -98,7 +98,7 @@ class GesiorShop {
             }
         }
 
-        $twig->display('/gesior-shop-system/select-player.html.twig', array(
+        $twig->display('gesior-shop-system/templates/select-player.html.twig', array(
             'buy_offer' => $buy_offer,
             'buy_id' => $buy_id,
             'account_players' => $account_players,
@@ -182,7 +182,7 @@ class GesiorShop {
         }
 
         if(empty($errors)) {
-            $twig->display('/gesior-shop-system/confirm-transaction.html.twig', array(
+            $twig->display('gesior-shop-system/templates/confirm-transaction.html.twig', array(
                 'show_confirmation_page' => (!$viewed_confirmation_page || !$buy_confirmed) ? true : false,
                 'buy_offer' => $buy_offer,
                 'buy_player_name' => $buy_player->getName(),
@@ -224,7 +224,7 @@ class GesiorShop {
         global $twig;
 
         list($items_history, $paccs_history) = self::fetchHistory($account);
-        $twig->display('/gesior-shop-system/show-history.html.twig', array(
+        $twig->display('gesior-shop-system/templates/show-history.html.twig', array(
             'logged_id' => !empty($account) ? $account->getId() : null,
             'items_history' => $items_history,
             'paccs_history' => $paccs_history
