@@ -30,7 +30,7 @@ else {
 
 require_once(LIBS . "cryptobox.class.php" );
 // List of coins that you accept for payments
-// For example, for accept payments in bitcoins, dogecoins use - $available_payments = array('bitcoin', 'dogecoin'); 
+// For example, for accept payments in bitcoins, dogecoins use - $available_payments = array('bitcoin', 'dogecoin');
 $available_payments = $config['cryptobox']['available_payments'];
 
 // Goto  https://gourl.io/info/memberarea/My_Account.html
@@ -43,15 +43,15 @@ $def_payment = $config['cryptobox']['default_payment'];
 /********************************/
 
 
-// Re-test - that all keys for $available_payments added in $all_keys 
-if (!in_array($def_payment, $available_payments)) $available_payments[] = $def_payment;  
+// Re-test - that all keys for $available_payments added in $all_keys
+if (!in_array($def_payment, $available_payments)) $available_payments[] = $def_payment;
 foreach($available_payments as $v)
 {
-	if (!isset($all_keys[$v]["public_key"]) || !isset($all_keys[$v]["private_key"])) 
+	if (!isset($all_keys[$v]["public_key"]) || !isset($all_keys[$v]["private_key"]))
 		die("Please add your public/private keys for '$v' in \$all_keys variable");
 	elseif (!strpos($all_keys[$v]["public_key"], "PUB"))  die("Invalid public key for '$v' in \$all_keys variable");
 	elseif (!strpos($all_keys[$v]["private_key"], "PRV")) die("Invalid private key for '$v' in \$all_keys variable");
-	elseif (strpos(CRYPTOBOX_PRIVATE_KEYS, $all_keys[$v]["private_key"]) === false) 
+	elseif (strpos(CRYPTOBOX_PRIVATE_KEYS, $all_keys[$v]["private_key"]) === false)
 		die("Please add your private key for '$v' in variable \$cryptobox_private_keys, file cryptobox.config.php.");
 }
 
@@ -84,36 +84,36 @@ $options = array(
 $box = new Cryptobox ($options);
 
 // coin name
-$coinName = $box->coin_name(); 
+$coinName = $box->coin_name();
 
 // Successful Cryptocoin Payment received
-if ($box->is_paid()) 
+if ($box->is_paid())
 {
 	// Optional - use IPN (instant payment notification) function cryptobox_new_payment() for update db records, etc
-	// IPN description: https://gourl.io/api-php.html#ipn 	
+	// IPN description: https://gourl.io/api-php.html#ipn
 
 	if (!$box->is_confirmed()) {
 		$message =  "Thank you for payment (payment #".$box->payment_id()."). Awaiting transaction/payment confirmation";
-	}											
-	else 
+	}
+	else
 	{ // payment confirmed (6+ confirmations)
 
 		// one time action
 		if (!$box->is_processed())
 		{
 			// One time action after payment has been made/confirmed
-			 
+
 			$message = "Thank you for order (order #".$orderID.", payment #".$box->payment_id()."). We will send soon";
-			
+
 			// Set Payment Status to Processed
-			$box->set_status_processed();  
+			$box->set_status_processed();
 		}
 		else $message = "Thank you. Your order is in process"; // General message
 	}
 }
 else $message = "This invoice has not been paid yet";
 ?>
-<script src='tools/cryptobox.min.js' type='text/javascript'></script>
+<script src='<?= BASE_URL; ?>plugins/gesior-shop-system/assets/cryptobox.min.js' type='text/javascript'></script>
 <!--body style='font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#666;margin:0'-->
 <div align='center'>
 	<div style='margin:30px 0 5px 300px'>Language: &#160; <?= $languages_list ?></div>
