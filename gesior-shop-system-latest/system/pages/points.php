@@ -64,7 +64,7 @@ if(isset($_GET['system'])) {
 		error('Error: System contains illegal characters.');
 	}
 	else {
-		$file = SYSTEM . 'payments/' . $to_load . '.php';
+		$file = PAGES . 'payments/' . $to_load . '.php';
 		if(file_exists($file) && $enabled[$system]) {
 			require($file);
 		}
