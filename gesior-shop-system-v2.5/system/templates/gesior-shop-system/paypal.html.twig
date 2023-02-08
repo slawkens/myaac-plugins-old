@@ -1,0 +1,39 @@
+<b>Automatic PayPal Donation System.</b><br><br>
+The donation costs:
+<ul>
+	{% set options = config.paypal.options %}
+	{% for cost, points in options %}
+		<li>{{ cost ~ ' ' ~ config.paypal.currency_code }} (for {{ points }} points)</li>
+	{% endfor %}
+</ul>
+<br/>
+<b>Here are the steps you need to make:</b> <br>
+1. You need a valid creditcard <b>or</b> a PayPal account with a required balance. <br>
+2. Fill in your account name. <br>
+3. Click on the donate button. <br>
+4. Make a transaction. <br>
+5. After the transaction points will be automatically added to your account.<br>
+6. Go to Item shop and use your points!<br/>
+<b>7. If something goes wrong, or you have any questions - please contact us at {{ config.paypal.contact_email }}</b>
+<br/><br/>
+
+<form action="https://www.{% if config.paypal.use_sandbox %}sandbox.{% endif %}paypal.com/cgi-bin/webscr" method="post">
+	<input type="hidden" name="cmd" value="{{ config.paypal.payment_type }}">
+	<input type="hidden" name="business" value="{{ config.paypal.email }}">
+	<input type="hidden" name="item_name" value="{{ config.paypal.item_name }}">
+	<input type="hidden"  name="custom" {% if logged %} value="{{ account_logged.getId() }}"{% endif %}/>
+	<b>Account:</b> <input type="text"  name="account" value="{% if constant('USE_ACCOUNT_NAME') %}{{ account_logged.getName() }}{% else %}{{ account_logged.getId() }}{% endif %}" disabled/>
+	<select name="amount">
+		{% for cost, points in options %}
+			<option value="{{ cost }}">{{ cost ~ ' ' ~ config.paypal.currency_code }}</option>
+		{% endfor %}
+	</select>
+	<input type="hidden" name="lc" value="GB"/>
+	<input type="hidden" name="currency_code" value="{{ config.paypal.currency_code }}"/>
+	<input type="hidden" name="no_shipping" value="1"/>
+	<input type="hidden" name="notify_url" value="{{ constant('BASE_URL') }}payments/paypal.php"/>
+	<input type="hidden" name="return" value="{{ constant('BASE_URL') }}"/>
+	<input type="hidden" name="rm" value="0"/>
+	<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" {% if is_localhost %}disabled{% endif %}/>
+	<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>

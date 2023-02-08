@@ -1,0 +1,99 @@
+<style>
+	.offer_container {
+		text-align: center;
+	}
+
+	.offer_type {
+		padding: 5px 5px 1px 5px;
+		margin: 5px 1px 0 1px;
+		background-color: #303030;
+		color: #FFFFFF !important;
+	}
+
+	.offer_table {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.offer_table tr td {
+		text-align: center;
+	}
+</style>
+
+<div style="text-align: center"><h1>{{ title }}</h1></div>
+<div style="float:right;">
+	<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
+</div>
+<br/><br/>
+
+<div class="offer_container">
+	{% if warning is defined %}
+		{{ warning }}
+	{% endif %}
+
+	{% for offer_type, offer_name in offer_types %}
+		<a class="offer_type" href="?subtopic=gifts&offertype={{ offer_type }}"{% if get_offer_type == offer_type %} style="background-color: #505050"{% endif %}>{{ offer_name }}</a>
+	{% endfor %}
+
+	<table class="offer_table" border="0" cellpadding="1" cellspacing="1" width="550">
+		<tr width="650" bgcolor="{{ config.vdarkborder }}">
+			<td colspan="4"></td>
+		</tr>
+
+		<tr bgcolor="{{ config.darkborder }}">
+			<td width="50"><b>Picture</b></td>
+			<td width="350" style="text-align: left"><b>Description</b></td>
+			<td width="50"><b>Points</b></td>
+			<td width="100"><b>Select product</b></td>
+		</tr>
+
+		{% for offer in offers_fetch if offer.type == get_offer_type %}
+			<tr bgcolor="{{ config.lightborder }}">
+				<td>
+					{% if offer.type == "item" or offer.type == "container" %}
+						{{ offer.item_img|raw }}
+						{% if offer.container_img is not empty %}
+							{{ offer.container_img|raw }}
+						{% endif %}
+					{% elseif offer.type == "pacc" %}
+						<img src="images/shop-system/PremiumTime.png" alt="Premium Time"/>
+					{% elseif offer.type == "mount" %}
+						<img src="{{ offer.mount_img_dir }}" alt="Mount"/>
+					{% elseif offer.type == "addon" %}
+						<table>
+							<tr>
+								<td>
+									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_male }}&addons={{ offer.addons_male }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
+								</td>
+								<td>
+									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_female }}&addons={{ offer.addons_female }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
+								</td>
+							</tr>
+						</table>
+					{% endif %}
+				</td>
+				<td style="text-align: left">
+					<b>{{ offer.name }}</b><br/>
+					{{ offer.description|raw }}
+				</td>
+				<td>{{ offer.points }}</td>
+				<td>
+					{% if logged %}
+						<form action="?subtopic=gifts&action=select_player" method="post">
+							<input type="hidden" name="buy_id" value="{{ offer.id }}">
+							<input type="submit" value="Buy">
+						</form>
+					{% else %}
+						<b>Login to buy</b>
+					{% endif %}
+				</td>
+			</tr>
+		{% else %}
+			{% if offer_types[get_offer_type] %}
+				<td style="text-align: left" colspan="4">There is no offer here.</td>
+			{% else %}
+				<td style="text-align: left" colspan="4">This offer type doesn't exist. Please specify different name.</td>
+			{% endif %}
+		{% endfor %}
+	</table>
+</div>

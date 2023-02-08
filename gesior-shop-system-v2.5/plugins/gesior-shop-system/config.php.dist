@@ -99,3 +99,28 @@ $config['pagseguro'] = array(
 		'60,00' => 60,
 	)
 );
+
+/**
+ * dotpay.pl configuration
+ */
+$config['dotpay'] = array(
+	'enabled' => true,
+	'id' => 30722,							# numer ID zarejestrowanego klienta
+	'contact_email' => 'przyklad@twoja-domena.pl',
+	'options' => array(
+		array( # SMS 3,66 zł
+			'code' => "SLASKI",				# identyfikator uslug SMS
+			'type' => "sms",				# typ konta: C1 - 8 znakowy kod bezobslugowy, sms - dla sprawdzania SMSow
+			'points' => 25,					# ile premium punktow daje dany sms
+			'sms_number' => 73068,			# numer na jaki nalezy wyslac kod
+			'sms_text' => "AP.SLASKI",		# tresc jaka ma byc w SMSie
+			'cost' => "3.66 zł brutto"		# cena za wyslanie sms
+		),
+		array( # Przelew 20zł
+			'code' => "SLASKI4",
+			'type' => "C1",
+			'points' => 350,
+			'cost' => "20 zł brutto"
+		)
+	)
+);
