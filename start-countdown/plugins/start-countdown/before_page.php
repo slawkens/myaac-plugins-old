@@ -43,7 +43,7 @@ $time = explode(':', trim($tmp[1]));
 ob_start();
 ?>
 
-<div id="defaultCountdownParent">Server starts in: <div id="defaultCountdown"></div></div><br/>
+<div id="defaultCountdownParent"><h1>Server starts in:</h1> <div id="defaultCountdown"></div></div><br/>
 <script type="text/javascript">
 function startAlert()
 {
