@@ -1,0 +1,14 @@
+[1.2 - 18.01.2021]
+	* fix incorrect timezone detection
+	* fix working on Safari and iOS browsers
+	* add highlight if under 10 seconds to start the server
+	* new format of the config datetime (30.01.2021 23:52:00) (day.month.year hour:min:sec)
+	* move js files to tools/plugins folder (ignore by myaac)
+
+[1.1 - 03.02.2020]
+	* Add uninstall option
+	* Add some space between counter and other elements on the website
+	* Add this CHANGELOG and LICENSE
+
+[1.0 - 17.05.2017]
+	* initial release

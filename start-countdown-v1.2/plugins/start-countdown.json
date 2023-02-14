@@ -1,0 +1,23 @@
+{
+	"name": "Start Countdown",
+	"description": "This is Start Countdown plugin for MyAAC.",
+	"version": "1.2",
+	"type": "plugin",
+	"license": "GPLv3",
+	"author": "slawkens",
+	"contact": "slawkens@gmail.com",
+	"require": {
+		"myaac": "0.5.0"
+	},
+	"hooks": {
+		"Start Countdown": {
+			"type": "BEFORE_PAGE",
+			"file": "plugins/start-countdown/before_page.php"
+		}
+	},
+	"uninstall": [
+		"plugins/start-countdown.json",
+		"plugins/start-countdown",
+		"tools/plugins/start-countdown"
+	]
+}
