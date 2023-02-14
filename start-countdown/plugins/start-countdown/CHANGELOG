@@ -1,3 +1,6 @@
+[1.3 - 14.02.2023]
+	* move assets to plugins folder
+
 [1.2 - 18.01.2021]
 	* fix incorrect timezone detection
 	* fix working on Safari and iOS browsers

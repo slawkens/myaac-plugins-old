@@ -27,9 +27,9 @@ $template_place_holders['head_end'][] = '
 #defaultCountdown { width: 240px; height: 45px; }
 .highlight { color: #f00; }
 </style>
-<link rel="stylesheet" href="' . BASE_URL . 'tools/plugins/start-countdown/jquery.countdown.css">
-<script type="text/javascript" src="' . BASE_URL . 'tools/plugins/start-countdown/jquery.plugin.min.js"></script>
-<script type="text/javascript" src="' . BASE_URL . 'tools/plugins/start-countdown/jquery.countdown.min.js"></script>
+<link rel="stylesheet" href="' . BASE_URL . 'plugins/start-countdown/assets/jquery.countdown.css">
+<script type="text/javascript" src="' . BASE_URL . 'plugins/start-countdown/assets/jquery.plugin.min.js"></script>
+<script type="text/javascript" src="' . BASE_URL . 'plugins/start-countdown/assets/jquery.countdown.min.js"></script>
 
 <noscript>
 	Server starting at ' . $config['start-countdown']['date'] . '
