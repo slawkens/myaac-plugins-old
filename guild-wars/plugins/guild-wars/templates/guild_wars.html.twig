@@ -1,0 +1,188 @@
+{% set isWarsPage = (constant('PAGE') == 'wars') %}
+
+{% if isWarsPage %}
+To invite guild to war use your guild page.<br/><br/>
+{% endif %}
+
+<script type="text/javascript">
+	function show_hide(flip)
+	{
+		var tmp = document.getElementById(flip);
+		if(tmp) {
+			tmp.style.display = tmp.style.display === 'none' ? '' : 'none';
+		}
+	}
+</script>
+
+<div class="TableContainer">
+	<div class="CaptionContainer">
+		<div class="CaptionInnerContainer">
+			<span class="CaptionEdgeLeftTop" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
+			<span class="CaptionEdgeRightTop" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
+			<span class="CaptionBorderTop" style="background-image:url({{ template_path }}/images/content/table-headline-border.gif);"></span>
+			<span class="CaptionVerticalLeft" style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></span>
+			<div class="Text">Guild Wars</div>
+			<span class="CaptionVerticalRight" style="background-image:url({{ template_path }}/images/content/box-frame-vertical.gif);"></span>
+			<span class="CaptionBorderBottom" style="background-image:url({{ template_path }}/images/content/table-headline-border.gif);"></span>
+			<span class="CaptionEdgeLeftBottom" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
+			<span class="CaptionEdgeRightBottom" style="background-image:url({{ template_path }}/images/content/box-frame-edge.gif);"></span>
+		</div>
+	</div>
+
+	<table class="Table3" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>
+			<td>
+				<div class="InnerTableContainer">
+					<table style="width:100%;">
+						<tbody>
+						<tr>
+							<td>
+								{% if logged and isLeader and not isWarsPage %}
+									<a href="{{ getLink('guilds/wars/chooseEnemy') }}?guild={{ guild.getId() }}"><b>Click here to start new war</b></a> - only guild leader can invite other guild to war.<br/><br/>
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="TableContentContainer">
+									<table class="TableContent" width="100%">
+										{% if wars|length > 0 %}
+										<tr style="text-align: center; background: {{ config.vdarkborder }}">
+											<td style="width: 150px" class="white"><b>Aggressor</b></td>
+											<td class="white"><b>Information</b></td>
+											<td style="width: 150px" class="white"><b>Enemy</b></td>
+										</tr>
+										{% set i = 0 %}
+										{% for war in wars %}
+											{% set i = i + 1 %}
+											<tr style="background: {{ getStyle(i) }}">
+												<td align="center"><a href="{{ getGuildLink(war.guild1, false) }}"><img src="{{ war.guildLogoPath1 }}" width="64" height="64" border="0" alt="{{ war.name1 }} Logo"/><br />{{ war.name1 }}</a></td>
+
+												<td align="center">
+													{% if war.status == 0 %}
+														{% if isWarsPage %}
+
+															<span style="color: black"><b>Pending acceptation</b>
+																<br/>
+																{% if war.started is defined %}
+																Invited on {{ war.started|date("M d Y, H:i:s") }} for {{ ((war.ended - war.started) / 86400) }} days.
+																{% elseif war.declaration_date is defined %}
+																	Invited on {{ war.declaration_date|date("M d Y, H:i:s") }} for {{ war.frag_limit }} frags war.
+																{% endif %}
+																<br/>
+																<br/><br/>
+															</span>
+
+														{% else %}
+
+															<font color="black"><b>Pending acceptation</b><br/>
+																{% if war.started is defined %}
+																	Invited on {{ war.started|date("M d Y, H:i:s") }} for 7 days war.
+																{% elseif war.declaration_date is defined %}
+																	Invited on {{ war.declaration_date|date("M d Y, H:i:s") }} for {{ war.frag_limit }} frags war. The bounty for this war is set to {{ war.bounty }} gold coins.
+																{% endif %}
+
+																<br/>
+
+																{% if isLeader and war.guild2 == guild.getId() %}
+																	<br />
+																	<a href="{{ getLink('guilds/wars/invitationAccept') }}?guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want ACCEPT that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: lime;">accept</span> invitation to war &laquo;</a>
+																	<br/><br/>
+																	<a href="{{ getLink('guilds/wars/invitationReject') }}?guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want REJECT that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">reject</span> invitation to war &laquo;</a>
+																{% endif %}
+
+																{% if isLeader and war.guild1 == guild.getId() %}
+																<br /><br /><a href="{{ getLink('guilds/wars/invitationCancel') }}?guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want CANCEL that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">cancel</span> invitation to war &laquo;</a>
+																{% endif %}
+															</font>
+
+														{% endif %}
+
+													{% elseif war.status == 1 %}
+
+														<span style="font-size: 12px">
+															<span style="color: red;">{{ war.guild1_kills }}</span>
+															<span style="color: black"> : </span><span style="color: lime;">{{ war.guild2_kills }}</span>
+														</span><br/>
+														<br/>
+														<span style="color: darkred; font-weight: bold;">On a brutal war</span><br/>
+
+														{% if war.started is defined %}
+															<span style="color: black">Began on {{ war.started|date("M d Y, H:i:s") }}, will end up after server restart after {{ (war.started + (7 * 86400))|date("M d Y, H:i:s") }}.<br/>
+															</span>
+														{% elseif war.declaration_date is defined %}
+															<span style="color: black">Began on {{ war.declaration_date|date("M d Y, H:i:s") }}, will end up after {{ war.frag_limit }} frags.<br/>
+															</span>
+														{% endif %}
+
+														<br/><br/>
+														{% if war.status in [1, 4] %}
+															<a onclick="show_hide('war-details:{{ war.id }}'); return false;" style="cursor: pointer;">&raquo; Details &laquo;</a>
+														{% endif %}
+
+													{% elseif war.status == 2 %}
+
+														<span style="color: black"><b>Rejected invitation</b><br />Invited on {{ war.started|date("M d Y, H:i:s") }}, rejected on {{ war.ended|date("M d Y, H:i:s") }}.{% if isWarsPage %}<br/><br/><br/>{% endif %}</span>
+
+													{% elseif war.status == 3 %}
+
+														<span style="color: black"><b>Canceled invitation</b><br />Sent invite on {{ war.started|date("M d Y, H:i:s") }}, canceled on {{ war.ended|date("M d Y, H:i:s") }}.{% if isWarsPage %}<br/><br/><br/>{% endif %}</span>
+
+													{% elseif war.status == 4 or war.status == 5 %}
+
+														{% if not isWarsPage %}
+															<span style="color: black">
+														{% endif %}
+
+															<b><i>Ended</i></b><br />
+															{% if war.started is defined %}
+																Began on {{ war.started|date("M d Y, H:i:s") }}, ended on {{ war.ended|date("M d Y, H:i:s") }}.
+															{% elseif war.declaration_date is defined %}
+																Began on {{ war.declaration_date|date("M d Y, H:i:s") }}.
+															{% endif %}
+															Frag statistics: <span style="color: red;">{{ war.guild1_kills }}</span> to <span style="color: lime;">{{ war.guild2_kills }}</span>.
+															<br/><br/>
+															{% if war.status in [1, 4] %}
+																<a onclick="show_hide('war-details:{{ war.id }}'); return false;" style="cursor: pointer;">&raquo; Details &laquo;</a>
+															{% endif %}
+
+														{% if not isWarsPage %}
+															</span>
+														{% endif %}
+													{% endif %}
+												</td>
+												<td align="center"><a href="{{ getGuildLink(war.guild2, false) }}"><img src="{{ war.guildLogoPath2 }}" width="64" height="64" border="0" alt="{{ war.name2 }} Logo"/><br/>{{ war.name2 }}</a></td>
+											</tr>
+											<tr id="war-details:{{ war.id }}" style="display: none; background: {{ getStyle(i) }}">
+												<td colspan="3">
+													{% if war.status in [1, 4] %}
+														{% if warFrags[war.id] is defined and warFrags[war.id]|length > 0 %}
+															{% for frag in warFrags[war.id] %}
+																{{ frag.time|date("j M Y, H:i") }} <span style="font-weight: bold; color: {% if frag.killerguild == war.guild1 %}red{% else %}lime{% endif %}">+</span><a href="{{ getPlayerLink(frag.killer, false) }}"><b>{{ frag.killer }}</b></a> killed <a href="{{ getPlayerLink(frag.target, false) }}"> {{ frag.target }}</a>
+															{% endfor %}
+														{% else %}
+															<center>There were no frags on this war so far.</center>
+														{% endif %}
+													{% endif %}
+												</td>
+											</tr>
+										{% endfor %}
+										{% else %}
+										<tr style="background: {{ config.darkborder }}">
+											<td colspan="3">Currently there are no active wars.</td>
+										</tr>
+										{% endif %}
+									</table>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<br/>

@@ -1,0 +1,23 @@
+<center>
+	<h1>{{ guild.getName() }} vs. ???</h1>
+</center>
+<br/>
+<h3>Choose your enemy!</h3><br/>
+
+{% if enemyGuilds|length > 0 %}
+<table style="width: 100%; border: none"  cellspacing="1" cellpadding="4">
+
+	{% set i = 0 %}
+	{% for enemyGuild in enemyGuilds %}
+		<tr style="background-color: {{ getStyle(i) }}">
+			<td style="width: 70px">
+				<img src="{{ enemyGuild.guild_logo_path }}" width="64" height="64" alt="">
+			</td>
+			<td valign="top"><b>{{ enemyGuild.guild.getName() }}</b></td>
+			<td>{{ enemyGuild.status|raw }}</td>
+		</tr>
+		{% set i = i + 1 %}
+	{% endfor %}
+
+</table>
+{% endif %}

@@ -1,0 +1,53 @@
+{
+	"name": "Guild Wars",
+	"description": "Support for Guild Wars.",
+	"version": "1.0",
+	"author": "Gesior, slawkens",
+	"contact": "www.my-aac.org",
+	"hooks": {
+		"guild-wars-guilds-after-invited-characters": {
+			"type": "GUILDS_AFTER_INVITED_CHARACTERS",
+			"file": "plugins/guild-wars/hooks/guilds-after-invited-characters.php"
+		}
+	},
+	"routes": {
+		"guild-wars-redirect": {
+			"redirect_from": "/guilds/wars",
+			"redirect_to": "/wars"
+		},
+		"guild-wars-page": {
+			"pattern": "/wars",
+			"file": "plugins/guild-wars/pages/wars.php",
+			"method": "get"
+		},
+		"guild-wars-choose-enemy": {
+			"pattern": "/guilds/wars/chooseEnemy",
+			"file": "plugins/guild-wars/pages/actions/choose_enemy.php",
+			"method": "get,post"
+		},
+		"guild-wars-invitation-accept": {
+			"pattern": "/guilds/wars/invitationAccept",
+			"file": "plugins/guild-wars/pages/actions/invitation_accept.php",
+			"method": "get,post"
+		},
+		"guild-wars-invitation-cancel": {
+			"pattern": "/guilds/wars/invitationCancel",
+			"file": "plugins/guild-wars/pages/actions/invitation_cancel.php",
+			"method": "get,post"
+		},
+		"guild-wars-invitation-reject": {
+			"pattern": "/guilds/wars/invitationReject",
+			"file": "plugins/guild-wars/pages/actions/invitation_reject.php",
+			"method": "get,post"
+		},
+		"guild-wars-invite-guild": {
+			"pattern": "/guilds/wars/inviteGuild",
+			"file": "plugins/guild-wars/pages/actions/invite_guild.php",
+			"method": "get,post"
+		}
+	},
+	"uninstall": [
+		"plugins/guild-wars.json",
+		"plugins/guild-wars"
+	]
+}
