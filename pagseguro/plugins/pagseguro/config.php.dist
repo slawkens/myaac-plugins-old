@@ -23,11 +23,11 @@ $config['pagSeguro'] = array(
 	'doublePoints' => false, // should points be doubled? for example: for 5 points donated you become 10.
 	'donationType' => 'points', // what should be added to player account? points/coins
 	'options' => array( // cost => points/coins
-		'5,00' => 5,
-		'10,00' => 10,
-		'20,00' => 20,
-		'40,00' => 40,
-		'60,00' => 60,
+		5 => 5,
+		10 => 10,
+		20 => 20,
+		40 => 40,
+		60 => 60,
 	)
 );
 ?>

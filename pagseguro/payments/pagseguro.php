@@ -38,7 +38,17 @@ if('post' == strtolower($method)) {
 			$arrayPDO['payment_method'] = $transaction->getPaymentMethod()->getType()->getTypeFromValue();
 			$arrayPDO['status'] = $transaction->getStatus()->getTypeFromValue();
 			$item = $transaction->getItems();
-			$arrayPDO['item_count'] = $item[0]->getQuantity();
+			$price = (int)$item[0]->getQuantity();
+
+			$options = config('pagSeguro')['options'];
+			if(!isset($options[$price])) {
+				log_append('pagseguro.log', "PagSeguro is not correctly configured. Please edit the configuration file. Info: option: '$price' does not exists.");
+				http_response_code(500);
+				die;
+			}
+
+			$arrayPDO['item_count'] = $options[$price];
+
 			$date_now = date('Y-m-d H:i:s');
 			$arrayPDO['data'] = $date_now;
 
@@ -53,12 +63,12 @@ if('post' == strtolower($method)) {
 					if ($config['pagSeguro']['doublePoints']) {
 						$arrayPDO['item_count'] = $arrayPDO['item_count'] * 2;
 					}
-					
+
 					$field = 'premium_points';
 					if(strtolower($config['pagSeguro']['donationType']) == 'coins') {
 						$field = 'coins';
 					}
-					
+
 					$stmt = $conn->prepare('UPDATE accounts SET ' . $field . ' = ' . $field . ' + :item_count WHERE ' . (USE_ACCOUNT_NAME ? 'name' : 'id') . ' = :account');
 					$stmt->execute(array('item_count' => $arrayPDO['item_count'], 'account' => $arrayPDO['account']));
 
@@ -66,9 +76,11 @@ if('post' == strtolower($method)) {
 					$stmt->execute(array('transaction_code' => $arrayPDO['transaction_code']));
 				}
 			} catch(PDOException $e) {
+				log_append('pagseguro.log', $e->getMessage());
 				echo 'ERROR: ' . $e->getMessage();
 			}
 		} catch(PagSeguroServiceException $e) {
+			log_append('pagseguro.log', $e->getMessage());
 			die($e->getMessage());
 		}
 	}

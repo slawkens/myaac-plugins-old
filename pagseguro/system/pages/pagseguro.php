@@ -11,8 +11,8 @@
 defined('MYAAC') or die('Direct access not allowed!');
 $title = 'PagSeguro payment';
 
-if(!isset($_POST['itemCount'])) {
-	echo 'Please enter item count.';
+if(!isset($_POST['amount'])) {
+	echo 'Please select amount.';
 	return;
 }
 if(!isset($_POST['reference'])) {
@@ -24,8 +24,8 @@ require_once(PLUGINS . 'pagseguro/config.php');
 require_once(PLUGINS . 'pagseguro/PagSeguroLibrary/PagSeguroLibrary.php');
 
 $paymentRequest = new PagSeguroPaymentRequest();
-$paymentRequest->addItem('1', $config['pagSeguro']['productName'], $_POST['itemCount'], $config['pagSeguro']['productValue']);
-$paymentRequest->setCurrency("BRL");
+$paymentRequest->addItem('1', $config['pagSeguro']['productName'], $_POST['amount'], $config['pagSeguro']['productValue']);
+$paymentRequest->setCurrency('BRL');
 $paymentRequest->setReference($_POST['reference']);
 $paymentRequest->setRedirectUrl(BASE_URL . $config['pagSeguro']['urlRedirect']);
 $paymentRequest->addParameter('notificationURL', BASE_URL . 'payments/pagseguro.php');

@@ -38,4 +38,10 @@ if(!extension_loaded('curl')) {
 	return;
 }
 
-?>
+if(!is_file(PLUGINS . 'pagseguro/config.php')) {
+	copy(
+		PLUGINS . 'pagseguro/config.php.dist',
+		PLUGINS . 'pagseguro/config.php'
+	);
+	success("Copied config.php.dist to config.php");
+}

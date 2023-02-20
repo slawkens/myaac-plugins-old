@@ -28,7 +28,13 @@
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td width="10%">Points</td>
-			<td><input name="itemCount" type="number" min="1" size="5" maxlength="5" required/></td>
+			<td>
+				<select name="amount" required>
+					{% for price, points in config.pagSeguro.options %}
+						<option value="{{ price }}">R${{ price }} - {{ points }} Points</option>
+					{% endfor %}
+				</select>
+			</td>
 		</tr>
 		<tr bgcolor="{{ config.darkborder }}">
 			<td colspan="2">
