@@ -13,8 +13,6 @@
 		"plugins/pagseguro",
 		"payments/pagseguro.php",
 		"system/pages/donate.php",
-		"system/pages/pagseguro.php",
-		"system/templates/donate.html.twig",
-		"system/templates/donate-final.html.twig"
+		"system/pages/pagseguro.php"
 	]
 }
