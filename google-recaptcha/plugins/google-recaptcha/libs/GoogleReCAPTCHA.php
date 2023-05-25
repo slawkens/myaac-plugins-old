@@ -18,10 +18,8 @@ class GoogleReCAPTCHA
 			return false;
 		}
 
-
-		$configRecaptcha = config('google_recaptcha');
 		$recaptchaApiUrl = 'https://www.google.com/recaptcha/api/siteverify';
-		$secretKey = $configRecaptcha['secret_key'];
+		$secretKey = setting('google_recaptcha.secret_key');
 
 		$recaptchaResponse = $_POST['g-recaptcha-response'];
 		$ip = $_SERVER['REMOTE_ADDR'];
@@ -43,7 +41,7 @@ class GoogleReCAPTCHA
 		}
 
 		$json = json_decode($response);
-		if ($configRecaptcha['type'] === 'v3') { // score based
+		if (setting('google_recaptcha.type') === 'v3') { // score based
 			//log_append('recaptcha.log', 'recaptcha_score: ' . $json->score . ', action:' . $json->action);
 
 			if (!isset($json->action) || $json->action !== $action) {
@@ -52,7 +50,7 @@ class GoogleReCAPTCHA
 				return false;
 			}
 
-			if (!isset($json->score) || $json->score < $configRecaptcha['recaptcha_v3_min_score']) {
+			if (!isset($json->score) || $json->score < setting('google_recaptcha.v3_min_score')) {
 				self::$errorType = self::ERROR_LOW_SCORE;
 				self::$errorMessage = 'Your Google ReCaptcha score was too low.';
 				return false;
@@ -80,5 +78,10 @@ class GoogleReCAPTCHA
 	 */
 	public static function getErrorType() {
 		return self::$errorType;
+	}
+
+	public static function enabled(): bool {
+		return (setting('google_recaptcha.enabled') && !empty(setting('google_recaptcha.site_key')) && !empty(setting
+			('google_recaptcha.secret_key')));
 	}
 }

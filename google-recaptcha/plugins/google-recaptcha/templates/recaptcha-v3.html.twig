@@ -1,7 +1,7 @@
 <script>
 	$(document).ready(function() {
 		grecaptcha.ready(function() {
-			grecaptcha.execute('{{ config.google_recaptcha.site_key }}', {action: '{{ action }}'}).then(function(token) {
+			grecaptcha.execute('{{ setting('google_recaptcha.site_key') }}', {action: '{{ action }}'}).then(function(token) {
 				if (token) {
 					document.getElementById('g-recaptcha-response').value = token;
 				}

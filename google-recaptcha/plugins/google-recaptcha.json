@@ -1,7 +1,7 @@
 {
-	"version": "1.0",
 	"name": "Google ReCaptcha",
 	"description": "Support for Google ReCaptcha.",
+	"version": "2.0-alpha",
 	"author": "MyAAC Authors",
 	"contact": "www.my-aac.org",
 	"hooks": {
@@ -42,6 +42,7 @@
 			"file": "plugins/google-recaptcha/hooks/admin-head-body.php"
 		}
 	},
+	"settings": "plugins/google-recaptcha/settings.php",
 	"uninstall": [
 		"plugins/google-recaptcha.json",
 		"plugins/google-recaptcha"

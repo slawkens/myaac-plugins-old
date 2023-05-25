@@ -1,9 +1,9 @@
 <?php
 defined('MYAAC') or die('Direct access not allowed!');
 
-$configRecaptcha = config('google_recaptcha');
-if(getBoolean($configRecaptcha['enabled']))
-{
+require_once __DIR__ . '/../init.php';
+
+if(GoogleReCAPTCHA::enabled()) {
 	if (!GoogleReCAPTCHA::verify('register')) {
 		global $logged, $errors;
 		unsetSession('account');
