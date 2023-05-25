@@ -404,7 +404,12 @@ function getCasters() {
 		}
 	}
 
-	global $db, $deleted, $config;
+	global $db, $config;
+
+	$deleted = 'deleted';
+	if($db->hasColumn('players', 'deletion'))
+		$deleted = 'deletion';
+
 	$results = [];
 	$query = $db->query('SELECT * FROM players WHERE players.id NOT IN (' . implode(', ', $config['highscores_ids_hidden']) . ') AND players.' . $deleted . ' = 0 AND players.group_id < '.$config['highscores_groups_hidden'].' AND broadcasting = 1 ORDER BY  viewers DESC LIMIT 5;');
 	if ($query->rowCount() > 0) {
