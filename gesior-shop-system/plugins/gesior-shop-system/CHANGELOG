@@ -1,3 +1,6 @@
+[3.1 - 25.03.2023]
+	* move pages/payments into plugins/
+
 [3.0.1 - 13.03.2023]
 	* add gesior-shop-system-revscript.lua
 
