@@ -1,7 +1,7 @@
 {
-	"name": "Google Recaptcha",
-	"description": "Support for Google Recaptcha.",
 	"version": "1.0",
+	"name": "Google ReCaptcha",
+	"description": "Support for Google ReCaptcha.",
 	"author": "MyAAC Authors",
 	"contact": "www.my-aac.org",
 	"hooks": {
