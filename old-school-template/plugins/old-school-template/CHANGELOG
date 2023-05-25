@@ -1,2 +1,5 @@
+[1.1 - 25.05.2023]
+	* fixed getCasters error (SQL syntax error)
+
 [1.0 - 24.07.2022]
 	* first release
