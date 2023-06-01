@@ -1,0 +1,14 @@
+<div class="postHolder">
+	<div class="well">
+		<div class="header">
+			<img src="images/news/icon_{{ icon }}.gif"/>
+			{{ date|date(config.news_date_format) }} - {{ title }}
+		</div>
+		<div class="body">
+			{{ content|raw }}
+			{% if comments is not null %}
+				<div style="text-align: right; margin-right: 10px;"><a href="{{ comments }}">» Comment on this news</a></div>
+			{% endif %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+{
+	"name": "AtomIO Template",
+	"description": "This is AtomIO template for MyAAC.",
+	"version": "1.0",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "Snavy, slawkens",
+	"contact": "otland.net",
+	"require": {
+		"myaac": "0.8.6"
+	},
+	"install": "plugins/atomio-template/install.php",
+	"uninstall": [
+		"plugins/atomio-template.json",
+		"plugins/atomio-template",
+		"templates/atomio-template"
+	]
+ }
