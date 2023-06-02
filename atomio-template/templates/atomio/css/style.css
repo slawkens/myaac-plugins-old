@@ -258,3 +258,7 @@ input[type=radio], input[type=checkbox] {
 #account-manage {
 	width: initial !important;
 }
+
+.TableContentContainer .TableContent {
+	border: initial !important;
+}
