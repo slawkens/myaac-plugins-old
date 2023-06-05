@@ -9,30 +9,36 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="tb_datatable">
+				<table class="table">
 					<thead>
 					<tr>
 						<th width="5%">ID</th>
 						<th>Name</th>
+						<th>Category</th>
 						<th>Type</th>
 						<th>Price</th>
 						<th>Information</th>
 						<th>Description</th>
 						<th>Hidden</th>
-						<th style="width: 150px;">Options</th>
+						<th>Ordering</th>
+						<th style="width: 230px;">Options</th>
 					</tr>
 					</thead>
 
 					<tbody>
+					{% set i = 0 %}
 					{% for offer in offers %}
+						{% set i = i + 1 %}
 						<tr>
 							<td>{{ offer.id }}</td>
 							<td>{{ offer.name }}</td>
+							<td>{{ categories[offer.category_id] }}</td>
 							<td>{{ offer.type|lower }}</td>
 							<td>{{ offer.points }}</td>
 							<td>{{ offer.information }}</td>
 							<td>{{ offer.description|raw }}</td>
 							<td>{% if offer.hidden %}Yes{% else %}No{% endif %}</td>
+							<td>{{ offer.ordering }}</td>
 							<td>
 								<a href="?p=gifts&action=toggle_hidden&id={{ offer.id }}" class="ico" title="{% if offer.hidden != 1 %}Hide{% else %}Show{% endif %}">
 									{% if offer.hidden != 1 %}
@@ -46,11 +52,31 @@
 									{% endif %}
 								</a>
 
+								<a href="?p=gifts&action=offer_form&id={{ offer.id }}" class="ico" title="Edit">
+									<span class="btn btn-success btn-sm edit btn-flat">
+										<i class="fa fa-edit"></i>
+									</span>
+								</a>
+
 								<a href="?p=gifts&action=delete&id={{ offer.id }}" class="ico" onclick="return confirm('Are you sure?');" title="Delete">
 									<span class="btn btn-danger btn-sm delete btn-flat">
 										<i class="fa fa-trash"></i>
 									</span>
 								</a>
+								{% if i != 1 %}
+									<a href="?p=gifts&action=moveup&id={{ offer.id }}" class="ico" title="Move up">
+										<span class="btn btn-info btn-sm delete btn-flat">
+											<i class="fa fa-arrow-up"></i>
+										</span>
+									</a>
+								{% endif %}
+								{% if i != last %}
+									<a href="?p=gifts&action=movedown&id={{ offer.id }}" class="ico" title="Move down">
+										<span class="btn btn-info btn-sm delete btn-flat">
+											<i class="fa fa-arrow-down"></i>
+										</span>
+									</a>
+								{% endif %}
 							</td>
 						</tr>
 					{% endfor %}
@@ -60,11 +86,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	$(function () {
-		$('.tb_datatable').DataTable({
-			"order": [[ 0, "asc" ]]
-		});
-	});
-</script>

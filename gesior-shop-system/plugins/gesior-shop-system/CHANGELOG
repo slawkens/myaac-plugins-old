@@ -1,3 +1,11 @@
+[4.0-beta - 06.06.2023]
+	* Edit items
+	* Move items (up, down)
+	* Edit categories, reset categories
+	* Fix colors in buy item page
+	* Fix PACC image
+	* Some other fixes
+
 [3.1 - 25.03.2023]
 	* move pages/payments into plugins/
 

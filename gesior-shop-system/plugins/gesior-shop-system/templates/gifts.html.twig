@@ -31,8 +31,8 @@
 		{{ warning }}
 	{% endif %}
 
-	{% for offer_type, offer_name in offer_types %}
-		<a class="offer_type" href="?subtopic=gifts&offertype={{ offer_type }}"{% if get_offer_type == offer_type %} style="background-color: #505050"{% endif %}>{{ offer_name }}</a>
+	{% for id, name in offer_categories %}
+		<a class="offer_type" href="?subtopic=gifts&offercat={{ id }}"{% if get_offer_category == id %} style="background-color: #505050"{% endif %}>{{ name }}</a>
 	{% endfor %}
 
 	<table class="offer_table" border="0" cellpadding="1" cellspacing="1" width="550">
@@ -47,7 +47,7 @@
 			<td width="100"><b>Select product</b></td>
 		</tr>
 
-		{% for offer in offers_fetch if offer.type == get_offer_type %}
+		{% for offer in offers_fetch if offer.category_id == get_offer_category %}
 			<tr bgcolor="{{ config.lightborder }}">
 				<td>
 					{% if offer.type == "item" or offer.type == "container" %}
@@ -56,7 +56,7 @@
 							{{ offer.container_img|raw }}
 						{% endif %}
 					{% elseif offer.type == "pacc" %}
-						<img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/shop-system/PremiumTime.png" alt="Premium Time"/>
+						<img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/PremiumTime.png" alt="Premium Time"/>
 					{% elseif offer.type == "mount" %}
 						<img src="{{ offer.mount_img_dir }}" alt="Mount"/>
 					{% elseif offer.type == "addon" %}
@@ -89,10 +89,10 @@
 				</td>
 			</tr>
 		{% else %}
-			{% if offer_types[get_offer_type] %}
+			{% if offer_categories[get_offer_category] %}
 				<td style="text-align: left" colspan="4">There is no offer here.</td>
 			{% else %}
-				<td style="text-align: left" colspan="4">This offer type doesn't exist. Please specify different name.</td>
+				<td style="text-align: left" colspan="4">This offer type doesn't exist. Please specify different id.</td>
 			{% endif %}
 		{% endfor %}
 	</table>

@@ -127,39 +127,34 @@ if(!empty($action)) {
 } else {
 	unset($_SESSION['viewed_confirmation_page']);
 
-	$offer_types = array();
-	$tmp_query = $db->query('SELECT `name`, `description` FROM `' . 'z_shop_categories` WHERE `hidden` != 1')->fetchAll();
+	$offer_categories = array();
+	$tmp_query = $db->query('SELECT `id`, `name` FROM `' . 'z_shop_categories` WHERE `hidden` != 1')
+		->fetchAll();
 	foreach($tmp_query as $tmp_res) {
-		$offer_types[$tmp_res['name']] = $tmp_res['description'];
+		$offer_categories[$tmp_res['id']] = $tmp_res['name'];
 	}
 
-	$get_offer_type = isset($_GET['offertype']) ? $_GET['offertype'] : 'item';
-	if($get_offer_type == "mount") {
-		$query = $db->query("SELECT `id` FROM `z_shop_offer` WHERE `offer_type` = 'mount' LIMIT 1;");
-		if($query->rowCount() > 0) {
-			$tmp = '';
-			if($cache->enabled() && $cache->fetch('mounts', $tmp)) {
-				$config['mounts'] = unserialize($tmp);
-			} else {
-				$mounts = new DOMDocument();
-				$file = $config['data_path'] . 'XML/mounts.xml';
-				if(file_exists($file)) {
-					$mounts->load($file);
-					if($mounts) {
-						$config['mounts'] = array();
-						foreach($mounts->getElementsByTagName('mount') as $mount) {
-							$id = $mount->getAttribute('id');
-							$config['mounts'][$id] = $mount->getAttribute('clientid');
-						}
-						if($cache->enabled()) {
-							$cache->set('mounts', serialize($config['mounts']), 120);
-						}
-					}
+	$get_offer_category = $_GET['offercat'] ?? 1;
+	$tmp = '';
+	if($cache->enabled() && $cache->fetch('mounts', $tmp)) {
+		$config['mounts'] = unserialize($tmp);
+	} else {
+		$mounts = new DOMDocument();
+		$file = $config['data_path'] . 'XML/mounts.xml';
+		if (file_exists($file)) {
+			$mounts->load($file);
+			if ($mounts) {
+				$config['mounts'] = array();
+				foreach ($mounts->getElementsByTagName('mount') as $mount) {
+					$id = $mount->getAttribute('id');
+					$config['mounts'][$id] = $mount->getAttribute('clientid');
+				}
+				if ($cache->enabled()) {
+					$cache->set('mounts', serialize($config['mounts']), 120);
 				}
 			}
 		}
 	}
-
 
 	$offers_fetch = array();
 	$tmp = null;
@@ -172,17 +167,17 @@ if(!empty($action)) {
 
 			foreach($offers_fetch as $id => $item) {
 				$item_type = $item['type'];
-				if($item_type == "item" || $item_type == "container") {
-					$item_id = isset($item['item_id']) ? $item['item_id'] : null;
+				if($item_type == 'item' || $item_type == 'container') {
+					$item_id = $item['item_id'] ?? null;
 					if ($item_id) {
 						$offers_fetch[$id]['item_img'] = getItemImage($item_id);
 					}
 
-					$container_id = isset($item['container_id']) ? $item['container_id'] : null;
-					if ($item_type == "container" && $container_id) {
+					$container_id = $item['container_id'] ?? null;
+					if ($item_type == 'container' && $container_id) {
 						$offers_fetch[$id]['container_img'] = getItemImage($container_id);
 					}
-				} elseif($item_type == "mount") {
+				} elseif($item_type == 'mount') {
 					$mount = $config['mounts'][$item['mount_id']] ?? null;
 					if(isset($config['mounts']) && !empty($mount)) {
 						$mount_image = $config['outfit_images_url'] . '?id=' . $mount. '&addons=0&head=' . $config['shop_outfit_colors']['head'] . '&body=' . $config['shop_outfit_colors']['body'] . '&legs=' . $config['shop_outfit_colors']['legs'] . '&feet=' . $config['shop_outfit_colors']['feet'];
@@ -200,11 +195,11 @@ if(!empty($action)) {
 
 	$twig->display('gesior-shop-system/templates/gifts.html.twig', array(
 		'title' => $title,
-		'logged' => !empty($logged) ? $logged : null,
+		'logged' => !empty($logged) ? $logged : false,
 		'user_premium_points' => $user_premium_points,
-		'offer_types' => $offer_types,
+		'offer_categories' => $offer_categories,
 		'offers_fetch' => $offers_fetch,
-		'get_offer_type' => $get_offer_type,
+		'get_offer_category' => $get_offer_category,
 		'outfit_colors' => $config['shop_outfit_colors'],
 	));
 }

@@ -67,7 +67,7 @@
 							{{ offer.container_img|raw }}
 						{% endif %}
 					{% elseif offer.type == "pacc" %}
-						<img src="images/shop-system/PremiumTime.png" alt="Premium Time"/>
+						<img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/PremiumTime.png" alt="Premium Time"/>
 					{% elseif offer.type == "mount" %}
 						<img src="{{ offer.mount_img_dir }}" alt="Mount"/>
 					{% elseif offer.type == "addon" %}

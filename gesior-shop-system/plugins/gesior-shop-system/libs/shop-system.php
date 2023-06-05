@@ -28,14 +28,16 @@ class GesiorShop {
 		}
 
 		$field = self::getDonationType();
-		$account->setCustomField($field, $account->getCustomField($field) + $amount);
+		$account->setCustomField($field, (int)$account->getCustomField($field) + $amount);
 		return true;
 	}
 
 	private static function parseOffer($_offer) {
-		list($offer_id, $offer_points, $offer_itemid1, $offer_count1, $offer_itemid2, $offer_count2, $offer_type, $offer_description, $offer_name, $offer_hidden) = $_offer;
+		list($offer_id, $offer_points, $offer_itemid1, $offer_count1, $offer_itemid2, $offer_count2,
+			$category_id, $offer_type, $offer_description, $offer_name, $offer_hidden, $offer_ordering) = $_offer;
 
-		$offer = array('id' => $offer_id, 'name' => $offer_name, 'type' => $offer_type, 'points' => $offer_points, 'description' => $offer_description, 'hidden' => $offer_hidden);
+		$offer = array('id' => $offer_id, 'name' => $offer_name, 'category_id' => $category_id, 'type' => $offer_type,
+		'points' => $offer_points, 'description' => $offer_description, 'hidden' => $offer_hidden, 'ordering' => $offer_ordering);
 		switch($offer_type) {
 			case 'pacc':
 				$offer = array_merge($offer, array('days' => $offer_count1));
@@ -73,8 +75,8 @@ class GesiorShop {
 		global $db;
 		$offers = array();
 
-		$hidden = $with_hidden ? ';' : ' WHERE hidden != 1;';
-		$offers_list = $db->query('SELECT * FROM ' . $db->tableName('z_shop_offer') . $hidden);
+		$hidden = $with_hidden ? '' : ' WHERE hidden != 1';
+		$offers_list = $db->query('SELECT * FROM ' . $db->tableName('z_shop_offer') . $hidden . ' ORDER BY `ordering` ASC;');
 		if(is_object($offers_list)) {
 			foreach($offers_list as $offer) {
 				$offers[] = self::parseOffer($offer);
@@ -262,11 +264,16 @@ class GesiorShop {
 		return $information;
 	}
 
+	static public function get($id) {
+		global $db;
+		return $db->select('z_shop_offer', ['id' => $id]);
+	}
+
 	public static function deleteOffer($id, &$errors) {
 		global $db;
 
 		if(isset($id)) {
-			if($db->select('z_shop_offer', array('id' => $id)) !== false) {
+			if(self::get($id) !== false) {
 				$db->delete('z_shop_offer', array('id' => $id));
 			} else {
 				$errors[] = 'Offer with id ' . $id . ' does not exists.';
@@ -294,5 +301,56 @@ class GesiorShop {
 		}
 
 		return !count($errors);
+	}
+
+	static public function move($id, $i, &$errors)
+	{
+		global $db;
+		$query = self::get($id);
+		if($query !== false)
+		{
+			$ordering = $query['ordering'] + $i;
+			$old_record = $db->select('z_shop_offer', array('ordering' => $ordering));
+			if($old_record !== false)
+				$db->update('z_shop_offer', array('ordering' => $query['ordering']), array('ordering' => $ordering));
+
+			$db->update('z_shop_offer', array('ordering' => $ordering), array('id' => $id));
+		}
+		else {
+			$errors[] = 'Offer with id ' . $id . ' does not exists.';
+		}
+
+		return !count($errors);
+	}
+
+	static public function saveCategories($categories, &$errors): bool
+	{
+		global $db;
+
+		if (!empty($categories)) {
+			$db->exec('DELETE FROM z_shop_categories;');
+			$i = 0;
+			foreach ($categories as $category) {
+				$db->insert('z_shop_categories', ['id' => ++$i, 'name' => $category]);
+			}
+		}
+		else {
+			$errors[] = 'No categories set.';
+		}
+
+		return !count($errors);
+	}
+
+	static public function getCategories(): array
+	{
+		global $db;
+		$query = $db->query("SELECT id, name FROM `z_shop_categories` WHERE `hidden` = 0;")->fetchAll(PDO::FETCH_ASSOC);
+
+		$categories = [];
+		foreach ($query as $category) {
+			$categories[$category['id']] = $category['name'];
+		}
+
+		return $categories;
 	}
 }

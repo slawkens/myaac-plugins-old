@@ -15,9 +15,8 @@ CREATE TABLE IF NOT EXISTS `z_ots_comunication` (
 ) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `z_shop_categories` (
-	`id` INT(11) NOT NULL auto_increment,
+	`id` INT(11) NOT NULL,
 	`name` VARCHAR(32) NOT NULL,
-	`description` VARCHAR(255) NOT NULL DEFAULT '',
 	`hidden` TINYINT(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
@@ -45,10 +44,12 @@ CREATE TABLE IF NOT EXISTS `z_shop_offer` (
 	`count1` INT(11) NOT NULL DEFAULT 0,
 	`itemid2` INT(11) NOT NULL DEFAULT 0,
 	`count2` INT(11) NOT NULL DEFAULT 0,
+	`category_id` TINYINT(1) NOT NULL DEFAULT 0,
 	`offer_type` VARCHAR(255) DEFAULT NULL,
 	`offer_description` text NOT NULL,
 	`offer_name` VARCHAR(255) NOT NULL DEFAULT '',
 	`hidden` TINYINT(1) NOT NULL DEFAULT 0,
+	`ordering` INT(11) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
 

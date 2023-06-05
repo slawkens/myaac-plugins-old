@@ -11,32 +11,48 @@ defined('MYAAC') or die('Direct access not allowed!');
 $title = 'Gifts';
 require_once PLUGINS . 'gesior-shop-system/libs/shop-system.php';
 
+$types = [
+	'item', 'addon', 'mount', 'pacc', 'container'
+];
+
 if(!empty($action)) {
-	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
+	$id = $_REQUEST['id'] ?? null;
 	$errors = array();
 
 	if($action == 'offer_form') {
-		$categories = array();
+		$categories = GesiorShop::getCategories();
 
-		$query = $db->query("SELECT * FROM `z_shop_categories` WHERE `hidden` = 0;");
-		if (is_object($query)) {
-			foreach ($query as $category) {
-				$categories[] = $category;
+		$values = [
+			'categories' => $categories,
+			'types' => $types,
+		];
+
+		$offer_id = $_REQUEST['id'] ?? null;
+		if ($offer_id !== null) {
+			$values['offer'] = GesiorShop::getOfferById($offer_id);
+		}
+
+		$twig->display('gesior-shop-system/templates/admin-offers-add.html.twig', $values);
+	} elseif($action == 'add' || $action == 'edit') {
+		if ($action == 'edit') {
+			$offer_id = $_REQUEST['offer_id'] ?? null;
+
+			if (!$offer_id) {
+				$errors[] = 'Offer id not set.';
 			}
 		}
 
-		$twig->display('gesior-shop-system/templates/admin-offers-add.html.twig', array(
-			'categories' => $categories
-		));
-	} elseif($action == 'add') {
 		$itemid1 = $count1 = $itemid2 = $count2 = 0;
 
-		$points = isset($_REQUEST['points']) ? $_REQUEST['points'] : null;
+		$points = $_REQUEST['points'] ?? null;
+		$category_id = $_REQUEST['category'] ?? 1;
 		$offer_type = isset($_REQUEST['type']) ? strtolower($_REQUEST['type']) : null;
-		$offer_name = isset($_REQUEST['offer_name']) ? $_REQUEST['offer_name'] : null;
-		$offer_desc = isset($_REQUEST['description']) ? $_REQUEST['description'] : '';
+		$offer_name = $_REQUEST['offer_name'] ?? null;
+		$offer_desc = $_REQUEST['description'] ?? '';
 		if(empty($points)) {
 			error('Please fill all fields. Points is empty.');
+		} else if(!$category_id || !is_numeric($category_id)) {
+			error('Please fill all fields. Category is empty or its not a number.');
 		} else if(empty($offer_type)) {
 			error('Please fill all fields. Type is empty.');
 		} else if(empty($offer_name)) {
@@ -44,8 +60,8 @@ if(!empty($action)) {
 		} else {
 			switch($offer_type) {
 				case 'item':
-					$itemid1 = isset($_REQUEST['item_id']) ? $_REQUEST['item_id'] : null;
-					$count1 = isset($_REQUEST['item_count']) ? $_REQUEST['item_count'] : null;
+					$itemid1 = $_REQUEST['item_id'] ?? null;
+					$count1 = $_REQUEST['item_count'] ?? null;
 					if(!$itemid1 || !is_numeric($itemid1)) {
 						$errors[] = 'Please fill all fields. Item ID is empty or its not a number.';
 					}
@@ -56,10 +72,10 @@ if(!empty($action)) {
 					break;
 
 				case 'container':
-					$itemid1 = isset($_REQUEST['item_id']) ? $_REQUEST['item_id'] : null;
-					$count1 = isset($_REQUEST['item_count']) ? $_REQUEST['item_count'] : null;
-					$itemid2 = isset($_REQUEST['container_id']) ? $_REQUEST['container_id'] : null;
-					$count2 = isset($_REQUEST['container_count']) ? $_REQUEST['container_count'] : null;
+					$itemid1 = $_REQUEST['item_id'] ?? null;
+					$count1 = $_REQUEST['item_count'] ?? null;
+					$itemid2 = $_REQUEST['container_id'] ?? null;
+					$count2 = $_REQUEST['container_count'] ?? null;
 					if(!$itemid1 || !is_numeric($itemid1)) {
 						$errors[] = 'Please fill all fields. Item ID is empty or its not a number.';
 					}
@@ -75,10 +91,10 @@ if(!empty($action)) {
 
 					break;
 				case 'addon':
-					$itemid1 = isset($_REQUEST['look_female']) ? $_REQUEST['look_female'] : null;
-					$count1 = isset($_REQUEST['addons_female']) ? $_REQUEST['addons_female'] : null;
-					$itemid2 = isset($_REQUEST['look_male']) ? $_REQUEST['look_male'] : null;
-					$count2 = isset($_REQUEST['addons_male']) ? $_REQUEST['addons_male'] : null;
+					$itemid1 = $_REQUEST['look_female'] ?? null;
+					$count1 = $_REQUEST['addons_female'] ?? null;
+					$itemid2 = $_REQUEST['look_male'] ?? null;
+					$count2 = $_REQUEST['addons_male'] ?? null;
 
 					if(!$itemid1 || !is_numeric($itemid1)) {
 						$errors[] = 'Please fill all fields. Look Female is empty or its not a number.';
@@ -96,7 +112,7 @@ if(!empty($action)) {
 					break;
 
 				case 'mount':
-					$itemid1 = isset($_REQUEST['mount_id']) ? $_REQUEST['mount_id'] : null;
+					$itemid1 = $_REQUEST['mount_id'] ?? null;
 
 					if(!$itemid1 || !is_numeric($itemid1)) {
 						$errors[] = 'Please fill all fields. Mount ID is empty or its not a number.';
@@ -105,7 +121,7 @@ if(!empty($action)) {
 					break;
 
 				case 'pacc':
-					$count1 = isset($_REQUEST['days']) ? $_REQUEST['days'] : null;
+					$count1 = $_REQUEST['days'] ?? null;
 
 					if(!$count1 || !is_numeric($count1)) {
 						$errors[] = 'Please fill all fields. Premium Days is empty or its not a number.';
@@ -121,15 +137,23 @@ if(!empty($action)) {
 			}
 
 			if(empty($errors)) {
-				$db->insert('z_shop_offer', array(
+				$data = [
 					'points' => $points,
 					'itemid1' => $itemid1, 'count1' => $count1,
 					'itemid2' => $itemid2, 'count2' => $count2,
+					'category_id' => $category_id,
 					'offer_type' => $offer_type,
 					'offer_name' => $offer_name, 'offer_description' => $offer_desc,
-				));
+				];
 
-				success('Your offer has been saved!');
+				if ($action == 'edit') {
+					$db->update('z_shop_offer', $data, ['id' => $offer_id]);
+					success('Your offer has been edited!');
+				}
+				else {
+					$db->insert('z_shop_offer', $data);
+					success('Your offer has been saved!');
+				}
 			}
 		}
 	} else if($action == 'delete') {
@@ -139,10 +163,37 @@ if(!empty($action)) {
 		GesiorShop::toggleOffer($id, $errors, $status);
 		success(($status == 1 ? 'Show' : 'Hide') . " successful.");
 	}
+	else if($action == 'moveup') {
+		GesiorShop::move($id, -1, $errors);
+	}
+	else if($action == 'movedown') {
+		GesiorShop::move($id, 1, $errors);
+	}
+	else if($action == 'edit_categories') {
+		$categoriesPost = $_REQUEST['categories'] ?? null;
+		if(empty($categoriesPost)) {
+			$errors[] = 'Please fill all fields. Categories are empty.';
+		}
+
+		$categoriesExploded = explode(',', $categoriesPost);
+
+		if (GesiorShop::saveCategories($categoriesExploded, $errors)) {
+			success('Saved categories.');
+		}
+
+	}
+	else if($action == 'reset_categories') {
+		$categoriesReset = ['Items', 'Addons', 'Mounts', 'Premium Account', 'Containers', 'Other'];
+		if (GesiorShop::saveCategories($categoriesReset, $errors)) {
+			success('Reset categories successful.');
+		}
+	}
 
 	if(!empty($errors))
 		error(implode(", ", $errors));
 }
+
+$categories = GesiorShop::getCategories();
 
 $offers = array();
 $offers_fetch = GesiorShop::getOffers(true);
@@ -153,6 +204,15 @@ if(!empty($offers_fetch)) {
 	}
 }
 
-$twig->display('gesior-shop-system/templates/admin-offers.html.twig', array(
-	'offers' => $offers
-));
+if ($action !== 'offer_form') {
+	$twig->display('gesior-shop-system/templates/admin-categories.html.twig', [
+		'categories' => implode(',', array_values($categories)),
+	]);
+}
+
+$last = count($offers_fetch);
+$twig->display('gesior-shop-system/templates/admin-offers.html.twig', [
+	'offers' => $offers,
+	'categories' => $categories,
+	'last' => $last,
+]);

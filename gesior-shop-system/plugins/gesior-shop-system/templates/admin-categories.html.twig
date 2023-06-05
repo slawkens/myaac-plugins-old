@@ -1,0 +1,28 @@
+<div class="row">
+	<form method="post" action="?p=gifts">
+		<input type="hidden" name="action" value="edit_categories"/>
+
+		<div class="col-md-8">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">Categories</h3>
+					<input type="button" onclick="if(confirm('Are you sure?')) window.location = '{{ constant('ADMIN_URL') }}?p=gifts&action=reset_categories';" class="btn btn-danger" value="Reset Categories"/>
+				</div>
+
+				<div class="box-body">
+					<div class="form-group">
+						<label for="categories" class="col-sm-2 control-label">Categories (comma separated)</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="categories" name="categories" placeholder="Categories" required>{{ categories }}</textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<input type="submit" class="btn btn-info pull-right" value="Save"/>
+					<input type="button" onclick="window.location = '{{ constant('ADMIN_URL') }}?p=gifts';" class="btn btn-default" value="Cancel"/>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
