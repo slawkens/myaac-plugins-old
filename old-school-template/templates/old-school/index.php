@@ -275,6 +275,7 @@ if(count($menus) === 0) {
 						function coloured_value($valuein)
 						{
 							$value2 = $valuein;
+							$value = '';
 							while(strlen($value2) > 3)
 							{
 								$value .= '.'.substr($value2, -3, 3);
@@ -360,10 +361,6 @@ if(count($menus) === 0) {
 </html>
 <?php
 
-$deleted = 'deleted';
-if($db->hasColumn('players', 'deletion'))
-	$deleted = 'deletion';
-
 function getPowergamers() {
 	if (!fieldExist('exphist_lastexp', 'players')) {
 		return [];
@@ -377,7 +374,12 @@ function getPowergamers() {
 		}
 	}
 
-	global $db, $deleted, $config;
+	global $db, $config;
+
+	$deleted = 'deleted';
+	if($db->hasColumn('players', 'deletion'))
+		$deleted = 'deletion';
+
 	$results = [];
 	$query = $db->query('SELECT * FROM players WHERE players.id NOT IN (' . implode(', ', $config['highscores_ids_hidden']) . ') AND players.' . $deleted . ' = 0 AND players.group_id < '.$config['highscores_groups_hidden'].' ORDER BY  experience - exphist_lastexp DESC LIMIT 5;');
 	if ($query->rowCount() > 0) {
