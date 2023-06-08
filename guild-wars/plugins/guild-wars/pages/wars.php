@@ -3,6 +3,8 @@ defined('MYAAC') or die('Direct access not allowed!');
 
 require PLUGINS . 'guild-wars/init.php';
 
+$title = 'Guild Wars';
+
 $warFrags = array();
 foreach($db->query('SELECT * FROM `guildwar_kills` ORDER BY `time` DESC')->fetchAll() as $frag) {
 	$warFrags[$frag['warid']][] = $frag;
