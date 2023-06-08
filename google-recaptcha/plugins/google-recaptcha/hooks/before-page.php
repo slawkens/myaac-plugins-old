@@ -9,6 +9,10 @@ if(!isset($template_place_holders['head_end'])) {
 }
 
 if(GoogleReCAPTCHA::enabled()) {
+	if (PAGE != 'account/create' && PAGE != 'account/manage') {
+		return; // do not display on other pages
+	}
+
 	$recaptchaType = setting('google_recaptcha.type');
 
 	// insert into page head
