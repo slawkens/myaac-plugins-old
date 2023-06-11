@@ -115,7 +115,7 @@ table {
 }
 
 table tr th{
-  background: #505050;
+	background-color: #505050 !important;
   color: #FFF;
   padding: 7px 4px;
   text-align: left;
@@ -126,22 +126,6 @@ tr.yellow td {
   color: #FFF;
   padding: 7px 4px;
   text-align: left;
-}
-table tr td {
-  background: #D4C0A1;
-  color: #47433F;
-}
-table.stripped tr:nth-child(even) td {
-  background-color: #e4d0b2;
-}
-table.stripped tr:nth-child(odd) td{
-  background-color: #D4C0A1;
-}
-table.TableContent tr td , table.Table3 tr td {
-  background: #f1e0c5;
-}
-table.TableContent tr.LabelH td {
-  background: #D4C0A1;
 }
 .TableContainer table{
   margin: 0 !important;
@@ -545,4 +529,24 @@ ul.slidesjs-pagination
 .top-bar a
 {
 	color: #f66545;
+}
+
+.white {
+	color: #EFEFEF;
+	visibility: visible;
+	font-size: 9pt;
+}
+
+.odd {
+	background-color: #D4C0A1 !important;
+	padding: 2px;
+}
+
+.even {
+	background-color: #F1E0C6 !important;
+	padding: 2px;
+}
+
+.vertical-menu a {
+	background-color: #D4C0A1 !important;
 }
