@@ -98,9 +98,9 @@
 		$extra.empty();
 
 		if(value === 'item') {
-			$extra.append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div>');
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="65535" placeholder="Item Count" required/></div>');
 		} else if(value === 'container') {
-			$extra.append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="100" placeholder="Item Count" required/></div><br/>');
+			$extra.append('<div class="input-group"><input class="form-control" type="number" name="item_id" min="100" placeholder="Item ID" required/><input class="form-control" type="number" name="item_count" min="1" max="65535" placeholder="Item Count" required/></div><br/>');
 			$extra.append('<div class="input-group"><input class="form-control" type="number" name="container_id" min="100" placeholder="Container ID" required/><input class="form-control" type="number" name="container_count" min="1" max="100" placeholder="Container Count" required/></div>');
 		} else if(value === 'addon') {
 			$extra.append('<div class="input-group"><input class="form-control" type="number" name="look_female" min="1" placeholder="Female (girl) Look Type" required/><input class="form-control" type="number" name="addons_female" min="0" max="3" placeholder="Female Addons (0 - just outfit, 1, 2 or 3 for both)" required/></div><br/>');
