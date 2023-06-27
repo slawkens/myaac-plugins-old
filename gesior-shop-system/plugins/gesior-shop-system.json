@@ -12,7 +12,7 @@
 	},
 	"install": "plugins/gesior-shop-system/install.php",
 	"require": {
-		"myaac": "0.8.6",
+		"myaac": "0.8.9",
 		"php-ext": "curl"
 	}
 }
