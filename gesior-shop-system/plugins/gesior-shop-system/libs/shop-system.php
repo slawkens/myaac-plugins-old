@@ -91,7 +91,7 @@ class GesiorShop {
 		unset($_SESSION['viewed_confirmation_page']);
 
 		$account_players = array();
-		$players_list = $account->getPlayersList();
+		$players_list = $account->getPlayersList(false);
 		if (count($players_list) > 0) {
 			$players_list->orderBy('name');
 

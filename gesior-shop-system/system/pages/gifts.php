@@ -113,6 +113,11 @@ if(!empty($action)) {
 				break;
 			}
 
+			if ($buy_player->isDeleted()) {
+				$errors[] = 'Player with name <b>' . $buy_name . '</b> has been deleted. Please <a href="?subtopic=gifts&action=select_player&buy_id=' . $buy_id . '">select other name</a>.';
+				break;
+			}
+
 			GesiorShop::confirmTransactionAction($account_logged, $buy_player, $buy_id, $buy_offer, $buy_from, $buy_name, $user_premium_points, $errors);
 			break;
 
