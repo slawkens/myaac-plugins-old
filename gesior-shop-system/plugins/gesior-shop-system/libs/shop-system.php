@@ -22,6 +22,53 @@ class GesiorShop {
 		return $field;
 	}
 
+	public static function getOfferImage($offer)
+	{
+		if ($offer['type'] == 'pacc') {
+			return '<img src="' . BASE_URL . 'plugins/gesior-shop-system/images/PremiumTime.png" alt="Premium Time"/>';
+		}
+
+		if ($offer['type'] == 'mount') {
+			$mount_image = BASE_URL . 'plugins/gesior-shop-system/images/mounts_category.png';
+
+			$mount = $config['mounts'][$offer['mount_id']] ?? null;
+			if(isset($config['mounts']) && !empty($mount)) {
+				$mount_image = $config['outfit_images_url'] . '?id=' . $mount. '&addons=0&head=' . $config['shop_outfit_colors']['head'] . '&body=' . $config['shop_outfit_colors']['body'] . '&legs=' . $config['shop_outfit_colors']['legs'] . '&feet=' . $config['shop_outfit_colors']['feet'];
+			}
+
+			return '<img src="' . $mount_image . '" alt="Mount"/>';
+		}
+
+		if ($offer['type'] == 'addon') {
+			global $twig;
+			return $twig->render('gesior-shop-system/templates/addon.html.twig', [
+				'outfit_colors' => config('shop_outfit_colors'),
+				'offer' => $offer,
+			]);
+		}
+
+		if ($offer['type'] == 'item' || $offer['type'] == 'container') {
+			$item_id = $offer['item_id'] ?? null;
+			if ($item_id) {
+				$offer['item_img'] = getItemImage($item_id);
+			}
+
+			$container_id = $offer['container_id'] ?? null;
+			if ($offer['type'] == 'container' && $container_id) {
+				$offer['container_img'] = getItemImage($container_id);
+			}
+
+			$ret = $offer['item_img'];
+			if (!empty($offer['container_img'])) {
+				$ret .= $offer['container_img'];
+			}
+
+			return $ret;
+		}
+
+		return 'No Image';
+	}
+
 	public static function changePoints(OTS_Account $account, $amount) {
 		if (!$account->isLoaded()) {
 			return false;
@@ -33,11 +80,20 @@ class GesiorShop {
 	}
 
 	private static function parseOffer($_offer) {
-		list($offer_id, $offer_points, $offer_itemid1, $offer_count1, $offer_itemid2, $offer_count2,
-			$category_id, $offer_type, $offer_description, $offer_name, $offer_hidden, $offer_ordering) = $_offer;
+		$offer_itemid1 = $_offer['itemid1'];
+		$offer_count1 = $_offer['count1'];
+		$offer_itemid2 = $_offer['itemid2'];
+		$offer_count2 = $_offer['count2'];
+		$category_id = $_offer['category_id'];
+		$offer_type = $_offer['offer_type'];
+		$offer_description = $_offer['offer_description'];
+		$offer_name = $_offer['offer_name'];
+		$offer_hidden = $_offer['hidden'];
+		$offer_ordering = $_offer['ordering'];
 
-		$offer = array('id' => $offer_id, 'name' => $offer_name, 'category_id' => $category_id, 'type' => $offer_type,
-		'points' => $offer_points, 'description' => $offer_description, 'hidden' => $offer_hidden, 'ordering' => $offer_ordering);
+		$offer = array('id' => $_offer['id'], 'name' => $offer_name, 'category_id' => $category_id, 'type' =>
+			$offer_type, 'points' => $_offer['points'], 'description' => $offer_description, 'hidden' =>
+			$offer_hidden, 'ordering' => $offer_ordering);
 		switch($offer_type) {
 			case 'pacc':
 				$offer = array_merge($offer, array('days' => $offer_count1));
@@ -59,6 +115,8 @@ class GesiorShop {
 				$offer = array_merge($offer, array('mount_id' => $offer_itemid1));
 				break;
 		}
+
+		$offer['images'] = self::getOfferImage($offer);
 
 		return $offer;
 	}
@@ -352,5 +410,18 @@ class GesiorShop {
 		}
 
 		return $categories;
+	}
+
+	public static function getMostPopular()
+	{
+		$offers = [];
+
+		global $db;
+		$query = $db->query('SELECT *, COUNT(`offer_id`) as `how_much` FROM `z_shop_history`, `z_shop_offer` WHERE `offer_id` = `z_shop_offer`.`id` GROUP BY `offer_id` ORDER BY `how_much` DESC LIMIT 3;');
+		foreach($query->fetchAll(PDO::FETCH_ASSOC) as $offer) {
+			$offers[] = self::parseOffer($offer);
+		};
+
+		return $offers;
 	}
 }

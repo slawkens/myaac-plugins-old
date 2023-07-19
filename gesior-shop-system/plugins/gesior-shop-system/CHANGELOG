@@ -1,3 +1,8 @@
+[4.0-RC1 - 19.07.2023]
+	* Add Most Popular Items
+	* rewrite how images are parsed
+	* (v0.9-alpha) fix gifts history not logged message
+
 [4.0-beta2 - 29.06.2023]
 	* Bump required MyAAC version to 0.8.9 (needs plugins/ folder in twig paths)
 	* Fix for 0.9-alpha: cannot find gifts/history

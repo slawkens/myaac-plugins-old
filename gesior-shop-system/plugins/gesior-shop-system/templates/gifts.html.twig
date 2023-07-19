@@ -20,12 +20,6 @@
 	}
 </style>
 
-<div style="text-align: center"><h1>{{ title }}</h1></div>
-<div style="float:right;">
-	<span style="color: green; font-weight: bold">Your premium points: </span>{{ user_premium_points|raw }}
-</div>
-<br/><br/>
-
 <div class="offer_container">
 	{% if warning is defined %}
 		{{ warning }}
@@ -50,27 +44,7 @@
 		{% for offer in offers_fetch if offer.category_id == get_offer_category %}
 			<tr bgcolor="{{ config.lightborder }}">
 				<td>
-					{% if offer.type == "item" or offer.type == "container" %}
-						{{ offer.item_img|raw }}
-						{% if offer.container_img is not empty %}
-							{{ offer.container_img|raw }}
-						{% endif %}
-					{% elseif offer.type == "pacc" %}
-						<img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/PremiumTime.png" alt="Premium Time"/>
-					{% elseif offer.type == "mount" %}
-						<img src="{{ offer.mount_img_dir }}" alt="Mount"/>
-					{% elseif offer.type == "addon" %}
-						<table>
-							<tr>
-								<td>
-									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_male }}&addons={{ offer.addons_male }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
-								</td>
-								<td>
-									<img style="margin-left:-30px;margin-top:-30px;width:64px;height:64px;" src="{{ config.outfit_images_url }}?id={{ offer.look_female }}&addons={{ offer.addons_female }}&head={{ outfit_colors.head }}&body={{ outfit_colors.body }}&legs={{ outfit_colors.legs }}&feet={{ outfit_colors.feet }}"/>
-								</td>
-							</tr>
-						</table>
-					{% endif %}
+					{{ offer.images|raw }}
 				</td>
 				<td style="text-align: left">
 					<b>{{ offer.name }}</b><br/>

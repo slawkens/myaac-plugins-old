@@ -167,36 +167,19 @@ if(!empty($action)) {
 		$offers_fetch = unserialize($tmp);
 	} else {
 		$offers_fetch = GesiorShop::getOffers();
-		if(!empty($offers_fetch)) {
-			$mount_image = BASE_URL . 'plugins/gesior-shop-system/images/mounts_category.png';
-
-			foreach($offers_fetch as $id => $item) {
-				$item_type = $item['type'];
-				if($item_type == 'item' || $item_type == 'container') {
-					$item_id = $item['item_id'] ?? null;
-					if ($item_id) {
-						$offers_fetch[$id]['item_img'] = getItemImage($item_id);
-					}
-
-					$container_id = $item['container_id'] ?? null;
-					if ($item_type == 'container' && $container_id) {
-						$offers_fetch[$id]['container_img'] = getItemImage($container_id);
-					}
-				} elseif($item_type == 'mount') {
-					$mount = $config['mounts'][$item['mount_id']] ?? null;
-					if(isset($config['mounts']) && !empty($mount)) {
-						$mount_image = $config['outfit_images_url'] . '?id=' . $mount. '&addons=0&head=' . $config['shop_outfit_colors']['head'] . '&body=' . $config['shop_outfit_colors']['body'] . '&legs=' . $config['shop_outfit_colors']['legs'] . '&feet=' . $config['shop_outfit_colors']['feet'];
-					}
-
-					$offers_fetch[$id]['mount_img_dir'] = $mount_image;
-				}
-			}
-		}
 
 		if($cache->enabled()) {
 			$cache->set('shop_offers_fetch', serialize($offers_fetch), 120);
 		}
 	}
+
+	$twig->display('gesior-shop-system/templates/gifts-header.html.twig', [
+		'user_premium_points' => $user_premium_points,
+	]);
+
+	$twig->display('gesior-shop-system/templates/most-popular.html.twig', [
+		'offers' => GesiorShop::getMostPopular(),
+	]);
 
 	$twig->display('gesior-shop-system/templates/gifts.html.twig', array(
 		'title' => $title,
