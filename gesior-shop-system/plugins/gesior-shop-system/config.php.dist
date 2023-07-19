@@ -7,6 +7,9 @@
 
 $config['donation_type'] = 'points'; // what should be added to player account? points/coins
 
+// display most popular items bought in shop (top #3)?
+$config['enable_most_popular_items'] = true;
+
 /**
  * default colors of outfits/addons in addons category
  * doesn't matter for othire and other servers without addons

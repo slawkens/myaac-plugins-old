@@ -177,9 +177,11 @@ if(!empty($action)) {
 		'user_premium_points' => $user_premium_points,
 	]);
 
-	$twig->display('gesior-shop-system/templates/most-popular.html.twig', [
-		'offers' => GesiorShop::getMostPopular(),
-	]);
+	if (config('enable_most_popular_items')) {
+		$twig->display('gesior-shop-system/templates/most-popular.html.twig', [
+			'offers' => GesiorShop::getMostPopular(),
+		]);
+	}
 
 	$twig->display('gesior-shop-system/templates/gifts.html.twig', array(
 		'title' => $title,
