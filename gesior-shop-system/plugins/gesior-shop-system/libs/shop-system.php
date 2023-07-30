@@ -189,17 +189,28 @@ class GesiorShop {
 					$save_transaction = 'INSERT INTO ' . $db->tableName('z_shop_history') . ' (id, to_name, to_account, from_nick, from_account, price, offer_id, trans_state, trans_start, trans_real, is_pacc) VALUES (NULL, ' . $db->quote($buy_player->getName()) . ', ' . $db->quote($buy_player_account->getId()) . ', ' . $db->quote($buy_from) . ',  ' . $db->quote($account->getId()) . ', ' . $db->quote($buy_offer['points']) . ', ' . $db->quote($buy_offer['id']) . ', \'realized\', ' . $db->quote(time()) . ', ' . $db->quote(time()) . ', 1);';
 					if ($is_othire) {
 						$time = $buy_player_account->getCustomField('premend');
-						if ($time == 0) {
+						if ($time <= 0) {
 							$time = time();
 						}
 
-						$buy_player_account->setCustomField('premend', $time + $buy_offer['days'] * 86400);
+						$buy_player_account->setCustomField('premend', $time + $buy_offer['days'] * (60 * 60 * 24));
 					} else {// rest
-						$buy_player_account->setCustomField('premdays', $buy_player_account->getCustomField('premdays') + $buy_offer['days']);
+							if ($db->hasColumn('accounts', 'premium_ends_at')) { // TFS 1.4+
+								$time = $buy_player_account->getCustomField('premium_ends_at');
+								if ($time <= 0) {
+									$time = time();
+								}
 
-						if ($buy_player_account->getCustomField('lastday') == 0) {
-							$buy_player_account->setCustomField('lastday', time());
-						}
+								$buy_player_account->setCustomField('premium_ends_at', $time + $buy_offer['days'] * (60 * 60 * 24));
+							}
+							else {
+								$buy_player_account->setCustomField('premdays', (int)$buy_player_account->getCustomField
+								('premdays') + (int)$buy_offer['days']);
+
+								if ($buy_player_account->getCustomField('lastday') == 0) {
+									$buy_player_account->setCustomField('lastday', time());
+								}
+							}
 					}
 					break;
 
