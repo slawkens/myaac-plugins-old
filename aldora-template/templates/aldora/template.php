@@ -113,7 +113,7 @@ if(count($menus) === 0) {
 		<?php echo template_place_holder('head_end'); ?>
 	</head>
 
-	<body cz-shortcut-listen="true">
+	<body>
 		<?php echo template_place_holder('body_start'); ?>
 		<div id="tooltip"></div>
 		<div id="popup_bg"></div>
