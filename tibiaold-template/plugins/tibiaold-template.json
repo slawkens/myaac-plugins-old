@@ -2,7 +2,9 @@
 	"name": "Tibiaold Template",
 	"description": "This is Tibiaold template for MyAAC.",
 	"version": "1.0",
-	"author": "HalfAway (modified by slawkens)",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "HalfAway, slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {
 		"myaac": "0.4.3"

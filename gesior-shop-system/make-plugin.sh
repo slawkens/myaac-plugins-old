@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 VERSION=`cat plugins/gesior-shop-system.json | jq -r '.version'`
-rm -f myaac-gesior-shop-system-v$VERSION.zip
-zip -r myaac-gesior-shop-system-v$VERSION.zip lua/ admin/ system/ payments/ plugins/ -x */\.*
+NAME=myaac-gesior-shop-system-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME lua/ admin/ system/ payments/ plugins/ -x */\.*

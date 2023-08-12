@@ -1,2 +1,5 @@
-rm -f myaac-TibiaClient-template.zip
-zip -r myaac-TibiaClient-template.zip templates/ plugins/ -x */\.*
+#!/usr/bin/env bash
+VERSION=`cat plugins/TibiaClient-template.json | jq -r '.version'`
+NAME=myaac-TibiaClient-template-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME templates/ plugins/ -x */\.*

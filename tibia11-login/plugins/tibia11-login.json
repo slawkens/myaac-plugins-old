@@ -2,6 +2,8 @@
 	"name": "Tibia 11 Login",
 	"description": "This is Tibia 11 login.php script for MyAAC.",
 	"version": "1.3",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com"
 }

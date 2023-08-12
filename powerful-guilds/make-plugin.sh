@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-rm -f myaac-powerful-guilds.zip
-zip -r myaac-powerful-guilds.zip plugins/ -x */\.*
+VERSION=`cat plugins/powerful-guilds.json | jq -r '.version'`
+NAME=myaac-powerful-guilds-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME plugins/ -x */\.*

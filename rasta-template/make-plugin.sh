@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 VERSION=`cat plugins/rasta-template.json | jq -r '.version'`
-rm -f myaac-rasta-template-v$VERSION.zip
-zip -r myaac-rasta-template-v$VERSION.zip templates/ plugins/ -x */\.*
+NAME=myaac-rasta-template-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME templates/ plugins/ -x */\.*

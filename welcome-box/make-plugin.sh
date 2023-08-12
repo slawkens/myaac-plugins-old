@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-rm -f myaac-welcome-box.zip
-zip -r myaac-welcome-box.zip plugins/ -x */\.*
+VERSION=`cat plugins/welcome-box.json | jq -r '.version'`
+NAME=myaac-welcome-box-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME plugins/ -x */\.*

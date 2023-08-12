@@ -2,6 +2,8 @@
 	"name": "Znote to MyAAC Converter",
 	"description": "Convert Znote database schema to MyAAC schema.",
 	"version": "1.0",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {

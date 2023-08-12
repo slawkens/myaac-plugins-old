@@ -2,6 +2,8 @@
 	"name": "Gesior Shop System",
 	"description": "This is shop system taken from Gesior, modified for MyAAC.",
 	"version": "4.0",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "Gesior, slawkens, whiteblXK",
 	"contact": "slawkens@gmail.com",
 	"hooks": {

@@ -1,2 +1,5 @@
-rm -f myaac-ShadowCores-template.zip
-zip -r myaac-ShadowCores-template.zip templates/ plugins/ -x */\.*
+#!/usr/bin/env bash
+VERSION=`cat plugins/ShadowCores-template.json | jq -r '.version'`
+NAME=myaac-ShadowCores-template-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME templates/ plugins/ -x */\.*

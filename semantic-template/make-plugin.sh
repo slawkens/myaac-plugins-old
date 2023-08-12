@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-rm -f myaac-semantic-template.zip
-zip -r myaac-semantic-template.zip templates/ plugins/ -x */\.*
+VERSION=`cat plugins/semantic-template.json | jq -r '.version'`
+NAME=myaac-semantic-template-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME templates/ plugins/ -x */\.*

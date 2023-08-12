@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-rm -f myaac-emma-template.zip
-zip -r myaac-emma-template.zip templates/ plugins/ -x */\.*
+VERSION=`cat plugins/emma-template.json | jq -r '.version'`
+NAME=myaac-emma-template-v$VERSION.zip
+rm -f $NAME
+zip -r $NAME templates/ plugins/ -x */\.*

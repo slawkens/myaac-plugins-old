@@ -2,6 +2,8 @@
 	"name": "Powerful Guilds",
 	"description": "Shows most powerful guilds on the front page (news).",
 	"version": "2.0",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "slawkens",
 	"contact": "slawkens@gmail.com",
 	"require": {

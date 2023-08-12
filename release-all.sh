@@ -6,7 +6,12 @@ mkdir -p release
 FILES=*
 for f in $FILES
 do
-	if [ ! -d $f ] || [ $f = "release" ]; then
+	if [ ! -d $f ]; then
+		continue
+	fi
+
+	# this checks if the folder name contains release
+	if [[ "$f" =~ "release" ]]; then
 		continue
 	fi
 

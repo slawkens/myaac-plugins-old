@@ -2,7 +2,9 @@
 	"name": "Paxton1 Template",
 	"description": "This is Paxton1 template for MyAAC.",
 	"version": "1.1",
-	"author": "Paxton (modified by slawkens)",
+	"type": "template",
+	"license": "GPLv3",
+	"author": "Paxton, slawkens",
 	"contact": "slawkens@gmail.com",
 	"install": "templates/paxton1/install.php",
 	"uninstall": [

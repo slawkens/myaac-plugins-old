@@ -2,6 +2,8 @@
 	"name": "Guild Wars",
 	"description": "Support for Guild Wars.",
 	"version": "1.0",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "Gesior, slawkens",
 	"contact": "www.my-aac.org",
 	"hooks": {

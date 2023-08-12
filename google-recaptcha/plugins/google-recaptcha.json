@@ -2,6 +2,8 @@
 	"name": "Google ReCaptcha",
 	"description": "Support for Google ReCaptcha.",
 	"version": "2.0-alpha",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "MyAAC Authors",
 	"contact": "www.my-aac.org",
 	"hooks": {

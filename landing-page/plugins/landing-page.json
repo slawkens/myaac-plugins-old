@@ -2,6 +2,8 @@
 	"name": "Landing Page",
 	"description": "Landing page for MyAAC.",
 	"version": "1.0",
+	"type": "plugin",
+	"license": "GPLv3",
 	"author": "Frostie, slawkens",
 	"contact": "otland.net",
 	"hooks": {
