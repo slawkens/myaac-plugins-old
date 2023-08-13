@@ -4,7 +4,7 @@
 	"version": "1.3.1",
 	"type": "template",
 	"license": "GPLv3",
-	"author": "Webo (modified by slawkens)",
+	"author": "Webo, slawkens",
 	"contact": "slawkens@gmail.com",
 	"uninstall": [
 		"plugins/ShadowCores-template.json",

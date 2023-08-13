@@ -4,7 +4,7 @@
 	"version": "1.0",
 	"type": "template",
 	"license": "GPLv3",
-	"author": "Arcsin (modified by slawkens)",
+	"author": "Arcsin, slawkens",
 	"contact": "slawkens@gmail.com",
 	"uninstall": [
 		"plugins/coffee-n-cream-template.json",
