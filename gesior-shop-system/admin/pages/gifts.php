@@ -99,13 +99,13 @@ if(!empty($action)) {
 					if(!$itemid1 || !is_numeric($itemid1)) {
 						$errors[] = 'Please fill all fields. Look Female is empty or its not a number.';
 					}
-					else if(!$count1 || !is_numeric($count1)) {
+					else if(!isset($count1) || !is_numeric($count1)) {
 						$errors[] = 'Please fill all fields. Addons Female is empty or its not a number.';
 					}
 					else if(!$itemid2 || !is_numeric($itemid2)) {
 						$errors[] = 'Please fill all fields. Look Male is empty or its not a number.';
 					}
-					else if(!$count2 || !is_numeric($count2)) {
+					else if(!isset($count2) || !is_numeric($count2)) {
 						$errors[] = 'Please fill all fields. Addons Male is empty or its not a number.';
 					}
 
