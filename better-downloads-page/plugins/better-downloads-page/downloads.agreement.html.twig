@@ -1,16 +1,39 @@
 <p>Before you can download the client program please read the {{ config.lua.serverName }} Service Agreement and state if you agree to it by clicking on the appropriate button below.</p>
 {% set title = 'Download Client' %}
 {% set content %}
-<table style="width:100%;">
-	<tr>
-		<td>
-			<p>This agreement describes the terms on which {{ config.lua.serverName }} offers you access to an account for being able to play the online role playing game {{ config.lua.serverName }} Server. By creating an account or downloading the client software you accept the terms and conditions below and state that you are of full legal age in your country or have the permission of your parents to play this game.</p>
-			<p>You agree that the use of the software is at your sole risk. We provide the software, the game, and all other services "as is". We disclaim all warranties or conditions of any kind, expressed, implied or statutory, including without limitation the implied warranties of title, non-infringement, merchantability and fitness for a particular purpose. We do not ensure continuous, error-free, secure or virus-free operation of the software, the game, or your account.</p>
-			<p>We are not liable for any lost profits or special, incidental or consequential damages arising out of or in connection with the game, including, but not limited to, loss of data, items, accounts, or characters from errors, system downtime, or adjustments of the gameplay.</p>
-			<p>While you are playing {{ config.lua.serverName }} Server, you must abide by some rules ("{{ config.lua.serverName }} Rules") that are stated on this homepage. If you break any of these rules, your account may be removed and all other services terminated immediately.</p>
-		</td>
-	</tr>
-</table>
+	<div class="InnerTableContainer">
+		<table style="width:100%;">
+			<tbody>
+			<tr>
+				<td>
+					<div class="TableShadowContainerRightTop">
+						<div class="TableShadowRightTop" style="background-image:url(templates/tibiacom/images/content/table-shadow-rt.gif);"></div>
+					</div>
+					<div class="TableContentAndRightShadow" style="background-image:url(templates/tibiacom/images/content/table-shadow-rm.gif);">
+						<div class="TableContentContainer">
+							<table class="TableContent" style="width:100%; background-color: {{ config.darkborder }}">
+								<tr>
+									<td>
+										<p>This agreement describes the terms on which {{ config.lua.serverName }} offers you access to an account for being able to play the online role playing game {{ config.lua.serverName }} Server. By creating an account or downloading the client software you accept the terms and conditions below and state that you are of full legal age in your country or have the permission of your parents to play this game.</p>
+										<p>You agree that the use of the software is at your sole risk. We provide the software, the game, and all other services "as is". We disclaim all warranties or conditions of any kind, expressed, implied or statutory, including without limitation the implied warranties of title, non-infringement, merchantability and fitness for a particular purpose. We do not ensure continuous, error-free, secure or virus-free operation of the software, the game, or your account.</p>
+										<p>We are not liable for any lost profits or special, incidental or consequential damages arising out of or in connection with the game, including, but not limited to, loss of data, items, accounts, or characters from errors, system downtime, or adjustments of the gameplay.</p>
+										<p>While you are playing {{ config.lua.serverName }} Server, you must abide by some rules ("{{ config.lua.serverName }} Rules") that are stated on this homepage. If you break any of these rules, your account may be removed and all other services terminated immediately.</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="TableShadowContainer">
+						<div class="TableBottomShadow" style="background-image:url(https://static.tibia.com/images/global/content/table-shadow-bm.gif);">
+							<div class="TableBottomLeftShadow" style="background-image:url(templates/tibiacom/images/content/table-shadow-bl.gif);"></div>
+							<div class="TableBottomRightShadow" style="background-image:url(templates/tibiacom/images/content/table-shadow-br.gif);"></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
 {% endset %}
 {% include 'tables.headline.html.twig' %}
 <br/>
