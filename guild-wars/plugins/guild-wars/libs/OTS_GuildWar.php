@@ -10,7 +10,7 @@ class OTS_GuildWar extends OTS_Row_DAO
 	const STATE_WAR_ENDED = 4;
 
 	public static $table = 'guild_wars';
-	public $data = array('guild_id' => null, 'name' => null, 'level' => null,);
+	public $data = array('guild_id' => null, 'name1' => null, 'name2' => null, 'level' => null,);
 	public static $fields = array('id', 'guild1', 'guild2', 'status');
 
 	public function load($id){
@@ -23,6 +23,11 @@ class OTS_GuildWar extends OTS_Row_DAO
 
 	public function save()
 	{
+		if ($this->db->hasColumn(self::$table, 'name1')) {
+			self::$fields[] = 'name1';
+			self::$fields[] = 'name2';
+		}
+
 		$data = [];
 		foreach(self::$fields as $key) {
 			if ($key != 'id') {
@@ -87,4 +92,6 @@ class OTS_GuildWar extends OTS_Row_DAO
 	public function setGuild2Id($value) {$this->data['guild2'] = $value;}
 	public function getStatus() {return $this->data['status'];}
 	public function setStatus($value) {$this->data['status'] = $value;}
+	public function setName1($value) {$this->data['name1'] = $value;}
+	public function setName2($value) {$this->data['name2'] = $value;}
 }

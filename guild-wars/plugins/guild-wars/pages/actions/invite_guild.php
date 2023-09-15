@@ -83,6 +83,11 @@ if(empty($errors)) {
 				$war->setGuild2Id($enemyGuild->getID());
 				$war->setStatus(OTS_GuildWar::STATE_INVITED);
 
+				if ($hasGuildWarsNameColumn) {
+					$war->setName1('name1', $guild->getName());
+					$war->setName2('name2', $enemyGuild->getName());
+				}
+
 				$war->save();
 
 				if ($hasGuildWarsStartedColumn) {
