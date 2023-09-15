@@ -1,3 +1,6 @@
+[1.0.2 - 15.09.2023]
+	* just increased version number
+
 [1.0.1 - 15.09.2023]
 	* fix invite to war for tfs 1.x
 	* add this changelog

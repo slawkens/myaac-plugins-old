@@ -1,7 +1,7 @@
 {
 	"name": "Guild Wars",
 	"description": "Support for Guild Wars.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "plugin",
 	"license": "GPLv3",
 	"author": "Gesior, slawkens",
