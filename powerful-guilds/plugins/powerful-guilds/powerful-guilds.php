@@ -4,7 +4,6 @@
  *
  * @name      powerful-guilds
  * @author    Slawkens <slawkens@gmail.com>
- * @version   1.1
  */
 
 if(!isset($config['powerful_guilds']))
@@ -15,8 +14,6 @@ if(!isset($config['powerful_guilds']))
 		'page' => 'news' // on what pages most powerful guilds box should appear, for example 'news', or 'guilds' (blank makes it visible on every page)
 	];
 }
-
-$db->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 
 function mostPowerfulGuildsDatabase()
 {
@@ -85,6 +82,8 @@ $twig_loader->prependPath(__DIR__);
 $_page = $config['powerful_guilds']['page'];
 if(!isset($_page[0]) || $_page == PAGE)
 {
+	$db->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+
 	$guilds = mostPowerfulGuildsList();
 	// just for testing purposes if you don't have any kills on server
 	//$guilds = $db->query('SELECT * FROM guilds LIMIT ' . $config['powerful_guilds']['amount'])->fetchAll();
