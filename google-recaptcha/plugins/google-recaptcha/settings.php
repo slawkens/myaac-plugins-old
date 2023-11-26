@@ -12,7 +12,7 @@ return [
 		'enabled' => [
 			'name' => 'Enable ReCaptcha',
 			'type' => 'boolean',
-			'desc' => 'Enable ReCaptcha on login and create account.<br/><a href="https://www.google.com/recaptcha" target="_blank">https://www.google.com/recaptcha</a>',
+			'desc' => 'Enable ReCaptcha on login and create account.<br/>https://www.google.com/recaptcha',
 			'default' => true,
 		],
 		'type' => [
@@ -50,8 +50,8 @@ return [
 			'desc' => 'This option apply only for type ReCaptcha v2-checkbox',
 			'default' => 'light',
 			'show_if' => [
-				['enabled', '=', 'true'],
-				['type', '=', 'v2-checkbox'],
+				'enabled', '=', 'true',
+				//['type', '=', 'v2-checkbox'],
 			]
 		],
 		'v3_min_score' => [
@@ -63,8 +63,8 @@ return [
 			'desc' => 'This option apply only for ReCaptcha v3.<br/>Min score for validation, between 0 - 1.0<br/>https://developers.google.com/recaptcha/docs/v3#interpreting_the_score',
 			'default' => 0.5,
 			'show_if' => [
-				['enabled', '=', 'true'],
-				['type', '=', 'v3'],
+				'enabled', '=', 'true',
+				//['type', '=', 'v3'],
 			]
 		],
 	]
