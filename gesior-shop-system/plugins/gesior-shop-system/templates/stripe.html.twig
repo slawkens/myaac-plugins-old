@@ -1,0 +1,134 @@
+<style>
+	.stripe-offers {
+		display: flex;
+		justify-content: start;
+		flex-wrap: wrap;
+		gap: 16px;
+		padding: 0 12px;
+	}
+
+	.stripe-offer {
+		width: 230px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.stripe-offer-content {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px;
+		background: #fff;
+		border-radius: 6px 6px 0 0;
+	}
+
+	.stripe-offer-content img {
+		width: 54px;
+		height: 57px;
+	}
+
+	.stripe-offer-content h3,
+	.stripe-offer-content h5 {
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: -0.154px;
+		color: #242d60;
+		margin: 0;
+	}
+
+	.stripe-offer-content h5 {
+		opacity: 0.5;
+	}
+
+	button {
+		height: 36px;
+		background: #556cd6;
+		color: white;
+		width: 100%;
+		font-size: 14px;
+		border: 0;
+		font-weight: 500;
+		cursor: pointer;
+		letter-spacing: 0.6;
+		border-radius: 0 0 6px 6px;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, 0.07);
+	}
+
+	button:hover {
+		opacity: 0.8;
+	}
+
+	button:disabled,
+	button[disabled]{
+		background-color: #cccccc;
+		color: #666666;
+	}
+
+	.powered-by {
+		display: flex;
+		justify-content: center;
+		padding: 16px 0;
+	}
+
+	.rules {
+		margin-top: 20px;
+	}
+</style>
+
+<div>
+	<div class="powered-by">
+		<h1>Stripe Offers</h1>
+	</div>
+
+	<div class="stripe-offers">
+		{% for id, offer in config.stripe.payments %}
+			<div class="stripe-offer">
+				<div class="stripe-offer-content">
+					<!--img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" /-->
+
+					<div>
+						<h3>{{ offer.points }} Premium Points</h3>
+
+						<h5>{{ offer.price }} {{ offer.currency }} </h5>
+					</div>
+				</div>
+
+				<form action="?subtopic=points&system=stripe&redirect" method="POST">
+					<input type="hidden" id="accountId" name="accountId" value="{{ account_logged.getId() }}" />
+					<input type="hidden" id="id" name="id" value="{{ id }}" />
+
+					<button type="submit" {% if not account_logged %} disabled {% endif %}>
+						{%if account_logged.isLoaded() %}
+							Checkout
+						{% else %}
+							Login to buy
+						{% endif %}
+					</button>
+				</form>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div class="powered-by">
+		<img src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/powered_by_stripe.svg" alt="Stripe Logo" width="150"/>
+	</div>
+
+	<div style="margin-top: 20px;">
+		{%if account_logged.isLoaded() %}
+			Account name: {{ account_logged.getName() }}<br>
+			Account email:  {{ account_logged.getEmail() }}<br>
+		{% else %}
+			You need to be logged in to your account to make a payment.
+		{% endif %}
+	</div>
+
+	<div class="rules">
+		<h1>Rules:</h1>
+		<p>
+			{{ include('gesior-shop-system/templates/stripe-rules.html.twig') }}
+		</p>
+	</div>
+</div>

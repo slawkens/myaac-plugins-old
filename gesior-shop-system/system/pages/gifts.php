@@ -173,6 +173,14 @@ if(!empty($action)) {
 		}
 	}
 
+	if (isset($_REQUEST['success'])) {
+		$twig->display('gesior-shop-system/templates/success.html.twig');
+	}
+
+	if (isset($_REQUEST['cancel'])) {
+		$twig->display('gesior-shop-system/templates/cancel.html.twig');
+	}
+
 	$twig->display('gesior-shop-system/templates/gifts-header.html.twig', [
 		'user_premium_points' => $user_premium_points,
 	]);

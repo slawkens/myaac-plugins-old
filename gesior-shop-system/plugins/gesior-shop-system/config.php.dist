@@ -42,6 +42,29 @@ $config['paypal'] = array(
 );
 
 /**
+ * stripe.com configuration
+ */
+$config['stripe'] = [
+	// 'false' blocks new payments, it will still process old payment reports
+	'enabled' => true,
+
+	'secret_key' => 'sk_test_asdasd123',
+	'endpoint_secret' => 'whsec_asdasd123',
+
+	// defaults should be ok, but you can change
+	'success_url' => BASE_URL . '?subtopic=gifts&success',
+	'cancel_url' => BASE_URL . '?subtopic=gifts&cancel',
+
+	'payments' => [
+		['price' => '10', 'currency' => 'USD', 'points' => '100', 'name' => '100 premium points on Your OTS'],
+		['price' => '20', 'currency' => 'USD', 'points' => '200', 'name' => '200 premium points on Your OTS'],
+		['price' => '30', 'currency' => 'USD', 'points' => '300', 'name' => '300 premium points on Your OTS'],
+		['price' => '40', 'currency' => 'USD', 'points' => '400', 'name' => '400 premium points on Your OTS'],
+		['price' => '50', 'currency' => 'USD', 'points' => '500', 'name' => '500 premium points on Your OTS'],
+	],
+];
+
+/**
  * fortumo.com configuration
  * rest of the configuration you can do on fortumo.com
  */

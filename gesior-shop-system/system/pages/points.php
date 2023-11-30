@@ -45,6 +45,7 @@ if(!$logged) {
 
 $enabled = array(
 	'paypal' => isset($config['paypal']) && $config['paypal']['enabled'],
+	'stripe' => isset($config['stripe']) && $config['stripe']['enabled'],
 	'fortumo' => isset($config['fortumo']) && $config['fortumo']['enabled'],
 	'cryptobox' => isset($config['cryptobox']) && $config['cryptobox']['enabled'],
 	'daopay' => isset($config['daopay']) && $config['daopay']['enabled'],

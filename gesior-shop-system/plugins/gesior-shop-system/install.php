@@ -15,6 +15,7 @@ if(!tableExist('z_ots_comunication')
 	|| !tableExist('z_shop_offer')
 	|| !tableExist('crypto_payments')
 	|| !tableExist('pagseguro_transactions')
+	|| !tableExist('stripe')
 ) {
 	// import schema
 	try {

@@ -13,6 +13,23 @@
 			</div>
 		</div>
 	{% endif %}
+	{% if enabled.stripe %}
+		<div class="floating-box">
+			<div class="floating-logo-box">
+				<a href="?subtopic=points&system=stripe" title="Pay with Stripe">
+					<img class="floating-logo" src="{{ constant('BASE_URL') }}plugins/gesior-shop-system/images/stripe.png" width="150" height="50" alt="Stripe Logo" border="0"  />
+				</a>
+				<br/>
+			</div>
+			<div class="info-box">
+				Credit card, Bank Transfer.<br/>
+				<b>ALL CURRENCIES</b>
+			</div>
+			<div class="info-box">
+				ALL COUNTRIES!
+			</div>
+		</div>
+	{% endif %}
 	{% if enabled.fortumo %}
 		<div class="floating-box">
 			<div class="floating-logo-box">

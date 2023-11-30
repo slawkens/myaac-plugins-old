@@ -106,3 +106,16 @@ CREATE TABLE IF NOT EXISTS `pagseguro_transactions` (
 	KEY `name` (`name`),
 	KEY `status` (`status`)
 ) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS  `stripe` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`account_id` int(11) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	`points` int(11) NOT NULL,
+	`price` int(11) NOT NULL,
+	`currency` varchar(255) NOT NULL,
+	`payment_id` varchar(255) NOT NULL,
+	`api_version` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
