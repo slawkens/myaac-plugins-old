@@ -31,6 +31,7 @@ class GesiorShop {
 		if ($offer['type'] == 'mount') {
 			$mount_image = BASE_URL . 'plugins/gesior-shop-system/images/mounts_category.png';
 
+			global $config;
 			$mount = $config['mounts'][$offer['mount_id']] ?? null;
 			if(isset($config['mounts']) && !empty($mount)) {
 				$mount_image = $config['outfit_images_url'] . '?id=' . $mount. '&addons=0&head=' . $config['shop_outfit_colors']['head'] . '&body=' . $config['shop_outfit_colors']['body'] . '&legs=' . $config['shop_outfit_colors']['legs'] . '&feet=' . $config['shop_outfit_colors']['feet'];
