@@ -131,19 +131,15 @@ if(count($menus) === 0) {
 			</div>
 			<div id="main">
 				<div id="content">
+<div>
 					<?php
-					echo tickers() . template_place_holder('center_top');
+						echo tickers() . template_place_holder('center_top');
+	
+						echo $content;
 
-					if(PAGE === 'news') {
-						echo '<table style="width: 100%"><div id="news">';
-					}
+						?>
+					</div>
 
-					echo $content;
-
-					if(PAGE === 'news') {
-						echo '</div></table>';
-					}
-					?>
 					<div style="clear:both;"></div>
 					<br/>
 						<tr>
