@@ -47,10 +47,6 @@ if(count($menus) === 0) {
 		body {
 			background-image: url(<?= $template_path; ?>/images/background.png) !important;
 		}
-
-		.white {
-			color: black !important;
-		}
 	</style>
 	<?= template_place_holder('head_end') ?>
 </head>
