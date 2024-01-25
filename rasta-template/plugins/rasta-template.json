@@ -1,7 +1,7 @@
 {
 	"name": "Rasta Template",
 	"description": "This is rasta template for MyAAC.",
-	"version": "1.0",
+	"version": "1.0.1",
 	"type": "template",
 	"license": "GPLv3",
 	"author": "Gesior, slawkens",

@@ -63,9 +63,6 @@ else
 
 				<li><a href="<?php echo $template['link_rules']; ?>"><b><font size="1">Server Rules</font></b></a></li>
 				<li><a href="<?php echo $template['link_downloads']; ?>"><b><font size="1">Download</font></b></a></li>
-				<?php if($config['bug_report']): ?>
-					<li><a href="<?php echo $template['link_bugtracker']; ?>"><b><font size="1">Report Bug</font></b></a></li>
-				<?php endif; ?>
 			</ul>
 
 			<h1><font color="green">Community</font></h1>

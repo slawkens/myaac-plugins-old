@@ -33,9 +33,6 @@
 				<?php endif; ?>
 				<li id="rules" class="menu-item-last"><a href="<?php echo $template['link_rules']; ?>">Server Rules</a></li>
 				<li id="downloads" class="menu-item-last"><a href="<?php echo $template['link_downloads']; ?>">Downloads</a></li>
-				<?php if($config['bug_report']): ?>
-					<li id="bugreport" class="menu-item-last"><a href="<?php echo $template['link_bugtracker']; ?>">Report Bug</a></li>
-				<?php endif; ?>
 			</ul>
 		</div>
 	</div>
