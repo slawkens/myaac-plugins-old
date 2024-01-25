@@ -27,7 +27,7 @@
 		<a href="<?php echo $template['link_creatures']; ?>">| Monsters |</a>
 		<a href="<?php echo $template['link_spells']; ?>">| Spells |</a>
 		<a href="<?php echo $template['link_online']; ?>">| Players online: </a>
-		
+
 		<?php if($status['online'])
 			echo '<FONT color="green"><b>' . $status['players'] . '/' . $status['playersMax'] . '</b></FONT>';
 		else
@@ -58,9 +58,6 @@
 
 				<li><a href="<?php echo $template['link_rules']; ?>">Server Rules</a></li>
 				<li><a href="<?php echo $template['link_downloads']; ?>">Download</a></li>
-				<?php if($config['bug_report']): ?>
-					<li><a href="<?php echo $template['link_bugtracker']; ?>">Report Bug</a></li>
-				<?php endif; ?>
 			</ul>
 
 			<h1>Community</h1>
@@ -94,7 +91,7 @@
 				<li><a href="<?php echo $template['link_serverInfo']; ?>">Server info</a></li>
 				<li><a href="<?php echo $template['link_experienceTable']; ?>">Experience table</a></li>
 			</ul>
-			
+
 			<?php if($config['gifts_system']): ?>
 				<h1>Shop</h1>
 				<ul>
