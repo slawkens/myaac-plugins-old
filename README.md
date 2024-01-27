@@ -1,5 +1,8 @@
 # myaac-plugins
  Official Plugins repository for MyAAC
+
+ This repo is specifically for the 0.8 version.
+ If you are using 1.0+ version head to: https://github.com/slawkens/myaac-plugins
  
 # Where to download?
 All latest version of plugins can be downloaded from the Official Website:
