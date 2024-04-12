@@ -73,8 +73,10 @@ if (!$db->hasColumn('z_shop_offer', 'category_id')) {
 		$db->update('z_shop_offer', ['category_id' => $category['id']], ['offer_type' => $category['name']]);
 	}
 
-	$db->exec("UPDATE z_shop_categories SET `name` = `description`;");
-	$db->exec("ALTER TABLE z_shop_categories DROP `description`;");
+	if ($db->hasColumn('z_shop_categories', 'description')) {
+		$db->exec("UPDATE z_shop_categories SET `name` = `description`;");
+		$db->exec("ALTER TABLE z_shop_categories DROP `description`;");
+	}
 
 	$db->exec("ALTER TABLE z_shop_offer ADD `ordering` INT(11) NOT NULL DEFAULT 0;");
 	$db->exec("UPDATE z_shop_offer SET `ordering` = `id`;");
