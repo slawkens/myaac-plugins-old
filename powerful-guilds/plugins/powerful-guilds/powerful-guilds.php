@@ -32,7 +32,7 @@ function mostPowerfulGuildsDatabase()
 			GROUP BY `name`
 			ORDER BY `frags` DESC, `name` ASC
 			LIMIT 0, ' . $config['powerful_guilds']['amount'] . ';') as $guild)
-				$ret[] = array('name' => $guild['name'], 'logo' => $guild['logo'], 'frags' => $guild['frags']);
+				$ret[] = array('id' => $guild['id'], 'name' => $guild['name'], 'logo' => $guild['logo'], 'frags' => $guild['frags']);
 	}
 	else { // TFS 1.0+
 		foreach($db->query('SELECT `g`.`id` AS `id`, `g`.`name` AS `name`,
@@ -45,7 +45,7 @@ function mostPowerfulGuildsDatabase()
 			GROUP BY `name`
 			ORDER BY `frags` DESC, `name` ASC
 			LIMIT 0, ' . $config['powerful_guilds']['amount'] . ';') as $guild) {
-				$ret[] = array('name' => $guild['name'], 'logo' => $guild['logo'], 'frags' => $guild['frags']);
+				$ret[] = array('id' => $guild['id'], 'name' => $guild['name'], 'logo' => $guild['logo'], 'frags' => $guild['frags']);
 		}
 	}
 
