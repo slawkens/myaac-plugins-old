@@ -1,7 +1,7 @@
 <?php
 defined('MYAAC') or die('Direct access not allowed!');
 
-require PLUGINS . 'guild-wars/init.php';
+require PLUGINS . 'guild-wars-old/init.php';
 
 $title = 'Guild Wars';
 

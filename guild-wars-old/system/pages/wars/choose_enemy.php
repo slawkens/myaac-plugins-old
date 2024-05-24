@@ -70,7 +70,7 @@ if(empty($errors))
 				}
 				else {
 					// can invite
-					$_status = $twig->render('guild-wars/templates/guild_wars.invite.html.twig', [
+					$_status = $twig->render('guild-wars-old/templates/guild_wars.invite.html.twig', [
 						'guild' => $guild,
 						'enemyGuild' => $enemyGuild,
 						'canFragLimit' => $hasGuildWarsFragLimitColumn,
@@ -90,7 +90,7 @@ if(empty($errors))
 			];
 		}
 
-		$twig->display('guild-wars/templates/guild_wars.choose_enemy.html.twig', [
+		$twig->display('guild-wars-old/templates/guild_wars.choose_enemy.html.twig', [
 			'guild' => $guild,
 			'enemyGuilds' => $enemyGuilds,
 		]);
