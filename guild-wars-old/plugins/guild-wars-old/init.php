@@ -53,3 +53,40 @@ function displayGuildWars($warsDb, $warFrags, $guild = null, $isLeader = false) 
 		'warFrags' => $warFrags,
 	]);
 }
+
+if (!function_exists('getGuildNameById')) {
+	function getGuildNameById($id)
+	{
+		global $db;
+
+		$guild = $db->query('SELECT `name` FROM `guilds` WHERE `id` = ' . (int)$id);
+
+		if ($guild->rowCount() > 0) {
+			return $guild->fetchColumn();
+		}
+
+		return false;
+	}
+}
+
+if (!function_exists('getGuildLogoById')) {
+	function getGuildLogoById($id)
+	{
+		global $db;
+
+		$logo = 'default.gif';
+
+		$query = $db->query('SELECT `logo_name` FROM `guilds` WHERE `id` = ' . (int)$id);
+		if ($query->rowCount() == 1) {
+
+			$query = $query->fetch(PDO::FETCH_ASSOC);
+			$guildLogo = $query['logo_name'];
+
+			if (!empty($guildLogo) && file_exists('images/guilds/' . $guildLogo)) {
+				$logo = $guildLogo;
+			}
+		}
+
+		return BASE_URL . 'images/guilds/' . $logo;
+	}
+}

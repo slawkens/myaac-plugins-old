@@ -1,16 +1,22 @@
-<form id="form" action="{{ getLink('guilds/wars/inviteGuild') }}">
+<form id="form" action="{{ getLink('') }}">
+	<input type="hidden" name="p" value="wars" />
+	<input type="hidden" name="action" value="invite_guild" />
 	<input type="hidden" name="guild" value="{{ guild.getId() }}"/>
 	<input type="hidden" name="enemy" value="{{ enemyGuild.getId() }}"/>
 	<table>
 		<tr>
+			{% if canFragLimit %}
 			<td>
 				<label for="frag_limit">Frag Limit:</label>
 				<input id="frag_limit" type="number" name="frag_limit"/>
 			</td>
+			{% endif %}
+			{% if canBounty %}
 			<td>
 				<label for="bounty">Bounty:</label>
 				<input id="bounty" type="number" name="bounty"/>
 			</td>
+			{% endif %}
 			<td>
 				{% set button_name = "Invite to war" %}
 				{{ include('buttons.base.html.twig') }}

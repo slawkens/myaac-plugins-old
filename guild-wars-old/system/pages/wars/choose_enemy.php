@@ -1,10 +1,6 @@
 <?php
 defined('MYAAC') or die('Direct access not allowed!');
 
-require PLUGINS . 'guild-wars/init.php';
-
-$title = 'Guilds';
-
 $guild_id = (int) $_REQUEST['guild'];
 
 if(!$logged) {
@@ -56,7 +52,7 @@ if(empty($errors))
 
 		foreach($guildsList as $enemyGuild) {
 			$guild_logo = $enemyGuild->getCustomField('logo_name');
-			if(empty($guild_logo) || !file_exists(GUILD_IMAGES_DIR . $guild_logo)) {
+			if(empty($guild_logo) || !file_exists('images/guilds/' . $guild_logo)) {
 				$guild_logo = 'default.gif';
 			}
 
@@ -77,6 +73,8 @@ if(empty($errors))
 					$_status = $twig->render('guild-wars/templates/guild_wars.invite.html.twig', [
 						'guild' => $guild,
 						'enemyGuild' => $enemyGuild,
+						'canFragLimit' => $hasGuildWarsFragLimitColumn,
+						'canBounty' => $hasGuildWarsBountyColumn,
 					]);
 				}
 			}
@@ -88,7 +86,7 @@ if(empty($errors))
 			$enemyGuilds[] = [
 				'guild' => $enemyGuild,
 				'status' => $_status,
-				'guild_logo_path' => GUILD_IMAGES_DIR . $guild_logo,
+				'guild_logo_path' => 'images/guilds/' . $guild_logo,
 			];
 		}
 

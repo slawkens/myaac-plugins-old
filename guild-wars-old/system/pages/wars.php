@@ -5,6 +5,21 @@ require PLUGINS . 'guild-wars/init.php';
 
 $title = 'Guild Wars';
 
+// wars actions
+if(!empty($action)) {
+	if(!ctype_alnum(str_replace(array('-', '_'), '', $action))) {
+		error('Error: Action contains illegal characters.');
+	}
+	else if(file_exists(PAGES . 'wars/' . $action . '.php')) {
+		require PAGES . 'wars/' . $action . '.php';
+	}
+	else {
+		error('This page does not exists.');
+	}
+
+	return;
+}
+
 $warFrags = array();
 foreach($db->query('SELECT * FROM `guildwar_kills` ORDER BY `time` DESC')->fetchAll() as $frag) {
 	$warFrags[$frag['warid']][] = $frag;

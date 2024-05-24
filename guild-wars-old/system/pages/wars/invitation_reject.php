@@ -1,8 +1,6 @@
 <?php
 defined('MYAAC') or die('Direct access not allowed!');
 
-require PLUGINS . 'guild-wars/init.php';
-
 $guild_id = (int) $_REQUEST['guild'];
 $war_id = (int) $_REQUEST['war'];
 

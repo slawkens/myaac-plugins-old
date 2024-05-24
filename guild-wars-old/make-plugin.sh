@@ -2,4 +2,4 @@
 VERSION=`cat plugins/guild-wars.json | jq -r '.version'`
 NAME=myaac-guild-wars-v$VERSION.zip
 rm -f $NAME
-zip -r $NAME plugins/ -x */\.*
+zip -r $NAME plugins/ system/ -x */\.*
