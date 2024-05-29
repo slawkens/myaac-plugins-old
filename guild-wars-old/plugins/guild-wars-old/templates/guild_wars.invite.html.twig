@@ -1,4 +1,4 @@
-<form id="form" action="{{ getLink('') }}">
+<form id="form_{{ enemyGuild.getId() }}" action="{{ getLink('') }}">
 	<input type="hidden" name="p" value="wars" />
 	<input type="hidden" name="action" value="invite_guild" />
 	<input type="hidden" name="guild" value="{{ guild.getId() }}"/>
@@ -25,9 +25,9 @@
 	</table>
 </form>
 <script>
-	$(document).ready(function () {
-		$('#form').on('submit',function(){
-			return confirm('Are you sure that you want to invite guild {{ enemyGuild.getName() }}')
+	$(function () {
+		$('#form_{{ enemyGuild.getId() }}').on('submit',function(){
+			return confirm('Are you sure that you want to invite guild {{ enemyGuild.getName() }}?')
 		});
 	});
 </script>
