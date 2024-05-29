@@ -73,7 +73,7 @@ if(empty($errors))
 					$_status = $twig->render('guild-wars-old/templates/guild_wars.invite.html.twig', [
 						'guild' => $guild,
 						'enemyGuild' => $enemyGuild,
-						'canFragLimit' => $hasGuildWarsFragLimitColumn,
+						'canFragLimit' => $hasGuildWarsFragLimitColumn || $hasGuildWarsFragsLimitColumn,
 						'canBounty' => $hasGuildWarsBountyColumn,
 					]);
 				}

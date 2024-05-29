@@ -1,7 +1,7 @@
 {
 	"name": "Guild Wars Old",
 	"description": "Support for Guild Wars for MyAAC 0.8.",
-	"version": "2.0.5",
+	"version": "2.0.7",
 	"type": "plugin",
 	"license": "GPLv3",
 	"author": "Gesior, slawkens",

@@ -8,6 +8,7 @@ require_once __DIR__ . '/libs/OTS_GuildWar.php';
 $hasGuildWarsNameColumn = $db->hasColumn('guild_wars', 'name1') && $db->hasColumn('guild_wars', 'name2');
 $hasGuildWarsStartedColumn = $db->hasColumn('guild_wars', 'started');
 $hasGuildWarsEndedColumn = $db->hasColumn('guild_wars', 'ended');
+$hasGuildWarsFragsLimitColumn = $db->hasColumn('guild_wars', 'frags_limit');
 $hasGuildWarsFragLimitColumn = $db->hasColumn('guild_wars', 'frag_limit');
 $hasGuildWarsDeclarationDateColumn = $db->hasColumn('guild_wars', 'declaration_date');
 $hasGuildWarsBountyColumn = $db->hasColumn('guild_wars', 'bounty');
@@ -20,8 +21,12 @@ if ($hasGuildWarsNameColumn) {
 if ($hasGuildWarsStartedColumn && $hasGuildWarsEndedColumn) {
 	$extraQuery .= '`guild_wars`.`started`, `guild_wars`.`ended`, ';
 }
-elseif ($hasGuildWarsFragLimitColumn && $hasGuildWarsDeclarationDateColumn && $hasGuildWarsBountyColumn) {
+
+if ($hasGuildWarsFragLimitColumn && $hasGuildWarsDeclarationDateColumn && $hasGuildWarsBountyColumn) {
 	$extraQuery .= '`guild_wars`.`frag_limit`, `guild_wars`.`declaration_date`, `guild_wars`.`bounty`, ';
+}
+else if($hasGuildWarsFragsLimitColumn) {
+	$extraQuery .= '`guild_wars`.`frags_limit`,';
 }
 
 $orderBy = 'started';

@@ -66,7 +66,13 @@ To invite guild to war use your guild page.<br/><br/>
 															<span style="color: black"><b>Pending acceptation</b>
 																<br/>
 																{% if war.started is defined %}
-																Invited on {{ war.started|date("M d Y, H:i:s") }} for {{ ((war.ended - war.started) / 86400) }} days.
+																	<span style="color: black">Invited on {{ war.started|date("M d Y, H:i:s") }} for
+																		{% if war.frags_limit is defined %}
+																			{{ war.frags_limit }} frags.
+																		{% else %}
+																			7 days war.
+																		{% endif %}
+																	</span>
 																{% elseif war.declaration_date is defined %}
 																	Invited on {{ war.declaration_date|date("M d Y, H:i:s") }} for {{ war.frag_limit }} frags war.
 																{% endif %}
@@ -78,7 +84,13 @@ To invite guild to war use your guild page.<br/><br/>
 
 															<font color="black"><b>Pending acceptation</b><br/>
 																{% if war.started is defined %}
-																	Invited on {{ war.started|date("M d Y, H:i:s") }} for 7 days war.
+																	<span style="color: black">Invited on {{ war.started|date("M d Y, H:i:s") }} for
+																		{% if war.frags_limit is defined %}
+																			{{ war.frags_limit }} frags.
+																		{% else %}
+																			7 days war.
+																		{% endif %}
+																	</span>
 																{% elseif war.declaration_date is defined %}
 																	Invited on {{ war.declaration_date|date("M d Y, H:i:s") }} for {{ war.frag_limit }} frags war. The bounty for this war is set to {{ war.bounty }} gold coins.
 																{% endif %}
@@ -87,13 +99,13 @@ To invite guild to war use your guild page.<br/><br/>
 
 																{% if isLeader and war.guild2 == guild.getId() %}
 																	<br />
-																	<a href="?p=wars&action=invitation_accept&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want ACCEPT that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: lime;">accept</span> invitation to war &laquo;</a>
+																	<a href="?p=wars&action=invitation_accept&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want ACCEPT that invitation?');" style="cursor: pointer;">&raquo; Click here to <span style="color: lime;">accept</span> invitation to war &laquo;</a>
 																	<br/><br/>
-																	<a href="?p=wars&action=invitation_reject&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want REJECT that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">reject</span> invitation to war &laquo;</a>
+																	<a href="?p=wars&action=invitation_reject&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want REJECT that invitation?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">reject</span> invitation to war &laquo;</a>
 																{% endif %}
 
 																{% if isLeader and war.guild1 == guild.getId() %}
-																<br /><br /><a href="?p=wars&action=invitation_cancel&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want CANCEL that invitation for 7 days war?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">cancel</span> invitation to war &laquo;</a>
+																<br /><br /><a href="?p=wars&action=invitation_cancel&guild={{ guild.getId() }}&war={{ war.id }}" onclick="return confirm('Are you sure that you want CANCEL that invitation?');" style="cursor: pointer;">&raquo; Click here to <span style="color: darkred;">cancel</span> invitation to war &laquo;</a>
 																{% endif %}
 															</font>
 
@@ -109,7 +121,12 @@ To invite guild to war use your guild page.<br/><br/>
 														<span style="color: darkred; font-weight: bold;">On a brutal war</span><br/>
 
 														{% if war.started is defined %}
-															<span style="color: black">Began on {{ war.started|date("M d Y, H:i:s") }}, will end up after server restart after {{ (war.started + (7 * 86400))|date("M d Y, H:i:s") }}.<br/>
+															<span style="color: black">Began on {{ war.started|date("M d Y, H:i:s") }},
+																{% if war.frags_limit is defined %}
+																will end up after {{ war.frags_limit }} frags.
+																{% else %}
+																will end up after server restart after {{ (war.started + (7 * 86400))|date("M d Y, H:i:s") }}.<br/>
+																{% endif %}
 															</span>
 														{% elseif war.declaration_date is defined %}
 															<span style="color: black">Began on {{ war.declaration_date|date("M d Y, H:i:s") }}, will end up after {{ war.frag_limit }} frags.<br/>
