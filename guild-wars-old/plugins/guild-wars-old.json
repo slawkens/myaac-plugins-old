@@ -17,6 +17,8 @@
 	},
 	"uninstall": [
 		"plugins/guild-wars-old.json",
-		"plugins/guild-wars-old"
+		"plugins/guild-wars-old",
+		"system/pages/wars",
+		"system/pages/wars.php"
 	]
 }
