@@ -23,7 +23,7 @@
 							{% else %}
 								<select name="category" class="form-control" id="category">
 									{% for id, name in categories %}
-										<option value="{{ id }}" {% if offer.category == id %}selected{% endif %}>{{ name }}</option>
+										<option value="{{ id }}" {% if offer.category_id == id %}selected{% endif %}>{{ name }}</option>
 									{% endfor %}
 								</select>
 							{% endif %}
