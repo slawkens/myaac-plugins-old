@@ -152,7 +152,13 @@ if(!empty($action)) {
 				$config['mounts'] = array();
 				foreach ($mounts->getElementsByTagName('mount') as $mount) {
 					$id = $mount->getAttribute('id');
-					$config['mounts'][$id] = $mount->getAttribute('clientid');
+
+					$clientId = $mount->getAttribute('clientid');
+					if (empty($clientId)) {
+						$clientId = $mount->getAttribute('clientId');
+					}
+
+					$config['mounts'][$id] = $clientId;
 				}
 				if ($cache->enabled()) {
 					$cache->set('mounts', serialize($config['mounts']), 120);

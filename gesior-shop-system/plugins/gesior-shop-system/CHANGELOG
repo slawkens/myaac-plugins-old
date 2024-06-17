@@ -3,6 +3,7 @@
 	* Remove pagseguro & daopay & dotpay leftovers
 	* Fix category_id
 	* Fix add/edit title
+	* Fix mounts images if the clientId is used
 
 [5.0-beta.2 - 14.12.2023]
 	* Fix mount images
