@@ -1,3 +1,9 @@
+[5.0-RC.1 - 17.06.2024]
+	* Allow any field from accounts table as donation column
+	* Remove pagseguro & daopay & dotpay leftovers
+	* Fix category_id
+	* Fix add/edit title
+
 [5.0-beta.2 - 14.12.2023]
 	* Fix mount images
 

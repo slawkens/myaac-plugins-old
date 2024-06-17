@@ -12,11 +12,11 @@ defined('MYAAC') or die('Direct access not allowed!');
 
 class GesiorShop {
 	public static function getDonationType() {
-		global $config;
+		global $config, $db;
 
 		$field = 'premium_points';
-		if(strtolower($config['donation_type']) == 'coins') {
-			$field = 'coins';
+		if($db->hasColumn('accounts', strtolower($config['donation_type']))) {
+			$field = strtolower($config['donation_type']);
 		}
 
 		return $field;

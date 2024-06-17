@@ -43,6 +43,7 @@ $config['paypal'] = array(
 
 /**
  * stripe.com configuration
+ * notify URL should be set in stripe.com: http://your-host.com/payments/stripe.php
  */
 $config['stripe'] = [
 	// 'false' blocks new payments, it will still process old payment reports
@@ -67,6 +68,7 @@ $config['stripe'] = [
 /**
  * fortumo.com configuration
  * rest of the configuration you can do on fortumo.com
+ * notify URL should be set in fortumo.com: http://your-host/payments/fortumo.php
  */
 $config['fortumo'] = array(
 	'enabled' => true,
@@ -99,54 +101,5 @@ $config['cryptobox'] = array(
 		'5.00' => 30,
 		'10.00' => 60,
 		'20.00' => 130
-	)
-);
-
-/**
- * PagSeguro configuration
- */
-$config['pagseguro'] = array(
-	'enabled' => true,
-	'email' => 'john@doe.com',
-	'environment' => 'production', // production, sandbox
-	'token' => array(
-		'production' => 'yourtokenhere',
-		'sandbox' => 'yourtokenhere',
-	),
-	'urlRedirect' => '?subtopic=points&action=final', // default should be good
-	'productName' => 'Premium Points', // or Coins
-	'productValue' => 1.00,
-	'doublePoints' => false, // should points be doubled? for example: for 5 points donated you become 10.
-	'options' => array( // cost => points/coins
-		'5,00' => 5,
-		'10,00' => 10,
-		'20,00' => 20,
-		'40,00' => 40,
-		'60,00' => 60,
-	)
-);
-
-/**
- * dotpay.pl configuration
- */
-$config['dotpay'] = array(
-	'enabled' => true,
-	'id' => 30722,							# numer ID zarejestrowanego klienta
-	'contact_email' => 'przyklad@twoja-domena.pl',
-	'options' => array(
-		array( # SMS 3,66 zł
-			'code' => "SLASKI",				# identyfikator uslug SMS
-			'type' => "sms",				# typ konta: C1 - 8 znakowy kod bezobslugowy, sms - dla sprawdzania SMSow
-			'points' => 25,					# ile premium punktow daje dany sms
-			'sms_number' => 73068,			# numer na jaki nalezy wyslac kod
-			'sms_text' => "AP.SLASKI",		# tresc jaka ma byc w SMSie
-			'cost' => "3.66 zł brutto"		# cena za wyslanie sms
-		),
-		array( # Przelew 20zł
-			'code' => "SLASKI4",
-			'type' => "C1",
-			'points' => 350,
-			'cost' => "20 zł brutto"
-		)
 	)
 );

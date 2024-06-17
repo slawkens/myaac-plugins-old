@@ -95,18 +95,6 @@ CREATE TABLE IF NOT EXISTS `crypto_payments` (
   UNIQUE KEY `key3` (`boxID`, `orderID`, `userID`, `txID`, `amount`, `addr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `pagseguro_transactions` (
-	`transaction_code` VARCHAR(36) NOT NULL,
-	`name` VARCHAR(200) DEFAULT NULL,
-	`payment_method` VARCHAR(50) NOT NULL,
-	`status` VARCHAR(50) NOT NULL,
-	`item_count` INT(11) NOT NULL,
-	`data` DATETIME NOT NULL,
-	UNIQUE KEY `transaction_code` (`transaction_code`,`status`),
-	KEY `name` (`name`),
-	KEY `status` (`status`)
-) ENGINE=MyISAM;
-
 CREATE TABLE IF NOT EXISTS  `stripe` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`account_id` int(11) NOT NULL,

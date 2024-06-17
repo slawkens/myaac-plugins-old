@@ -14,7 +14,6 @@ if(!tableExist('z_ots_comunication')
 	|| !tableExist('z_shop_history')
 	|| !tableExist('z_shop_offer')
 	|| !tableExist('crypto_payments')
-	|| !tableExist('pagseguro_transactions')
 	|| !tableExist('stripe')
 ) {
 	// import schema
@@ -95,7 +94,7 @@ if(!@copy('https://curl.se/ca/cacert.pem', PLUGINS . 'gesior-shop-system/libs/' 
 }
 
 if(!function_exists('curl_init')) {
-	error(sprintf("Error. Please enable <a target='_blank' href='%s'>CURL extension</a> in PHP. <a target='_blank' href='%s'>Read here &#187;</a> Paypal, Cryptobox and PagSeguro will not work correctly without it.", "http://php.net/manual/en/book.curl.php", "http://stackoverflow.com/questions/1347146/how-to-enable-curl-in-php-xampp"));
+	error(sprintf("Error. Please enable <a target='_blank' href='%s'>CURL extension</a> in PHP. <a target='_blank' href='%s'>Read here &#187;</a> Paypal and Cryptobox will not work correctly without it.", "http://php.net/manual/en/book.curl.php", "http://stackoverflow.com/questions/1347146/how-to-enable-curl-in-php-xampp"));
 	return;
 }
 
