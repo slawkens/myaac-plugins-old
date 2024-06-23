@@ -15,7 +15,7 @@ if(count($menus) === 0) {
 	<link href="https://fonts.googleapis.com/css?family=Amarante|Mirza" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?= $template_path; ?>/style.css">
 	<link rel="stylesheet" type="text/css" href="<?= $template_path; ?>/tibia.css">
-	<script src="<?= $template_path; ?>/Cufon-yui.js"></script>
+	<script src="<?= $template_path; ?>/cufon-yui.js"></script>
 	<script src="<?= $template_path; ?>/jquery.slides.min.js"></script>
 	<script src="<?= $template_path; ?>/Trajan_Pro_400.font.js"></script>
 	<script type="text/javascript">
