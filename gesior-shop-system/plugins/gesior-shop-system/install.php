@@ -14,6 +14,7 @@ if(!tableExist('z_ots_comunication')
 	|| !tableExist('z_shop_history')
 	|| !tableExist('z_shop_offer')
 	|| !tableExist('crypto_payments')
+	|| !tableExist('myaac_paypal')
 	|| !tableExist('stripe')
 ) {
 	// import schema

@@ -46,7 +46,7 @@ $mc_gross = $_REQUEST['mc_gross'];
 $mc_fee = $_REQUEST['mc_fee'];
 $mc_currency = $_REQUEST['mc_currency'];
 $address_status = $_REQUEST['address_status'];
-$payer_status = $_REQUEST['payer_status'];
+$txn_id = $_REQUEST['txn_id'];
 
 $time = date('d.m.Y, H:i');
 
@@ -67,6 +67,23 @@ if(strtolower($mc_currency) !== strtolower($config['paypal']['currency_code'])) 
 if(!isset($paylist[$mc_gross])) {
 	paypal_log_append_die("PayPal is not correctly configured. Please edit the configuration file. Info: option: '$mc_gross' does not exists.");
 }
+
+if($db->select(TABLE_PREFIX . 'paypal', ['txn_id' => $txn_id, 'payment_status' => 'Completed']) !== false) {
+	paypal_log_append_die("Duplicated transaction $txn_id");
+}
+
+$db->insert(TABLE_PREFIX . 'paypal',
+	[
+		'txn_id' => $txn_id,
+		'email' => $payer_email,
+		'account_id' => (int)$custom,
+		'price' => $mc_gross,
+		'currency' => $mc_currency,
+		'points' => $paylist[$mc_gross],
+		'payer_status' => $payer_status,
+		'payment_status' => $payment_status,
+		'created' => date('Y-m-d H:i:s'),
+	]);
 
 $account = new OTS_Account();
 $account->load($custom);

@@ -95,6 +95,20 @@ CREATE TABLE IF NOT EXISTS `crypto_payments` (
   UNIQUE KEY `key3` (`boxID`, `orderID`, `userID`, `txID`, `amount`, `addr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
+CREATE TABLE IF NOT EXISTS `myaac_paypal` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`txn_id` varchar(30) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	`account_id` int NOT NULL,
+	`price` float NOT NULL,
+	`currency` varchar(10) NOT NULL,
+	`points` int NOT NULL,
+	`payer_status` varchar(255) NOT NULL,
+	`payment_status` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS  `stripe` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`account_id` int(11) NOT NULL,
