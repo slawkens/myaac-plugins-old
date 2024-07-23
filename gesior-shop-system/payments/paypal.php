@@ -50,8 +50,7 @@ $txn_id = $_REQUEST['txn_id'];
 $time = date('d.m.Y, H:i');
 
 if($business !== $config['paypal']['email']) {
-	log_append('paypal-error.log', "PayPal is not correctly configured. Please edit the configuration file. Payment email is '$business', your email: {$config['paypal']['email']}. It needs to be the same.");
-	header('HTTP/1.1 200 OK');
+	paypal_log_append_die("PayPal is not correctly configured. Please edit the configuration file. Payment email is '$business', your email: {$config['paypal']['email']}. It needs to be the same.");
 	return;
 }
 
@@ -96,6 +95,6 @@ header('HTTP/1.1 200 OK');
 
 function paypal_log_append_die($str) {
 	log_append('paypal-error.log', $str);
-	header('HTTP/1.1 200 OK');
+	http_response_code(510);
 	die();
 }
