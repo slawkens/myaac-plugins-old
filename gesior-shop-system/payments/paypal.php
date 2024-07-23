@@ -45,7 +45,6 @@ $payer_status = $_REQUEST['payer_status'];
 $mc_gross = $_REQUEST['mc_gross'];
 $mc_fee = $_REQUEST['mc_fee'];
 $mc_currency = $_REQUEST['mc_currency'];
-$address_status = $_REQUEST['address_status'];
 $txn_id = $_REQUEST['txn_id'];
 
 $time = date('d.m.Y, H:i');
@@ -89,7 +88,7 @@ $account = new OTS_Account();
 $account->load($custom);
 if($account->isLoaded()) {
 	if(GesiorShop::changePoints($account, $paylist[$mc_gross])) {
-		log_append('paypal.log', "$time;$custom;$payer_email;$mc_gross:$mc_currency;$mc_fee;$receiver_email;$payment_status;$ip;$business;$address_status;$payer_status");
+		log_append('paypal.log', "$time;$custom;$payer_email;$mc_gross:$mc_currency;$mc_fee;$receiver_email;$payment_status;$ip;$business;$payer_status");
 	}
 }
 

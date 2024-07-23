@@ -1,3 +1,6 @@
+[5.0.RC.3 - 23.07.2024]
+	* remove unused variable from PayPal script
+
 [5.0.RC.2 - 23.07.2024]
 	* Fix duplicated Paypal transactions
 
