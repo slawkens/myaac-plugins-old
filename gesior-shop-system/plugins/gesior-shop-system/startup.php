@@ -23,6 +23,6 @@ if(strpos($currentURL, $sandboxToBeFound) !== false) {
 
 // Redirect if we find pattern (example URL pointed above is currently visited)
 if($foundCount === count($toBeFound) || $sandboxFound) {
-	header("Location: " . BASE_URL . 'gifts');
+	header("Location: " . getLink('gifts'));
 	exit;
 }
