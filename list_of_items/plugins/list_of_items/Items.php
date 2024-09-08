@@ -138,6 +138,40 @@ class Items
 					}
 				}
 			}
+
+			if (strtolower($attribute->getAttribute('key')) == 'primarytype' && empty($type)) {
+				switch(strtolower($attribute->getAttribute('value'))) {
+					case 'helmets':
+						$type = 'head';
+						break;
+					case 'armors':
+						$type = 'body';
+						break;
+					case 'legs':
+						$type = 'legs';
+						break;
+					case 'boots':
+						$type = 'feet';
+						break;
+					case 'shields':
+						$type = 'shield';
+						break;
+					case 'rings':
+						$type = 'ring';
+						break;
+					case 'amulets and necklaces':
+						$type = 'necklace';
+				}
+
+				if ($type == 'head' || $type == 'body' || $type == 'legs' || $type == 'feet') {
+					foreach( $item->getElementsByTagName('attribute') as $_attribute) {
+						if($_attribute->getAttribute('key') == 'armor') {
+							$level = $_attribute->getAttribute('value');
+							break;
+						}
+					}
+				}
+			}
 		}
 
 		$this->db->insert('list_of_items', [

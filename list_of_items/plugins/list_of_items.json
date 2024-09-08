@@ -1,7 +1,7 @@
 {
 	"name": "List of Items",
 	"description": "Automatic generator for MyAAC of a list of items on your server organized",
-	"version": "3.0",
+	"version": "3.1",
 	"author": "endless, slawkens",
 	"contact": "walistonbelles1@gmail.com",
 	"uninstall": [
