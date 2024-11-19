@@ -1,10 +1,10 @@
 [5.0 - 19.11.2024]
-	* fix redirect links after login
+	* do not allow install on myaac 1.0
 	* Ignore history offers that doesn't exist
 
 [5.0-RC.3 - 23.07.2024]
 	* Fix redirection after purchase was done
-	* Use 510 http error code for failures
+	* Use 510 http error code for paypal failures
 
 [5.0-RC.2 - 23.07.2024]
 	* Fix duplicated Paypal transactions
