@@ -12,16 +12,10 @@
 			"file": "plugins/gesior-shop-system/startup.php"
 		}
 	},
-	"routes": {
-		"gesior-shop-history": {
-			"pattern": "gifts/history",
-			"file": "plugins/gesior-shop-system/pages/history.php",
-			"method": "get"
-		}
-	},
 	"install": "plugins/gesior-shop-system/install.php",
 	"require": {
 		"myaac": "0.8.9",
+		"myaac_": "<0.9",
 		"php-ext": "curl"
 	}
 }
