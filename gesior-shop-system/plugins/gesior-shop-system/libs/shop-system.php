@@ -127,6 +127,11 @@ class GesiorShop {
 
 		$id = (int) $id;
 		$data = $db->query('SELECT * FROM ' . $db->tableName('z_shop_offer') . ' WHERE ' . $db->fieldName('id') . ' = ' . $db->quote($id) . ';')->fetch();
+
+		if (!$data) {
+			return false;
+		}
+
 		return self::parseOffer($data);
 	}
 
@@ -279,7 +284,12 @@ class GesiorShop {
 		$shop_history_query = $db->query('SELECT * FROM ' . $db->tableName('z_shop_history') . ' WHERE (' . $db->fieldName('to_account') . ' = ' . $db->quote($account->getId()) . ' OR ' . $db->fieldName('from_account') . ' = ' . $db->quote($account->getId()) . ');');
 		if(is_object($shop_history_query)) {
 			foreach($shop_history_query as $shop_history) {
-				$item_name = array('item_name' => GesiorShop::getOfferById($shop_history['offer_id']));
+				$offer = GesiorShop::getOfferById($shop_history['offer_id']);
+				if (!$offer) {
+					continue;
+				}
+
+				$item_name = array('item_name' => $offer);
 
 				if(empty($shop_history['is_pacc'])) {
 					$history_items[] = array_merge($item_name, $shop_history);
