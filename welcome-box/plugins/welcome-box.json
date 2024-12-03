@@ -1,7 +1,7 @@
 {
 	"name": "Welcome Box",
 	"description": "Shows Welcome Box with information like guilds, houses, players on the front page (news).",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "plugin",
 	"license": "GPLv3",
 	"author": "slawkens",

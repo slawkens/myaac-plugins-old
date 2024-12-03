@@ -1,3 +1,6 @@
+[1.0.2 - 03.12.2024]
+	* fix $db exception
+
 [1.0.1 - 15.02.2020]
 	* change ORDER BY level to ORDER BY experience
 
