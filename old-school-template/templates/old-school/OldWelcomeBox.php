@@ -5,8 +5,11 @@ namespace MyAAC\Plugin;
 class OldWelcomeBox
 {
 	private $db;
-	public function __construct(\OTS_DB_MySQL $db)
-	{
+
+	/**
+	 * @param \OTS_DB_MySQL $db
+	 */
+	public function __construct($db) {
 		$this->db = $db;
 	}
 
