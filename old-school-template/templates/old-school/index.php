@@ -163,7 +163,7 @@ if(count($menus) === 0) {
 		<div class="center_box">
 			<div class="corner_lt"></div><div class="corner_rt"></div><div class="corner_lb"></div><div class="corner_rb"></div>
 			<div class="title"><span class="cufon" style="text-transform: uppercase;text-align: center;line-height:
-			43px;font-size: 16px;"><?= PAGE; ?></span></div>
+			43px;font-size: 16px;"><?= $title; ?></span></div>
 			<div class="content_bg">
 				<div class="content">
 					<div class="rise-up-content" style="min-height: 565px;">
