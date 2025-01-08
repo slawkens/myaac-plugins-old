@@ -439,7 +439,7 @@ class GesiorShop {
 		$offers = [];
 
 		global $db;
-		$query = $db->query('SELECT *, COUNT(`offer_id`) as `how_much` FROM `z_shop_history`, `z_shop_offer` WHERE `offer_id` = `z_shop_offer`.`id` GROUP BY `offer_id` ORDER BY `how_much` DESC LIMIT 3;');
+		$query = $db->query('SELECT z_shop_offer.*, offer_id, COUNT(`offer_id`) as `how_much` FROM `z_shop_history`, `z_shop_offer` WHERE `offer_id` = `z_shop_offer`.`id` GROUP BY `offer_id` ORDER BY `how_much` DESC LIMIT 3;');
 		foreach($query->fetchAll(PDO::FETCH_ASSOC) as $offer) {
 			$offers[] = self::parseOffer($offer);
 		};
