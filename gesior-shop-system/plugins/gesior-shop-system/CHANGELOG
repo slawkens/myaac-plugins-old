@@ -1,5 +1,6 @@
 [5.0.2 - 23.01.2025]
 	* Reorder some code causing problems on install with missing columns in db
+	* log additional info in paypal IPN script
 
 [5.0.1 - 08.01.2025]
 	* fix exception in mysql 8.2 caused by most_popular_items query - SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column

@@ -134,12 +134,14 @@ class PaypalIPN
             $errno = curl_errno($ch);
             $errstr = curl_error($ch);
             curl_close($ch);
+			paypal_log_append_die("cURL error: [$errno] $errstr");
             throw new Exception("cURL error: [$errno] $errstr");
         }
 
         $info = curl_getinfo($ch);
         $http_code = $info['http_code'];
         if ($http_code != 200) {
+			paypal_log_append_die("PayPal responded with http code $http_code");
             throw new Exception("PayPal responded with http code $http_code");
         }
 
@@ -149,6 +151,7 @@ class PaypalIPN
         if ($res == self::VALID) {
             return true;
         } else {
+			paypal_log_append_die('Paypal returned: ' . $res);
             return false;
         }
     }
