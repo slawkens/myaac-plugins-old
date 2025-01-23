@@ -2,7 +2,7 @@
 	"name": "Reborn Template",
 	"description": "This is Reborn template for MyAAC.",
 	"version": "1.0",
-		"type": "template",
+	"type": "template",
 	"license": "GPLv3",
 	"author": "Xitobuh",
 	"contact": "(please edit)",
