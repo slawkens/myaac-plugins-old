@@ -47,6 +47,30 @@ if(!fieldExist('hidden', 'z_shop_offer')) {
 	success('Added hidden field to z_shop_offer table to database.');
 }
 
+if (!$db->hasColumn('z_shop_offer', 'category_id')) {
+	$db->exec("ALTER TABLE z_shop_offer ADD `category_id` TINYINT(1) NOT NULL DEFAULT 0 AFTER `count2`;");
+
+	$query = $db->query("SELECT id, name FROM z_shop_categories;");
+	foreach ($query as $category) {
+		$db->update('z_shop_offer', ['category_id' => $category['id']], ['offer_type' => $category['name']]);
+	}
+
+	if ($db->hasColumn('z_shop_categories', 'description')) {
+		$db->exec("UPDATE z_shop_categories SET `name` = `description`;");
+		$db->exec("ALTER TABLE z_shop_categories DROP `description`;");
+	}
+
+	$db->exec("ALTER TABLE z_shop_categories DROP PRIMARY KEY, CHANGE id id INT(11) NOT NULL;");
+	$db->exec("ALTER TABLE z_shop_categories ADD PRIMARY KEY(`id`);");
+
+	success('Updated tables to latest version (category_id) - v4.0.');
+}
+
+if (!$db->hasColumn('z_shop_offer', 'ordering')) {
+	$db->exec("ALTER TABLE z_shop_offer ADD `ordering` INT(11) NOT NULL DEFAULT 0;");
+	$db->exec("UPDATE z_shop_offer SET `ordering` = `id`;");
+}
+
 // insert some samples
 // avoid duplicates
 $query = $db->query("SELECT `id` FROM `z_shop_offer` LIMIT 1;");
@@ -63,28 +87,6 @@ INSERT INTO `z_shop_offer` (`id`, `points`, `itemid1`, `count1`, `itemid2`, `cou
 
 if($db->select(TABLE_PREFIX . 'admin_menu', ['name' => 'Gifts']) === false) {
 	$db->query("INSERT INTO `" . TABLE_PREFIX . "admin_menu` (`name`, `page` ,`ordering` ,`flags` ,`enabled`) VALUES ('Gifts', 'gifts', '0', '0', '1')");
-}
-
-if (!$db->hasColumn('z_shop_offer', 'category_id')) {
-	$db->exec("ALTER TABLE z_shop_offer ADD `category_id` TINYINT(1) NOT NULL DEFAULT 0 AFTER `count2`;");
-
-	$query = $db->query("SELECT id, name FROM z_shop_categories;");
-	foreach ($query as $category) {
-		$db->update('z_shop_offer', ['category_id' => $category['id']], ['offer_type' => $category['name']]);
-	}
-
-	if ($db->hasColumn('z_shop_categories', 'description')) {
-		$db->exec("UPDATE z_shop_categories SET `name` = `description`;");
-		$db->exec("ALTER TABLE z_shop_categories DROP `description`;");
-	}
-
-	$db->exec("ALTER TABLE z_shop_offer ADD `ordering` INT(11) NOT NULL DEFAULT 0;");
-	$db->exec("UPDATE z_shop_offer SET `ordering` = `id`;");
-
-	$db->exec("ALTER TABLE z_shop_categories DROP PRIMARY KEY, CHANGE id id INT(11) NOT NULL;");
-	$db->exec("ALTER TABLE z_shop_categories ADD PRIMARY KEY(`id`);");
-
-	success('Updated tables to latest version (category_id) - v4.0.');
 }
 
 if(!@copy('https://curl.se/ca/cacert.pem', PLUGINS . 'gesior-shop-system/libs/' . 'cert/cacert.pem')) {
