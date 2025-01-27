@@ -1,5 +1,5 @@
 [2.0.3 - 27.01.2025]
-	* changed how guild logos are loaded from database
+	* small adjustment to guild logos loading from database
 
 [2.0.2 - 10.05.2024]
 	* small tweak - $guild['id']
