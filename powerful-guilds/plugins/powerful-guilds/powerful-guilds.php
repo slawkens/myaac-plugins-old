@@ -22,7 +22,7 @@ function mostPowerfulGuildsDatabase()
 	$ret = array();
 	if(tableExist('killers')) { // TFS 0.3 + 0.4
 		foreach ($db->query('SELECT `g`.`id` AS `id`, `g`.`name` AS `name`,
-		`g`.`logo_name` AS `logo`, COUNT(`g`.`name`) as `frags`
+		`g`.`logo_name` AS `logo_name`, COUNT(`g`.`name`) as `frags`
 		FROM `killers` k
 			LEFT JOIN `player_killers` pk ON `k`.`id` = `pk`.`kill_id`
 			LEFT JOIN `players` p ON `pk`.`player_id` = `p`.`id`
@@ -36,7 +36,7 @@ function mostPowerfulGuildsDatabase()
 	}
 	else { // TFS 1.0+
 		foreach($db->query('SELECT `g`.`id` AS `id`, `g`.`name` AS `name`,
-		`g`.`logo_name` AS `logo`, COUNT(`g`.`name`) as `frags`
+		`g`.`logo_name` AS `logo_name`, COUNT(`g`.`name`) as `frags`
 		FROM `players` p
 			LEFT JOIN `player_deaths` pd ON `pd`.`killed_by` = `p`.`name`
 			LEFT JOIN `guild_membership` gm ON `p`.`id` = `gm`.`player_id`
@@ -82,16 +82,15 @@ $twig_loader->prependPath(__DIR__);
 $_page = $config['powerful_guilds']['page'];
 if(!isset($_page[0]) || $_page == PAGE)
 {
-	$db->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
-
 	$guilds = mostPowerfulGuildsList();
 	// just for testing purposes if you don't have any kills on server
 	//$guilds = $db->query('SELECT * FROM guilds LIMIT ' . $config['powerful_guilds']['amount'])->fetchAll();
 	if(count($guilds) > 0) {
 		foreach($guilds as &$guild) {
 			$guild['link'] = getGuildLink($guild['name'], false);
-			$guild['logo'] = ((!empty($guild['logo']) && file_exists('images/guilds/' . $guild['logo'])) ? $guild['logo'] : 'default.gif');
-			//$guild['frags'] = 5;
+			$guild['logo'] = ((!empty($guild['logo_name']) && file_exists(BASE . 'images/guilds/' . $guild['logo_name'])) ?
+				$guild['logo_name'] : 'default.gif');
+			//$guild['frags'] = rand(1, 100);
 		}
 	}
 

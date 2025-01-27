@@ -1,5 +1,8 @@
+[2.0.3 - 27.01.2025]
+	* changed how guild logos are loaded from database
+
 [2.0.2 - 10.05.2024]
-	* small twean - $guild['id']
+	* small tweak - $guild['id']
 
 [2.0.1 - 11.11.2023]
 	* change sql_mode only when needed
